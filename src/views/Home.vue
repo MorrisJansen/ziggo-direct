@@ -219,6 +219,7 @@ export default {
 .container-inhoud-stappenplan {
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 .hoe-werkt-het {
@@ -272,7 +273,7 @@ export default {
     background: #F48C02;
     margin-top: 11%!important;
     margin-left: 50%!important;
-    padding: 0 20px;
+    margin-bottom: 10%!important;
 }
 
 .cta-text {
