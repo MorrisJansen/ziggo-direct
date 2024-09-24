@@ -264,7 +264,7 @@ export default {
 
 .cta-home {
     display: inline-flex;
-    height: 7vh;
+    height: 15%;
     width: 60%;
     align-items: center;
     justify-content: space-evenly;
@@ -287,7 +287,7 @@ export default {
 
 .cta-pijl {
     color: white;
-    font-size: 24px;
+    font-size: 1.2vw;
 }
 
 
