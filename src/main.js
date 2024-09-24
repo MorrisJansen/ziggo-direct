@@ -10,8 +10,8 @@ import Pagina2 from './views/Pagina2.vue'
 
 const routes = [
     { path: '/', component: Home},
-    { path: '/Pagina1', component: Pagina1},
-    { path: '/Pagina2', component: Pagina2},
+    { path: '/Pagina1', component: Pagina1, name: 'pagina1'},
+    { path: '/Pagina2', component: Pagina2, name: 'pagina2'},
 
 ]
 
