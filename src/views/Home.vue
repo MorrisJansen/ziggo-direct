@@ -264,7 +264,7 @@ export default {
 
 .cta-home {
     display: inline-flex;
-    height: 4vw;
+    height: 7vh;
     width: 60%;
     align-items: center;
     justify-content: space-evenly;
