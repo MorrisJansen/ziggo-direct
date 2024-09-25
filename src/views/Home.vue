@@ -1,13 +1,27 @@
-
 <script>
 export default {
-    methods: {
-    goToPage1() {
-        this.$router.push({ name: 'pagina1' }); // Deze naam moet overeenkomen met de naam in de routerconfiguratie
-        console.log('werkt het?');
-    }
-}}
+    mounted() {
+        // Functie om te detecteren of de browser Safari is
+        const isSafari = () => {
+            const ua = navigator.userAgent;
+            const safari = ua.includes('Safari') && !ua.includes('Chrome');
+            console.log('Is Safari detected?', safari);
+            return safari;
+        };
 
+        if (isSafari()) {
+            document.body.classList.add('safari');
+            console.log('Safari class added to body'); 
+        } else {
+            console.log('Not Safari');
+        }
+    },
+    methods: {
+        goToPage1() {
+            this.$router.push({ name: 'page1' });
+        }
+    }
+}
 </script>
 
 
@@ -52,10 +66,12 @@ export default {
       <div class="container-sectie-1">
         <div class="achtergrond-sectie-1">
 
+
             <div class="inhoud-sectie-1">
-                <div class="maak-kans">
-                    Maak kans op <br> 1 van de 3 prijzen!
-                </div>
+                    <div class="maak-kans">
+                        Maak kans op <br> 1 van de 3 prijzen!
+                    </div>
+
 
                 <div class="container-stappenplan">
                     <div class="container-inhoud-stappenplan">
@@ -104,9 +120,10 @@ export default {
 
 
 
-            <!-- <div class="container-afbeelding-home">
-                <img src="/public/afbeelding-home-desk.png" alt="">
-            </div> -->
+            <div class="container-afbeelding-home">
+                <img class="pijl-naar-afbeelding" src="/public/pijl-naar-afbeelding.svg" alt="">
+                <img class="afbeelding-prijzen" src="/public/afbeelding-home-desk.png" alt="">
+            </div>
 
 
         </div>
@@ -175,13 +192,11 @@ export default {
   
   
   
-  .container-sectie-1 {
-    
-  }
+
 
   .achtergrond-sectie-1 {
     background: linear-gradient(90deg, #072148 0%, #40A59F 100%);
-    height: 52rem;
+    height: 50rem;
   }
 
   .inhoud-sectie-1 {
@@ -189,13 +204,16 @@ export default {
     height: 35%!important;
   }
 
+
+
+
   .maak-kans {
     color: #FFF;
     font-family: "DM Sans";
-    font-size: 5vw;
+    font-size: 4.3vw;
     font-style: normal;
     font-weight: 600;
-    line-height: 5.92631rem;
+    line-height: 5vw;
     display: flex;
     padding-top: 3%!important;
     text-align: left;
@@ -210,7 +228,7 @@ export default {
     background: #FFF;
     box-shadow: 0px 31px 81px 0px rgba(0, 17, 77, 0.20);
     display: flex;
-    margin-top: 10%!important;
+    margin-top: 5%!important;
     margin-left: 7%;
     padding-left: 5%!important;
     padding-top:   4%!important;
@@ -270,11 +288,12 @@ export default {
     justify-content: space-evenly;
     flex-shrink: 0;
     border-radius: 2.5rem;
-    background: #F48C02;
+    background-color: #F48C02;
     margin-top: 11%!important;
     margin-left: 50%!important;
     margin-bottom: 10%!important;
 }
+
 
 .cta-text {
     color: #FFF;
@@ -292,18 +311,27 @@ export default {
 
 
 
-
+.pijl-naar-afbeelding {
+    position: relative;
+    top: -800px;
+    right: -65px;
+    width: 7vw;
+    z-index: 1;
+  }
 
 
   .container-afbeelding-home {
-    width: 50%;
+    width: 50vw;
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
     margin-left: 45%!important;
     position: relative;
-    bottom: 76%;
+    bottom: 13%
 }
+
+
+
 
 .container-afbeelding-home img {
     max-width: 100%;
@@ -316,10 +344,257 @@ export default {
 
 
 
+
+
+
+/* Basis styling voor 1920px en groter */
+.pijl-naar-afbeelding {
+    position: relative;
+    transform: translate(65px, -800px) scale(1);
+    width: 7vw;
+    z-index: 1;
+    transition: transform 0.3s ease;
+}
+
+.container-afbeelding-home {
+    width: 50vw;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    margin-left: 45%!important;
+    position: relative;
+    bottom: 13%;
+    transition: transform 0.3s ease;
+}
+
+.container-afbeelding-home img {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    transform: scale(1);
+    transition: transform 0.3s ease;
+}
+
+
+
+/* Media queries voor schermen kleiner dan 1920px */
+@media (max-width: 1740px) {
+    .pijl-naar-afbeelding {
+        transform: translate(26px, -20px) scale(0.85)!important;
+        width: 6vw;
+    }
+
+    .container-afbeelding-home {
+        width: 55vw;
+        margin-left: 40%!important;
+        bottom: 12%;
+    }
+
+    .container-afbeelding-home img {
+        transform: translate(20px, -66px) scale(0.85);
+    }
+}
+
+@media (max-width: 1620px) {
+    .pijl-naar-afbeelding {
+        transform: translate(65px, -42px) scale(0.8)!important;
+        width: 5vw;
+    }
+}
+
+
+@media (max-width: 1520px) {
+    .pijl-naar-afbeelding {
+        transform: translate(75px, -52px) scale(0.75)!important;
+        width: 5vw;
+    }
+
+    .achtergrond-sectie-1 {
+        height: 42rem;
+    }
+}
+
+@media (max-width: 1470px) {
+    .pijl-naar-afbeelding {
+        transform: translate(75px, -10px) scale(0.75)!important;
+    }
+
+    .afbeelding-prijzen {
+        transform: translate(20px, -100px) scale(0.85)!important;
+
+    }
+
+}
+
+
+@media (max-width: 1340px) {
+    .pijl-naar-afbeelding {
+        transform: translate(66px, 38px) scale(0.75)!important;
+
+    }
+}
+
+@media (max-width: 1240px) {
+    .pijl-naar-afbeelding {
+        transform: translate(66px, 95px) scale(0.75)!important;
+
+    }
+}
+
+@media (max-width: 1200px) {
+    .pijl-naar-afbeelding {
+        transform: translate(50px, 145px) scale(0.75)!important;
+
+    }
+    .achtergrond-sectie-1 {
+        height: 34rem;
+    }
+}
+
+
+@media (max-width: 1150px) {
+    .pijl-naar-afbeelding {
+        transform: translate(55px, 110px) scale(0.75)!important;
+
+    }
+}
+
+@media (max-width: 1100px) {
+    .pijl-naar-afbeelding {
+        transform: translate(40px, 136px) scale(0.75)!important;
+
+    }
+}
+
+@media (max-width: 1040px) {
+    .pijl-naar-afbeelding {
+        transform: translate(40px, 159px) scale(0.75)!important;
+
+    }
+}
+
+
+@media (max-width: 980px) {
+    .pijl-naar-afbeelding {
+        transform: translate(40px, 187px) scale(0.75)!important;
+
+    }
+    .achtergrond-sectie-1 {
+        height: 27rem;
+    }
+}
+
+
+@media (max-width: 920px) {
+    .pijl-naar-afbeelding {
+        transform: translate(40px, 215px) scale(0.75)!important;
+
+    }
+}
+
+
+@media (max-width: 870px) {
+    .pijl-naar-afbeelding {
+        transform: translate(30px, 245px) scale(0.75)!important;
+
+    }
+}
+
+
+@media (max-width: 790px) {
+    .pijl-naar-afbeelding {
+        transform: translate(25px, 285px) scale(0.75)!important;
+
+    }
+
+    .achtergrond-sectie-1 {
+        height: 22rem;
+    }
+}
+
+
+@media (max-width: 720px) {
+    .pijl-naar-afbeelding {
+        transform: translate(20px, 300px) scale(0.75)!important;
+
+    }
+}
+
+
+
+
+
+
+
+
+
   @media (max-width: 700px){
     * {
         display: none;
     }
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.safari .cta-home {
+    margin-right: 50%!important;
+    background-color: red;
+}
+
   </style>
   
