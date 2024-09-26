@@ -124,12 +124,14 @@ export default {
 
     </div>
 
+    <center>
         <div class="footer-container-1">
             <hr class="lijn-sectie-2">
               <div class="footer-text-1">
                   *Meervoordeel.nl is een officiële partner van Ziggo. Deelname mogelijk tot en met 31 juli 2024.<br> Actievoorwaarden van toepassing.
               </div>
         </div>
+    </center>
 
 
 </div>

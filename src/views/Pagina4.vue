@@ -29,7 +29,6 @@ export default {
 <template>
 
 <div class="overkoepelende-container-pagina-1">
-  <a href="/">
     <div class="container-navbar">
         <div class="afbeelding-1-navbar">
           <img src="/public/meervoordeel-nav.svg" alt="meervoordeel">
@@ -42,9 +41,7 @@ export default {
         <div class="afbeelding-3-navbar">
           <img src="/public/ziggo-logo.png" alt="ziggo">
         </div>
-    </div>
-  </a>
-
+      </div>
 
 
 
@@ -56,30 +53,47 @@ export default {
 
             <div class="container-inhoud-witte-container">
                 <div class="stap-pagina-1">
-                    Stap 1 van 3
+                    Stap 2 van 3
                 </div>
 
                 <div class="vraag-pagina-1">
-                    Vertel ons welke prijs je wilt winnen: 
+                    Wat is jouw huidige provider? 
                 </div>
 
 
 
             <div class="container-antwoorden-pagina-1">
-                <div class="container-antwoord-optie" @click="selectOption('optie-1')">
+
+            <div class="container-antwoorden1-2">
+                <div class="container-antwoord-optie-2" @click="selectOption('optie-1')">
                     <input class="input-radio" type="radio" id="optie-1" name="antwoord" value="SAMSUNG TV">
-                    <label for="optie-1">SAMSUNG 60" TV t.w.v. €699,-</label>
+                    <label for="optie-1">Odido</label>
                 </div>
 
-                <div class="container-antwoord-optie" @click="selectOption('optie-2')">
+                <div class="container-antwoord-optie-2" @click="selectOption('optie-2')">
                     <input class="input-radio" type="radio" id="optie-2" name="antwoord" value="Playstation 5">
-                    <label for="optie-2">Playstation 5 Slim Disk t.w.v. €549</label>
+                    <label for="optie-2">Ziggo</label>
+                </div>
+            </div>
+
+
+
+
+            <div class="container-antwoorden1-2">
+                <div class="container-antwoord-optie-2" @click="selectOption('optie-3')">
+                    <input class="input-radio" type="radio" id="optie-3" name="antwoord" value="Bol.com cadeaubon">
+                    <label for="optie-3">KPN</label>
                 </div>
 
-                <div class="container-antwoord-optie" @click="selectOption('optie-3')">
+                <div class="container-antwoord-optie-2" @click="selectOption('optie-4')">
                     <input class="input-radio" type="radio" id="optie-3" name="antwoord" value="Bol.com cadeaubon">
-                    <label for="optie-3">Bol.com cadeaubon t.w.v. €400,-</label>
+                    <label for="optie-4">Anders</label>
                 </div>
+            </div>
+
+
+
+
             </div>
 
 
@@ -124,13 +138,12 @@ export default {
 
     </div>
 
-        <div class="footer-container-1">
-            <hr class="lijn-sectie-2">
-              <div class="footer-text-1">
-                  *Meervoordeel.nl is een officiële partner van Ziggo. Deelname mogelijk tot en met 31 juli 2024.<br> Actievoorwaarden van toepassing.
-              </div>
-        </div>
-
+    <!-- <div class="footer-container">
+        <hr class="lijn-sectie-2">
+          <div class="footer-text">
+              *Meervoordeel.nl is een officiële partner van Ziggo. Deelname mogelijk tot en met 31 juli 2024.<br> Actievoorwaarden van toepassing.
+          </div>
+    </div> -->
 
 </div>
 
@@ -213,6 +226,21 @@ export default {
     display: inline-flex;
     align-items: center;
     padding-left: 1vw!important;
+}
+
+.container-antwoorden1-2 {
+    display: inline-flex;
+}
+
+.container-antwoord-optie-2 {
+    height: 4vw;
+    width: 20vw;
+    background-color: #f1f1f1;
+    margin-bottom: 0.7vw!important;
+    border-radius: 35px;
+    display: inline-flex;
+    align-items: center;
+    padding-left: 1vw!important;
     cursor: pointer; 
 }
 
@@ -242,9 +270,12 @@ export default {
 
 .input-radio:checked + label::before {
     background-color: #F48C02; 
-    border: 1px solid #F48C02
 }
 
+.container-antwoord-optie {
+    cursor: pointer; 
+
+}
 
 .container-antwoord-optie label {
     position: relative;
@@ -305,31 +336,6 @@ export default {
     color: white;
     font-size: 1.2vw;
 }
-
-.footer-container-1 {
-    position: relative;
-    top: 10vw;
-    padding-bottom: 2vw!important;
-    margin: 0 auto!important;
-    width: 100vw; 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.footer-text-1 {
-    margin-top: 2vw!important;
-    color: #C1C1C1;
-    text-align: center;
-    font-family: "DM Sans";
-    font-size: 0.9vw;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 1.4vw;
-}
-
-
-
 
 
 </style>

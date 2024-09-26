@@ -40,19 +40,21 @@ export default {
 
 
         <!-- navbar -->
-      <div class="container-navbar">
-        <div class="afbeelding-1-navbar">
-          <img src="/public/meervoordeel-nav.svg" alt="meervoordeel">
-        </div>
-  
-        <div class="afbeelding-2-navbar">
-          <img src="/public/turstpilot-nav.svg" alt="trustpilot">
-        </div>
-  
-        <div class="afbeelding-3-navbar">
-          <img src="/public/ziggo-logo.png" alt="ziggo">
-        </div>
-      </div>
+        <a href="/">
+            <div class="container-navbar">
+                <div class="afbeelding-1-navbar">
+                  <img src="/public/meervoordeel-nav.svg" alt="meervoordeel">
+                </div>
+          
+                <div class="afbeelding-2-navbar">
+                  <img src="/public/turstpilot-nav.svg" alt="trustpilot">
+                </div>
+          
+                <div class="afbeelding-3-navbar">
+                  <img src="/public/ziggo-logo.png" alt="ziggo">
+                </div>
+            </div>
+          </a>
   
 
 
@@ -316,6 +318,8 @@ export default {
     height: 50px;
     text-align: start;
     margin-bottom: 5%!important;
+    position: relative;
+    right: 8.7vw;
 }
 
 
@@ -536,7 +540,6 @@ export default {
     top: 8vw;
     margin-left: 10%!important;
     display: flex;
-    width: 100vw
 }
 
 
