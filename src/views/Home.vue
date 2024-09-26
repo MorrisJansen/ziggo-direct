@@ -13,7 +13,7 @@ export default {
     },
     methods: {
         goToPage1() {
-            this.$router.push({ name: 'page1' });
+            this.$router.push({ name: 'pagina1' });
         }
     }
 }
