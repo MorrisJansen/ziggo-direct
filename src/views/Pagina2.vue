@@ -12,8 +12,15 @@ export default {
         } 
     },
     methods: {
-        goToPage2() {
-            this.$router.push({ name: 'pagina3' });
+        goToPage3() {
+            const selectedOption = document.querySelector('input[name="antwoord"]:checked');
+            if (selectedOption) {
+                localStorage.setItem('selectedProvider', selectedOption.value);
+                console.log('Geselecteerde waarde:', selectedOption.value);
+                this.$router.push({ name: 'pagina3' });
+            } else {
+                alert('Selecteer eerst een optie voordat je doorgaat.');
+            }
         },
         selectOption(optionId) {
             const input = document.getElementById(optionId);
@@ -26,142 +33,84 @@ export default {
 </script>
 
 
+
+
+
 <template>
-
-<div class="overkoepelende-container-pagina-1">
-    <div class="container-navbar">
-        <div class="afbeelding-1-navbar">
-          <img src="/public/meervoordeel-nav.svg" alt="meervoordeel">
-        </div>
-  
-        <div class="afbeelding-2-navbar">
-          <img src="/public/turstpilot-nav.svg" alt="trustpilot">
-        </div>
-  
-        <div class="afbeelding-3-navbar">
-          <img src="/public/ziggo-logo.png" alt="ziggo">
-        </div>
-      </div>
-
-
-
-<div class="container-pagina-1">
-
-    <div class="achtergrond-pagina-1">
-
-        <div class="witte-container-pagina-1">
-
-            <div class="container-inhoud-witte-container">
-                <div class="stap-pagina-1">
-                    Stap 2 van 3
+    <div class="overkoepelende-container-pagina-1">
+        <a href="/">
+            <div class="container-navbar">
+                <div class="afbeelding-1-navbar">
+                  <img src="/public/meervoordeel-nav.svg" alt="meervoordeel">
                 </div>
-
-                <div class="vraag-pagina-1">
-                    Wat is jouw huidige provider? 
+          
+                <div class="afbeelding-2-navbar">
+                  <img src="/public/turstpilot-nav.svg" alt="trustpilot">
                 </div>
-
-
-
-        <div class="container-antwoorden-pagina-1">
-
-            <div class="container-antwoorden1-2">
-                <div class="container-antwoord-optie-2 stap2-optie1" @click="selectOption('optie-1')">
-                    <input class="input-radio-2" type="radio" id="optie-1" name="antwoord" value="Odido">
-                    <label class="optie-1-2" for="optie-1">Odido</label>
-                </div>
-            
-                <div class="container-antwoord-optie-2" @click="selectOption('optie-2')">
-                    <input class="input-radio-2" type="radio" id="optie-2" name="antwoord" value="Ziggo">
-                    <label class="optie-2-2" for="optie-2">Ziggo</label>
+          
+                <div class="afbeelding-3-navbar">
+                  <img src="/public/ziggo-logo.png" alt="ziggo">
                 </div>
             </div>
-            
-            
-            <div class="container-antwoorden1-2">
-                <div class="container-antwoord-optie-2 stap2-optie1" @click="selectOption('optie-3')">
-                    <input class="input-radio-2" type="radio" id="optie-3" name="antwoord" value="KPN">
-                    <label class="optie-3-2" for="optie-3">KPN</label>
+        </a>
+    
+        <div class="container-pagina-1">
+            <div class="achtergrond-pagina-1">
+                <div class="witte-container-pagina-1">
+                    <div class="container-inhoud-witte-container">
+                        <div class="stap-pagina-1">Stap 2 van 3</div>
+                        <div class="vraag-pagina-1">Wat is jouw huidige provider?</div>
+                        <div class="container-antwoorden-pagina-1">
+                            <div class="container-antwoorden1-2">
+                                <div class="container-antwoord-optie-2 stap2-optie1" @click="selectOption('optie-1')">
+                                    <input class="input-radio-2" type="radio" id="optie-1" name="antwoord" value="Odido">
+                                    <label class="optie-1-2" for="optie-1">Odido</label>
+                                </div>
+                                <div class="container-antwoord-optie-2" @click="selectOption('optie-2')">
+                                    <input class="input-radio-2" type="radio" id="optie-2" name="antwoord" value="Ziggo">
+                                    <label class="optie-2-2" for="optie-2">Ziggo</label>
+                                </div>
+                            </div>
+                            <div class="container-antwoorden1-2">
+                                <div class="container-antwoord-optie-2 stap2-optie1" @click="selectOption('optie-3')">
+                                    <input class="input-radio-2" type="radio" id="optie-3" name="antwoord" value="KPN">
+                                    <label class="optie-3-2" for="optie-3">KPN</label>
+                                </div>
+                                <div class="container-antwoord-optie-2" @click="selectOption('optie-4')">
+                                    <input class="input-radio-2" type="radio" id="optie-4" name="antwoord" value="Anders">
+                                    <label class="optie-4-2" for="optie-4">Anders</label>
+                                </div>
+                            </div>
+                        </div>
+                        <button @click="goToPage3" class="cta-pagina-2">
+                            <span class="cta-text-pagina-2">Ga naar de laatste stap</span>
+                            <span class="cta-pijl-pagina-2">&#8594;</span>
+                        </button>
+                    </div>
                 </div>
-            
-                <div class="container-antwoord-optie-2" @click="selectOption('optie-4')">
-                    <input class="input-radio-2" type="radio" id="optie-4" name="antwoord" value="Anders">
-                    <label class="optie-4-2" for="optie-4">Anders</label>
+                <div class="container-afbeeldingen-en-prijs-1">
+                    <!-- Prijzen SVG -->
+                    <svg class="prijzen-prijs-tv" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
+                      <circle cx="27.9047" cy="27.9047" r="27.9047" fill="#49B7AC"/>
+                      <text x="29" y="20" font-family="DM Sans" font-size="8" fill="white" text-anchor="middle">t.w.v.</text>
+                      <text x="29" y="35" font-family="DM Sans" font-size="12" font-weight="700" fill="white" text-anchor="middle">€699,-</text>
+                    </svg>
+                    <!-- Meer SVG's hier -->
+                    <img class="afbeelding-prijzen" src="/public/afbeelding-home-desk.png" alt="">
                 </div>
             </div>
-            
-
-
-
-
-        </div>
-
-
-
-
-            <button @click="goToPage2" class="cta-pagina-2">
-                <span class="cta-text-pagina-2">Ga naar de laatste stap</span>
-                <span class="cta-pijl-pagina-2">&#8594;</span>
-            </button>
-
+            <div class="footer-container-2">
+                <hr class="lijn-sectie-2">
+                <div class="footer-text-2">
+                    *Meervoordeel.nl is een officiële partner van Ziggo. Deelname mogelijk tot en met 31 juli 2024.<br> Actievoorwaarden van toepassing.
+                </div>
             </div>
         </div>
-
-
-
-        <div class="container-afbeeldingen-en-prijs-1">
-            <!-- Prijzen SVG -->
-            <svg class="prijzen-prijs-tv" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
-              <circle cx="27.9047" cy="27.9047" r="27.9047" fill="#49B7AC"/>
-              <text x="29" y="20" font-family="DM Sans" font-size="8" fill="white" text-anchor="middle">t.w.v.</text>
-              <text x="29" y="35" font-family="DM Sans" font-size="12" font-weight="700" fill="white" text-anchor="middle">€699,-</text>
-            </svg>
-
-            <svg class="prijzen-prijs-bol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
-                <circle cx="27.9047" cy="27.9047" r="27.9047" fill="#49B7AC"/>
-                <text x="29" y="20" font-family="DM Sans" font-size="8" fill="white" text-anchor="middle">t.w.v.</text>
-                <text x="29" y="35" font-family="DM Sans" font-size="12" font-weight="700" fill="white" text-anchor="middle">€400,-</text>
-              </svg>
-
-
-
-            <svg class="prijzen-prijs-ps" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
-              <circle cx="27.9047" cy="27.9047" r="27.9047" fill="#49B7AC"/>
-              <text x="29" y="20" font-family="DM Sans" font-size="8" fill="white" text-anchor="middle">t.w.v.</text>
-              <text x="29" y="35" font-family="DM Sans" font-size="12" font-weight="700" fill="white" text-anchor="middle">€599,-</text>
-            </svg>
-  
-
-            <img class="afbeelding-prijzen" src="/public/afbeelding-home-desk.png" alt="">
-          </div>
-
-
     </div>
-
-
-    <div class="footer-container-2">
-        <hr class="lijn-sectie-2">
-          <div class="footer-text-2">
-              *Meervoordeel.nl is een officiële partner van Ziggo. Deelname mogelijk tot en met 31 juli 2024.<br> Actievoorwaarden van toepassing.
-          </div>
-    </div>
-
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</div>
-</template>
+    </template>
+    
+   
+    
 
 
 <style>

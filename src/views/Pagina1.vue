@@ -11,14 +11,28 @@ export default {
             document.body.classList.add('safari');
         } 
     },
+    data() {
+        return {
+            geselecteerdAntwoord: null,
+            foutmelding: false
+        };
+    },
     methods: {
-        goToPage2() {
+        gaNaarPagina2() {
+            if (!this.geselecteerdAntwoord) {
+                this.foutmelding = true;
+                return;
+            }
+            localStorage.setItem('antwoord1', this.geselecteerdAntwoord);
+            console.log(this.geselecteerdAntwoord)
             this.$router.push({ name: 'pagina2' });
         },
-        selectOption(optionId) {
+        selecteerOptie(optionId) {
             const input = document.getElementById(optionId);
             if (input) {
                 input.checked = true;
+                this.geselecteerdAntwoord = input.value;
+                this.foutmelding = false;
             }
         }
     }
@@ -26,129 +40,98 @@ export default {
 </script>
 
 
+
 <template>
-
 <div class="overkoepelende-container-pagina-1">
-  <a href="/">
-    <div class="container-navbar">
-        <div class="afbeelding-1-navbar">
-          <img src="/public/meervoordeel-nav.svg" alt="meervoordeel">
+    <a href="/">
+        <div class="container-navbar">
+            <div class="afbeelding-1-navbar">
+                <img src="/public/meervoordeel-nav.svg" alt="meervoordeel">
+            </div>
+            <div class="afbeelding-2-navbar">
+                <img src="/public/turstpilot-nav.svg" alt="trustpilot">
+            </div>
+            <div class="afbeelding-3-navbar">
+                <img src="/public/ziggo-logo.png" alt="ziggo">
+            </div>
         </div>
-  
-        <div class="afbeelding-2-navbar">
-          <img src="/public/turstpilot-nav.svg" alt="trustpilot">
-        </div>
-  
-        <div class="afbeelding-3-navbar">
-          <img src="/public/ziggo-logo.png" alt="ziggo">
-        </div>
-    </div>
-  </a>
+    </a>
 
+    <div class="container-pagina-1">
+        <div class="achtergrond-pagina-1">
+            <div class="witte-container-pagina-1">
+                <div class="container-inhoud-witte-container">
+                    <div class="stap-pagina-1">
+                        Stap 1 van 3
+                    </div>
 
+                    <div class="vraag-pagina-1">
+                        Vertel ons welke prijs je wilt winnen: 
+                    </div>
 
+                    <div class="container-antwoorden-pagina-1">
+                        <div class="container-antwoord-optie" @click="selecteerOptie('optie-1', 'SAMSUNG TV')">
+                            <input class="input-radio" type="radio" id="optie-1" name="antwoord" value="SAMSUNG TV">
+                            <label for="optie-1">SAMSUNG 60" TV t.w.v. €699,-</label>
+                        </div>
 
-<div class="container-pagina-1">
+                        <div class="container-antwoord-optie" @click="selecteerOptie('optie-2', 'Playstation 5')">
+                            <input class="input-radio" type="radio" id="optie-2" name="antwoord" value="Playstation 5">
+                            <label for="optie-2">Playstation 5 Slim Disk t.w.v. €549</label>
+                        </div>
 
-    <div class="achtergrond-pagina-1">
+                        <div class="container-antwoord-optie" @click="selecteerOptie('optie-3', 'Bol.com cadeaubon')">
+                            <input class="input-radio" type="radio" id="optie-3" name="antwoord" value="Bol.com cadeaubon">
+                            <label for="optie-3">Bol.com cadeaubon t.w.v. €400,-</label>
+                        </div>
+                    </div>
 
-        <div class="witte-container-pagina-1">
+                    <button @click="gaNaarPagina2" class="cta-pagina-1">
+                        <span class="cta-text-pagina-1">Ga naar stap 2</span>
+                        <span class="cta-pijl-pagina-1">&#8594;</span>
+                    </button>
 
-            <div class="container-inhoud-witte-container">
-                <div class="stap-pagina-1">
-                    Stap 1 van 3
-                </div>
+                    <div v-if="foutmelding" class="foutmelding">
+                        Selecteer alstublieft een antwoord.
+                    </div>
 
-                <div class="vraag-pagina-1">
-                    Vertel ons welke prijs je wilt winnen: 
-                </div>
-
-
-
-            <div class="container-antwoorden-pagina-1">
-                <div class="container-antwoord-optie" @click="selectOption('optie-1')">
-                    <input class="input-radio" type="radio" id="optie-1" name="antwoord" value="SAMSUNG TV">
-                    <label for="optie-1">SAMSUNG 60" TV t.w.v. €699,-</label>
-                </div>
-
-                <div class="container-antwoord-optie" @click="selectOption('optie-2')">
-                    <input class="input-radio" type="radio" id="optie-2" name="antwoord" value="Playstation 5">
-                    <label for="optie-2">Playstation 5 Slim Disk t.w.v. €549</label>
-                </div>
-
-                <div class="container-antwoord-optie" @click="selectOption('optie-3')">
-                    <input class="input-radio" type="radio" id="optie-3" name="antwoord" value="Bol.com cadeaubon">
-                    <label for="optie-3">Bol.com cadeaubon t.w.v. €400,-</label>
                 </div>
             </div>
 
+            <div class="container-afbeeldingen-en-prijs-1">
+                <!-- Prijzen SVG's -->
+                <svg class="prijzen-prijs-tv" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
+                    <circle cx="27.9047" cy="27.9047" r="27.9047" fill="#49B7AC"/>
+                    <text x="29" y="20" font-family="DM Sans" font-size="8" fill="white" text-anchor="middle">t.w.v.</text>
+                    <text x="29" y="35" font-family="DM Sans" font-size="12" font-weight="700" fill="white" text-anchor="middle">€699,-</text>
+                </svg>
 
+                <svg class="prijzen-prijs-bol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
+                    <circle cx="27.9047" cy="27.9047" r="27.9047" fill="#49B7AC"/>
+                    <text x="29" y="20" font-family="DM Sans" font-size="8" fill="white" text-anchor="middle">t.w.v.</text>
+                    <text x="29" y="35" font-family="DM Sans" font-size="12" font-weight="700" fill="white" text-anchor="middle">€400,-</text>
+                </svg>
 
+                <svg class="prijzen-prijs-ps" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
+                    <circle cx="27.9047" cy="27.9047" r="27.9047" fill="#49B7AC"/>
+                    <text x="29" y="20" font-family="DM Sans" font-size="8" fill="white" text-anchor="middle">t.w.v.</text>
+                    <text x="29" y="35" font-family="DM Sans" font-size="12" font-weight="700" fill="white" text-anchor="middle">€599,-</text>
+                </svg>
 
-            <button @click="goToPage2" class="cta-pagina-1">
-                <span class="cta-text-pagina-1">Ga naar stap 2</span>
-                <span class="cta-pijl-pagina-1">&#8594;</span>
-            </button>
-
+                <img class="afbeelding-prijzen" src="/public/afbeelding-home-desk.png" alt="">
             </div>
         </div>
-
-
-
-        <div class="container-afbeeldingen-en-prijs-1">
-            <!-- Prijzen SVG -->
-            <svg class="prijzen-prijs-tv" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
-              <circle cx="27.9047" cy="27.9047" r="27.9047" fill="#49B7AC"/>
-              <text x="29" y="20" font-family="DM Sans" font-size="8" fill="white" text-anchor="middle">t.w.v.</text>
-              <text x="29" y="35" font-family="DM Sans" font-size="12" font-weight="700" fill="white" text-anchor="middle">€699,-</text>
-            </svg>
-
-            <svg class="prijzen-prijs-bol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
-                <circle cx="27.9047" cy="27.9047" r="27.9047" fill="#49B7AC"/>
-                <text x="29" y="20" font-family="DM Sans" font-size="8" fill="white" text-anchor="middle">t.w.v.</text>
-                <text x="29" y="35" font-family="DM Sans" font-size="12" font-weight="700" fill="white" text-anchor="middle">€400,-</text>
-              </svg>
-
-
-
-            <svg class="prijzen-prijs-ps" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
-              <circle cx="27.9047" cy="27.9047" r="27.9047" fill="#49B7AC"/>
-              <text x="29" y="20" font-family="DM Sans" font-size="8" fill="white" text-anchor="middle">t.w.v.</text>
-              <text x="29" y="35" font-family="DM Sans" font-size="12" font-weight="700" fill="white" text-anchor="middle">€599,-</text>
-            </svg>
-  
-
-            <img class="afbeelding-prijzen" src="/public/afbeelding-home-desk.png" alt="">
-          </div>
-
-
-    </div>
 
         <div class="footer-container-1">
             <hr class="lijn-sectie-2">
-              <div class="footer-text-1">
-                  *Meervoordeel.nl is een officiële partner van Ziggo. Deelname mogelijk tot en met 31 juli 2024.<br> Actievoorwaarden van toepassing.
-              </div>
+            <div class="footer-text-1">
+                *Meervoordeel.nl is een officiële partner van Ziggo. Deelname mogelijk tot en met 31 juli 2024.<br> Actievoorwaarden van toepassing.
+            </div>
         </div>
-
-
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    </div>
 </div>
 </template>
+
 
 
 <style>
@@ -330,6 +313,13 @@ export default {
 
 
 
+
+.foutmelding {
+    text-align: left;
+    color: red;
+    font-size: 1.2vw;
+    font-weight: 700;
+}
 
 
 </style>

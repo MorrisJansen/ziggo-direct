@@ -1,5 +1,10 @@
 <script>
 export default {
+    data() {
+        return {
+            gekozenPrijs: ''  // Property to store the value from localStorage
+        };
+    },
     mounted() {
         const isSafari = () => {
             const ua = navigator.userAgent;
@@ -9,11 +14,17 @@ export default {
 
         if (isSafari()) {
             document.body.classList.add('safari');
-        } 
+        }
+
+        // Retrieve the value from localStorage
+        const opgeslagenAntwoord = localStorage.getItem('antwoord1');
+        if (opgeslagenAntwoord) {
+            this.gekozenPrijs = opgeslagenAntwoord;
+        }
     },
     methods: {
-        goToPage2() {
-            this.$router.push({ name: 'pagina2' });
+        goToPage4() {
+            this.$router.push({ name: 'pagina4' });
         },
         selectOption(optionId) {
             const input = document.getElementById(optionId);
@@ -24,6 +35,7 @@ export default {
     }
 }
 </script>
+
 
 
 <template>
@@ -52,43 +64,36 @@ export default {
 
     <div class="achtergrond-pagina-1">
 
-        <div class="witte-container-pagina-1">
+        <div class="witte-container-pagina-3">
 
             <div class="container-inhoud-witte-container">
                 <div class="stap-pagina-1">
-                    Stap 1 van 3
+                    Stap 3 van 3
                 </div>
 
-                <div class="vraag-pagina-1">
-                    Vertel ons welke prijs je wilt winnen: 
+                <div class="vraag-pagina-3">
+                    Vul je postcode in en check of je kans maakt op <span class="gekozen-prijs">{{ gekozenPrijs }}:</span>
                 </div>
+                
 
 
 
-            <div class="container-antwoorden-pagina-1">
-                <div class="container-antwoord-optie" @click="selectOption('optie-1')">
-                    <input class="input-radio" type="radio" id="optie-1" name="antwoord" value="SAMSUNG TV">
-                    <label for="optie-1">SAMSUNG 60" TV t.w.v. €699,-</label>
+
+
+
+
+
+                <div class="input-button-wrapper">
+                    <div class="input-button-container">
+                        <input type="postcode" placeholder="Voer je postcode in" class="postcode-input">
+                        <button @click="goToPage4" class="cta-pagina-3">
+                            <span class="cta-text-pagina-3">Check mijn postcode</span>
+                            <span class="cta-pijl-pagina-3">&#8594;</span>
+                        </button>
+                    </div>
                 </div>
-
-                <div class="container-antwoord-optie" @click="selectOption('optie-2')">
-                    <input class="input-radio" type="radio" id="optie-2" name="antwoord" value="Playstation 5">
-                    <label for="optie-2">Playstation 5 Slim Disk t.w.v. €549</label>
-                </div>
-
-                <div class="container-antwoord-optie" @click="selectOption('optie-3')">
-                    <input class="input-radio" type="radio" id="optie-3" name="antwoord" value="Bol.com cadeaubon">
-                    <label for="optie-3">Bol.com cadeaubon t.w.v. €400,-</label>
-                </div>
-            </div>
-
-
-
-
-            <button @click="goToPage2" class="cta-pagina-1">
-                <span class="cta-text-pagina-1">Ga naar stap 2</span>
-                <span class="cta-pijl-pagina-1">&#8594;</span>
-            </button>
+                
+                
 
             </div>
         </div>
@@ -97,7 +102,7 @@ export default {
 
         <div class="container-afbeeldingen-en-prijs-1">
             <!-- Prijzen SVG -->
-            <svg class="prijzen-prijs-tv" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
+            <svg class="prijzen-prijs-tv-pagina-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
               <circle cx="27.9047" cy="27.9047" r="27.9047" fill="#49B7AC"/>
               <text x="29" y="20" font-family="DM Sans" font-size="8" fill="white" text-anchor="middle">t.w.v.</text>
               <text x="29" y="35" font-family="DM Sans" font-size="12" font-weight="700" fill="white" text-anchor="middle">€699,-</text>
@@ -111,27 +116,25 @@ export default {
 
 
 
-            <svg class="prijzen-prijs-ps" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
+            <svg class="prijzen-prijs-ps-pagina-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
               <circle cx="27.9047" cy="27.9047" r="27.9047" fill="#49B7AC"/>
               <text x="29" y="20" font-family="DM Sans" font-size="8" fill="white" text-anchor="middle">t.w.v.</text>
               <text x="29" y="35" font-family="DM Sans" font-size="12" font-weight="700" fill="white" text-anchor="middle">€599,-</text>
             </svg>
   
 
-            <img class="afbeelding-prijzen" src="/public/afbeelding-home-desk.png" alt="">
+            <img class="afbeelding-prijzen-pagina-3" src="/public/afbeelding-home-desk.png" alt="">
           </div>
 
 
     </div>
 
-    <center>
         <div class="footer-container-1">
             <hr class="lijn-sectie-2">
               <div class="footer-text-1">
                   *Meervoordeel.nl is een officiële partner van Ziggo. Deelname mogelijk tot en met 31 juli 2024.<br> Actievoorwaarden van toepassing.
               </div>
         </div>
-    </center>
 
 
 </div>
@@ -162,8 +165,8 @@ export default {
 }
 
 
-.witte-container-pagina-1 {
-    height: 33vw;
+.witte-container-pagina-3 {
+    height: 22vw;
     width: 50vw;
     background-color: white;
     position: relative;
@@ -191,7 +194,7 @@ export default {
 
 
 
-.vraag-pagina-1 {
+.vraag-pagina-3 {
     color: #072249;
     font-family: "DM Sans";
     font-size: 1.9vw;
@@ -199,6 +202,7 @@ export default {
     font-weight: 700;
     line-height: 150%;
     text-align: left;
+    width: 80%
 }
 
 .container-antwoorden-pagina-1 {
@@ -235,6 +239,32 @@ export default {
 }
 
 
+.afbeelding-prijzen-pagina-3 {
+    z-index: 1;
+    position: absolute;
+    right: 14%;
+    top: 13vw;
+}
+
+.prijzen-prijs-tv-pagina-3 {
+    z-index: 99 !important;
+    position: absolute;
+    right: 34%;
+    top: 12vw !important;
+    width: 15%;
+    transform: rotate(8deg);
+}
+
+
+.prijzen-prijs-ps-pagina-3 {
+    z-index: 99 !important;
+    position: absolute;
+    right: 14%;
+    top: 50vw !important;
+    width: 15%;
+    transform: rotate(8deg);
+
+}
 
 
 
@@ -280,34 +310,6 @@ export default {
 
 
 
-.cta-pagina-1 {
-    display: inline-flex;
-    height: 4vw;
-    width: 15vw;
-    align-items: center;
-    justify-content: space-evenly;
-    flex-shrink: 0;
-    border-radius: 2.5rem;
-    background-color: #F48C02;
-    margin-top: 1%!important;
-    margin-left: 41%!important;
-}
-
-
-.cta-text-pagina-1 {
-    color: #FFF;
-    font-family: "DM Sans";
-    font-size: 1.2vw;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-}
-
-.cta-pijl-pagina-1 {
-    color: white;
-    font-size: 1.2vw;
-}
-
 .footer-container-1 {
     position: relative;
     top: 10vw;
@@ -329,6 +331,132 @@ export default {
     font-weight: 400;
     line-height: 1.4vw;
 }
+
+
+
+.input-button-container {
+    display: flex;
+    align-items: center; 
+}
+
+.postcode-input {
+    width: 24vw; /* Groter dan de knop zodat het deels overlapt */
+    margin-right: -5vw; /* Zorg ervoor dat het over de knop heen valt */
+    padding: 0.5vw;
+    border: none;
+    border-radius: 35px 0 0 35px; /* Maak de linkerzijde afgerond */
+    height: 4vw;
+    font-size: 1.1vw;
+    padding-left: 2vw!important;
+    background-color: #f1f1f1;
+    z-index: 1; /* Zorg dat de input bovenop komt */
+}
+
+
+
+
+.cta-pagina-3 {
+    display: inline-flex;
+    height: 4vw;
+    width: 19vw;
+    align-items: center;
+    justify-content: space-evenly;
+    border-radius: 35px;
+    background-color: #F48C02;
+    z-index: 2; /* Zorg dat de knop boven de input komt */
+
+}
+
+
+.cta-text-pagina-3 {
+    color: #FFF;
+    font-family: "DM Sans";
+    font-size: 1.2vw;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.cta-pijl-pagina-3 {
+    color: white;
+    font-size: 1.2vw;
+}
+
+
+
+.input-button-wrapper {
+    background-color: #f1f1f1;
+    border-radius: 35px;
+    padding-right: 0; 
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 4vw;
+    width: 43vw;
+    margin-top: 3vw!important;
+}
+
+.input-button-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.postcode-input {
+    height: 4vw !important;
+    padding: 0.5vw;
+    border: none;
+    border-radius: 35px 0 0 35px;
+    height: 100%;
+    font-size: 1.1vw;
+    padding-left: 2vw !important;
+    background-color: transparent;
+    z-index: 1;
+}
+
+.postcode-input:focus {
+    outline: none;
+    border-color: transparent; 
+}
+
+
+.cta-pagina-3 {
+    display: inline-flex;
+    height: 100%;
+    width: 19vw;
+    align-items: center;
+    justify-content: space-evenly;
+    border-radius: 35px;
+    background-color: #F48C02;
+    z-index: 2;
+    height: 4vw;
+}
+
+.cta-text-pagina-3 {
+    color: #FFF;
+    font-family: "DM Sans";
+    font-size: 1.2vw;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.cta-pijl-pagina-3 {
+    color: white;
+    font-size: 1.2vw;
+}
+
+.gekozen-prijs {
+    color: #F48C02;
+    font-family: "DM Sans";
+    font-size: 1.9vw;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 150%;
+}
+
+
+
 
 
 

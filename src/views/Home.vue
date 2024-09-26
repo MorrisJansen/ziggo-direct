@@ -232,7 +232,7 @@ export default {
   
   .container-navbar {
     width: 100vw;
-    height: 9rem;
+    height: 7vw;
     display: flex;
     align-items: center;
     position: relative;
@@ -248,7 +248,7 @@ export default {
   .afbeelding-1-navbar img,
   .afbeelding-2-navbar img,
   .afbeelding-3-navbar img {
-      height: 4rem;
+      height: 4vw;
       object-fit: contain;
   }
   
@@ -597,7 +597,7 @@ export default {
 
 
 
-@media (max-width: 700px){
+@media (max-width: 600px){
     * {
         display: none;
     }

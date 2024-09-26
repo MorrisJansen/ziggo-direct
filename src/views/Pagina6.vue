@@ -1,5 +1,10 @@
 <script>
 export default {
+    data() {
+        return {
+            gekozenPrijs: ''  // Property om de prijs op te slaan
+        };
+    },
     mounted() {
         const isSafari = () => {
             const ua = navigator.userAgent;
@@ -9,39 +14,44 @@ export default {
 
         if (isSafari()) {
             document.body.classList.add('safari');
-        } 
+        }
+
+        // Haal de waarde uit localStorage
+        const opgeslagenAntwoord = localStorage.getItem('antwoord1');
+        if (opgeslagenAntwoord) {
+            this.gekozenPrijs = opgeslagenAntwoord;
+        } else {
+            console.log('Geen prijs gevonden in localStorage');
+        }
     },
     methods: {
-        goToPage2() {
-            this.$router.push({ name: 'pagina2' });
-        },
-        selectOption(optionId) {
-            const input = document.getElementById(optionId);
-            if (input) {
-                input.checked = true;
-            }
+        goToNextPage() {
+            this.$router.push({ name: 'nextPage' });  // Navigeer naar de volgende pagina
         }
     }
 }
 </script>
 
 
+
 <template>
 
 <div class="overkoepelende-container-pagina-1">
-    <div class="container-navbar">
-        <div class="afbeelding-1-navbar">
-          <img src="/public/meervoordeel-nav.svg" alt="meervoordeel">
+    <a href="/">
+        <div class="container-navbar">
+            <div class="afbeelding-1-navbar">
+              <img src="/public/meervoordeel-nav.svg" alt="meervoordeel">
+            </div>
+      
+            <div class="afbeelding-2-navbar">
+              <img src="/public/turstpilot-nav.svg" alt="trustpilot">
+            </div>
+      
+            <div class="afbeelding-3-navbar">
+              <img src="/public/ziggo-logo.png" alt="ziggo">
+            </div>
         </div>
-  
-        <div class="afbeelding-2-navbar">
-          <img src="/public/turstpilot-nav.svg" alt="trustpilot">
-        </div>
-  
-        <div class="afbeelding-3-navbar">
-          <img src="/public/ziggo-logo.png" alt="ziggo">
-        </div>
-      </div>
+      </a>
 
 
 
@@ -49,68 +59,74 @@ export default {
 
     <div class="achtergrond-pagina-1">
 
-        <div class="witte-container-pagina-1">
+        <div class="witte-container-pagina-6">
 
             <div class="container-inhoud-witte-container">
-                <div class="stap-pagina-1">
-                    Stap 2 van 3
+
+                <div class="gefeliciteerd">
+                    Gefeliciteerd!
                 </div>
 
-                <div class="vraag-pagina-1">
-                    Wat is jouw huidige provider? 
+                <div class="jij-maakt-nu-kans">
+                    Je gekozen prijs is: <span class="gekozen-prijs">{{ gekozenPrijs }}</span>
+                </div>
+
+                <hr class="lijn-10">
+
+
+                <div class="bereiken">
+                    Hoe kunnen wij jou bereiken?
                 </div>
 
 
+                <form class="formulier" action="">
+                    <div class="namen-inputs">
+                        <div class="input-wrapper-naam">
+                            <img src="/public/naam-icoon.svg" alt="naam icoon" class="input-icon-voornaam">
+                            <input type="text" placeholder="Voornaam" class="voornaam-input">
+                        </div>
+                        <div class="input-wrapper-naam">
+                            <img src="/public/naam-icoon.svg" alt="naam icoon" class="input-icon-achternaam">
+                            <input type="text" placeholder="Achternaam" class="achternaam-input">
+                        </div>
+                    </div>
+                
+                    <div class="email-input input-wrapper">
+                        <img src="/public/email-icoon.svg" alt="email" class="input-icon">
+                        <input type="email" placeholder="Email" class="email-input-field">
+                    </div>
+                
+                    <div class="telefoonnummer-input input-wrapper">
+                        <img src="/public/telefoon-icoon.svg" alt="telefoon" class="input-icon">
+                        <input type="tel" placeholder="Telefoonnummer" class="telefoonnummer-input-field">
+                    </div>
+                </form>
+                
 
-            <div class="container-antwoorden-pagina-1">
 
-            <div class="container-antwoorden1-2">
-                <div class="container-antwoord-optie-2" @click="selectOption('optie-1')">
-                    <input class="input-radio" type="radio" id="optie-1" name="antwoord" value="SAMSUNG TV">
-                    <label for="optie-1">Odido</label>
-                </div>
-
-                <div class="container-antwoord-optie-2" @click="selectOption('optie-2')">
-                    <input class="input-radio" type="radio" id="optie-2" name="antwoord" value="Playstation 5">
-                    <label for="optie-2">Ziggo</label>
-                </div>
+            <div class="container-button-pagina-6">
+                <button @click="goToPage4" class="cta-pagina-6">
+                    <span class="cta-text-pagina-6">Bevestig mijn deelname</span>
+                    <span class="cta-pijl-pagina-6">&#8594;</span>
+                </button>  
             </div>
 
 
 
 
-            <div class="container-antwoorden1-2">
-                <div class="container-antwoord-optie-2" @click="selectOption('optie-3')">
-                    <input class="input-radio" type="radio" id="optie-3" name="antwoord" value="Bol.com cadeaubon">
-                    <label for="optie-3">KPN</label>
-                </div>
-
-                <div class="container-antwoord-optie-2" @click="selectOption('optie-4')">
-                    <input class="input-radio" type="radio" id="optie-3" name="antwoord" value="Bol.com cadeaubon">
-                    <label for="optie-4">Anders</label>
-                </div>
+            <div class="witte-container-footer">
+                Met het bevestigen van je deelname ga je er mee akkoord dat MeerVoordeel eenmalig telefonisch contact met je opneemt met een aanbieding voor een all-in abonnement van Ziggo.
             </div>
 
 
 
-
-            </div>
-
-
-
-
-            <button @click="goToPage2" class="cta-pagina-1">
-                <span class="cta-text-pagina-1">Ga naar stap 2</span>
-                <span class="cta-pijl-pagina-1">&#8594;</span>
-            </button>
 
             </div>
         </div>
 
 
 
-        <div class="container-afbeeldingen-en-prijs-1">
-            <!-- Prijzen SVG -->
+        <!-- <div class="container-afbeeldingen-en-prijs-1">
             <svg class="prijzen-prijs-tv" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
               <circle cx="27.9047" cy="27.9047" r="27.9047" fill="#49B7AC"/>
               <text x="29" y="20" font-family="DM Sans" font-size="8" fill="white" text-anchor="middle">t.w.v.</text>
@@ -133,17 +149,17 @@ export default {
   
 
             <img class="afbeelding-prijzen" src="/public/afbeelding-home-desk.png" alt="">
-          </div>
+          </div> -->
 
 
     </div>
 
-    <!-- <div class="footer-container">
+    <div class="footer-container-6">
         <hr class="lijn-sectie-2">
           <div class="footer-text">
               *Meervoordeel.nl is een officiële partner van Ziggo. Deelname mogelijk tot en met 31 juli 2024.<br> Actievoorwaarden van toepassing.
           </div>
-    </div> -->
+    </div>
 
 </div>
 
@@ -173,8 +189,8 @@ export default {
 }
 
 
-.witte-container-pagina-1 {
-    height: 33vw;
+.witte-container-pagina-6 {
+    height: 44vw;
     width: 50vw;
     background-color: white;
     position: relative;
@@ -336,6 +352,281 @@ export default {
     color: white;
     font-size: 1.2vw;
 }
+
+.gefeliciteerd {
+    color: #F48C02;
+    font-family: "DM Sans";
+    font-size: 2.6vw;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 150%;
+    text-align: left;
+}
+
+.jij-maakt-nu-kans {
+    color: #072249;
+    font-family: "DM Sans";
+    font-size: 1.9vw;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 150%;
+    text-align: left;
+}
+
+
+.lijn-10 {
+    width: 90%;
+    margin-top: 2vw !important;
+}
+
+.bereiken {
+    color: #072249;
+    font-family: "DM Sans";
+    font-size: 1.75vw;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 126%;
+    text-align: left;
+    margin-top: 2vw!important;
+}
+
+
+
+.formulier {
+    margin-top: 2vw!important;
+}
+
+
+.voornaam-input,
+.achternaam-input {
+    padding-left: 2vw!important;
+    font-size:  1.2vw;
+}
+
+
+.voornaam-input {
+    height: 4vw;
+    border-radius: 35px!important;
+    margin-bottom: 1vw!important;
+}
+
+.achternaam-input {
+    border-radius: 35px!important;
+    margin-bottom: 1vw!important;
+
+}
+
+.email-input-field {
+    padding-left: 2vw!important;
+    border-radius: 35px!important;
+    font-size:  1.2vw;
+    height: 4vw;
+    margin-bottom: 1vw!important;
+
+}
+
+.telefoonnummer-input-field {
+    padding-left: 2vw!important;
+    border-radius: 35px!important;
+    font-size:  1.2vw;
+    height: 4vw;
+    margin-bottom: 1vw!important;
+}
+
+
+
+
+
+
+
+.namen-inputs {
+    display: flex;
+    margin-bottom: 2vw;
+}
+
+.namen-inputs input {
+    width: 19vw;
+    padding: 1vw;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.email-input,
+.telefoonnummer-input {
+    margin-bottom: 2vw;
+}
+
+.email-input-field,
+.telefoonnummer-input-field {
+    width: 39vw;
+    padding: 1vw;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-right: 7vw !important;
+}
+
+.namen-inputs,
+.email-input,
+.telefoonnummer-input-field {
+    color: #B5B5B5;
+    font-family: "DM Sans";
+    font-size: 1.3vw;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+
+
+
+
+.container-button-pagina-6 {
+    margin-left: 13vw!important;
+}
+
+
+.cta-pagina-6 {
+    display: inline-flex;
+    height: 4vw;
+    width: 19vw;
+    align-items: center;
+    justify-content: space-evenly;
+    border-radius: 35px;
+    background-color: #F48C02;
+    z-index: 2; /* Zorg dat de knop boven de input komt */
+
+}
+
+
+.cta-text-pagina-6 {
+    color: #FFF;
+    font-family: "DM Sans";
+    font-size: 1.2vw;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.cta-pijl-pagina-6 {
+    color: white;
+    font-size: 1.2vw;
+}
+
+.witte-container-footer {
+    text-align: right;
+    padding-right: 8vw!important;
+    color: #072249;
+    text-align: right;
+    font-family: "DM Sans";
+    font-size: 0.85vw;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+    margin-top: 1vw!important;
+}
+
+.footer-container-6 {
+    position: relative;
+    top: 12vw;
+    margin-bottom: 10vw!important;
+    width: 100vw;
+    padding-bottom: 2vw!important
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.voornaam-input,
+.achternaam-input {
+    position: relative;
+    right: 1vw;
+}
+
+
+.formulier {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.input-wrapper-naam {
+    width:  43.5%!important
+}
+
+.input-icon {
+    position: absolute;
+    left: 1vw; /* Ruimte tussen icoon en de rand van de input */
+    top: 40%;
+    transform: translateY(-50%);
+    width: 1.5vw; /* Grootte van het icoon, pas aan zoals nodig */
+    height: auto;
+    pointer-events: none; /* Zorgt ervoor dat het icoon niet interactief is */
+}
+
+.input-icon-voornaam {
+    position: absolute;
+    left: 5.5vw;
+    top: 43.5%;
+    transform: translateY(-50%);
+    width: 1.5vw;
+    height: auto;
+    pointer-events: none;
+    z-index: 999;
+}
+
+.input-icon-achternaam {
+    position: absolute;
+    left: 27vw;
+    top: 43.5%;
+    transform: translateY(-50%);
+    width: 1.5vw;
+    height: auto;
+    pointer-events: none;
+    z-index: 999;
+}
+
+
+
+input[type="text"],
+input[type="email"],
+input[type="tel"] {
+    width: 90%;
+    height: 4vw;
+    padding: 1vw;
+    padding-left: 3.5vw!important; /* Ruimte voor het icoon aan de linkerkant */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1.1vw;
+}
+
+.namen-inputs {
+    display: flex;
+    width:  50vw
+}
+
 
 
 </style>

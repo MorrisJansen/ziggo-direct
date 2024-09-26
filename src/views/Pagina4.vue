@@ -10,10 +10,16 @@ export default {
         if (isSafari()) {
             document.body.classList.add('safari');
         } 
+        
+        // Timer om na 1,5 seconden door te sturen naar pagina 5
+        setTimeout(() => {
+            this.goToPage5();  // Zorgt ervoor dat de gebruiker naar pagina 5 gaat
+        }, 1500);  // 1500 milliseconden = 1,5 seconden
     },
     methods: {
-        goToPage2() {
-            this.$router.push({ name: 'pagina2' });
+
+        goToPage5() {
+            this.$router.push({ name: 'pagina5' });  // Zorg dat 'pagina5' bestaat in je router
         },
         selectOption(optionId) {
             const input = document.getElementById(optionId);
@@ -26,22 +32,25 @@ export default {
 </script>
 
 
+
 <template>
 
 <div class="overkoepelende-container-pagina-1">
-    <div class="container-navbar">
-        <div class="afbeelding-1-navbar">
-          <img src="/public/meervoordeel-nav.svg" alt="meervoordeel">
+    <a href="/">
+        <div class="container-navbar">
+            <div class="afbeelding-1-navbar">
+              <img src="/public/meervoordeel-nav.svg" alt="meervoordeel">
+            </div>
+      
+            <div class="afbeelding-2-navbar">
+              <img src="/public/turstpilot-nav.svg" alt="trustpilot">
+            </div>
+      
+            <div class="afbeelding-3-navbar">
+              <img src="/public/ziggo-logo.png" alt="ziggo">
+            </div>
         </div>
-  
-        <div class="afbeelding-2-navbar">
-          <img src="/public/turstpilot-nav.svg" alt="trustpilot">
-        </div>
-  
-        <div class="afbeelding-3-navbar">
-          <img src="/public/ziggo-logo.png" alt="ziggo">
-        </div>
-      </div>
+      </a>
 
 
 
@@ -49,60 +58,18 @@ export default {
 
     <div class="achtergrond-pagina-1">
 
-        <div class="witte-container-pagina-1">
+        <div class="witte-container-pagina-4">
 
-            <div class="container-inhoud-witte-container">
-                <div class="stap-pagina-1">
-                    Stap 2 van 3
+            <div class="container-inhoud-witte-container-pagina-4">
+
+                <div class="checken-pagina-4">
+                    <span class="meervoordeelnl">
+                        Meervoordeel.nl
+                    </span>
+                     checkt nu of jij kans maakt op de prijs...
                 </div>
 
-                <div class="vraag-pagina-1">
-                    Wat is jouw huidige provider? 
-                </div>
-
-
-
-            <div class="container-antwoorden-pagina-1">
-
-            <div class="container-antwoorden1-2">
-                <div class="container-antwoord-optie-2" @click="selectOption('optie-1')">
-                    <input class="input-radio" type="radio" id="optie-1" name="antwoord" value="SAMSUNG TV">
-                    <label for="optie-1">Odido</label>
-                </div>
-
-                <div class="container-antwoord-optie-2" @click="selectOption('optie-2')">
-                    <input class="input-radio" type="radio" id="optie-2" name="antwoord" value="Playstation 5">
-                    <label for="optie-2">Ziggo</label>
-                </div>
-            </div>
-
-
-
-
-            <div class="container-antwoorden1-2">
-                <div class="container-antwoord-optie-2" @click="selectOption('optie-3')">
-                    <input class="input-radio" type="radio" id="optie-3" name="antwoord" value="Bol.com cadeaubon">
-                    <label for="optie-3">KPN</label>
-                </div>
-
-                <div class="container-antwoord-optie-2" @click="selectOption('optie-4')">
-                    <input class="input-radio" type="radio" id="optie-3" name="antwoord" value="Bol.com cadeaubon">
-                    <label for="optie-4">Anders</label>
-                </div>
-            </div>
-
-
-
-
-            </div>
-
-
-
-
-            <button @click="goToPage2" class="cta-pagina-1">
-                <span class="cta-text-pagina-1">Ga naar stap 2</span>
-                <span class="cta-pijl-pagina-1">&#8594;</span>
-            </button>
+                <img class="laad-icoon" src="/public/laad-icoon.svg" alt="">
 
             </div>
         </div>
@@ -138,12 +105,12 @@ export default {
 
     </div>
 
-    <!-- <div class="footer-container">
+    <div class="footer-container-2">
         <hr class="lijn-sectie-2">
-          <div class="footer-text">
+          <div class="footer-text-2">
               *Meervoordeel.nl is een officiële partner van Ziggo. Deelname mogelijk tot en met 31 juli 2024.<br> Actievoorwaarden van toepassing.
           </div>
-    </div> -->
+    </div>
 
 </div>
 
@@ -173,8 +140,8 @@ export default {
 }
 
 
-.witte-container-pagina-1 {
-    height: 33vw;
+.witte-container-pagina-4 {
+    height: 22vw;
     width: 50vw;
     background-color: white;
     position: relative;
@@ -185,9 +152,12 @@ export default {
     z-index: 2;
 }
 
-.container-inhoud-witte-container {
-    padding-left: 4vw!important;
-    padding-top: 2vw!important;
+.container-inhoud-witte-container-pagina-4 {
+    padding: 5vw 10vw!important;
+}
+
+.laad-icoon {
+    margin-top: 2vw!important;
 }
 
 .stap-pagina-1 {
@@ -336,6 +306,28 @@ export default {
     color: white;
     font-size: 1.2vw;
 }
+
+
+.meervoordeelnl {
+    color: #49B7AC;
+    text-align: center;
+    font-family: "DM Sans";
+    font-size: 1.9vw;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 150%;
+}
+
+.checken-pagina-4 {
+    color: #072249;
+    font-family: "DM Sans";
+    font-size: 1.9vw;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 150%;
+}
+
+
 
 
 </style>
