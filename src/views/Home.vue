@@ -160,8 +160,10 @@ export default {
                     Meer over MeerVoordeel
                 </div>
 
+            <div class="container-logos-sectie-3-mobiel">
                 <img class="logo-mv" src="/public/meervoordeel-nav.svg" alt="meervoordeel">
                 <img class="logo-ziggo" src="/public/ziggo-logo.png" alt="ziggo">
+            </div>
 
 
             </div>
@@ -186,13 +188,14 @@ export default {
 
         <div class="afbeelding-sectie-3">
             <img class="afbeelding-sectie-3-2" src="/public/afbeelding-sectie-3.png" alt="">
+            <img class="afbeelding-sectie-3-mobiel" src="/public/afbeelding-sectie-3-mobiel.png" alt="">
         </div>
 
       </div>
 
 
       <div class="footer-container">
-      <hr class="lijn-sectie-2">
+      <hr class="lijn-sectie-2 lijn-2-footer-mobiel">
         <div class="footer-text">
             *Meervoordeel.nl is een officiële partner van Ziggo. Deelname mogelijk tot en met 31 juli 2024.<br> Actievoorwaarden van toepassing.
         </div>
@@ -224,6 +227,8 @@ export default {
   .mobiel {
     display: none;
   }
+
+
 
   .overkoepelende-container-home {
     width: 100vw;
@@ -609,6 +614,18 @@ export default {
     }
   } */
 
+
+@media (min-width: 500px) {
+    .afbeelding-prijzen-mobiel {
+        display: none;
+      }
+      .afbeelding-sectie-3-mobiel {
+        display: none;
+      }
+}
+
+
+
 @media (max-width: 500px) {
 
     body {
@@ -617,12 +634,12 @@ export default {
 
 
     .container-navbar {
-            height: 20vw;
-            display: flex;
-            justify-content: space-evenly;
-            padding: 0 !important;
-            margin: 0 !important;
-            background-color: white;
+        height: 20vw;
+        display: flex;
+        justify-content: space-evenly;
+        padding: 0 !important;
+        margin: 0 !important;
+        background-color: white;
     }
 
     .afbeelding-1-navbar,
@@ -700,6 +717,7 @@ export default {
         line-height: 150%;
         text-align: start;
         margin-top: 10%!important;    
+        margin-bottom: 0!important;
     }
 
 
@@ -709,7 +727,7 @@ export default {
     .stap1 {
         width: 100%!important;
         padding: 0 12%!important;
-        margin-bottom: 5%!important;
+        margin-bottom: 2%!important;
         display: flex;
         align-items: center;
     }
@@ -786,10 +804,115 @@ export default {
     }
 
 
+    .container-meer-over-meer-voordeel {
+        flex-direction: column;
+        padding: 0!important;
+    }
+
+    .meer-over-meer-voordeel {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        font-size: 6vw;
+    }
+
+    .lijn-sectie-2 {
+        margin-top: 8vw!important;
+    }
 
 
+    .inhoud-sectie-3 {
+        display: flex;
+        flex-direction: column;
+        width: 100vw;
+        margin: 0!important;
+        justify-content: center!important;
+        padding: 0 7%!important
+    }
 
+    .text-sectie-3 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        font-size: 5vw;
+        width: 100%;
+        line-height: 150%;
+        margin-top: 10%!important;
+        text-align: start;
+    }
+
+    .dikke-text-sectie-3 {
+        width: 100%!important;
+        display: flex;
+        justify-content: center;
+        font-size: 5vw;
+        line-height: 150%;
+        text-align: start;
+        font-weight: 400;
+        margin-top: 10%!important;
+    }
+
+    .afbeelding-sectie-3 {
+        width: 100%;
+    }
+
+    .afbeelding-sectie-3-2 {
+        display: none;
+    }
+
+    .afbeelding-sectie-3-mobiel {
+        margin-top: 10%!important;
+    }
+
+
+    .logo-mv,
+    .logo-ziggo {
+        width: 25%;
+        display: flex;
+        margin: 0!important;
+        padding: 0!important;
+        height: 50%;
+        object-fit: contain;
+        
+    }
+
+    .container-logos-sectie-3-mobiel {
+        display: inline-flex;
+        width: 100vw !important;
+        position: relative;
+        top: 240vw;
+        z-index: 90000;
+        justify-content: center;
+        padding-bottom: 20vw!important;
+    }
     
+
+
+    .footer-container {
+        margin-top: 15vw!important;
+        width: 100vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: white;
+    }
+    
+    .lijn-2-footer-mobiel {
+        margin-bottom: 5vw!important;
+    }
+
+
+    .footer-text {
+        font-size: 3vw;
+        line-height: 120%;
+        width: 70%;
+        text-align: center;
+        padding-bottom: 5vw!important;
+    }
+    
+
 
 
 
