@@ -165,6 +165,9 @@ export default {
                 <img class="logo-ziggo" src="/public/ziggo-logo.png" alt="ziggo">
             </div>
 
+            <img class="logo-mv desktop" src="/public/meervoordeel-nav.svg" alt="meervoordeel">
+            <img class="logo-ziggo desktop" src="/public/ziggo-logo.png" alt="ziggo">
+
 
             </div>
 
@@ -622,6 +625,10 @@ export default {
       .afbeelding-sectie-3-mobiel {
         display: none;
       }
+
+      .container-logos-sectie-3-mobiel {
+        display: none;
+      }
 }
 
 
@@ -632,6 +639,9 @@ export default {
         background-color: white!important;
     }
 
+    .desktop {
+        display: none!important;
+    }
 
     .container-navbar {
         height: 20vw;
