@@ -215,6 +215,14 @@ export default {
   
   
   <style>
+
+
+
+
+
+
+
+
   * {
     box-sizing: border-box;
     padding: 0!important;
@@ -618,7 +626,7 @@ export default {
   } */
 
 
-@media (min-width: 500px) {
+@media (min-width: 501px) {
     .afbeelding-prijzen-mobiel {
         display: none;
       }
@@ -629,7 +637,9 @@ export default {
       .container-logos-sectie-3-mobiel {
         display: none;
       }
+
 }
+
 
 
 
@@ -773,7 +783,7 @@ export default {
 
     .afbeelding-prijzen-mobiel {
         z-index: 99;
-        position: relative;
+        position: absolute;
         top: 141vw;
         right: 27vw;
     }
@@ -926,6 +936,48 @@ export default {
 
 
 
+}
+
+
+
+@media (min-width: 500px) and (max-width: 501px) {
+    .container-logos-sectie-3-mobiel {
+        top: 210vw!important;
+    }
+
+    .achtergrond-sectie-1 {
+        height: 220vw!important;
+    }
+
+    .afbeelding-prijzen-mobiel {
+        z-index: 99!important;
+        position: relative!important;
+        top: 107vw!important;
+        right: 27vw!important;
+    }
+
+
+    .prijzen-prijs-tv {
+        left: 25vw!important;
+        top: 110vw !important;
+        z-index: 100 !important;
+        scale: 3.5!important;
+    }
+
+
+    .prijzen-prijs-bol {
+        left: -2vw!important;
+        top: 140vw !important;
+        z-index: 100 !important;
+        scale: 2.7!important;
+    }
+
+    .prijzen-prijs-ps {
+        left: 25vw!important;
+        top: 110vw !important;
+        z-index: 100 !important;
+        scale: 3.5!important;
+    }
 }
 
 
