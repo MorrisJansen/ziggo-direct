@@ -115,9 +115,39 @@ export default {
             </div>
 
 
+            <!-- dit is voor desktop -->
+            <div class="container-afbeeldingen-en-prijs desktop">
+                <svg class="prijzen-prijs-tv" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
+                  <circle cx="27.9047" cy="27.9047" r="27.9047" fill="#49B7AC"/>
+                  <text x="29" y="20" font-family="DM Sans" font-size="8" fill="white" text-anchor="middle">t.w.v.</text>
+                  <text x="29" y="35" font-family="DM Sans" font-size="12" font-weight="700" fill="white" text-anchor="middle">€699,-</text>
+                </svg>
 
-            <div class="container-afbeeldingen-en-prijs">
-                <!-- Prijzen SVG -->
+                <svg class="prijzen-prijs-bol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
+                    <circle cx="27.9047" cy="27.9047" r="27.9047" fill="#49B7AC"/>
+                    <text x="29" y="20" font-family="DM Sans" font-size="8" fill="white" text-anchor="middle">t.w.v.</text>
+                    <text x="29" y="35" font-family="DM Sans" font-size="12" font-weight="700" fill="white" text-anchor="middle">€400,-</text>
+                </svg>
+
+
+
+                <svg class="prijzen-prijs-ps" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
+                  <circle cx="27.9047" cy="27.9047" r="27.9047" fill="#49B7AC"/>
+                  <text x="29" y="20" font-family="DM Sans" font-size="8" fill="white" text-anchor="middle">t.w.v.</text>
+                  <text x="29" y="35" font-family="DM Sans" font-size="12" font-weight="700" fill="white" text-anchor="middle">€599,-</text>
+                </svg>
+      
+
+                <img class="pijl-naar-afbeelding" src="/public/pijl-naar-afbeelding.svg" alt="">
+                <img class="afbeelding-prijzen" src="/public/afbeelding-home-desk.png" alt="">
+              </div>
+
+
+
+              <!-- dit is voor mobiel -->
+            <div class="container-prijzen-met-prijzen">
+
+              <div class="container-afbeeldingen-en-prijs-mobiel mobiel">
                 <svg class="prijzen-prijs-tv" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
                   <circle cx="27.9047" cy="27.9047" r="27.9047" fill="#49B7AC"/>
                   <text x="29" y="20" font-family="DM Sans" font-size="8" fill="white" text-anchor="middle">t.w.v.</text>
@@ -139,10 +169,14 @@ export default {
                 </svg>
       
 
-                <img class="pijl-naar-afbeelding" src="/public/pijl-naar-afbeelding.svg" alt="">
-                <img class="afbeelding-prijzen" src="/public/afbeelding-home-desk.png" alt="">
                 <img class="afbeelding-prijzen-mobiel" src="/public/afbeeldingen-samen-mobiel.png" alt="">
               </div>
+
+            </div>
+
+
+
+
 
         </div>
 
@@ -405,6 +439,9 @@ export default {
 
 
 
+
+
+
 .container-afbeeldingen-en-prijs {
     width: 50vw;
     max-width: 50%;
@@ -488,14 +525,7 @@ export default {
     transform: rotate(8deg);
 }
 
-.container-afbeeldingen-en-prijs {
-    max-width: 50%;
-    height: auto;
-    object-fit: contain;
-    margin-left: 50%!important;
-    position: relative;
-    bottom: 30%;
-  }
+
 
 
 .overkoepelende-container-home {
@@ -779,13 +809,33 @@ export default {
     .cta-pijl {
         font-size: 6vw
     }
+    
+
+    .container-prijzen-met-prijzen {
+        margin-top: 40vw !important;
+        position: relative; /* Zorg dat absolute elementen zich hierin positioneren */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%; /* Zorg ervoor dat de container de volledige breedte inneemt */
+        height: auto; /* Pas aan op basis van inhoud */
+        /* overflow: hidden; Voorkom dat iets buiten de container valt */
+    }
+    
+
+
+    .container-afbeeldingen-en-prijs-mobiel {
+        height: 100%;
+        object-fit: contain;
+        position: relative;
+        bottom: 30%;
+        display: flex;
+        justify-content: center;
+    }
 
 
     .afbeelding-prijzen-mobiel {
-        z-index: 99;
-        position: absolute;
-        top: 141vw;
-        right: 6vw;
+        scale: 0.95;
     }
 
 
@@ -793,26 +843,26 @@ export default {
 
     .prijzen-prijs-bol {
         position: absolute;
-        top: 179vw !important;
-        right: 45vw;
+        top: 38vw !important;
+        right: 37vw;
         z-index: 100 !important;
-        scale: 3.7;
+        scale: 2;
     }
 
     .prijzen-prijs-ps {
         position: absolute;
-        top: 228vw !important;
+        top: 87vw !important;
+        right: 38vw;
         z-index: 100 !important;
-        scale: 4.2;
-        right: 47vw;
+        scale: 2.2;
         transform: rotate(-8deg);
     }
 
     .prijzen-prijs-tv {
-        left: 25vw;
-        top: 139vw !important;
+        left: 66vw;
+        top: 4vw !important;
         z-index: 100 !important;
-        scale: 4.5;
+        scale: 2.5;
     }
 
     .pijl-naar-afbeelding {
