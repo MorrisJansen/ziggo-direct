@@ -785,7 +785,7 @@ export default {
         z-index: 99;
         position: absolute;
         top: 141vw;
-        right: 27vw;
+        right: 6vw;
     }
 
 
