@@ -610,12 +610,19 @@ export default {
   } */
 
 @media (max-width: 500px) {
+
+    body {
+        background-color: white!important;
+    }
+
+
     .container-navbar {
             height: 20vw;
             display: flex;
             justify-content: space-evenly;
             padding: 0 !important;
             margin: 0 !important;
+            background-color: white;
     }
 
     .afbeelding-1-navbar,
@@ -724,6 +731,7 @@ export default {
 
     .cta-home {
         width: 80%;
+        margin-left: 0!important
     }
 
     .cta-text {
@@ -769,24 +777,19 @@ export default {
         scale: 4.5;
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    .pijl-naar-afbeelding {
+        display: none;
+    }
 
     .afbeelding-prijzen {
         display: none;
     }
+
+
+
+
+
+    
 
 
 
