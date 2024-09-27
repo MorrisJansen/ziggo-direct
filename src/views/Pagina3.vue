@@ -2,7 +2,9 @@
 export default {
     data() {
         return {
-            gekozenPrijs: ''  // Property to store the value from localStorage
+            gekozenPrijs: '',
+            postcode: '',
+            postcodeError: ''
         };
     },
     mounted() {
@@ -16,7 +18,6 @@ export default {
             document.body.classList.add('safari');
         }
 
-        // Retrieve the value from localStorage
         const opgeslagenAntwoord = localStorage.getItem('antwoord1');
         if (opgeslagenAntwoord) {
             this.gekozenPrijs = opgeslagenAntwoord;
@@ -24,8 +25,26 @@ export default {
     },
     methods: {
         goToPage4() {
+            this.postcodeError = ''
+
+            if (!this.postcode) {
+                this.postcodeError = 'Postcode mag niet leeg zijn.';
+                return;
+            }
+
+            
+            const regex = /^(?! )[0-9]{4}[ ]?[A-Za-z]{2}(?<! )$/;
+
+            
+            if (!regex.test(this.postcode)) {
+                this.postcodeError = 'Voer een geldige postcode in (bijvoorbeeld 1234 AB).';
+                return;
+            }
+
             this.$router.push({ name: 'pagina4' });
+            console.log(this.postcode)
         },
+        
         selectOption(optionId) {
             const input = document.getElementById(optionId);
             if (input) {
@@ -85,13 +104,19 @@ export default {
 
                 <div class="input-button-wrapper">
                     <div class="input-button-container">
-                        <input type="postcode" placeholder="Voer je postcode in" class="postcode-input">
+                        <input type="postcode" placeholder="Voer je postcode in" class="postcode-input" v-model="postcode">
                         <button @click="goToPage4" class="cta-pagina-3">
                             <span class="cta-text-pagina-3">Check mijn postcode</span>
                             <span class="cta-pijl-pagina-3">&#8594;</span>
                         </button>
                     </div>
                 </div>
+
+
+<div v-if="postcodeError" class="foutmelding">{{ postcodeError }}</div>
+
+
+
                 
                 
 

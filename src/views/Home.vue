@@ -73,11 +73,11 @@ export default {
                 <div class="container-stappenplan">
                     <div class="container-inhoud-stappenplan">
                         <div class="hoe-werkt-het">
-                            Hoe werkt het
+                            Hoe werkt het?
                         </div>
     
                         <div class="stap1">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="10%" height="70%" viewBox="0 0 56 56" fill="none">
+                            <svg class="stap1-svg" xmlns="http://www.w3.org/2000/svg" width="10%" height="70%" viewBox="0 0 56 56" fill="none">
                                 <circle cx="27.9047" cy="27.9047" r="27.9047" fill="#49B7AC"/>
                                 <text x="28" y="36" font-family="Arial" font-size="24" fill="white" text-anchor="middle">1.</text>
                             </svg>
@@ -86,7 +86,7 @@ export default {
 
 
                         <div class="stap1">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="10%" height="70%" viewBox="0 0 56 56" fill="none">
+                            <svg class="stap1-svg" xmlns="http://www.w3.org/2000/svg" width="10%" height="70%" viewBox="0 0 56 56" fill="none">
                                 <circle cx="27.9047" cy="27.9047" r="27.9047" fill="#49B7AC"/>
                                 <text x="28" y="36" font-family="Arial" font-size="24" fill="white" text-anchor="middle">2.</text>
                             </svg>                            
@@ -94,11 +94,11 @@ export default {
                         </div>
 
                         <div class="stap1">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="10%" height="70%" viewBox="0 0 56 56" fill="none">
+                            <svg class="stap1-svg" xmlns="http://www.w3.org/2000/svg" width="10%" height="70%" viewBox="0 0 56 56" fill="none">
                                 <circle cx="27.9047" cy="27.9047" r="27.9047" fill="#49B7AC"/>
                                 <text x="28" y="36" font-family="Arial" font-size="24" fill="white" text-anchor="middle">3.</text>
                             </svg>                            
-                              <span class="stap-text">Controleer of jouw postcode in aanmerking komt</span>                
+                              <span class="stap-text">Controleer of jouw postcode <br class="mobiel"> in aanmerking komt</span>                
                         </div>
 
 
@@ -141,6 +141,7 @@ export default {
 
                 <img class="pijl-naar-afbeelding" src="/public/pijl-naar-afbeelding.svg" alt="">
                 <img class="afbeelding-prijzen" src="/public/afbeelding-home-desk.png" alt="">
+                <img class="afbeelding-prijzen-mobiel" src="/public/afbeeldingen-samen-mobiel.png" alt="">
               </div>
 
         </div>
@@ -219,6 +220,11 @@ export default {
     font-family: 'DM Sans', sans-serif;
   }
   
+
+  .mobiel {
+    display: none;
+  }
+
   .overkoepelende-container-home {
     width: 100vw;
     height: auto;
@@ -596,14 +602,195 @@ export default {
 }
 
 
-
+/*
 @media (max-width: 600px){
     * {
         display: none;
     }
-  }
+  } */
+
+@media (max-width: 500px) {
+    .container-navbar {
+            height: 20vw;
+            display: flex;
+            justify-content: space-evenly;
+            padding: 0 !important;
+            margin: 0 !important;
+    }
+
+    .afbeelding-1-navbar,
+    .afbeelding-2-navbar,
+    .afbeelding-3-navbar {
+        padding: 0 !important;
+        margin: 0 !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: static!important;
+        height: 20vw!important;
+    }
+
+    .afbeelding-1-navbar img,
+    .afbeelding-2-navbar img,
+    .afbeelding-3-navbar img {
+        height: 12vw!important;
+        padding:    1vw 0 !important;
+
+    }
 
 
+    .afbeelding-2-navbar {
+        order: 2; /* Zet afbeelding 2 als laatste */
+    }
+
+    .afbeelding-3-navbar {
+        order: 1; /* Zet afbeelding 3 in de plaats van afbeelding 2 */
+    }
+
+
+    .achtergrond-sectie-1 {
+        height: 285vw;
+    }
+
+
+    .inhoud-sectie-1 {
+        padding: 0% 5%!important
+    }
+
+    .maak-kans {
+        color: #FFF;
+        font-family: "DM Sans";
+        font-size: 9vw;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 9vw;
+        display: flex;
+        justify-content: center;
+        padding-top: 5% !important;
+        text-align: center;
+        width: 90vw;
+    } 
+
+    .container-stappenplan {
+        width: 100%!important;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        padding: 0!important;
+        margin-top: 10!important;
+    }
+
+    .container-inhoud-stappenplan {
+        width: 100%!important
+    }
+
+    .hoe-werkt-het {
+        color: #072249;
+        font-family: "DM Sans";
+        font-size: 1.5625rem;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 150%;
+        text-align: start;
+        margin-top: 10%!important;    
+    }
+
+
+
+
+
+    .stap1 {
+        width: 100%!important;
+        padding: 0 12%!important;
+        margin-bottom: 5%!important;
+        display: flex;
+        align-items: center;
+    }
+    
+    .stap1-svg {
+        width: 45px!important;
+        height: 45px!important;
+        flex-shrink: 0;
+    }
+    
+    .stap-text {
+        font-size: 4vw;
+        white-space: nowrap;
+    }
+    
+    .mobiel {
+        display: flex;
+    }
+
+    .cta-home {
+        width: 80%;
+    }
+
+    .cta-text {
+        font-size: 5.5vw
+    }
+
+    .cta-pijl {
+        font-size: 6vw
+    }
+
+
+    .afbeelding-prijzen-mobiel {
+        z-index: 99;
+        position: relative;
+        top: 141vw;
+        right: 27vw;
+    }
+
+
+
+
+    .prijzen-prijs-bol {
+        position: absolute;
+        top: 179vw !important;
+        right: 45vw;
+        z-index: 100 !important;
+        scale: 3.7;
+    }
+
+    .prijzen-prijs-ps {
+        position: absolute;
+        top: 228vw !important;
+        z-index: 100 !important;
+        scale: 4.2;
+        right: 47vw;
+        transform: rotate(-8deg);
+    }
+
+    .prijzen-prijs-tv {
+        left: 25vw;
+        top: 139vw !important;
+        z-index: 100 !important;
+        scale: 4.5;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    .afbeelding-prijzen {
+        display: none;
+    }
+
+
+
+}
 
 
 

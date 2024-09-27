@@ -1,0 +1,183 @@
+<script>
+export default {
+    data() {
+        return {
+            gekozenPrijs: '',
+            postcode: '',
+            postcodeError: ''
+        };
+    },
+    mounted() {
+        const isSafari = () => {
+            const ua = navigator.userAgent;
+            const safari = ua.includes('Safari') && !ua.includes('Chrome');
+            return safari;
+        };
+
+        if (isSafari()) {
+            document.body.classList.add('safari');
+        }
+
+        const opgeslagenAntwoord = localStorage.getItem('antwoord1');
+        if (opgeslagenAntwoord) {
+            this.gekozenPrijs = opgeslagenAntwoord;
+        }
+    },
+    methods: {
+        goToPage4() {
+            this.postcodeError = ''
+
+            if (!this.postcode) {
+                this.postcodeError = 'Postcode mag niet leeg zijn.';
+                return;
+            }
+
+            
+            const regex = /^(?! )[0-9]{4}[ ]?[A-Za-z]{2}(?<! )$/;
+
+            
+            if (!regex.test(this.postcode)) {
+                this.postcodeError = 'Voer een geldige postcode in (bijvoorbeeld 1234 AB).';
+                return;
+            }
+
+            this.$router.push({ name: 'pagina4' });
+            console.log(this.postcode)
+        },
+        
+        selectOption(optionId) {
+            const input = document.getElementById(optionId);
+            if (input) {
+                input.checked = true;
+            }
+        }
+    }
+}
+</script>
+
+
+
+<template>
+
+<div class="overkoepelende-container-pagina-1">
+  <a href="/">
+    <div class="container-navbar">
+        <div class="afbeelding-1-navbar">
+          <img src="/public/meervoordeel-nav.svg" alt="meervoordeel">
+        </div>
+  
+        <div class="afbeelding-2-navbar">
+          <img src="/public/turstpilot-nav.svg" alt="trustpilot">
+        </div>
+  
+        <div class="afbeelding-3-navbar">
+          <img src="/public/ziggo-logo.png" alt="ziggo">
+        </div>
+    </div>
+  </a>
+
+
+
+
+<div class="container-pagina-1">
+
+    <div class="achtergrond-pagina-1">
+
+        <div class="witte-container-pagina-3">
+
+            <div class="container-inhoud-witte-container">
+              
+
+                <div class="bedankt">Bedankt!</div>
+                <div class="contact">Wij nemen spoedig contact met u op</div>
+
+            </div>
+        </div>
+
+
+
+        <div class="container-afbeeldingen-en-prijs-1">
+            <svg class="prijzen-prijs-tv-pagina-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
+              <circle cx="27.9047" cy="27.9047" r="27.9047" fill="#49B7AC"/>
+              <text x="29" y="20" font-family="DM Sans" font-size="8" fill="white" text-anchor="middle">t.w.v.</text>
+              <text x="29" y="35" font-family="DM Sans" font-size="12" font-weight="700" fill="white" text-anchor="middle">€699,-</text>
+            </svg>
+
+            <svg class="prijzen-prijs-bol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
+                <circle cx="27.9047" cy="27.9047" r="27.9047" fill="#49B7AC"/>
+                <text x="29" y="20" font-family="DM Sans" font-size="8" fill="white" text-anchor="middle">t.w.v.</text>
+                <text x="29" y="35" font-family="DM Sans" font-size="12" font-weight="700" fill="white" text-anchor="middle">€400,-</text>
+              </svg>
+
+
+
+            <svg class="prijzen-prijs-ps-pagina-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
+              <circle cx="27.9047" cy="27.9047" r="27.9047" fill="#49B7AC"/>
+              <text x="29" y="20" font-family="DM Sans" font-size="8" fill="white" text-anchor="middle">t.w.v.</text>
+              <text x="29" y="35" font-family="DM Sans" font-size="12" font-weight="700" fill="white" text-anchor="middle">€599,-</text>
+            </svg>
+  
+
+            <img class="afbeelding-prijzen-pagina-3" src="/public/afbeelding-home-desk.png" alt="">
+          </div>
+
+
+    </div>
+
+        <div class="footer-container-1">
+            <hr class="lijn-sectie-2">
+              <div class="footer-text-1">
+                  *Meervoordeel.nl is een officiële partner van Ziggo. Deelname mogelijk tot en met 31 juli 2024.<br> Actievoorwaarden van toepassing.
+              </div>
+        </div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+</template>
+
+
+<style>
+
+
+.bedankt {
+    font-size: 2.4vw;
+    color: #072249;
+    text-align: center;
+    font-family: "DM Sans";
+    font-style: normal;
+    font-weight: 700;
+    line-height: 150%; 
+    margin-top: 5vw!important;
+}
+
+.contact {
+    font-size: 1.2vw;
+    color: #072249;
+    text-align: center;
+    font-family: "DM Sans";
+    font-style: normal;
+    font-weight: 700;
+    line-height: 150%; 
+    margin-top: 2vw!important;
+}
+
+
+
+
+
+</style>

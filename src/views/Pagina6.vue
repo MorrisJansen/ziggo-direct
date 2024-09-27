@@ -2,7 +2,7 @@
 export default {
     data() {
         return {
-            gekozenPrijs: ''  // Property om de prijs op te slaan
+            gekozenPrijs: ''
         };
     },
     mounted() {
@@ -16,7 +16,6 @@ export default {
             document.body.classList.add('safari');
         }
 
-        // Haal de waarde uit localStorage
         const opgeslagenAntwoord = localStorage.getItem('antwoord1');
         if (opgeslagenAntwoord) {
             this.gekozenPrijs = opgeslagenAntwoord;
@@ -26,7 +25,7 @@ export default {
     },
     methods: {
         goToNextPage() {
-            this.$router.push({ name: 'nextPage' });  // Navigeer naar de volgende pagina
+            this.$router.push({ name: 'nextPage' });
         }
     }
 }
@@ -182,11 +181,6 @@ export default {
 
 <style>
 
-.achtergrond-pagina-1 {
-    background: linear-gradient(90deg, #072148 0%, #40A59F 100%);
-    width: 100vw;
-    height: 45vw;
-}
 
 
 .witte-container-pagina-6 {
@@ -201,157 +195,11 @@ export default {
     z-index: 2;
 }
 
-.container-inhoud-witte-container {
-    padding-left: 4vw!important;
-    padding-top: 2vw!important;
-}
-
-.stap-pagina-1 {
-    text-align: left;
-    color: #F48C02;
-    font-family: "DM Sans";
-    font-size: 1.15vw;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 150%;
-}
-
-
-
-.vraag-pagina-1 {
-    color: #072249;
-    font-family: "DM Sans";
-    font-size: 1.9vw;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 150%;
-    text-align: left;
-}
-
-.container-antwoorden-pagina-1 {
-    margin-top: 2vw!important;
-    text-align: left;
-}
-
-.container-antwoord-optie {
-    height: 4vw;
-    width: 40vw;
-    background-color: #f1f1f1;
-    margin-bottom: 0.7vw!important;
-    border-radius: 35px;
-    display: inline-flex;
-    align-items: center;
-    padding-left: 1vw!important;
-}
-
-.container-antwoorden1-2 {
-    display: inline-flex;
-}
-
-.container-antwoord-optie-2 {
-    height: 4vw;
-    width: 20vw;
-    background-color: #f1f1f1;
-    margin-bottom: 0.7vw!important;
-    border-radius: 35px;
-    display: inline-flex;
-    align-items: center;
-    padding-left: 1vw!important;
-    cursor: pointer; 
-}
-
-
-
-.container-afbeeldingen-en-prijs-1 {
-    width: 50vw;
-    max-width: 50%;
-    height: auto;
-    object-fit: contain;
-    margin-left: 50%!important;
-    position: relative;
-    bottom: 71%;
-    display: flex;
-    justify-content: center;
-    z-index: 1;
-    scale: 0.9;
-}
 
 
 
 
 
-.input-radio {
-    display: none; 
-}
-
-.input-radio:checked + label::before {
-    background-color: #F48C02; 
-}
-
-.container-antwoord-optie {
-    cursor: pointer; 
-
-}
-
-.container-antwoord-optie label {
-    position: relative;
-    padding-left: 3.5vw!important; 
-    font-size: 1.3vw;
-    padding-right: 1vw!important;
-}
-
-
-
-.container-antwoord-optie label::before {
-    content: '';
-    position: absolute;
-    left: 1vw;
-    top: 50%;
-    transform: translateY(-50%);
-    height: 1.2vw;
-    width: 1.2vw;
-    background-color: white;
-    border: 1px solid grey;
-    border-radius: 50%;
-
-}
-
-.input-radio[type="radio"] {
-    margin-left: 1vw!important;
-    margin-right: 1vw!important;
-    color: #F48C02!important;
-    background-color: #F48C02!important;
-}
-
-
-
-.cta-pagina-1 {
-    display: inline-flex;
-    height: 4vw;
-    width: 15vw;
-    align-items: center;
-    justify-content: space-evenly;
-    flex-shrink: 0;
-    border-radius: 2.5rem;
-    background-color: #F48C02;
-    margin-top: 1%!important;
-    margin-left: 41%!important;
-}
-
-
-.cta-text-pagina-1 {
-    color: #FFF;
-    font-family: "DM Sans";
-    font-size: 1.2vw;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-}
-
-.cta-pijl-pagina-1 {
-    color: white;
-    font-size: 1.2vw;
-}
 
 .gefeliciteerd {
     color: #F48C02;
@@ -481,7 +329,7 @@ export default {
 
 
 .container-button-pagina-6 {
-    margin-left: 13vw!important;
+    margin-left: 17.5vw!important;
 }
 
 
@@ -493,7 +341,7 @@ export default {
     justify-content: space-evenly;
     border-radius: 35px;
     background-color: #F48C02;
-    z-index: 2; /* Zorg dat de knop boven de input komt */
+    z-index: 2; 
 
 }
 
@@ -514,7 +362,7 @@ export default {
 
 .witte-container-footer {
     text-align: right;
-    padding-right: 8vw!important;
+    padding-right: 5vw!important;
     color: #072249;
     text-align: right;
     font-family: "DM Sans";
@@ -578,12 +426,12 @@ export default {
 
 .input-icon {
     position: absolute;
-    left: 1vw; /* Ruimte tussen icoon en de rand van de input */
+    left: 1vw;
     top: 40%;
     transform: translateY(-50%);
-    width: 1.5vw; /* Grootte van het icoon, pas aan zoals nodig */
+    width: 1.5vw;
     height: auto;
-    pointer-events: none; /* Zorgt ervoor dat het icoon niet interactief is */
+    pointer-events: none; 
 }
 
 .input-icon-voornaam {
@@ -616,10 +464,11 @@ input[type="tel"] {
     width: 90%;
     height: 4vw;
     padding: 1vw;
-    padding-left: 3.5vw!important; /* Ruimte voor het icoon aan de linkerkant */
+    padding-left: 3.5vw!important;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 1.1vw;
+    background: #f1f1f1
 }
 
 .namen-inputs {

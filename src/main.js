@@ -9,6 +9,8 @@ import Pagina3 from './views/pagina3.vue'
 import Pagina4 from './views/pagina4.vue'
 import Pagina5 from './views/pagina5.vue'
 import Pagina6 from './views/pagina6.vue'
+import Bedankt from './views/Bedankt.vue'
+import dank from './views/dank.vue'
 
 
 const routes = [
@@ -19,6 +21,8 @@ const routes = [
     { path: '/Pagina4', component: Pagina4, name: 'pagina4'},
     { path: '/Pagina5', component: Pagina5, name: 'pagina5'},
     { path: '/Pagina6', component: Pagina6, name: 'pagina6'},
+    { path: '/Bedankt', component: Bedankt, name: 'Bedankt'},
+    { path: '/bedankt', component: dank,    name: 'dank'}
 
     
 
