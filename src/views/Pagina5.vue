@@ -11,9 +11,9 @@ export default {
             document.body.classList.add('safari');
         } 
         
-        setTimeout(() => {
-            this.goToPage6();
-        }, 1500);
+        // setTimeout(() => {
+        //     this.goToPage6();
+        // }, 1500);
     },
     methods: {
         goToPage6() {
@@ -134,8 +134,8 @@ export default {
     </div>
 
     <div class="footer-container-2">
-        <hr class="lijn-sectie-2">
-          <div class="footer-text">
+        <hr class="lijn-sectie-2-pagina-5">
+          <div class="footer-text" id="pagina-5">
               *Meervoordeel.nl is een officiële partner van Ziggo. Deelname mogelijk tot en met 31 juli 2024.<br> Actievoorwaarden van toepassing.
           </div>
     </div>
@@ -351,10 +351,25 @@ export default {
     margin-top: 2vw!important;
 }
 
+.lijn-sectie-2-pagina-5 {
+    width: 85vw;
+    margin: 0 auto!important;
+    opacity: 0.3;
+    margin-top: 2vw!important;
+}
+
 
 @media (max-width: 500px) {
     .jouw-postcode-pagina-5 {
         padding: 2vw!important
+    }
+
+    .lijn-sectie-2-pagina-5 {
+        margin-top: 7vw!important;
+    }
+
+    #pagina-5 {
+        width: 80%
     }
 }
 

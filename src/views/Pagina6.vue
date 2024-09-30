@@ -615,6 +615,10 @@ input[type="tel"] {
         width: 100%!important;
     }
 
+    .lijn-sectie-2 {
+        margin-top: 0!important;
+    }
+
 }
 
 
