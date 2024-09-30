@@ -400,7 +400,7 @@ export default {
         margin: 0 auto!important;
         left: 0!important;
         width: 90%!important;
-        height: 140vw!important;
+        height: 130vw!important;
 
     }
 
@@ -456,6 +456,7 @@ export default {
         margin-left: 11vw!important;
         font-size: 4vw;
         line-height: 100%!important;
+        color: black;
     }
     
 
@@ -507,6 +508,10 @@ export default {
     .footer-text-1 {
         font-size: 3vw!important ;
         line-height: 120%!important;
+    }
+
+    .footer-container-1 {
+        background-color: white;
     }
 
 }

@@ -56,27 +56,27 @@ export default {
     
         <div class="container-pagina-1">
             <div class="achtergrond-pagina-1">
-                <div class="witte-container-pagina-1">
+                <div class="witte-container-pagina-2">
                     <div class="container-inhoud-witte-container">
                         <div class="stap-pagina-1">Stap 2 van 3</div>
                         <div class="vraag-pagina-1">Wat is jouw huidige provider?</div>
                         <div class="container-antwoorden-pagina-1">
                             <div class="container-antwoorden1-2">
-                                <div class="container-antwoord-optie-2 stap2-optie1" @click="selectOption('optie-1')">
+                                <div id="container-antwoord-optie-2" class="container-antwoord-optie-2 stap2-optie1" @click="selectOption('optie-1')">
                                     <input class="input-radio-2" type="radio" id="optie-1" name="antwoord" value="Odido">
                                     <label class="optie-1-2" for="optie-1">Odido</label>
                                 </div>
-                                <div class="container-antwoord-optie-2" @click="selectOption('optie-2')">
+                                <div id="container-antwoord-optie-2" class="container-antwoord-optie-2" @click="selectOption('optie-2')">
                                     <input class="input-radio-2" type="radio" id="optie-2" name="antwoord" value="Ziggo">
                                     <label class="optie-2-2" for="optie-2">Ziggo</label>
                                 </div>
                             </div>
                             <div class="container-antwoorden1-2">
-                                <div class="container-antwoord-optie-2 stap2-optie1" @click="selectOption('optie-3')">
+                                <div id="container-antwoord-optie-2" class="container-antwoord-optie-2 stap2-optie1" @click="selectOption('optie-3')">
                                     <input class="input-radio-2" type="radio" id="optie-3" name="antwoord" value="KPN">
                                     <label class="optie-3-2" for="optie-3">KPN</label>
                                 </div>
-                                <div class="container-antwoord-optie-2" @click="selectOption('optie-4')">
+                                <div id="container-antwoord-optie-2" class="container-antwoord-optie-2" @click="selectOption('optie-4')">
                                     <input class="input-radio-2" type="radio" id="optie-4" name="antwoord" value="Anders">
                                     <label class="optie-4-2" for="optie-4">Anders</label>
                                 </div>
@@ -187,7 +187,7 @@ export default {
 }
 
 
-.witte-container-pagina-1 {
+.witte-container-pagina-2 {
     height: 33vw;
     width: 50vw;
     background-color: white;
@@ -453,7 +453,18 @@ export default {
         display: flex;
         flex-direction: column;
     }
-
+    
+    .witte-container-pagina-2 {
+        display: block;
+        align-items: center;
+        justify-content: center;
+        position: relative!important;
+        margin: 0 auto!important;
+        left: 0!important;
+        width: 90%!important;
+        height: 155vw!important;
+    }
+    
 
     .container-inhoud-witte-container {
         padding-right: 6vw!important;
@@ -464,8 +475,12 @@ export default {
     }
 
     .container-antwoord-optie-2 {
-        height: 14vw!important;
+        height: 20vw!important;
         width: 100%!important;
+        margin-bottom: 2.5vw!important;
+    }
+
+    #container-antwoord-optie-2 {
         margin-bottom: 2.5vw!important;
     }
 
@@ -484,13 +499,24 @@ export default {
     .cta-pagina-2 {
         margin-left: 0!important;
         width: 100%;
-        height: 14vw;
+        height: 20vw;
     }
 
     .cta-text-pagina-2,
     .cta-pijl-pagina-2 {
         font-size: 4.5vw;
     }
+
+
+    .input-radio-2:checked {
+        background-color: #F48C02!important; /* Oranje kleur */
+        fill: #F48C02;
+        border: 1px solid #F48C02; /* Dezelfde kleur voor de rand */
+    }
+
+    
+
+
 }
 
 

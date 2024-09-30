@@ -519,6 +519,26 @@ export default {
 }
 
 
+@media (max-width: 500px) {
+    .witte-container-pagina-3 {
+        height: 105vw;
+        width: 90%;
+    }
+
+    .vraag-pagina-3,
+    .gekozen-prijs {
+        font-size: 5vw;
+    }
+    
+    .input-button-wrapper {
+        display: flex;
+        flex-direction: column;
+    }
+
+
+}
+
+
 
 
 
