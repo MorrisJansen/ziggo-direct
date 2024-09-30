@@ -494,8 +494,8 @@ export default {
     }
 
     .input-radio-2 {
-        width: 4vw!important;
-        height: 4vw!important;
+        width: 5vw!important;
+        height: 5vw!important;
         margin-left: 4vw!important;
     }
 

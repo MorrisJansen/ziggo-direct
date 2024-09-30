@@ -424,7 +424,7 @@ export default {
     }
 
     .container-antwoord-optie {
-        width: 95%!important;
+        width:  100%!important;
         height: 20vw!important;
         
     }
@@ -490,7 +490,7 @@ export default {
     .cta-pagina-1 {
         display: flex;
         justify-content: center;
-        width: 88%!important
+        width: 93%!important
     }
 
 
