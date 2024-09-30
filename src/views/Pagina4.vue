@@ -11,10 +11,9 @@ export default {
             document.body.classList.add('safari');
         } 
         
-        // Timer om na 1,5 seconden door te sturen naar pagina 5
-        setTimeout(() => {
-            this.goToPage5();  // Zorgt ervoor dat de gebruiker naar pagina 5 gaat
-        }, 1500);  // 1500 milliseconden = 1,5 seconden
+        // setTimeout(() => {
+        //     this.goToPage5();
+        // }, 1500); 
     },
     methods: {
 
@@ -56,7 +55,7 @@ export default {
 
 <div class="container-pagina-1">
 
-    <div class="achtergrond-pagina-1">
+    <div class="achtergrond-pagina-4">
 
         <div class="witte-container-pagina-4">
 
@@ -76,8 +75,38 @@ export default {
 
 
 
-        <div class="container-afbeeldingen-en-prijs-1">
-            <!-- Prijzen SVG -->
+        <div class="container-afbeeldingen-en-prijs desktop">
+            <svg class="prijzen-prijs-tv" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
+              <circle cx="27.9047" cy="27.9047" r="27.9047" fill="#49B7AC"/>
+              <text x="29" y="20" font-family="DM Sans" font-size="8" fill="white" text-anchor="middle">t.w.v.</text>
+              <text x="29" y="35" font-family="DM Sans" font-size="12" font-weight="700" fill="white" text-anchor="middle">€699,-</text>
+            </svg>
+
+            <svg class="prijzen-prijs-bol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
+                <circle cx="27.9047" cy="27.9047" r="27.9047" fill="#49B7AC"/>
+                <text x="29" y="20" font-family="DM Sans" font-size="8" fill="white" text-anchor="middle">t.w.v.</text>
+                <text x="29" y="35" font-family="DM Sans" font-size="12" font-weight="700" fill="white" text-anchor="middle">€400,-</text>
+            </svg>
+
+
+
+            <svg class="prijzen-prijs-ps" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
+              <circle cx="27.9047" cy="27.9047" r="27.9047" fill="#49B7AC"/>
+              <text x="29" y="20" font-family="DM Sans" font-size="8" fill="white" text-anchor="middle">t.w.v.</text>
+              <text x="29" y="35" font-family="DM Sans" font-size="12" font-weight="700" fill="white" text-anchor="middle">€599,-</text>
+            </svg>
+  
+
+            <img class="pijl-naar-afbeelding" src="/public/pijl-naar-afbeelding.svg" alt="">
+            <img class="afbeelding-prijzen" src="/public/afbeelding-home-desk.png" alt="">
+          </div>
+
+
+
+          <!-- dit is voor mobiel -->
+        <div class="container-prijzen-met-prijzen">
+
+          <div class="container-afbeeldingen-en-prijs-mobiel mobiel">
             <svg class="prijzen-prijs-tv" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
               <circle cx="27.9047" cy="27.9047" r="27.9047" fill="#49B7AC"/>
               <text x="29" y="20" font-family="DM Sans" font-size="8" fill="white" text-anchor="middle">t.w.v.</text>
@@ -99,8 +128,10 @@ export default {
             </svg>
   
 
-            <img class="afbeelding-prijzen" src="/public/afbeelding-home-desk.png" alt="">
+            <img class="afbeelding-prijzen-mobiel" src="/public/afbeeldingen-samen-mobiel.png" alt="">
           </div>
+
+        </div>
 
 
     </div>
@@ -133,7 +164,7 @@ export default {
 
 <style>
 
-.achtergrond-pagina-1 {
+.achtergrond-pagina-4 {
     background: linear-gradient(90deg, #072148 0%, #40A59F 100%);
     width: 100vw;
     height: 45vw;
@@ -326,6 +357,36 @@ export default {
     font-weight: 700;
     line-height: 150%;
 }
+
+
+
+
+@media (max-width: 500px) {
+    .witte-container-pagina-4 {
+        height: 100vw;
+        width: 90%;
+        left: 0;
+        margin: 0 auto!important
+    }
+
+    .container-inhoud-witte-container-pagina-4 {
+        padding: 10vw!important;
+    }
+
+
+    .checken-pagina-4,
+    .meervoordeelnl {
+        font-size: 7vw;
+        margin-bottom: 4vw!important;
+    }
+
+
+    .achtergrond-pagina-4 {
+        height: 240vw;
+    }
+}
+
+
 
 
 

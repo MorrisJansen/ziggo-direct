@@ -106,7 +106,7 @@ export default {
                     <div class="input-button-container">
                         <input type="postcode" placeholder="Voer je postcode in" class="postcode-input" v-model="postcode">
                         <button @click="goToPage4" class="cta-pagina-3">
-                            <span class="cta-text-pagina-3">Check mijn postcode</span>
+                            <span class="cta-text-pagina-3">Check postcode</span>
                             <span class="cta-pijl-pagina-3">&#8594;</span>
                         </button>
                     </div>
