@@ -90,15 +90,30 @@ export default {
                         </div>
                     </div>
                 
+                    <div class="email-input input-wrapper desktop">
+                        <img src="/public/email-icoon.svg" alt="email" class="input-icon">
+                        <input type="email" placeholder="Email" class="email-input-field">
+                    </div>
+                
+                    <div class="telefoonnummer-input input-wrapper desktop">
+                        <img src="/public/telefoon-icoon.svg" alt="telefoon" class="input-icon input-icon-telefoon">
+                        <input type="tel" placeholder="Telefoonnummer" class="telefoonnummer-input-field">
+                    </div>
+
+                <div class="namen-inputs mobiel-pagina-6">
                     <div class="email-input input-wrapper">
                         <img src="/public/email-icoon.svg" alt="email" class="input-icon">
                         <input type="email" placeholder="Email" class="email-input-field">
                     </div>
                 
                     <div class="telefoonnummer-input input-wrapper">
-                        <img src="/public/telefoon-icoon.svg" alt="telefoon" class="input-icon">
+                        <img src="/public/telefoon-icoon.svg" alt="telefoon" class="input-icon input-icon-telefoon">
                         <input type="tel" placeholder="Telefoonnummer" class="telefoonnummer-input-field">
                     </div>
+                </div>
+
+
+
                 </form>
                 
 
@@ -180,6 +195,10 @@ export default {
 
 
 <style>
+
+.mobiel-pagina-6 {
+    display: none!important;
+}
 
 
 
@@ -475,6 +494,90 @@ input[type="tel"] {
     display: flex;
     width:  50vw
 }
+
+
+
+
+
+
+@media (max-width: 500px) {
+    .mobiel-pagina-6 {
+        display: block!important;
+    }
+
+    .namen-inputs {
+        gap: 2vw;
+    }
+
+
+    .witte-container-pagina-6 {
+    width: 90%;
+    height: 220vw;
+    left: 0;
+    margin: 0 auto!important
+    }
+
+
+    .gefeliciteerd,
+    .jij-maakt-nu-kans {
+        font-size: 7vw;
+    }
+
+    .bereiken {
+        font-size: 5vw;    
+    }
+
+    .namen-inputs {
+        flex-direction: column;
+        width: 100%!important;
+    }
+
+    .input-wrapper-naam,
+    .input-wrapper {
+        width: 100%!important;
+        position: relative;
+    }
+    input[type="text"], input[type="email"], input[type="tel"] {
+        width: 98%!important;
+        height: 20vw!important;
+        font-size: 5.5vw;
+        padding-left: 13vw!important;
+    }
+
+    .input-icon,
+    .input-icon-achternaam,
+    .input-icon-voornaam {
+        scale: 3.5;
+    }
+
+    .input-icon-voornaam {
+        bottom: -1vw;
+        position: relative;
+        left: 7.9vw;
+        }
+
+    .input-icon-achternaam {
+        position: relative;
+        left: 8vw;
+        top: 1vw;
+    }
+
+    .input-icon:first-child {
+        position: relative;
+        top: 13vw;
+        left: -32vw;
+        }
+    
+    .input-icon-telefoon {
+        position: relative;
+        top: 15vw!important;
+    }
+
+
+}
+
+
+
 
 
 
