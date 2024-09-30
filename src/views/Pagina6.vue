@@ -570,9 +570,33 @@ input[type="tel"] {
     
     .input-icon-telefoon {
         position: relative;
-        top: 15vw!important;
+        top: 14vw!important;
     }
 
+    .container-button-pagina-6 {
+        margin-left: 0!important;
+        margin-top: 2vw!important;
+    }
+
+    .cta-pagina-6 {
+        width: 99%;
+        height: 20vw;
+    }
+
+    .cta-pijl-pagina-6,
+    .cta-text-pagina-6 {
+        font-size: 4.5vw;
+    }
+
+    .witte-container-footer {
+        font-size: 4.1vw;
+        margin-top: 3vw!important;
+        text-align: start;
+    }
+
+    .footer-container-6 {
+        background-color: white;
+    }
 
 }
 
