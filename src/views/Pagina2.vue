@@ -489,6 +489,7 @@ export default {
     .optie-3-2,
     .optie-4-2 {
         font-size: 5.5vw!important;
+        color: black;
     }
 
     .input-radio-2 {
@@ -512,6 +513,17 @@ export default {
         background-color: #F48C02!important; /* Oranje kleur */
         fill: #F48C02;
         border: 1px solid #F48C02; /* Dezelfde kleur voor de rand */
+    }
+
+
+    .footer-container-2 {
+        background-color: white;
+    }
+
+    .footer-text-2 {
+        font-size: 2.5vw;
+        line-height: 120%;
+
     }
 
     
