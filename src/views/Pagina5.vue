@@ -64,7 +64,7 @@ export default {
                     Jouw postcode is goedgekeurd!
                 </div>
 
-                <img class="afbeelding-circle" src="/tick-circle.svg" alt="">
+                <img class="afbeelding-circle" src="/public/tick-circle.svg" alt="">
 
 
             </div>
@@ -369,7 +369,7 @@ export default {
     }
 
     #pagina-5 {
-        width: 80%
+        width: 80%!important;
     }
 }
 
