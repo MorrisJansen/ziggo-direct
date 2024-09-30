@@ -521,7 +521,7 @@ export default {
 
 @media (max-width: 500px) {
     .witte-container-pagina-3 {
-        height: 105vw;
+        height: 90vw;
         width: 90%;
     }
 
@@ -533,8 +533,37 @@ export default {
     .input-button-wrapper {
         display: flex;
         flex-direction: column;
+        width: 100%;
+        background-color: transparent;
     }
 
+    .input-button-container {
+        flex-direction: column;
+    }
+
+    .postcode-input {
+        height: 20vw !important;
+        background-color: #F1F1F1;
+        border-radius: 35px!important;
+        width: 100%!important;
+        font-size: 4vw;
+        padding-left: 10vw!important;
+    }
+
+    .cta-pagina-3 {
+        width: 100%;
+        height: 20vw;
+        margin-top: 3vw!important;
+    }
+
+
+    .cta-text-pagina-3 {
+        font-size: 4vw;
+    }
+
+    .cta-pijl-pagina-3 {
+        font-size: 4vw;
+    }
 
 }
 

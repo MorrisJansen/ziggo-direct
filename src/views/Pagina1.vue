@@ -512,6 +512,7 @@ export default {
 
     .footer-container-1 {
         background-color: white;
+        padding-bottom: 10vw!important;
     }
 
 }

@@ -522,6 +522,7 @@ export default {
         background-color: white;
         position: relative;
         top: 0;
+        padding-bottom: 5vw!important;
     }
 
     .footer-text-2 {
