@@ -567,6 +567,7 @@ export default {
         width: 100%!important;
         font-size: 5.5vw;
         padding-left: 10vw!important;
+        color: black;
     }
 
     .cta-pagina-3 {

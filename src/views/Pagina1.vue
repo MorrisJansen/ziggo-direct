@@ -513,6 +513,9 @@ export default {
     .footer-container-1 {
         background-color: white;
         padding-bottom: 10vw!important;
+        position: relative;
+        top: 0;
+        padding: 5vw!important;
     }
 
 }
