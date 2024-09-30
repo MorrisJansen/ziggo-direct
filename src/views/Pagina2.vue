@@ -490,11 +490,13 @@ export default {
     .optie-4-2 {
         font-size: 5.5vw!important;
         color: black;
+        margin-left: 4vw!important;
     }
 
     .input-radio-2 {
         width: 4vw!important;
         height: 4vw!important;
+        margin-left: 4vw!important;
     }
 
     .cta-pagina-2 {
@@ -518,6 +520,8 @@ export default {
 
     .footer-container-2 {
         background-color: white;
+        position: relative;
+        top: 0;
     }
 
     .footer-text-2 {
