@@ -56,7 +56,7 @@ export default {
 
 <div class="container-pagina-1">
 
-    <div class="achtergrond-pagina-1">
+    <div class="achtergrond-pagina-6">
 
         <div class="witte-container-pagina-6">
 
@@ -198,6 +198,13 @@ export default {
 
 .mobiel-pagina-6 {
     display: none!important;
+}
+
+
+.achtergrond-pagina-6 {
+    background: linear-gradient(90deg, #072148 0%, #40A59F 100%);
+    width: 100vw;
+    height: 45vw;
 }
 
 
@@ -596,6 +603,16 @@ input[type="tel"] {
 
     .footer-container-6 {
         background-color: white;
+    }
+
+    .footer-text {
+        width: 100%!important;
+    }
+
+
+    .achtergrond-pagina-6 {
+        height: 245vw!important;
+        width: 100%!important;
     }
 
 }
