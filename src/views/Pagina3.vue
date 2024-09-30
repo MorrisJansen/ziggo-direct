@@ -81,7 +81,7 @@ export default {
 
 <div class="container-pagina-1">
 
-    <div class="achtergrond-pagina-1">
+    <div class="achtergrond-pagina-3">
 
         <div class="witte-container-pagina-3">
 
@@ -221,7 +221,7 @@ export default {
 
 <style>
 
-.achtergrond-pagina-1 {
+.achtergrond-pagina-3 {
     background: linear-gradient(90deg, #072148 0%, #40A59F 100%);
     width: 100vw;
     height: 45vw;
@@ -520,8 +520,17 @@ export default {
 
 
 @media (max-width: 500px) {
+    .achtergrond-pagina-3 {
+        height: 245vw!important;
+        width: 100%!important;
+    }
+
+
+
+
+
     .witte-container-pagina-3 {
-        height: 90vw;
+        height: 95vw;
         width: 90%;
         margin: 0 auto !important;
         justify-content: center;
@@ -531,9 +540,13 @@ export default {
         left: 0!important;
     }
 
+    .vraag-pagina-3 {
+        width: 101%
+    }
+
     .vraag-pagina-3,
     .gekozen-prijs {
-        font-size: 5vw;
+        font-size: 7vw;
     }
     
     .input-button-wrapper {
@@ -552,7 +565,7 @@ export default {
         background-color: #F1F1F1;
         border-radius: 35px!important;
         width: 100%!important;
-        font-size: 4vw;
+        font-size: 5.5vw;
         padding-left: 10vw!important;
     }
 
@@ -564,11 +577,11 @@ export default {
 
 
     .cta-text-pagina-3 {
-        font-size: 4vw;
+        font-size: 5.5vw;
     }
 
     .cta-pijl-pagina-3 {
-        font-size: 4vw;
+        font-size: 5.5vw;
     }
 
 
