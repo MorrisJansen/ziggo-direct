@@ -523,6 +523,12 @@ export default {
     .witte-container-pagina-3 {
         height: 90vw;
         width: 90%;
+        margin: 0 auto !important;
+        justify-content: center;
+        display: flex;
+        margin: o auto !important;
+        justify-content: center;
+        left: 0!important;
     }
 
     .vraag-pagina-3,
@@ -564,6 +570,7 @@ export default {
     .cta-pijl-pagina-3 {
         font-size: 4vw;
     }
+
 
 }
 
