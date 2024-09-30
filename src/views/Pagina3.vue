@@ -113,7 +113,7 @@ export default {
                 </div>
 
 
-<div v-if="postcodeError" class="foutmelding">{{ postcodeError }}</div>
+                <div v-if="postcodeError" class="foutmelding">{{ postcodeError }}</div>
 
 
 
@@ -125,9 +125,39 @@ export default {
 
 
 
-        <div class="container-afbeeldingen-en-prijs-1">
-            <!-- Prijzen SVG -->
-            <svg class="prijzen-prijs-tv-pagina-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
+        <div class="container-afbeeldingen-en-prijs desktop">
+            <svg class="prijzen-prijs-tv" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
+              <circle cx="27.9047" cy="27.9047" r="27.9047" fill="#49B7AC"/>
+              <text x="29" y="20" font-family="DM Sans" font-size="8" fill="white" text-anchor="middle">t.w.v.</text>
+              <text x="29" y="35" font-family="DM Sans" font-size="12" font-weight="700" fill="white" text-anchor="middle">€699,-</text>
+            </svg>
+
+            <svg class="prijzen-prijs-bol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
+                <circle cx="27.9047" cy="27.9047" r="27.9047" fill="#49B7AC"/>
+                <text x="29" y="20" font-family="DM Sans" font-size="8" fill="white" text-anchor="middle">t.w.v.</text>
+                <text x="29" y="35" font-family="DM Sans" font-size="12" font-weight="700" fill="white" text-anchor="middle">€400,-</text>
+            </svg>
+
+
+
+            <svg class="prijzen-prijs-ps" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
+              <circle cx="27.9047" cy="27.9047" r="27.9047" fill="#49B7AC"/>
+              <text x="29" y="20" font-family="DM Sans" font-size="8" fill="white" text-anchor="middle">t.w.v.</text>
+              <text x="29" y="35" font-family="DM Sans" font-size="12" font-weight="700" fill="white" text-anchor="middle">€599,-</text>
+            </svg>
+  
+
+            <img class="pijl-naar-afbeelding" src="/public/pijl-naar-afbeelding.svg" alt="">
+            <img class="afbeelding-prijzen" src="/public/afbeelding-home-desk.png" alt="">
+          </div>
+
+
+
+          <!-- dit is voor mobiel -->
+        <div class="container-prijzen-met-prijzen">
+
+          <div class="container-afbeeldingen-en-prijs-mobiel mobiel">
+            <svg class="prijzen-prijs-tv" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
               <circle cx="27.9047" cy="27.9047" r="27.9047" fill="#49B7AC"/>
               <text x="29" y="20" font-family="DM Sans" font-size="8" fill="white" text-anchor="middle">t.w.v.</text>
               <text x="29" y="35" font-family="DM Sans" font-size="12" font-weight="700" fill="white" text-anchor="middle">€699,-</text>
@@ -141,15 +171,23 @@ export default {
 
 
 
-            <svg class="prijzen-prijs-ps-pagina-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
+            <svg class="prijzen-prijs-ps" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
               <circle cx="27.9047" cy="27.9047" r="27.9047" fill="#49B7AC"/>
               <text x="29" y="20" font-family="DM Sans" font-size="8" fill="white" text-anchor="middle">t.w.v.</text>
               <text x="29" y="35" font-family="DM Sans" font-size="12" font-weight="700" fill="white" text-anchor="middle">€599,-</text>
             </svg>
   
 
-            <img class="afbeelding-prijzen-pagina-3" src="/public/afbeelding-home-desk.png" alt="">
+            <img class="afbeelding-prijzen-mobiel" src="/public/afbeeldingen-samen-mobiel.png" alt="">
           </div>
+
+        </div>
+
+
+
+
+
+
 
 
     </div>

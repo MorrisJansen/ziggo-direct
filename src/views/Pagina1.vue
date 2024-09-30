@@ -70,26 +70,28 @@ export default {
                     </div>
 
                     <div class="container-antwoorden-pagina-1">
-                        <div class="container-antwoord-optie" @click="selecteerOptie('optie-1', 'SAMSUNG TV')">
+                        <div id="container-antwoord-optie-id" class="container-antwoord-optie" @click="selecteerOptie('optie-1', 'SAMSUNG TV')">
                             <input class="input-radio" type="radio" id="optie-1" name="antwoord" value="SAMSUNG TV">
-                            <label for="optie-1">SAMSUNG 60" TV t.w.v. €699,-</label>
+                            <label class="" for="optie-1"><span class="input-padding-1">SAMSUNG 60" TV t.w.v. <span class="input-padding-1">€699,-</span></span></label>
                         </div>
 
-                        <div class="container-antwoord-optie" @click="selecteerOptie('optie-2', 'Playstation 5')">
+                        <div id="container-antwoord-optie-id" class="container-antwoord-optie" @click="selecteerOptie('optie-2', 'Playstation 5')">
                             <input class="input-radio" type="radio" id="optie-2" name="antwoord" value="Playstation 5">
-                            <label for="optie-2">Playstation 5 Slim Disk t.w.v. €549</label>
+                            <label class="" for="optie-2"><span class="input-padding-1">Playstation 5 Slim Disk t.w.v. <span class="input-padding-1"> €549-</span></span></label>
                         </div>
 
-                        <div class="container-antwoord-optie" @click="selecteerOptie('optie-3', 'Bol.com cadeaubon')">
+                        <div id="container-antwoord-optie-id" class="container-antwoord-optie" @click="selecteerOptie('optie-3', 'Bol.com cadeaubon')">
                             <input class="input-radio" type="radio" id="optie-3" name="antwoord" value="Bol.com cadeaubon">
-                            <label for="optie-3">Bol.com cadeaubon t.w.v. €400,-</label>
+                            <label class="" for="optie-3"><span class="input-padding-1">Bol.com cadeaubon t.w.v. <span class="input-padding-1"> €400,-</span></span></label>
                         </div>
                     </div>
-
-                    <button @click="gaNaarPagina2" class="cta-pagina-1">
+                <span class="flex">
+                    <button @click="gaNaarPagina2" class="cta-pagina-1" id="cta-pagina-1">
                         <span class="cta-text-pagina-1">Ga naar stap 2</span>
                         <span class="cta-pijl-pagina-1">&#8594;</span>
                     </button>
+                </span>
+
 
                     <div v-if="foutmelding" class="foutmelding">
                         Selecteer alstublieft een antwoord.
@@ -98,12 +100,12 @@ export default {
                 </div>
             </div>
 
-            <div class="container-afbeeldingen-en-prijs-1">
-                <!-- Prijzen SVG's -->
+            <!-- dit is voor desktop -->
+            <div class="container-afbeeldingen-en-prijs desktop">
                 <svg class="prijzen-prijs-tv" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
-                    <circle cx="27.9047" cy="27.9047" r="27.9047" fill="#49B7AC"/>
-                    <text x="29" y="20" font-family="DM Sans" font-size="8" fill="white" text-anchor="middle">t.w.v.</text>
-                    <text x="29" y="35" font-family="DM Sans" font-size="12" font-weight="700" fill="white" text-anchor="middle">€699,-</text>
+                  <circle cx="27.9047" cy="27.9047" r="27.9047" fill="#49B7AC"/>
+                  <text x="29" y="20" font-family="DM Sans" font-size="8" fill="white" text-anchor="middle">t.w.v.</text>
+                  <text x="29" y="35" font-family="DM Sans" font-size="12" font-weight="700" fill="white" text-anchor="middle">€699,-</text>
                 </svg>
 
                 <svg class="prijzen-prijs-bol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
@@ -112,14 +114,63 @@ export default {
                     <text x="29" y="35" font-family="DM Sans" font-size="12" font-weight="700" fill="white" text-anchor="middle">€400,-</text>
                 </svg>
 
+
+
                 <svg class="prijzen-prijs-ps" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
-                    <circle cx="27.9047" cy="27.9047" r="27.9047" fill="#49B7AC"/>
-                    <text x="29" y="20" font-family="DM Sans" font-size="8" fill="white" text-anchor="middle">t.w.v.</text>
-                    <text x="29" y="35" font-family="DM Sans" font-size="12" font-weight="700" fill="white" text-anchor="middle">€599,-</text>
+                  <circle cx="27.9047" cy="27.9047" r="27.9047" fill="#49B7AC"/>
+                  <text x="29" y="20" font-family="DM Sans" font-size="8" fill="white" text-anchor="middle">t.w.v.</text>
+                  <text x="29" y="35" font-family="DM Sans" font-size="12" font-weight="700" fill="white" text-anchor="middle">€599,-</text>
+                </svg>
+      
+
+                <img class="pijl-naar-afbeelding" src="/public/pijl-naar-afbeelding.svg" alt="">
+                <img class="afbeelding-prijzen" src="/public/afbeelding-home-desk.png" alt="">
+              </div>
+
+
+
+              <!-- dit is voor mobiel -->
+            <div class="container-prijzen-met-prijzen">
+
+              <div class="container-afbeeldingen-en-prijs-mobiel mobiel">
+                <svg class="prijzen-prijs-tv" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
+                  <circle cx="27.9047" cy="27.9047" r="27.9047" fill="#49B7AC"/>
+                  <text x="29" y="20" font-family="DM Sans" font-size="8" fill="white" text-anchor="middle">t.w.v.</text>
+                  <text x="29" y="35" font-family="DM Sans" font-size="12" font-weight="700" fill="white" text-anchor="middle">€699,-</text>
                 </svg>
 
-                <img class="afbeelding-prijzen" src="/public/afbeelding-home-desk.png" alt="">
+                <svg class="prijzen-prijs-bol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
+                    <circle cx="27.9047" cy="27.9047" r="27.9047" fill="#49B7AC"/>
+                    <text x="29" y="20" font-family="DM Sans" font-size="8" fill="white" text-anchor="middle">t.w.v.</text>
+                    <text x="29" y="35" font-family="DM Sans" font-size="12" font-weight="700" fill="white" text-anchor="middle">€400,-</text>
+                  </svg>
+
+
+
+                <svg class="prijzen-prijs-ps" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
+                  <circle cx="27.9047" cy="27.9047" r="27.9047" fill="#49B7AC"/>
+                  <text x="29" y="20" font-family="DM Sans" font-size="8" fill="white" text-anchor="middle">t.w.v.</text>
+                  <text x="29" y="35" font-family="DM Sans" font-size="12" font-weight="700" fill="white" text-anchor="middle">€599,-</text>
+                </svg>
+      
+
+                <img class="afbeelding-prijzen-mobiel" src="/public/afbeeldingen-samen-mobiel.png" alt="">
+              </div>
+
             </div>
+
+
+
+            
+
+
+
+
+
+
+
+
+
         </div>
 
         <div class="footer-container-1">
@@ -135,6 +186,15 @@ export default {
 
 
 <style>
+
+
+
+
+
+
+
+
+
 
 .achtergrond-pagina-1 {
     background: linear-gradient(90deg, #072148 0%, #40A59F 100%);
@@ -225,7 +285,6 @@ export default {
 
 .input-radio:checked + label::before {
     background-color: #F48C02; 
-    border: 1px solid #F48C02
 }
 
 
@@ -314,12 +373,145 @@ export default {
 
 
 
+
+
 .foutmelding {
     text-align: left;
     color: red;
     font-size: 1.2vw;
     font-weight: 700;
 }
+
+
+
+@media (max-width: 500px) {
+
+    
+    .achtergrond-pagina-1 {
+        height: 285vw!important;
+        width: 100%!important;
+    }
+
+    .witte-container-pagina-1 {
+        display: block;
+        align-items: center;
+        justify-content: center;
+        position: relative!important;
+        margin: 0 auto!important;
+        left: 0!important;
+        width: 90%!important;
+        height: 140vw!important;
+
+    }
+
+    .container-inhoud-witte-container {
+        padding-left: 6vw!important;
+        padding-top: 5vw!important;
+    }
+
+    .stap-pagina-1 {
+        font-size: 4vw!important;
+    }
+
+    .vraag-pagina-1 {
+        font-size: 7vw!important;
+    }
+
+    .container-antwoorden-pagina-1 {
+        display: flex;
+        flex-direction: column;
+        gap: 3vw;
+    }
+
+    .container-antwoord-optie {
+        width: 95%!important;
+        height: 20vw!important;
+        
+    }
+
+
+
+
+    .input-radio:checked + label::before {
+        background-color: #F48C02; 
+        border: 0.4px solid #F48C02!important;
+    }
+
+
+    #container-antwoord-optie-id {
+        margin-bottom: 2vw!important;
+    }
+
+
+
+    .container-antwoord-optie label {
+        font-size: 5vw!important;
+        padding-left: 11vw!important;
+        line-height: 100%;
+    }
+
+    
+    .input-padding-1 {
+        height: 100%;
+        margin-left: 11vw!important;
+        font-size: 4vw;
+        line-height: 100%!important;
+    }
+    
+
+
+    .container-antwoord-optie label::before {
+        scale: 3.5;
+        border: 0.1px solid grey!important;
+        margin-left: 5vw!important;
+        top: 66%!important;
+    }
+
+
+    .text-optie-pagina-1 {
+        left: 11vw!important;
+    }
+
+    .flex {
+        width: 107%;
+        display: flex;
+        align-items: center;
+    }
+
+
+
+    #cta-pagina-1 {
+        margin-left: 0!important;
+        height: 20vw!important;
+        margin-top: 0!important;
+    }
+
+    .cta-pagina-1 {
+        display: flex;
+        justify-content: center;
+        width: 88%!important
+    }
+
+
+    .cta-text-pagina-1,
+    .cta-pijl-pagina-1 {
+        font-size:  5vw!important;
+    }
+
+
+    .container-afbeeldingen-en-prijs-mobiel {
+        margin-top: -30vw!important;
+    }
+
+
+    .footer-text-1 {
+        font-size: 3vw!important ;
+        line-height: 120%!important;
+    }
+
+}
+
+
 
 
 </style>

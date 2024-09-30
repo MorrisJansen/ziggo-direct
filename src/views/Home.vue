@@ -147,7 +147,7 @@ export default {
               <!-- dit is voor mobiel -->
             <div class="container-prijzen-met-prijzen">
 
-              <div class="container-afbeeldingen-en-prijs-mobiel mobiel">
+              <div class="container-afbeeldingen-en-prijs-mobiel-home mobiel">
                 <svg class="prijzen-prijs-tv" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
                   <circle cx="27.9047" cy="27.9047" r="27.9047" fill="#49B7AC"/>
                   <text x="29" y="20" font-family="DM Sans" font-size="8" fill="white" text-anchor="middle">t.w.v.</text>
@@ -813,13 +813,12 @@ export default {
 
     .container-prijzen-met-prijzen {
         margin-top: 40vw !important;
-        position: relative; /* Zorg dat absolute elementen zich hierin positioneren */
+        position: relative; 
         display: flex;
         flex-direction: column;
         align-items: center;
-        width: 100%; /* Zorg ervoor dat de container de volledige breedte inneemt */
-        height: auto; /* Pas aan op basis van inhoud */
-        /* overflow: hidden; Voorkom dat iets buiten de container valt */
+        width: 100%;
+        height: auto;
     }
     
 
@@ -833,6 +832,17 @@ export default {
         justify-content: center;
     }
 
+    .container-afbeeldingen-en-prijs-mobiel-home {
+        height: 100%;
+        object-fit: contain;
+        position: relative;
+        bottom: 30%;
+        display: flex;
+        justify-content: center;
+    }
+
+
+    
 
     .afbeelding-prijzen-mobiel {
         scale: 0.95;
@@ -982,8 +992,7 @@ export default {
         padding-bottom: 5vw!important;
     }
     
-
-
+    
 
 
 }

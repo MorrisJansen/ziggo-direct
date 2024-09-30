@@ -88,17 +88,82 @@ export default {
                         </button>
                     </div>
                 </div>
-                <div class="container-afbeeldingen-en-prijs-1">
-                    <!-- Prijzen SVG -->
+
+
+
+                <div class="container-afbeeldingen-en-prijs desktop">
                     <svg class="prijzen-prijs-tv" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
                       <circle cx="27.9047" cy="27.9047" r="27.9047" fill="#49B7AC"/>
                       <text x="29" y="20" font-family="DM Sans" font-size="8" fill="white" text-anchor="middle">t.w.v.</text>
                       <text x="29" y="35" font-family="DM Sans" font-size="12" font-weight="700" fill="white" text-anchor="middle">€699,-</text>
                     </svg>
-                    <!-- Meer SVG's hier -->
+    
+                    <svg class="prijzen-prijs-bol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
+                        <circle cx="27.9047" cy="27.9047" r="27.9047" fill="#49B7AC"/>
+                        <text x="29" y="20" font-family="DM Sans" font-size="8" fill="white" text-anchor="middle">t.w.v.</text>
+                        <text x="29" y="35" font-family="DM Sans" font-size="12" font-weight="700" fill="white" text-anchor="middle">€400,-</text>
+                    </svg>
+    
+    
+    
+                    <svg class="prijzen-prijs-ps" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
+                      <circle cx="27.9047" cy="27.9047" r="27.9047" fill="#49B7AC"/>
+                      <text x="29" y="20" font-family="DM Sans" font-size="8" fill="white" text-anchor="middle">t.w.v.</text>
+                      <text x="29" y="35" font-family="DM Sans" font-size="12" font-weight="700" fill="white" text-anchor="middle">€599,-</text>
+                    </svg>
+          
+    
+                    <img class="pijl-naar-afbeelding" src="/public/pijl-naar-afbeelding.svg" alt="">
                     <img class="afbeelding-prijzen" src="/public/afbeelding-home-desk.png" alt="">
+                  </div>
+    
+    
+    
+                  <!-- dit is voor mobiel -->
+                <div class="container-prijzen-met-prijzen">
+    
+                  <div class="container-afbeeldingen-en-prijs-mobiel mobiel">
+                    <svg class="prijzen-prijs-tv" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
+                      <circle cx="27.9047" cy="27.9047" r="27.9047" fill="#49B7AC"/>
+                      <text x="29" y="20" font-family="DM Sans" font-size="8" fill="white" text-anchor="middle">t.w.v.</text>
+                      <text x="29" y="35" font-family="DM Sans" font-size="12" font-weight="700" fill="white" text-anchor="middle">€699,-</text>
+                    </svg>
+    
+                    <svg class="prijzen-prijs-bol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
+                        <circle cx="27.9047" cy="27.9047" r="27.9047" fill="#49B7AC"/>
+                        <text x="29" y="20" font-family="DM Sans" font-size="8" fill="white" text-anchor="middle">t.w.v.</text>
+                        <text x="29" y="35" font-family="DM Sans" font-size="12" font-weight="700" fill="white" text-anchor="middle">€400,-</text>
+                      </svg>
+    
+    
+    
+                    <svg class="prijzen-prijs-ps" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
+                      <circle cx="27.9047" cy="27.9047" r="27.9047" fill="#49B7AC"/>
+                      <text x="29" y="20" font-family="DM Sans" font-size="8" fill="white" text-anchor="middle">t.w.v.</text>
+                      <text x="29" y="35" font-family="DM Sans" font-size="12" font-weight="700" fill="white" text-anchor="middle">€599,-</text>
+                    </svg>
+          
+    
+                    <img class="afbeelding-prijzen-mobiel" src="/public/afbeeldingen-samen-mobiel.png" alt="">
+                  </div>
+    
                 </div>
+
+
+
+
+
+
+
+
             </div>
+
+
+
+
+
+
+
             <div class="footer-container-2">
                 <hr class="lijn-sectie-2">
                 <div class="footer-text-2">
@@ -382,6 +447,51 @@ export default {
     line-height: 1.4vw;
 }
 
+
+@media (max-width: 500px) {
+    .container-antwoorden1-2 {
+        display: flex;
+        flex-direction: column;
+    }
+
+
+    .container-inhoud-witte-container {
+        padding-right: 6vw!important;
+    }
+
+    .container-antwoorden-pagina-1 {
+        gap: 0!important;
+    }
+
+    .container-antwoord-optie-2 {
+        height: 14vw!important;
+        width: 100%!important;
+        margin-bottom: 2.5vw!important;
+    }
+
+    .optie-1-2,
+    .optie-2-2,
+    .optie-3-2,
+    .optie-4-2 {
+        font-size: 5.5vw!important;
+    }
+
+    .input-radio-2 {
+        width: 4vw!important;
+        height: 4vw!important;
+    }
+
+    .cta-pagina-2 {
+        margin-left: 0!important;
+        width: 100%;
+        height: 14vw;
+    }
+
+    .cta-text-pagina-2,
+    .cta-pijl-pagina-2 {
+        font-size: 4.5vw;
+    }
+}
 
 
 
