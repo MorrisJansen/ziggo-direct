@@ -89,74 +89,84 @@ export default {
         },
 
         async submitForm() {
-            this.errors = {};
-            this.successMessage = ''; 
-            this.errorMessage = '';
+    this.errors = {};
+    this.successMessage = ''; 
+    this.errorMessage = '';
 
-            // Validate fields before submitting
-            const isValidVoornaam = this.validateVoornaam();
-            const isValidAchternaam = this.validateAchternaam();
-            const isValidEmail = this.validateEmail();
-            const isValidTelefoonnummer = this.validateTelefoonnummer();
+    // Validate fields before submitting
+    const isValidVoornaam = this.validateVoornaam();
+    const isValidAchternaam = this.validateAchternaam();
+    const isValidEmail = this.validateEmail();
+    const isValidTelefoonnummer = this.validateTelefoonnummer();
 
-            if (!isValidVoornaam || !isValidAchternaam || !isValidEmail || !isValidTelefoonnummer) {
-                console.error('Validation failed:', this.errors);
-                return;
-            }
+    if (!isValidVoornaam || !isValidAchternaam || !isValidEmail || !isValidTelefoonnummer) {
+        console.error('Validation failed:', this.errors);
+        return;
+    }
 
-            const firstAnswerId = 5269; 
-            const secondAnswerId = parseInt(localStorage.getItem('gekozenPrijsId'), 10);
-            const thirdAnswerId = parseInt(localStorage.getItem('selectedProviderId'), 10);
-            
-            const zip = localStorage.getItem('postcode');
+    const firstAnswerId = 5269; 
+    const secondAnswerId = parseInt(localStorage.getItem('gekozenPrijsId'), 10);
+    const thirdAnswerId = parseInt(localStorage.getItem('selectedProviderId'), 10);
+    
+    const zip = localStorage.getItem('postcode');
 
-            if (!secondAnswerId || !thirdAnswerId || !zip) {
-                console.error('Onvoldoende gegevens om te verwerken. tweede antwoord:', secondAnswerId, 'derde antwoord:', thirdAnswerId, 'postcode:', zip);
-                return;
-            }
+    if (!secondAnswerId || !thirdAnswerId || !zip) {
+        console.error('Onvoldoende gegevens om te verwerken. tweede antwoord:', secondAnswerId, 'derde antwoord:', thirdAnswerId, 'postcode:', zip);
+        return;
+    }
 
-            const data = {
-                language: 'nl_NL',
-                publisher_id: 'morris de publisher :)',
-                site_custom_url: 'https://ziggoprijswinnnen.nl',
-                site_custom_name: 'ziggo prijs winnen',
-                ip: '123.45.67.89',
-                optin_timestamp: new Date().toISOString().slice(0, 19).replace('T', ' '),
-                firstname: this.voornaam,
-                lastname: this.achternaam,
-                email: this.email,
-                phone_number: this.telefoonnummer,
-                zip: zip,
-                answers: [firstAnswerId, secondAnswerId, thirdAnswerId]
-            };
+    // Format het telefoonnummer
+    const formattedPhoneNumber = this.validateAndFormatPhoneNumber(this.telefoonnummer);
+    if (!formattedPhoneNumber) {
+        this.errors.telefoonnummer = 'Ongeldig telefoonnummer.';
+        console.error('Ongeldig telefoonnummer:', this.telefoonnummer);
+        return;
+    }
 
-            console.log('Data verstuurd naar API:', JSON.stringify(data, null, 2));
+    const data = {
+        language: 'nl_NL',
+        publisher_id: 'morris de publisher :)',
+        site_custom_url: 'https://ziggoprijswinnnen.nl',
+        site_custom_name: 'ziggo prijs winnen',
+        ip: '123.45.67.89',
+        optin_timestamp: new Date().toISOString().slice(0, 19).replace('T', ' '),
+        firstname: this.voornaam,
+        lastname: this.achternaam,
+        email: this.email,
+        phone_number: formattedPhoneNumber, // Gebruik de geformatteerde telefoonnummer hier
+        zip: zip,
+        answers: [firstAnswerId, secondAnswerId, thirdAnswerId]
+    };
 
-            try {
-                const response = await fetch('https://leadgen.republish.nl/api/sponsors/2410/leads', {
-                    method: 'POST',
-                    headers: {
-                        'Authorization': 'Basic ' + btoa('199:b41c7c41c8d595fbd66dea6a4f70836fbc5e3afe'),
-                        'Content-Type': 'application/json; charset=utf-8',
-                    },
-                    body: JSON.stringify(data),
-                });
+    console.log('Geformatteerd telefoonnummer:', formattedPhoneNumber);
+    console.log('Data verstuurd naar API:', JSON.stringify(data, null, 2));
 
-                console.log('API respons status:', response.status);
+    try {
+        const response = await fetch('https://leadgen.republish.nl/api/sponsors/2410/leads', {
+            method: 'POST',
+            headers: {
+                'Authorization': 'Basic ' + btoa('199:b41c7c41c8d595fbd66dea6a4f70836fbc5e3afe'),
+                'Content-Type': 'application/json; charset=utf-8',
+            },
+            body: JSON.stringify(data),
+        });
 
-                if (response.status === 201) {
-                    console.log('Succesvol ingediend!');
-                    this.$router.push('/bedankt2');
-                } else {
-                    const responseBody = await response.json();
-                    console.error('Fout bij indienen:', responseBody);
-                    this.$router.push('/dank');
-                }
-            } catch (error) {
-                console.error('Er is een fout opgetreden bij het versturen van het formulier:', error);
-                this.errorMessage = 'Netwerk- of serverfout: ' + error.message;
-            }
+        console.log('API respons status:', response.status);
+
+        if (response.status === 201) {
+            console.log('Succesvol ingediend!');
+            this.$router.push('/bedankt2');
+        } else {
+            const responseBody = await response.json();
+            console.error('Fout bij indienen:', responseBody);
+            this.$router.push('/dank');
         }
+    } catch (error) {
+        console.error('Er is een fout opgetreden bij het versturen van het formulier:', error);
+        this.errorMessage = 'Netwerk- of serverfout: ' + error.message;
+    }
+}
+
     }
 };
 </script>
