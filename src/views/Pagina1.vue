@@ -466,7 +466,7 @@ export default {
 
 
 
-@media (max-width: 500px) {
+@media (max-width: 499px) {
 
     
     .achtergrond-pagina-1 {

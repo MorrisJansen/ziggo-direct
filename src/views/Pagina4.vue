@@ -18,7 +18,7 @@ export default {
     methods: {
 
         goToPage5() {
-            this.$router.push({ name: 'pagina5' });  // Zorg dat 'pagina5' bestaat in je router
+            this.$router.push({ name: 'pagina5' });
         },
         selectOption(optionId) {
             const input = document.getElementById(optionId);
@@ -163,6 +163,21 @@ export default {
 
 <style>
 
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.laad-icoon {
+    animation: rotate 2s linear infinite; 
+}
+
+
+
 .achtergrond-pagina-4 {
     background: linear-gradient(90deg, #072148 0%, #40A59F 100%);
     width: 100vw;
@@ -188,6 +203,7 @@ export default {
 
 .laad-icoon {
     margin-top: 2vw!important;
+    width: 7vw!important;
 }
 
 .stap-pagina-1 {
@@ -346,7 +362,7 @@ export default {
 
 
 
-@media (max-width: 500px) {
+@media (max-width: 499px) {
     .witte-container-pagina-4 {
         height: 100vw;
         width: 90%;
@@ -368,6 +384,10 @@ export default {
 
     .achtergrond-pagina-4 {
         height: 240vw;
+    }
+
+    .laad-icoon {
+        width: 32vw!important;
     }
 }
 

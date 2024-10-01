@@ -230,7 +230,7 @@ export default {
                         <input type="text" placeholder="Voornaam" class="voornaam-input" v-model="voornaam">
                       </div>
 
-                      <div v-if="errors.voornaam" class="error-message">
+                      <div v-if="errors.voornaam" class="error-message-voornaam">
                         {{ errors.voornaam }}
                     </div>
 
@@ -239,29 +239,41 @@ export default {
                         <input type="text" placeholder="Achternaam" class="achternaam-input" v-model="achternaam">
                       </div>
 
-                      <div v-if="errors.achternaam" class="error-message">
+                      <div v-if="errors.achternaam" class="error-message-achternaam">
                         {{ errors.achternaam }}
                     </div>
 
                     </div>
                   
                     <div class="email-input input-wrapper desktop">
-                      <img src="/public/email-icoon.svg" alt="email" class="input-icon">
-                      <input type="email" placeholder="Email" class="email-input-field" v-model="email">
+                      <img src="/public/email-icoon.svg" alt="email" class="input-icon input-icon-email"
+                      :style="{ top: (errors.voornaam || errors.achternaam) ? '48%!important' : '40%' }" 
+                      >
+                      <input type="email" placeholder="Email" class="email-input-field" v-model="email"
+                             :style="{ marginTop: (errors.voornaam || errors.achternaam) ? '1vw!important' : '0' }" 
+                      >
                     </div>
-                    <div v-if="errors.email" class="error-message">
+                    <div v-if="errors.email" class="error-message-mail"
+                    :style="{ marginTop: (errors.voornaam || errors.achternaam) ? '2vw!important' : '0' }" 
+                    >
                         {{ errors.email }}
                     </div>
                   
                     <div class="telefoonnummer-input input-wrapper desktop">
                       <img src="/public/telefoon-icoon.svg" alt="telefoon" class="input-icon input-icon-telefoon">
-                      <input type="tel" placeholder="Telefoonnummer" class="telefoonnummer-input-field" v-model="telefoonnummer">
+                      <input type="tel" placeholder="Telefoonnummer" class="telefoonnummer-input-field" v-model="telefoonnummer"
+                      :style="{ marginTop: (errors.voornaam || errors.achternaam || errors.email) ? '2vw!important' : '0' }" 
+                      >
                     </div>
-                    <div v-if="errors.telefoonnummer" class="error-message">
+                    <div v-if="errors.telefoonnummer" class="error-message-tel"
+                    :style="{ marginTop: (errors.voornaam || errors.achternaam) ? '2vw!important' : '0' }" 
+                    >
                         {{ errors.telefoonnummer }}
                     </div>
                     
                   
+
+                    <!-- hieronder is voor mobiel -->
                     <div class="namen-inputs mobiel-pagina-6">
                       <div class="email-input input-wrapper">
                         <img src="/public/email-icoon.svg" alt="email" class="input-icon">
@@ -284,6 +296,10 @@ export default {
 
                     </div>
                   </form>
+
+
+
+                  
                   
                 
 
@@ -302,6 +318,35 @@ export default {
                 Met het bevestigen van je deelname ga je er mee akkoord dat MeerVoordeel eenmalig telefonisch contact met je opneemt met een aanbieding voor een all-in abonnement van Ziggo.
             </div>
 
+
+            <div class="container-prijzen-met-prijzen">
+
+                <div class="container-afbeeldingen-en-prijs-mobiel mobiel">
+                  <svg class="prijzen-prijs-tv" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
+                    <circle cx="27.9047" cy="27.9047" r="27.9047" fill="#49B7AC"/>
+                    <text x="29" y="20" font-family="DM Sans" font-size="8" fill="white" text-anchor="middle">t.w.v.</text>
+                    <text x="29" y="35" font-family="DM Sans" font-size="12" font-weight="700" fill="white" text-anchor="middle">€699,-</text>
+                  </svg>
+      
+                  <svg class="prijzen-prijs-bol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
+                      <circle cx="27.9047" cy="27.9047" r="27.9047" fill="#49B7AC"/>
+                      <text x="29" y="20" font-family="DM Sans" font-size="8" fill="white" text-anchor="middle">t.w.v.</text>
+                      <text x="29" y="35" font-family="DM Sans" font-size="12" font-weight="700" fill="white" text-anchor="middle">€400,-</text>
+                    </svg>
+      
+      
+      
+                  <svg class="prijzen-prijs-ps" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
+                    <circle cx="27.9047" cy="27.9047" r="27.9047" fill="#49B7AC"/>
+                    <text x="29" y="20" font-family="DM Sans" font-size="8" fill="white" text-anchor="middle">t.w.v.</text>
+                    <text x="29" y="35" font-family="DM Sans" font-size="12" font-weight="700" fill="white" text-anchor="middle">€599,-</text>
+                  </svg>
+        
+      
+                  <img class="afbeelding-prijzen-mobiel" src="/public/afbeeldingen-samen-mobiel.png" alt="">
+                </div>
+      
+              </div>
 
 
 
@@ -660,11 +705,30 @@ input[type="tel"] {
 }
 
 
+
+
 .container-dynamische-prijs-afbeelding {
-    position: absolute;
-    right: 5%;
-    top: 50%;
+    max-width: 50%;
+    height: auto;
+    object-fit: contain;
+    margin-left: 55% !important;
+    position: relative;
+    bottom: 58%;
+    left: 2%;
+    display: flex;
+    justify-content: center;
+    z-index: 1;
 }
+
+.ps-prijs {
+    position: absolute;
+    width: 40vw;
+    bottom: -26.5vw;
+    left: 2vw;
+}
+
+
+
 
 .container-text-dynamische-prijs {
     position: absolute;
@@ -692,11 +756,52 @@ input[type="tel"] {
 }
 
 
+.error-message {
+    display: none;
+}
 
+.error-message-voornaam {
+    position: absolute;
+    top: 48.5%;
+    left: 15%;
+    color: red;
+    font-weight: 700;
+    font-size: 1vw
+}
 
+.error-message-achternaam {
+    position: absolute;
+    top: 48.5%;
+    left: 59%;
+    color: red;
+    font-weight: 700;
+    font-size: 1vw
+}
 
+.error-message-mail {
+    position: absolute;
+    top: 59%;
+    left: 15%;
+    color: red;
+    font-weight: 700;
+    font-size: 1vw;
+    z-index: 999
+}
 
-@media (max-width: 500px) {
+.error-message-tel {
+    position: absolute;
+    top: 76%;
+    left: 15%;
+    color: red;
+    font-weight: 700;
+    font-size: 1vw;
+}
+
+@media (max-width: 499px) {
+    .container-dynamische-prijs-afbeelding {
+        display: none;
+    }
+
     .mobiel-pagina-6 {
         display: block!important;
     }
@@ -708,7 +813,7 @@ input[type="tel"] {
 
     .witte-container-pagina-6 {
     width: 90%;
-    height: 220vw;
+    height: 202vw;
     left: 0;
     margin: 0 auto!important
     }
@@ -802,7 +907,7 @@ input[type="tel"] {
 
 
     .achtergrond-pagina-6 {
-        height: 245vw!important;
+        height: 335vw!important;
         width: 100%!important;
     }
 

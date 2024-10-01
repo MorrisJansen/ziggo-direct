@@ -664,7 +664,7 @@ export default {
   } */
 
 
-@media (min-width: 501px) {
+@media (min-width: 500px) {
     .afbeelding-prijzen-mobiel {
         display: none;
       }
@@ -681,7 +681,7 @@ export default {
 
 
 
-@media (max-width: 500px) {
+@media (max-width: 499px) {
 
     body {
         background-color: white!important;
@@ -1005,7 +1005,7 @@ export default {
 
 }
 
-
+/*
 
 @media (min-width: 500px) and (max-width: 501px) {
     .container-logos-sectie-3-mobiel {
@@ -1049,7 +1049,7 @@ export default {
 
 
 
-
+*/
 
 
 

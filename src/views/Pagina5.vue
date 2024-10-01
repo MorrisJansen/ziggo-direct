@@ -324,7 +324,7 @@ export default {
     color: #072249;
     text-align: center;
     font-family: "DM Sans";
-    font-size: 2.1875rem;
+    font-size: 1.9vw;
     font-style: normal;
     font-weight: 700;
     line-height: 150%;
@@ -336,6 +336,7 @@ export default {
 
 .afbeelding-circle {
     margin-top: 2vw!important;
+    width: 7vw!important
 }
 
 .lijn-sectie-2-pagina-5 {
@@ -346,9 +347,15 @@ export default {
 }
 
 
-@media (max-width: 500px) {
+@media (max-width: 499px) {
     .jouw-postcode-pagina-5 {
-        padding: 2vw!important
+        padding: 2vw!important;
+        font-size: 7vw
+    }
+
+    .afbeelding-circle {
+        width: 32vw!important;
+        margin-top: 10vw!important;
     }
 
     .lijn-sectie-2-pagina-5 {

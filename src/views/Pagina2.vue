@@ -484,7 +484,7 @@ export default {
 }
 
 
-@media (max-width: 500px) {
+@media (max-width: 499px) {
     .container-antwoorden1-2 {
         display: flex;
         flex-direction: column;
