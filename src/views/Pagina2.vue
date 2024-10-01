@@ -222,7 +222,7 @@ export default {
     left: 7vw;
     border-radius: 0.75rem;
     box-shadow: 0px 31px 81px 0px rgba(0, 17, 77, 0.20);
-    z-index: 2;
+    z-index: 992;
 }
 
 .container-inhoud-witte-container {
