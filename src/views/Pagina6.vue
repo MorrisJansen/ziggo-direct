@@ -111,7 +111,7 @@ export default {
             const zip = localStorage.getItem('postcode');
 
             if (!secondAnswerId || !thirdAnswerId || !zip) {
-                console.error('Onvoldoende gegevens om te verwerken.');
+                console.error('Onvoldoende gegevens om te verwerken. tweede antwoord:', secondAnswerId, 'derde antwoord:', thirdAnswerId, 'postcode:', zip);
                 return;
             }
 
@@ -142,19 +142,25 @@ export default {
                     body: JSON.stringify(data),
                 });
 
+                console.log('API respons status:', response.status);
+
                 if (response.status === 201) {
+                    console.log('Succesvol ingediend!');
                     this.$router.push('/bedankt2');
                 } else {
-                    this.$router.push('/bedankt');
+                    const responseBody = await response.json();
+                    console.error('Fout bij indienen:', responseBody);
+                    this.$router.push('/dank');
                 }
             } catch (error) {
-                console.error('Er is een fout opgetreden bij het versturen van het formulier', error);
+                console.error('Er is een fout opgetreden bij het versturen van het formulier:', error);
                 this.errorMessage = 'Netwerk- of serverfout: ' + error.message;
             }
         }
     }
 };
 </script>
+
 
 
 

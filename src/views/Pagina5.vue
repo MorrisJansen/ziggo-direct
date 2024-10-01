@@ -11,9 +11,9 @@ export default {
             document.body.classList.add('safari');
         } 
         
-        // setTimeout(() => {
-        //     this.goToPage6();
-        // }, 1500);
+        setTimeout(() => {
+            this.goToPage6();
+        }, 1500);
     },
     methods: {
         goToPage6() {
