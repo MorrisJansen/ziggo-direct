@@ -18,14 +18,15 @@ export default {
             document.body.classList.add('safari');
         }
 
-        const opgeslagenAntwoord = localStorage.getItem('antwoord1');
-        if (opgeslagenAntwoord) {
-            this.gekozenPrijs = opgeslagenAntwoord;
+        // Haal de gekozen prijs optie op
+        const gekozenPrijsOptie = localStorage.getItem('gekozenPrijsOptie');
+        if (gekozenPrijsOptie) {
+            this.gekozenPrijs = gekozenPrijsOptie; // Werk de gekozen prijs bij
         }
     },
     methods: {
         goToPage4() {
-            this.postcodeError = ''
+            this.postcodeError = '';
 
             if (!this.postcode) {
                 this.postcodeError = 'Postcode mag niet leeg zijn.';
@@ -54,6 +55,7 @@ export default {
         }
     }
 }
+
 </script>
 
 

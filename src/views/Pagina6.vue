@@ -25,7 +25,7 @@ export default {
             document.body.classList.add('safari');
         }
 
-        const opgeslagenPrijs = localStorage.getItem('gekozenPrijsId');
+        const opgeslagenPrijs = localStorage.getItem('gekozenPrijsOptie');
         if (opgeslagenPrijs) {
             this.gekozenPrijs = opgeslagenPrijs;
         } else {
@@ -310,6 +310,18 @@ export default {
             </div>
         </div>
 
+
+
+
+        <div class="container-dynamische-prijs-afbeelding">
+            <img class="ps-prijs" src="/public/ps-prijs.png" alt="">
+
+            <div class="container-text-dynamische-prijs">
+                <div class="text-prijs-pagina-6">Jouw gekozen prijs:</div>
+                <div class="dynamische-prijs-pagina-6">{{gekozenPrijs}}</div>
+            </div>
+
+        </div>
 
 
     </div>
@@ -647,6 +659,38 @@ input[type="tel"] {
 .namen-inputs {
     display: flex;
     width:  50vw
+}
+
+
+.container-dynamische-prijs-afbeelding {
+    position: absolute;
+    right: 5%;
+    top: 50%;
+}
+
+.container-text-dynamische-prijs {
+    position: absolute;
+    top: 25%;
+    left: 5%;
+    text-align: start;
+}
+
+.text-prijs-pagina-6 {
+    color: #FFF;
+    font-family: "DM Sans";
+    font-size:  1.7vw;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 150%;
+}
+
+.dynamische-prijs-pagina-6 {
+    color: #FFF;
+    font-family: "DM Sans";
+    font-size: 1.3vw;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
 }
 
 
