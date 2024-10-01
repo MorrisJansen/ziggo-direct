@@ -13,7 +13,7 @@ export default {
     },
     data() {
         return {
-            gekozenPrijsId: null, // Voorheen 'geselecteerdAntwoord'
+            gekozenPrijsId: null,
             foutmelding: false,
             opties: {
                 'optie-1': { id: 5284, name: 'SAMSUNG TV' },
@@ -28,18 +28,20 @@ export default {
                 this.foutmelding = true;
                 return;
             }
-            // Sla de gekozen prijs ID en naam op in localStorage
-            localStorage.setItem('antwoord1', this.gekozenPrijsId);
+
             const selectedOption = this.opties[this.gekozenPrijsId];
             if (selectedOption) {
-                localStorage.setItem('gekozenPrijsId', selectedOption.id); 
-                localStorage.setItem('gekozenPrijsOptie', selectedOption.name); 
+                // Sla de gekozen prijs op in Vuex store
+                this.$store.dispatch('updateGekozenPrijsId', selectedOption.id);
+                this.$store.dispatch('updateGekozenPrijsOptie', selectedOption.name);
                 console.log('Geselecteerde prijs ID:', selectedOption.id);
                 console.log('Geselecteerde prijs naam:', selectedOption.name);
             }
+
+            // Navigeer naar pagina2
             this.$router.push({ name: 'pagina2' });
         },
-        selecteerOptie(optionId, optionName) {
+        selecteerOptie(optionId) {
             const input = document.getElementById(optionId);
             if (input) {
                 input.checked = true;
@@ -47,9 +49,19 @@ export default {
                 this.foutmelding = false;
             }
         }
+    },
+    computed: {
+        // Haal de gekozen prijs uit de Vuex store
+        gekozenPrijsId() {
+            return this.$store.getters.getGekozenPrijsId;
+        },
+        gekozenPrijsOptie() {
+            return this.$store.getters.getGekozenPrijsOptie;
+        }
     }
 }
 </script>
+
 
 
 

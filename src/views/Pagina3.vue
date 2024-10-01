@@ -2,7 +2,6 @@
 export default {
     data() {
         return {
-            gekozenPrijs: '',
             postcode: '',
             postcodeError: ''
         };
@@ -18,10 +17,16 @@ export default {
             document.body.classList.add('safari');
         }
 
-        // Haal de gekozen prijs optie op
-        const gekozenPrijsOptie = localStorage.getItem('gekozenPrijsOptie');
-        if (gekozenPrijsOptie) {
-            this.gekozenPrijs = gekozenPrijsOptie; // Werk de gekozen prijs bij
+        // Haal de postcode op uit localStorage als deze al is ingevuld
+        const opgeslagenPostcode = localStorage.getItem('postcode');
+        if (opgeslagenPostcode) {
+            this.postcode = opgeslagenPostcode;
+        }
+    },
+    computed: {
+        // Haal de gekozen prijs-ID en -optie op uit Vuex store
+        gekozenPrijsOptie() {
+            return this.$store.getters.getGekozenPrijsOptie;
         }
     },
     methods: {
@@ -55,7 +60,6 @@ export default {
         }
     }
 }
-
 </script>
 
 
@@ -93,7 +97,7 @@ export default {
                 </div>
 
                 <div class="vraag-pagina-3">
-                    Vul je postcode in en check of je kans maakt op <span class="gekozen-prijs">{{ gekozenPrijs }}:</span>
+                    Vul je postcode in en check of je kans maakt op <span class="gekozen-prijs">{{ gekozenPrijsOptie }}:</span>
                 </div>
                 
 
