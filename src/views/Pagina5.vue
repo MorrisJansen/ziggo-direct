@@ -72,14 +72,14 @@ export default {
 
 
 
-        <div class="container-afbeeldingen-en-prijs desktop">
-            <svg class="prijzen-prijs-tv" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
+        <div class="container-afbeeldingen-en-prijs-3 desktop">
+            <svg class="prijzen-prijs-tv-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
               <circle cx="27.9047" cy="27.9047" r="27.9047" fill="#49B7AC"/>
-              <text x="29" y="20" font-family="DM Sans" font-size="8" fill="white" text-anchor="middle">t.w.v.</text>
+              <text x="29" y="23" font-family="DM Sans" font-size="8" fill="white" text-anchor="middle">t.w.v.</text>
               <text x="29" y="35" font-family="DM Sans" font-size="12" font-weight="700" fill="white" text-anchor="middle">€699,-</text>
             </svg>
 
-            <svg class="prijzen-prijs-bol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
+            <svg class="prijzen-prijs-bol-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
                 <circle cx="27.9047" cy="27.9047" r="27.9047" fill="#49B7AC"/>
                 <text x="29" y="20" font-family="DM Sans" font-size="8" fill="white" text-anchor="middle">t.w.v.</text>
                 <text x="29" y="35" font-family="DM Sans" font-size="12" font-weight="700" fill="white" text-anchor="middle">€400,-</text>
@@ -87,15 +87,15 @@ export default {
 
 
 
-            <svg class="prijzen-prijs-ps" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
+            <svg class="prijzen-prijs-ps-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
               <circle cx="27.9047" cy="27.9047" r="27.9047" fill="#49B7AC"/>
               <text x="29" y="20" font-family="DM Sans" font-size="8" fill="white" text-anchor="middle">t.w.v.</text>
               <text x="29" y="35" font-family="DM Sans" font-size="12" font-weight="700" fill="white" text-anchor="middle">€599,-</text>
             </svg>
   
 
-            <img class="pijl-naar-afbeelding" src="/public/pijl-naar-afbeelding.svg" alt="">
-            <img class="afbeelding-prijzen" src="/public/afbeelding-home-desk.png" alt="">
+            <!-- <img class="afbeelding-prijzen" src="/public/afbeelding-home-desk.png" alt=""> -->
+             <img class="afbeelding-prijzen-1" src="/public/samen.png" alt="">
           </div>
 
 
@@ -241,19 +241,6 @@ export default {
 
 
 
-.container-afbeeldingen-en-prijs-1 {
-    width: 50vw;
-    max-width: 50%;
-    height: auto;
-    object-fit: contain;
-    margin-left: 50%!important;
-    position: relative;
-    bottom: 71%;
-    display: flex;
-    justify-content: center;
-    z-index: 1;
-    scale: 0.9;
-}
 
 
 

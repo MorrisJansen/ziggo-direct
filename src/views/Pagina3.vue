@@ -32,17 +32,18 @@ export default {
                 return;
             }
 
-            
             const regex = /^(?! )[0-9]{4}[ ]?[A-Za-z]{2}(?<! )$/;
 
-            
             if (!regex.test(this.postcode)) {
                 this.postcodeError = 'Voer een geldige postcode in (bijvoorbeeld 1234 AB).';
                 return;
             }
 
+            // Sla de postcode op in localStorage
+            localStorage.setItem('postcode', this.postcode);
+
             this.$router.push({ name: 'pagina4' });
-            console.log(this.postcode)
+            console.log(this.postcode);
         },
         
         selectOption(optionId) {
@@ -54,7 +55,6 @@ export default {
     }
 }
 </script>
-
 
 
 <template>
@@ -83,8 +83,8 @@ export default {
 
     <div class="achtergrond-pagina-3">
 
-        <div class="witte-container-pagina-3">
-
+        <div :class="{ 'error-active': postcodeError }" class="witte-container-pagina-3">
+        
             <div class="container-inhoud-witte-container">
                 <div class="stap-pagina-1">
                     Stap 3 van 3
@@ -113,7 +113,7 @@ export default {
                 </div>
 
 
-                <div v-if="postcodeError" class="foutmelding">{{ postcodeError }}</div>
+                <div v-if="postcodeError" class="foutmelding foutmelding-pagina-3">{{ postcodeError }}</div>
 
 
 
@@ -125,14 +125,14 @@ export default {
 
 
 
-        <div class="container-afbeeldingen-en-prijs desktop">
-            <svg class="prijzen-prijs-tv" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
+        <div class="container-afbeeldingen-en-prijs-3 desktop">
+            <svg class="prijzen-prijs-tv-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
               <circle cx="27.9047" cy="27.9047" r="27.9047" fill="#49B7AC"/>
-              <text x="29" y="20" font-family="DM Sans" font-size="8" fill="white" text-anchor="middle">t.w.v.</text>
+              <text x="29" y="23" font-family="DM Sans" font-size="8" fill="white" text-anchor="middle">t.w.v.</text>
               <text x="29" y="35" font-family="DM Sans" font-size="12" font-weight="700" fill="white" text-anchor="middle">€699,-</text>
             </svg>
 
-            <svg class="prijzen-prijs-bol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
+            <svg class="prijzen-prijs-bol-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
                 <circle cx="27.9047" cy="27.9047" r="27.9047" fill="#49B7AC"/>
                 <text x="29" y="20" font-family="DM Sans" font-size="8" fill="white" text-anchor="middle">t.w.v.</text>
                 <text x="29" y="35" font-family="DM Sans" font-size="12" font-weight="700" fill="white" text-anchor="middle">€400,-</text>
@@ -140,15 +140,15 @@ export default {
 
 
 
-            <svg class="prijzen-prijs-ps" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
+            <svg class="prijzen-prijs-ps-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
               <circle cx="27.9047" cy="27.9047" r="27.9047" fill="#49B7AC"/>
               <text x="29" y="20" font-family="DM Sans" font-size="8" fill="white" text-anchor="middle">t.w.v.</text>
               <text x="29" y="35" font-family="DM Sans" font-size="12" font-weight="700" fill="white" text-anchor="middle">€599,-</text>
             </svg>
   
 
-            <img class="pijl-naar-afbeelding" src="/public/pijl-naar-afbeelding.svg" alt="">
-            <img class="afbeelding-prijzen" src="/public/afbeelding-home-desk.png" alt="">
+            <!-- <img class="afbeelding-prijzen" src="/public/afbeelding-home-desk.png" alt=""> -->
+             <img class="afbeelding-prijzen-1" src="/public/samen.png" alt="">
           </div>
 
 
@@ -286,20 +286,19 @@ export default {
 }
 
 
-
-.container-afbeeldingen-en-prijs-1 {
-    width: 50vw;
+.container-afbeeldingen-en-prijs-3 {
     max-width: 50%;
     height: auto;
     object-fit: contain;
     margin-left: 50%!important;
     position: relative;
-    bottom: 71%;
+    bottom: 5%;
+    left: 2%;
     display: flex;
     justify-content: center;
     z-index: 1;
-    scale: 0.9;
 }
+
 
 
 .afbeelding-prijzen-pagina-3 {
@@ -519,6 +518,10 @@ export default {
 }
 
 
+
+
+
+
 @media (max-width: 500px) {
     .achtergrond-pagina-3 {
         height: 245vw!important;
@@ -584,6 +587,17 @@ export default {
     .cta-pijl-pagina-3 {
         font-size: 5.5vw;
     }
+
+    .foutmelding-pagina-3 {
+        position: relative;
+        top: 40vw;
+        z-index: 9999;
+    }
+
+    .witte-container-pagina-3.error-active {
+        height: 103vw;
+    }
+
 
 
 }

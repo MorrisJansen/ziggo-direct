@@ -437,7 +437,15 @@ export default {
 
 
 
-
+.container-afbeeldingen-en-prijs {
+    width: 50vw; /* of een andere waarde afhankelijk van je ontwerp */
+    max-width: 50vw;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    bottom: 28%;
+    z-index: 1;
+}
 
 
 
@@ -970,7 +978,7 @@ export default {
 
 
     .footer-container {
-        margin-top: 15vw!important;
+        margin-top: 22vw!important;
         width: 100vw;
         display: flex;
         flex-direction: column;

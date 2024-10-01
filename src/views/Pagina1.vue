@@ -13,25 +13,37 @@ export default {
     },
     data() {
         return {
-            geselecteerdAntwoord: null,
-            foutmelding: false
+            gekozenPrijsId: null, // Voorheen 'geselecteerdAntwoord'
+            foutmelding: false,
+            opties: {
+                'optie-1': { id: 5284, name: 'SAMSUNG TV' },
+                'optie-2': { id: 5287, name: 'Playstation 5' },
+                'optie-3': { id: 5290, name: 'Bol.com cadeaubon' }
+            }
         };
     },
     methods: {
         gaNaarPagina2() {
-            if (!this.geselecteerdAntwoord) {
+            if (!this.gekozenPrijsId) {
                 this.foutmelding = true;
                 return;
             }
-            localStorage.setItem('antwoord1', this.geselecteerdAntwoord);
-            console.log(this.geselecteerdAntwoord)
+            // Sla de gekozen prijs ID en naam op in localStorage
+            localStorage.setItem('antwoord1', this.gekozenPrijsId);
+            const selectedOption = this.opties[this.gekozenPrijsId];
+            if (selectedOption) {
+                localStorage.setItem('gekozenPrijsId', selectedOption.id); 
+                localStorage.setItem('gekozenPrijsOptie', selectedOption.name); 
+                console.log('Geselecteerde prijs ID:', selectedOption.id);
+                console.log('Geselecteerde prijs naam:', selectedOption.name);
+            }
             this.$router.push({ name: 'pagina2' });
         },
-        selecteerOptie(optionId) {
+        selecteerOptie(optionId, optionName) {
             const input = document.getElementById(optionId);
             if (input) {
                 input.checked = true;
-                this.geselecteerdAntwoord = input.value;
+                this.gekozenPrijsId = optionId;
                 this.foutmelding = false;
             }
         }
@@ -101,14 +113,14 @@ export default {
             </div>
 
             <!-- dit is voor desktop -->
-            <div class="container-afbeeldingen-en-prijs desktop">
-                <svg class="prijzen-prijs-tv" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
+            <div class="container-afbeeldingen-en-prijs-1 desktop">
+                <svg class="prijzen-prijs-tv-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
                   <circle cx="27.9047" cy="27.9047" r="27.9047" fill="#49B7AC"/>
-                  <text x="29" y="20" font-family="DM Sans" font-size="8" fill="white" text-anchor="middle">t.w.v.</text>
+                  <text x="29" y="23" font-family="DM Sans" font-size="8" fill="white" text-anchor="middle">t.w.v.</text>
                   <text x="29" y="35" font-family="DM Sans" font-size="12" font-weight="700" fill="white" text-anchor="middle">€699,-</text>
                 </svg>
 
-                <svg class="prijzen-prijs-bol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
+                <svg class="prijzen-prijs-bol-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
                     <circle cx="27.9047" cy="27.9047" r="27.9047" fill="#49B7AC"/>
                     <text x="29" y="20" font-family="DM Sans" font-size="8" fill="white" text-anchor="middle">t.w.v.</text>
                     <text x="29" y="35" font-family="DM Sans" font-size="12" font-weight="700" fill="white" text-anchor="middle">€400,-</text>
@@ -116,15 +128,15 @@ export default {
 
 
 
-                <svg class="prijzen-prijs-ps" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
+                <svg class="prijzen-prijs-ps-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
                   <circle cx="27.9047" cy="27.9047" r="27.9047" fill="#49B7AC"/>
                   <text x="29" y="20" font-family="DM Sans" font-size="8" fill="white" text-anchor="middle">t.w.v.</text>
                   <text x="29" y="35" font-family="DM Sans" font-size="12" font-weight="700" fill="white" text-anchor="middle">€599,-</text>
                 </svg>
       
 
-                <img class="pijl-naar-afbeelding" src="/public/pijl-naar-afbeelding.svg" alt="">
-                <img class="afbeelding-prijzen" src="/public/afbeelding-home-desk.png" alt="">
+                <!-- <img class="afbeelding-prijzen" src="/public/afbeelding-home-desk.png" alt=""> -->
+                 <img class="afbeelding-prijzen-1" src="/public/samen.png" alt="">
               </div>
 
 
@@ -199,7 +211,7 @@ export default {
 .achtergrond-pagina-1 {
     background: linear-gradient(90deg, #072148 0%, #40A59F 100%);
     width: 100vw;
-    height: 45vw;
+    height: 43vw!important;
 }
 
 
@@ -261,19 +273,76 @@ export default {
 
 
 
+
+
 .container-afbeeldingen-en-prijs-1 {
-    width: 50vw;
+    width: 50vw; /* of een andere waarde afhankelijk van je ontwerp */
+    max-width: 50vw;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    bottom: 28%;
+    z-index: 1;
+}
+
+.container-afbeeldingen-en-prijs {
+    width: 50vw; /* of een andere waarde afhankelijk van je ontwerp */
+    max-width: 50vw;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    bottom: 28%;
+    z-index: 1;
+}
+
+.container-afbeeldingen-en-prijs-1 {
     max-width: 50%;
     height: auto;
     object-fit: contain;
     margin-left: 50%!important;
     position: relative;
-    bottom: 71%;
+    bottom: 30%;
     display: flex;
     justify-content: center;
-    z-index: 1;
-    scale: 0.9;
+    z-index: 109;
 }
+
+.afbeelding-prijzen-1 {
+    position: absolute;
+    width: 40vw;
+    bottom: -26.5vw;
+    left: 2vw;
+}
+
+.prijzen-prijs-tv-1,
+.prijzen-prijs-bol-1,
+.prijzen-prijs-ps-1 {
+    z-index: 99999;
+    position: absolute;
+    width: 15%;
+}
+
+.prijzen-prijs-tv-1 {
+    bottom: 9.5vw;
+    right: 17vw;
+    transform: rotate(7deg);
+}
+
+.prijzen-prijs-bol-1 {
+    left: 5vw;
+    top: 5.5vw;
+
+}
+
+.prijzen-prijs-ps-1 {
+    right: 10vw;
+    top: 19vw;
+
+}
+
+
+
+
 
 
 
@@ -516,6 +585,14 @@ export default {
         position: relative;
         top: 0;
         padding: 5vw!important;
+    }
+
+
+    .foutmelding {
+        text-align: left;
+        color: red;
+        font-size: 4.5vw;
+        font-weight: 700;
     }
 
 }

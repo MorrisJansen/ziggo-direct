@@ -2,9 +2,18 @@
 export default {
     data() {
         return {
-            gekozenPrijs: ''
+            gekozenPrijs: '',
+            voornaam: '',
+            achternaam: '',
+            email: '',
+            telefoonnummer: '',
+            errors: {},
+            containerHeight: 704,
+            successMessage: '', 
+            errorMessage: ''
         };
     },
+
     mounted() {
         const isSafari = () => {
             const ua = navigator.userAgent;
@@ -16,20 +25,142 @@ export default {
             document.body.classList.add('safari');
         }
 
-        const opgeslagenAntwoord = localStorage.getItem('antwoord1');
-        if (opgeslagenAntwoord) {
-            this.gekozenPrijs = opgeslagenAntwoord;
+        const opgeslagenPrijs = localStorage.getItem('gekozenPrijsId');
+        if (opgeslagenPrijs) {
+            this.gekozenPrijs = opgeslagenPrijs;
         } else {
             console.log('Geen prijs gevonden in localStorage');
         }
     },
+
     methods: {
         goToNextPage() {
             this.$router.push({ name: 'nextPage' });
+        },
+
+        validateVoornaam() {
+            const regex = /^[a-zA-Z\s.,'-]{1,}$/;
+            if (!this.voornaam.match(regex)) {
+                this.errors.voornaam = 'Ongeldige voornaam.';
+                return false;
+            }
+            this.errors.voornaam = '';
+            return true;
+        },
+
+        validateAchternaam() {
+            const regex = /^[a-zA-Z\s.,'-]{1,}$/;
+            if (!this.achternaam.match(regex)) {
+                this.errors.achternaam = 'Ongeldige achternaam.';
+                return false;
+            }
+            this.errors.achternaam = '';
+            return true;
+        },
+
+        validateEmail() {
+            const regex = /^[^\s@]+@[^\s@]+\.(com|org|net|edu|gov|nl|info|biz|co|io|me|tv)$/i;
+            const containsApostrophe = /'/;
+            if (!this.email.match(regex) || this.email.match(containsApostrophe)) {
+                this.errors.email = 'Ongeldig e-mailadres.';
+                return false;
+            }
+            this.errors.email = '';
+            return true;
+        },
+
+        validateAndFormatPhoneNumber(phoneNumber) {
+            phoneNumber = phoneNumber.replace(/[^0-9+]/g, '');
+            const dutchRegex = /^(06[0-9]{8}|[+]{0,1}31[0]?[0-9]{9,10}|0031[0]?[0-9]{9,10})$/;
+            if (!phoneNumber.match(dutchRegex)) {
+                return null;
+            }
+            return phoneNumber;
+        },
+
+        validateTelefoonnummer() {
+            const phoneNumber = this.validateAndFormatPhoneNumber(this.telefoonnummer);
+            if (!phoneNumber) {
+                this.errors.telefoonnummer = 'Ongeldig telefoonnummer.';
+                return false;
+            }
+            this.errors.telefoonnummer = '';
+            return true;
+        },
+
+        async submitForm() {
+            this.errors = {};
+            this.successMessage = ''; 
+            this.errorMessage = '';
+
+            // Validate fields before submitting
+            const isValidVoornaam = this.validateVoornaam();
+            const isValidAchternaam = this.validateAchternaam();
+            const isValidEmail = this.validateEmail();
+            const isValidTelefoonnummer = this.validateTelefoonnummer();
+
+            if (!isValidVoornaam || !isValidAchternaam || !isValidEmail || !isValidTelefoonnummer) {
+                console.error('Validation failed:', this.errors);
+                return;
+            }
+
+            const firstAnswerId = 5269; 
+            const secondAnswerId = parseInt(localStorage.getItem('gekozenPrijsId'), 10);
+            const thirdAnswerId = parseInt(localStorage.getItem('selectedProviderId'), 10);
+            
+            const zip = localStorage.getItem('postcode');
+
+            if (!secondAnswerId || !thirdAnswerId || !zip) {
+                console.error('Onvoldoende gegevens om te verwerken.');
+                return;
+            }
+
+            const data = {
+                language: 'nl_NL',
+                publisher_id: 'morris de publisher :)',
+                site_custom_url: 'https://ziggoprijswinnnen.nl',
+                site_custom_name: 'ziggo prijs winnen',
+                ip: '123.45.67.89',
+                optin_timestamp: new Date().toISOString().slice(0, 19).replace('T', ' '),
+                firstname: this.voornaam,
+                lastname: this.achternaam,
+                email: this.email,
+                phone_number: this.telefoonnummer,
+                zip: zip,
+                answers: [firstAnswerId, secondAnswerId, thirdAnswerId]
+            };
+
+            console.log('Data verstuurd naar API:', JSON.stringify(data, null, 2));
+
+            try {
+                const response = await fetch('https://leadgen.republish.nl/api/sponsors/2410/leads', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': 'Basic ' + btoa('199:b41c7c41c8d595fbd66dea6a4f70836fbc5e3afe'),
+                        'Content-Type': 'application/json; charset=utf-8',
+                    },
+                    body: JSON.stringify(data),
+                });
+
+                if (response.status === 201) {
+                    this.$router.push('/bedankt2');
+                } else {
+                    this.$router.push('/bedankt');
+                }
+            } catch (error) {
+                console.error('Er is een fout opgetreden bij het versturen van het formulier', error);
+                this.errorMessage = 'Netwerk- of serverfout: ' + error.message;
+            }
         }
     }
-}
+};
 </script>
+
+
+
+
+
+
 
 
 
@@ -78,48 +209,73 @@ export default {
                 </div>
 
 
-                <form class="formulier" action="">
+                <form class="formulier" @submit.prevent="submitForm">
                     <div class="namen-inputs">
-                        <div class="input-wrapper-naam">
-                            <img src="/public/naam-icoon.svg" alt="naam icoon" class="input-icon-voornaam">
-                            <input type="text" placeholder="Voornaam" class="voornaam-input">
-                        </div>
-                        <div class="input-wrapper-naam">
-                            <img src="/public/naam-icoon.svg" alt="naam icoon" class="input-icon-achternaam">
-                            <input type="text" placeholder="Achternaam" class="achternaam-input">
-                        </div>
+                      <div class="input-wrapper-naam">
+                        <img src="/public/naam-icoon.svg" alt="naam icoon" class="input-icon-voornaam">
+                        <input type="text" placeholder="Voornaam" class="voornaam-input" v-model="voornaam">
+                      </div>
+
+                      <div v-if="errors.voornaam" class="error-message">
+                        {{ errors.voornaam }}
                     </div>
-                
+
+                      <div class="input-wrapper-naam">
+                        <img src="/public/naam-icoon.svg" alt="naam icoon" class="input-icon-achternaam">
+                        <input type="text" placeholder="Achternaam" class="achternaam-input" v-model="achternaam">
+                      </div>
+
+                      <div v-if="errors.achternaam" class="error-message">
+                        {{ errors.achternaam }}
+                    </div>
+
+                    </div>
+                  
                     <div class="email-input input-wrapper desktop">
-                        <img src="/public/email-icoon.svg" alt="email" class="input-icon">
-                        <input type="email" placeholder="Email" class="email-input-field">
+                      <img src="/public/email-icoon.svg" alt="email" class="input-icon">
+                      <input type="email" placeholder="Email" class="email-input-field" v-model="email">
                     </div>
-                
+                    <div v-if="errors.email" class="error-message">
+                        {{ errors.email }}
+                    </div>
+                  
                     <div class="telefoonnummer-input input-wrapper desktop">
-                        <img src="/public/telefoon-icoon.svg" alt="telefoon" class="input-icon input-icon-telefoon">
-                        <input type="tel" placeholder="Telefoonnummer" class="telefoonnummer-input-field">
+                      <img src="/public/telefoon-icoon.svg" alt="telefoon" class="input-icon input-icon-telefoon">
+                      <input type="tel" placeholder="Telefoonnummer" class="telefoonnummer-input-field" v-model="telefoonnummer">
                     </div>
-
-                <div class="namen-inputs mobiel-pagina-6">
-                    <div class="email-input input-wrapper">
+                    <div v-if="errors.telefoonnummer" class="error-message">
+                        {{ errors.telefoonnummer }}
+                    </div>
+                    
+                  
+                    <div class="namen-inputs mobiel-pagina-6">
+                      <div class="email-input input-wrapper">
                         <img src="/public/email-icoon.svg" alt="email" class="input-icon">
-                        <input type="email" placeholder="Email" class="email-input-field">
+                        <input type="email" placeholder="Email" class="email-input-field" v-model="email">
+                      </div>
+                      <div v-if="errors.email" class="error-message">
+                        {{ errors.email }}
                     </div>
-                
-                    <div class="telefoonnummer-input input-wrapper">
+
+                  
+                      <div class="telefoonnummer-input input-wrapper">
                         <img src="/public/telefoon-icoon.svg" alt="telefoon" class="input-icon input-icon-telefoon">
-                        <input type="tel" placeholder="Telefoonnummer" class="telefoonnummer-input-field">
+                        <input type="tel" placeholder="Telefoonnummer" class="telefoonnummer-input-field" v-model="telefoonnummer">
+                      </div>
+                      <div v-if="errors.telefoonnummer" class="error-message">
+                        {{ errors.telefoonnummer }}
                     </div>
-                </div>
 
 
 
-                </form>
+                    </div>
+                  </form>
+                  
                 
 
 
             <div class="container-button-pagina-6">
-                <button @click="goToPage4" class="cta-pagina-6">
+                <button @click="submitForm" class="cta-pagina-6">
                     <span class="cta-text-pagina-6">Bevestig mijn deelname</span>
                     <span class="cta-pijl-pagina-6">&#8594;</span>
                 </button>  
@@ -138,32 +294,6 @@ export default {
             </div>
         </div>
 
-
-
-        <!-- <div class="container-afbeeldingen-en-prijs-1">
-            <svg class="prijzen-prijs-tv" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
-              <circle cx="27.9047" cy="27.9047" r="27.9047" fill="#49B7AC"/>
-              <text x="29" y="20" font-family="DM Sans" font-size="8" fill="white" text-anchor="middle">t.w.v.</text>
-              <text x="29" y="35" font-family="DM Sans" font-size="12" font-weight="700" fill="white" text-anchor="middle">€699,-</text>
-            </svg>
-
-            <svg class="prijzen-prijs-bol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
-                <circle cx="27.9047" cy="27.9047" r="27.9047" fill="#49B7AC"/>
-                <text x="29" y="20" font-family="DM Sans" font-size="8" fill="white" text-anchor="middle">t.w.v.</text>
-                <text x="29" y="35" font-family="DM Sans" font-size="12" font-weight="700" fill="white" text-anchor="middle">€400,-</text>
-              </svg>
-
-
-
-            <svg class="prijzen-prijs-ps" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
-              <circle cx="27.9047" cy="27.9047" r="27.9047" fill="#49B7AC"/>
-              <text x="29" y="20" font-family="DM Sans" font-size="8" fill="white" text-anchor="middle">t.w.v.</text>
-              <text x="29" y="35" font-family="DM Sans" font-size="12" font-weight="700" fill="white" text-anchor="middle">€599,-</text>
-            </svg>
-  
-
-            <img class="afbeelding-prijzen" src="/public/afbeelding-home-desk.png" alt="">
-          </div> -->
 
 
     </div>
@@ -494,7 +624,8 @@ input[type="tel"] {
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 1.1vw;
-    background: #f1f1f1
+    background: #f1f1f1;
+    color: black;
 }
 
 .namen-inputs {
@@ -603,10 +734,12 @@ input[type="tel"] {
 
     .footer-container-6 {
         background-color: white;
+        width: 100%;
     }
 
     .footer-text {
-        width: 100%!important;
+        width: 80%!important;
+        margin: 0 auto!important;
     }
 
 
@@ -617,6 +750,7 @@ input[type="tel"] {
 
     .lijn-sectie-2 {
         margin-top: 0!important;
+        margin-bottom: 2vw!important;
     }
 
 }
