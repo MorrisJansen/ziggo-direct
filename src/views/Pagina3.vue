@@ -17,14 +17,10 @@ export default {
             document.body.classList.add('safari');
         }
 
-        // Haal de postcode op uit localStorage als deze al is ingevuld
-        const opgeslagenPostcode = localStorage.getItem('postcode');
-        if (opgeslagenPostcode) {
-            this.postcode = opgeslagenPostcode;
-        }
+        // Haal de postcode op uit Vuex als deze al is ingevuld
+        this.postcode = this.$store.getters.getPostcode;
     },
     computed: {
-        // Haal de gekozen prijs-ID en -optie op uit Vuex store
         gekozenPrijsOptie() {
             return this.$store.getters.getGekozenPrijsOptie;
         }
@@ -45,8 +41,8 @@ export default {
                 return;
             }
 
-            // Sla de postcode op in localStorage
-            localStorage.setItem('postcode', this.postcode);
+            // Sla de postcode op in Vuex
+            this.$store.dispatch('updatePostcode', this.postcode);
 
             this.$router.push({ name: 'pagina4' });
             console.log(this.postcode);
@@ -61,6 +57,8 @@ export default {
     }
 }
 </script>
+
+
 
 
 <template>

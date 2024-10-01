@@ -28,10 +28,13 @@ export default {
             if (selectedOption) {
                 const optionDetails = this.options[selectedOption.id];
                 if (optionDetails) {
-                    localStorage.setItem('selectedProviderId', optionDetails.id);
-                    localStorage.setItem('selectedProviderName', optionDetails.name);
+                    // Gebruik Vuex om de geselecteerde provider op te slaan
+                    this.$store.dispatch('updateSelectedProviderId', optionDetails.id);
+                    this.$store.dispatch('updateSelectedProviderName', optionDetails.name);
+
                     console.log('Geselecteerde ID:', optionDetails.id);
                     console.log('Geselecteerde naam:', optionDetails.name);
+
                     this.$router.push({ name: 'pagina3' });
                     this.foutmelding = false;
                 }
@@ -48,6 +51,7 @@ export default {
     }
 };
 </script>
+
 
 
 
