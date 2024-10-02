@@ -71,23 +71,40 @@ export default {
         },
 
         validateAndFormatPhoneNumber(phoneNumber) {
-            phoneNumber = phoneNumber.replace(/[^0-9+]/g, '');
-            const dutchRegex = /^(06[0-9]{8}|[+]{0,1}31[0]?[0-9]{9,10}|0031[0]?[0-9]{9,10})$/;
-            if (!phoneNumber.match(dutchRegex)) {
-                return null;
-            }
-            return phoneNumber;
-        },
+        // Verwijder alle niet-numerieke tekens behalve het plusteken
+        phoneNumber = phoneNumber.replace(/[^0-9+]/g, '');
 
-        validateTelefoonnummer() {
-            const phoneNumber = this.validateAndFormatPhoneNumber(this.telefoonnummer);
-            if (!phoneNumber) {
-                this.errors.telefoonnummer = 'Ongeldig telefoonnummer.';
-                return false;
-            }
-            this.errors.telefoonnummer = '';
-            return true;
-        },
+        // Controleer of het nummer met 06 begint
+        if (phoneNumber.startsWith('06')) {
+            // Vervang 06 door +316 en zorg ervoor dat alleen de laatste 8 cijfers blijven
+            phoneNumber = phoneNumber.replace(/^06/, '+316');
+        } else if (phoneNumber.startsWith('+316')) {
+            // Als het nummer al in het juiste formaat is, gebruik het zoals het is
+            phoneNumber = phoneNumber.slice(0, 12);  // Zorg ervoor dat we alleen 12 tekens (+316 + 8 cijfers) behouden
+        } else {
+            // Ongeldig telefoonnummer
+            return null;
+        }
+
+        // Controleer of het nummer nu precies +316 en 8 cijfers bevat
+        const dutchRegex = /^\+316\d{8}$/;
+        if (!phoneNumber.match(dutchRegex)) {
+            return null;
+        }
+
+        return phoneNumber;
+    },
+
+    validateTelefoonnummer() {
+        const formattedPhoneNumber = this.validateAndFormatPhoneNumber(this.telefoonnummer);
+        if (!formattedPhoneNumber) {
+            this.errors.telefoonnummer = 'Ongeldig telefoonnummer.';
+            return false;
+        }
+        this.telefoonnummer = formattedPhoneNumber;  // Sla het geformatteerde nummer op
+        this.errors.telefoonnummer = '';
+        return true;
+    },
 
         async submitForm() {
             this.errors = {};
