@@ -170,11 +170,11 @@ export default {
 
                 if (response.status === 201) {
                     console.log('Succesvol ingediend!');
-                    this.$router.push('/bedankt2');
+                    this.$router.push('/Bedankt');
                 } else {
                     const responseBody = await response.json();
                     console.error('Fout bij indienen:', responseBody);
-                    this.$router.push('/dank');
+                    this.$router.push('/bedankt');
                 }
             } catch (error) {
                 console.error('Er is een fout opgetreden bij het versturen van het formulier:', error);
@@ -825,6 +825,9 @@ input[type="tel"] {
     font-weight: 700;
     font-size: 1vw;
 }
+
+
+
 
 @media (max-width: 499px) {
 

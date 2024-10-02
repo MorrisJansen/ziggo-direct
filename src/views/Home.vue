@@ -102,7 +102,7 @@ export default {
                         </div>
 
 
-                        <button @click="goToPage1" class="cta-home">
+                        <button @click="goToPage1" class="cta-home" id="cta-home">
                             <span class="cta-text">Doe nu mee</span>
                             <span class="cta-pijl">&#8594;</span>
                         </button>
@@ -385,7 +385,7 @@ export default {
     align-content: start;
     margin-top: 0%!important;
     width: 121%;
-    height: 4rem!important;
+    height: 4vw!important;
     
 }
 
@@ -662,6 +662,14 @@ export default {
         display: none;
     }
   } */
+
+  @media (max-width: 800px) {
+    #cta-home {
+        margin-left: 20%!important;
+    }
+}
+
+
 
 
 @media (min-width: 500px) {
