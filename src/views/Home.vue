@@ -205,7 +205,7 @@ export default {
 
             </div>
 
-            <hr class="lijn-sectie-2">
+            <hr class="lijn-sectie-2" id="lijn-sectie-2">
         </div>
       </div>
 
@@ -232,7 +232,10 @@ export default {
 
 
       <div class="footer-container">
-      <hr class="lijn-sectie-2 lijn-2-footer-mobiel">
+        <div class="container-lijn-footer">
+            <hr class="lin-2-footer-mobiel" id="lijn-2-footer-mobiel">
+
+        </div>
         <div class="footer-text">
             *Meervoordeel.nl is een officiële partner van Ziggo. Deelname mogelijk tot en met 31 juli 2024.<br> Actievoorwaarden van toepassing.
         </div>
@@ -261,6 +264,14 @@ export default {
     box-sizing: border-box;
     padding: 0!important;
     margin: 0!important;
+  }
+
+  button:hover {
+    border: none;
+  }
+
+  button:focus {
+    border: none
   }
 
   body {
@@ -375,7 +386,7 @@ export default {
     text-align: start;
     margin-bottom: 5%!important;
     position: relative;
-    right: 8.7vw;
+    right: 12vw;
 }
 
 
@@ -385,14 +396,14 @@ export default {
     align-content: start;
     margin-top: 0%!important;
     width: 121%;
-    height: 4vw!important;
+    height: 3.2vw!important;
     
 }
 
 .stap-text {
     color: #072249;
     font-family: "DM Sans";
-    font-size: 1vw;
+    font-size: 1.3vw;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
@@ -400,7 +411,7 @@ export default {
     align-content: center!important;
     justify-content: center;
     padding-top: 1%!important;
-    padding-left: 5%!important;
+    padding-left:  2%!important;
     text-align: start;
 }
 
@@ -416,7 +427,7 @@ export default {
     border-radius: 2.5rem;
     background-color: #F48C02;
     margin-top: 11%!important;
-    margin-left: 50%!important;
+    margin-left: 20%!important;
     margin-bottom: 10%!important;
 }
 
@@ -653,6 +664,13 @@ export default {
     font-style: normal;
     font-weight: 400;
     line-height: 1.4vw;
+}
+
+.lijn-2-footer-mobiel {
+    width: 85vw;
+    margin: 0 auto!important;
+    opacity: 0.3;
+    margin-top: 2vw!important;
 }
 
 
@@ -913,8 +931,8 @@ export default {
         font-size: 6vw;
     }
 
-    .lijn-sectie-2 {
-        margin-top: 8vw!important;
+    #lijn-sectie-2 {
+        margin-top: 10vw!important;
     }
 
 
@@ -995,12 +1013,25 @@ export default {
         align-items: center;
         background-color: white;
     }
+
+    .container-lijn-footer {
+        padding-bottom: 5vw !important;
+        padding-top: 15vw !important;
+        }
     
-    .lijn-2-footer-mobiel {
+    #lijn-2-footer-mobiel {
         margin-bottom: 5vw!important;
+        margin-top: 5vw!important;
+        width: 85vw;
+        margin: 0 auto!important;
+        opacity: 0.3;
+        margin-top: 2vw!important;
+        height: 1px!important;
     }
 
 
+
+    
     .footer-text {
         font-size: 3vw;
         line-height: 120%;
@@ -1113,6 +1144,12 @@ export default {
 
 .safari .cta-home {
     margin-right: 50%!important;
+}
+
+@media (max-width: 499px) {
+    .safari .cta-home {
+        margin-right: 0!important;
+    }
 }
 
   </style>

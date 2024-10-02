@@ -95,7 +95,7 @@ export default {
                 </div>
 
                 <div class="vraag-pagina-3">
-                    Vul je postcode in en check of je kans maakt op <span class="gekozen-prijs">{{ gekozenPrijsOptie }}:</span>
+                    Vul je postcode in en check of je kans maakt op een <span class="gekozen-prijs">{{ gekozenPrijsOptie }}:</span>
                 </div>
                 
 
@@ -553,7 +553,7 @@ export default {
 
     .vraag-pagina-3,
     .gekozen-prijs {
-        font-size: 7vw;
+        font-size: 6vw;
     }
     
     .input-button-wrapper {

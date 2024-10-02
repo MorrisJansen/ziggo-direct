@@ -124,8 +124,7 @@ export default {
             const firstAnswerId = 5269; 
             const secondAnswerId = this.$store.getters.getGekozenPrijsId;
             const thirdAnswerId = this.$store.getters.getSelectedProviderId;
-            const zip = this.$store.getters.getPostcode; // Voeg deze getter toe in Vuex
-
+            const zip = this.$store.getters.getPostcode;
             if (!secondAnswerId || !thirdAnswerId || !zip) {
                 console.error('Onvoldoende gegevens om te verwerken. tweede antwoord:', secondAnswerId, 'derde antwoord:', thirdAnswerId, 'postcode:', zip);
                 return;
@@ -220,7 +219,9 @@ export default {
 
     <div class="achtergrond-pagina-6">
 
-        <div class="witte-container-pagina-6">
+        <div class="witte-container-pagina-6"
+        :class="{ 'langer-maken-error': errors.achternaam || errors.voornaam || errors.email || errors.telefoonnummer}" 
+        >
 
             <div class="container-inhoud-witte-container">
 
@@ -229,7 +230,7 @@ export default {
                 </div>
 
                 <div class="jij-maakt-nu-kans">
-                    Je gekozen prijs is: <span class="gekozen-prijs">{{ gekozenPrijs }}</span>
+                    Je gekozen prijs is een: <span class="gekozen-prijs">{{ gekozenPrijs }}</span>
                 </div>
 
                 <hr class="lijn-10">
@@ -344,13 +345,13 @@ export default {
 
 
             <div class="witte-container-footer">
-                Met het bevestigen van je deelname ga je er mee akkoord dat MeerVoordeel eenmalig telefonisch contact met je opneemt met een aanbieding voor een all-in abonnement van Ziggo.
+                Met het bevestigen van je deelname ga je er mee akkoord dat MeerVoordeel éenmalig telefonisch contact met je opneemt met een aanbieding voor een all-in abonnement van Ziggo.
             </div>
 
 
-            <div class="container-prijzen-met-prijzen">
+            <div class="container-prijzen-met-prijzen mobiel">
 
-                <div class="container-afbeeldingen-en-prijs-mobiel mobiel">
+                <div class="container-afbeeldingen-en-prijs-mobiel-6 mobiel">
                   <svg class="prijzen-prijs-tv" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
                     <circle cx="27.9047" cy="27.9047" r="27.9047" fill="#49B7AC"/>
                     <text x="29" y="20" font-family="DM Sans" font-size="8" fill="white" text-anchor="middle">t.w.v.</text>
@@ -386,7 +387,10 @@ export default {
 
 
         <div class="container-dynamische-prijs-afbeelding">
-            <img class="ps-prijs" src="/public/ps-prijs.png" alt="">
+            <img v-if="gekozenPrijs === 'Playstation 5'" class="ps-prijs" src="/public/ps-prijs.png" alt="PlayStation Prijs">
+            <img v-if="gekozenPrijs === 'Bol.com cadeaubon'" class="bol-prijs" src="/public/bol-prijs.png" alt="Bol Prijs">
+            <img v-if="gekozenPrijs === 'SAMSUNG TV'" class="tv-prijs" src="/public/tv-prijs.png" alt="TV Prijs">
+        
 
             <div class="container-text-dynamische-prijs">
                 <div class="text-prijs-pagina-6">Jouw gekozen prijs:</div>
@@ -742,7 +746,7 @@ input[type="tel"] {
     object-fit: contain;
     margin-left: 55% !important;
     position: relative;
-    bottom: 58%;
+    bottom: 70%;
     left: 2%;
     display: flex;
     justify-content: center;
@@ -752,10 +756,22 @@ input[type="tel"] {
 .ps-prijs {
     position: absolute;
     width: 40vw;
-    bottom: -26.5vw;
+    bottom: -30vw;
     left: 2vw;
 }
 
+.tv-prijs {
+    scale: 0.8;
+    position: relative;
+    top: 8vw;
+}
+
+.bol-prijs {
+    position: relative;
+    top: 9vw;
+
+
+}
 
 
 
@@ -826,6 +842,15 @@ input[type="tel"] {
     font-size: 1vw;
 }
 
+
+.container-afbeeldingen-en-prijs-mobiel-6 {
+    height: 100%;
+    object-fit: contain;
+    position: relative;
+    bottom: 30%;
+    display: flex;
+    justify-content: center;
+}
 
 
 
@@ -1013,6 +1038,16 @@ input[type="tel"] {
     .lijn-sectie-2 {
         margin-top: 0!important;
         margin-bottom: 2vw!important;
+    }
+
+    .langer-maken-error {
+        height: 215vw!important;
+    }
+
+
+
+    .container-afbeeldingen-en-prijs-mobiel-6 {
+        margin-top: -20vw!important;
     }
 
 }

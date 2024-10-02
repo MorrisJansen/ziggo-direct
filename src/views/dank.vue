@@ -23,35 +23,8 @@ export default {
             this.gekozenPrijs = opgeslagenAntwoord;
         }
     },
-    methods: {
-        goToPage4() {
-            this.postcodeError = ''
-
-            if (!this.postcode) {
-                this.postcodeError = 'Postcode mag niet leeg zijn.';
-                return;
-            }
-
-            
-            const regex = /^(?! )[0-9]{4}[ ]?[A-Za-z]{2}(?<! )$/;
-
-            
-            if (!regex.test(this.postcode)) {
-                this.postcodeError = 'Voer een geldige postcode in (bijvoorbeeld 1234 AB).';
-                return;
-            }
-
-            this.$router.push({ name: 'pagina4' });
-            console.log(this.postcode)
-        },
-        
-        selectOption(optionId) {
-            const input = document.getElementById(optionId);
-            if (input) {
-                input.checked = true;
-            }
-        }
-    }
+  
+    
 }
 </script>
 
@@ -81,9 +54,9 @@ export default {
 
 <div class="container-pagina-1">
 
-    <div class="achtergrond-pagina-1">
+    <div class="achtergrond-bedankt">
 
-        <div class="witte-container-pagina-3">
+        <div class="witte-container-bedankt">
 
             <div class="container-inhoud-witte-container">
               
@@ -96,8 +69,39 @@ export default {
 
 
 
-        <div class="container-afbeeldingen-en-prijs-1">
-            <svg class="prijzen-prijs-tv-pagina-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
+        <div class="container-afbeeldingen-en-prijs-2 desktop" id="container-afbeeldingen-en-prijs-bedankt">
+            <svg class="prijzen-prijs-tv-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
+              <circle cx="27.9047" cy="27.9047" r="27.9047" fill="#49B7AC"/>
+              <text x="29" y="23" font-family="DM Sans" font-size="8" fill="white" text-anchor="middle">t.w.v.</text>
+              <text x="29" y="35" font-family="DM Sans" font-size="12" font-weight="700" fill="white" text-anchor="middle">€699,-</text>
+            </svg>
+
+            <svg class="prijzen-prijs-bol-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
+                <circle cx="27.9047" cy="27.9047" r="27.9047" fill="#49B7AC"/>
+                <text x="29" y="20" font-family="DM Sans" font-size="8" fill="white" text-anchor="middle">t.w.v.</text>
+                <text x="29" y="35" font-family="DM Sans" font-size="12" font-weight="700" fill="white" text-anchor="middle">€400,-</text>
+            </svg>
+
+
+
+            <svg class="prijzen-prijs-ps-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
+              <circle cx="27.9047" cy="27.9047" r="27.9047" fill="#49B7AC"/>
+              <text x="29" y="20" font-family="DM Sans" font-size="8" fill="white" text-anchor="middle">t.w.v.</text>
+              <text x="29" y="35" font-family="DM Sans" font-size="12" font-weight="700" fill="white" text-anchor="middle">€599,-</text>
+            </svg>
+  
+
+            <!-- <img class="afbeelding-prijzen" src="/public/afbeelding-home-desk.png" alt=""> -->
+             <img class="afbeelding-prijzen-1" src="/public/samen.png" alt="">
+          </div>
+
+
+
+          <!-- dit is voor mobiel -->
+        <div class="container-prijzen-met-prijzen">
+
+          <div class="container-afbeeldingen-en-prijs-mobiel mobiel">
+            <svg class="prijzen-prijs-tv" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
               <circle cx="27.9047" cy="27.9047" r="27.9047" fill="#49B7AC"/>
               <text x="29" y="20" font-family="DM Sans" font-size="8" fill="white" text-anchor="middle">t.w.v.</text>
               <text x="29" y="35" font-family="DM Sans" font-size="12" font-weight="700" fill="white" text-anchor="middle">€699,-</text>
@@ -111,15 +115,18 @@ export default {
 
 
 
-            <svg class="prijzen-prijs-ps-pagina-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
+            <svg class="prijzen-prijs-ps" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
               <circle cx="27.9047" cy="27.9047" r="27.9047" fill="#49B7AC"/>
               <text x="29" y="20" font-family="DM Sans" font-size="8" fill="white" text-anchor="middle">t.w.v.</text>
               <text x="29" y="35" font-family="DM Sans" font-size="12" font-weight="700" fill="white" text-anchor="middle">€599,-</text>
             </svg>
   
 
-            <img class="afbeelding-prijzen-pagina-3" src="/public/afbeelding-home-desk.png" alt="">
+            <img class="afbeelding-prijzen-mobiel" src="/public/afbeeldingen-samen-mobiel.png" alt="">
           </div>
+
+        </div>
+
 
 
     </div>
@@ -153,6 +160,12 @@ export default {
 
 <style>
 
+.achtergrond-bedankt {
+    background: linear-gradient(90deg, #072148 0%, #40A59F 100%);
+    width: 100vw;
+    height: 43vw!important;
+}
+
 
 .bedankt {
     font-size: 2.4vw;
@@ -174,6 +187,52 @@ export default {
     font-weight: 700;
     line-height: 150%; 
     margin-top: 2vw!important;
+}
+
+.container-afbeeldingen-en-prijs-2 {
+    bottom: 6%!important;
+}
+.witte-container-bedankt {
+    height: 22vw;
+    width: 50vw;
+    background-color: white;
+    position: relative;
+    top: 7vw;
+    left: 7vw;
+    border-radius: 0.75rem;
+    box-shadow: 0px 31px 81px 0px rgba(0, 17, 77, 0.20);
+    z-index: 999;
+}
+
+
+
+@media (max-width: 499px) {
+    .bedankt {
+        font-size: 7vw;
+    }
+
+    .contact {
+        font-size: 4.2vw;
+    }
+
+    .witte-container-bedankt {
+        height: 40vw;
+        width: 90%;
+        margin: 0 auto !important;
+        justify-content: center;
+        display: flex;
+        margin: o auto !important;
+        justify-content: center;
+        left: 0 !important;
+    }
+
+    .achtergrond-bedankt {
+        height: 161vw!important;
+    }
+
+    .container-prijzen-met-prijzen {
+        z-index:    999;
+    }
 }
 
 

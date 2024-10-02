@@ -101,7 +101,7 @@ export default {
 
                         <div id="container-antwoord-optie-id" class="container-antwoord-optie" @click="selecteerOptie('optie-2', 'Playstation 5')">
                             <input class="input-radio" type="radio" id="optie-2" name="antwoord" value="Playstation 5">
-                            <label class="" for="optie-2"><span class="input-padding-1">Playstation 5 Slim Disk t.w.v. <span class="input-padding-1"> €549-</span></span></label>
+                            <label class="" for="optie-2"><span class="input-padding-1">Playstation 5 Slim Disk t.w.v. <span class="input-padding-1"> €599,-</span></span></label>
                         </div>
 
                         <div id="container-antwoord-optie-id" class="container-antwoord-optie" @click="selecteerOptie('optie-3', 'Bol.com cadeaubon')">
@@ -413,7 +413,23 @@ export default {
     background-color: #F48C02;
     margin-top: 1%!important;
     margin-left: 41%!important;
+    position: relative;
+    bottom: -4vw!important;
 }
+
+@media (max-width: 700px) and (min-width: 600px) {
+    .cta-pagina-1 {
+        bottom: -2vw!important;
+    }
+}
+
+
+@media (max-width: 600px) and (min-width: 499px) {
+    .cta-pagina-1 {
+        bottom: 0.5vw!important;
+    }
+}
+
 
 
 .cta-text-pagina-1 {
