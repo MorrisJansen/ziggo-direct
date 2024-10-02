@@ -663,7 +663,7 @@ export default {
     }
   } */
 
-  @media (max-width: 800px) {
+  @media (max-width: 800px) and (min-width: 499px) {
     #cta-home {
         margin-left: 20%!important;
     }
@@ -796,6 +796,7 @@ export default {
         margin-bottom: 2%!important;
         display: flex;
         align-items: center;
+        height: 16vw!important;
     }
     
     .stap1-svg {
