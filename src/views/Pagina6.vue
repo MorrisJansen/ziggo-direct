@@ -236,7 +236,9 @@ export default {
 
                       <div class="input-wrapper-naam">
                         <img src="/public/naam-icoon.svg" alt="naam icoon" class="input-icon-achternaam">
-                        <input type="text" placeholder="Achternaam" class="achternaam-input" v-model="achternaam">
+                        <input type="text" placeholder="Achternaam" class="achternaam-input" v-model="achternaam"
+                        :class="{ 'error-marge-mobiel-1': errors.voornaam}" 
+                        >
                       </div>
 
                       <div v-if="errors.achternaam" class="error-message-achternaam">
@@ -250,7 +252,9 @@ export default {
                       :style="{ top: (errors.voornaam || errors.achternaam) ? '48%!important' : '40%' }" 
                       >
                       <input type="email" placeholder="Email" class="email-input-field" v-model="email"
-                             :style="{ marginTop: (errors.voornaam || errors.achternaam) ? '1vw!important' : '0' }" 
+                      :class="{ 'error-marge-mobiel-2': errors.achternaam}" 
+                      :style="{ marginTop: (errors.voornaam || errors.achternaam) ? '1vw!important' : '0' }" 
+
                       >
                     </div>
                     <div v-if="errors.email" class="error-message-mail"
@@ -260,9 +264,13 @@ export default {
                     </div>
                   
                     <div class="telefoonnummer-input input-wrapper desktop">
-                      <img src="/public/telefoon-icoon.svg" alt="telefoon" class="input-icon input-icon-telefoon">
+                      <img src="/public/telefoon-icoon.svg" alt="telefoon" class="input-icon input-icon-telefoon"
+                      :style="{ top: (errors.voornaam || errors.achternaam || errors.email) ? '58%!important' : '40%' }" 
+                      >
                       <input type="tel" placeholder="Telefoonnummer" class="telefoonnummer-input-field" v-model="telefoonnummer"
                       :style="{ marginTop: (errors.voornaam || errors.achternaam || errors.email) ? '2vw!important' : '0' }" 
+                      :class="{ 'error-marge-mobiel-1': errors.email}" 
+
                       >
                     </div>
                     <div v-if="errors.telefoonnummer" class="error-message-tel"
@@ -277,18 +285,22 @@ export default {
                     <div class="namen-inputs mobiel-pagina-6">
                       <div class="email-input input-wrapper">
                         <img src="/public/email-icoon.svg" alt="email" class="input-icon">
-                        <input type="email" placeholder="Email" class="email-input-field" v-model="email">
+                        <input type="email" placeholder="Email" class="email-input-field" v-model="email"
+                        :class="{ 'error-marge-mobiel-3': errors.email}" 
+                        >
                       </div>
-                      <div v-if="errors.email" class="error-message">
+                      <div v-if="errors.email" class="error-message-mail-mobiel">
                         {{ errors.email }}
                     </div>
 
                   
                       <div class="telefoonnummer-input input-wrapper">
                         <img src="/public/telefoon-icoon.svg" alt="telefoon" class="input-icon input-icon-telefoon">
-                        <input type="tel" placeholder="Telefoonnummer" class="telefoonnummer-input-field" v-model="telefoonnummer">
+                        <input type="tel" placeholder="Telefoonnummer" class="telefoonnummer-input-field" v-model="telefoonnummer"
+                        :class="{ 'error-marge-mobiel-3': errors.telefoonnummer}" 
+                        >
                       </div>
-                      <div v-if="errors.telefoonnummer" class="error-message">
+                      <div v-if="errors.telefoonnummer" class="error-message-tel-mobiel">
                         {{ errors.telefoonnummer }}
                     </div>
 
@@ -798,6 +810,73 @@ input[type="tel"] {
 }
 
 @media (max-width: 499px) {
+
+    .error-message-voornaam {
+        font-size: 4vw!important;
+        z-index: 999;
+        top: 0vw;
+        left: -5vw;
+        position: relative;
+    }
+
+
+    .error-marge-mobiel-1 {
+        margin-top: 0vw!important
+        }
+
+    .error-marge-mobiel-2 {
+        margin-top: 2.5vw!important
+        }
+
+    .error-message-achternaam {
+        font-size: 4vw;
+        z-index: 999;
+        position: relative;
+        left: -3vw;
+        top: -1vw;
+    }
+
+    .error-message-mail {
+        position: relative;
+        bottom: -25vw;
+        display: none;
+    }
+
+    .error-message-mail-mobiel {
+        font-size: 4vw;
+        font-weight: 700;
+        color: red;
+        position: relative;
+        right: 4vw;
+    }
+
+    .error-message-tel {
+        display: none;
+    }
+
+    .error-message-tel-mobiel {
+        font-size: 4vw;
+        font-weight: 700;
+        color: red;
+        position: relative;
+        right: 4vw;
+    }
+
+
+
+    .error-message-mail {
+        font-size: 4vw;
+    }
+
+
+    .error-message-tel {
+        font-size: 4vw;
+    }
+
+
+
+
+
     .container-dynamische-prijs-afbeelding {
         display: none;
     }
