@@ -84,7 +84,7 @@ export default {
     <div class="container-pagina-1">
         <div class="achtergrond-pagina-1">
             <div class="witte-container-pagina-1">
-                <div class="container-inhoud-witte-container">
+                <div class="container-inhoud-witte-container" id="container-inhoud-witte-container">
                     <div class="stap-pagina-1">
                         Stap 1 van 3
                     </div>
@@ -101,12 +101,12 @@ export default {
 
                         <div id="container-antwoord-optie-id" class="container-antwoord-optie" @click="selecteerOptie('optie-2', 'Playstation 5')">
                             <input class="input-radio" type="radio" id="optie-2" name="antwoord" value="Playstation 5">
-                            <label class="" for="optie-2"><span class="input-padding-1">Playstation 5 Slim Disk t.w.v. <span class="input-padding-1"> €599,-</span></span></label>
+                            <label class="" for="optie-2"><span class="input-padding-1">Playstation 5 Slim Disk <span class="input-padding-1"> t.w.v.  €599,-</span></span></label>
                         </div>
 
                         <div id="container-antwoord-optie-id" class="container-antwoord-optie" @click="selecteerOptie('optie-3', 'Bol.com cadeaubon')">
                             <input class="input-radio" type="radio" id="optie-3" name="antwoord" value="Bol.com cadeaubon">
-                            <label class="" for="optie-3"><span class="input-padding-1">Bol.com cadeaubon t.w.v. <span class="input-padding-1"> €400,-</span></span></label>
+                            <label class="" for="optie-3"><span class="input-padding-1">Bol.com cadeaubon <span class="input-padding-1">  t.w.v. €400,-</span></span></label>
                         </div>
                     </div>
                 <span class="flex">
@@ -117,7 +117,7 @@ export default {
                 </span>
 
 
-                    <div v-if="foutmelding" class="foutmelding">
+                    <div v-if="foutmelding" class="foutmelding-1 foutmelding">
                         Selecteer alstublieft een antwoord.
                     </div>
 
@@ -281,6 +281,7 @@ export default {
     align-items: center;
     padding-left: 1vw!important;
     cursor: pointer; 
+    color: black;
 }
 
 
@@ -340,6 +341,8 @@ export default {
     right: 17vw;
     transform: rotate(7deg);
 }
+
+
 
 .prijzen-prijs-bol-1 {
     left: 5vw;
@@ -478,6 +481,16 @@ export default {
     color: red;
     font-size: 1.2vw;
     font-weight: 700;
+    top: 4vw!important;
+}
+
+.foutmelding-1 {
+    text-align: left;
+    color: red;
+    font-size: 1.2vw;
+    font-weight: 700;
+    position: relative;
+    top: 1vw;
 }
 
 
@@ -552,7 +565,7 @@ export default {
     .input-padding-1 {
         height: 100%;
         margin-left: 11vw!important;
-        font-size: 4vw;
+        font-size: 5vw;
         line-height: 100%!important;
         color: black;
     }
@@ -581,7 +594,7 @@ export default {
 
     #cta-pagina-1 {
         margin-left: 0!important;
-        height: 20vw!important;
+        height: 15vw!important;
         margin-top: 0!important;
     }
 
@@ -622,6 +635,13 @@ export default {
         color: red;
         font-size: 4.5vw;
         font-weight: 700;
+        width: 105%;
+    }
+
+
+    .prijzen-prijs-tv {
+            width: 13%!important;
+            left: 70vw;
     }
 
 }

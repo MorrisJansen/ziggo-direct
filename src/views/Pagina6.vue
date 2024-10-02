@@ -345,7 +345,7 @@ export default {
 
 
             <div class="witte-container-footer">
-                Met het bevestigen van je deelname ga je er mee akkoord dat MeerVoordeel éenmalig telefonisch contact met je opneemt met een aanbieding voor een all-in abonnement van Ziggo.
+                Met het bevestigen van je deelname ga je er mee akkoord dat MeerVoordeel éénmalig telefonisch contact met je opneemt met een aanbieding voor een all-in abonnement van Ziggo.
             </div>
 
 
@@ -550,6 +550,7 @@ export default {
 .namen-inputs {
     display: flex;
     margin-bottom: 2vw;
+    
 }
 
 .namen-inputs input {
@@ -681,7 +682,8 @@ export default {
 }
 
 .input-wrapper-naam {
-    width:  43.5%!important
+    width:  43.5%!important;
+    margin-right: -1.5vw!important
 }
 
 .input-icon {
@@ -707,7 +709,7 @@ export default {
 
 .input-icon-achternaam {
     position: absolute;
-    left: 27vw;
+    left: 26.5vw;
     top: 43.5%;
     transform: translateY(-50%);
     width: 1.5vw;
@@ -715,6 +717,8 @@ export default {
     pointer-events: none;
     z-index: 999;
 }
+
+
 
 
 
@@ -730,11 +734,12 @@ input[type="tel"] {
     font-size: 1.1vw;
     background: #f1f1f1;
     color: black;
+    font-family: 'DM Sans', sans-serif;
 }
 
 .namen-inputs {
     display: flex;
-    width:  50vw
+    width:  51.7vw
 }
 
 
@@ -762,15 +767,17 @@ input[type="tel"] {
 
 .tv-prijs {
     scale: 0.8;
-    position: relative;
-    top: 8vw;
+    position: absolute;
+    top: 1vw;
+    width: 47vw;
+    right: 2vw;
 }
 
 .bol-prijs {
     position: relative;
     top: 9vw;
-
-
+    width: 35vw;
+    right: 5vw;
 }
 
 
@@ -817,7 +824,7 @@ input[type="tel"] {
 .error-message-achternaam {
     position: absolute;
     top: 48.5%;
-    left: 59%;
+    left: 57%;
     color: red;
     font-weight: 700;
     font-size: 1vw

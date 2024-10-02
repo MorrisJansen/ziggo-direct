@@ -58,13 +58,11 @@ export default {
 
         <div class="witte-container-bedankt">
 
-            <div class="container-inhoud-witte-container">
               
 
                 <div class="bedankt">Bedankt!</div>
-                <div class="contact">Wij nemen spoedig contact met u op</div>
+                <div class="contact">Wij nemen spoedig contact met u op.</div>
 
-            </div>
         </div>
 
 
@@ -175,7 +173,7 @@ export default {
     font-style: normal;
     font-weight: 700;
     line-height: 150%; 
-    margin-top: 5vw!important;
+    padding-top: 7vw!important;
 }
 
 .contact {

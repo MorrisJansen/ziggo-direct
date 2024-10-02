@@ -78,7 +78,7 @@ export default {
         <div class="container-pagina-1">
             <div class="achtergrond-pagina-1">
                 <div class="witte-container-pagina-2">
-                    <div class="container-inhoud-witte-container">
+                    <div class="container-inhoud-witte-container" id="container-inhoud-witte-container">
                         <div class="stap-pagina-1">Stap 2 van 3</div>
                         <div class="vraag-pagina-1">Wat is jouw huidige provider?</div>
                         <div class="container-antwoorden-pagina-1">
@@ -438,6 +438,8 @@ export default {
     background-color: #F48C02;
     margin-top: 1%!important;
     margin-left: 40%!important;
+    position: relative;
+    top: 7vw;
 }
 
 
@@ -504,6 +506,11 @@ export default {
 
     .container-inhoud-witte-container {
         padding-right: 6vw!important;
+    }
+
+    #container-inhoud-witte-container {
+        padding-left: 7vw!important;
+        padding-top: 4vw!important;
     }
 
     .container-antwoorden-pagina-1 {

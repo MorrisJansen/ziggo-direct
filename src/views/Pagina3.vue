@@ -415,7 +415,8 @@ export default {
     font-size: 1.1vw;
     padding-left: 2vw!important;
     background-color: #f1f1f1;
-    z-index: 1; /* Zorg dat de input bovenop komt */
+    z-index: 1;
+    font-family: 'DM Sans', sans-serif;
 }
 
 
@@ -594,7 +595,7 @@ export default {
 
     .foutmelding-pagina-3 {
         position: relative;
-        top: 40vw;
+        top: 40vw!important;
         z-index: 9999;
     }
 

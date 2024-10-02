@@ -40,7 +40,6 @@ export default {
 
 
         <!-- navbar -->
-        <a href="/">
             <div class="container-navbar">
                 <div class="afbeelding-1-navbar">
                   <img src="/public/meervoordeel-nav.svg" alt="meervoordeel">
@@ -54,7 +53,6 @@ export default {
                   <img src="/public/ziggo-logo.png" alt="ziggo">
                 </div>
             </div>
-          </a>
   
 
 
@@ -77,7 +75,7 @@ export default {
                         </div>
     
                         <div class="stap1">
-                            <svg class="stap1-svg" xmlns="http://www.w3.org/2000/svg" width="10%" height="70%" viewBox="0 0 56 56" fill="none">
+                            <svg class="stap1-svg" xmlns="http://www.w3.org/2000/svg" width="10%" height="90%" viewBox="0 0 56 56" fill="none">
                                 <circle cx="27.9047" cy="27.9047" r="27.9047" fill="#49B7AC"/>
                                 <text x="28" y="36" font-family="Arial" font-size="24" fill="white" text-anchor="middle">1.</text>
                             </svg>
@@ -86,7 +84,7 @@ export default {
 
 
                         <div class="stap1">
-                            <svg class="stap1-svg" xmlns="http://www.w3.org/2000/svg" width="10%" height="70%" viewBox="0 0 56 56" fill="none">
+                            <svg class="stap1-svg" xmlns="http://www.w3.org/2000/svg" width="10%" height="90%" viewBox="0 0 56 56" fill="none">
                                 <circle cx="27.9047" cy="27.9047" r="27.9047" fill="#49B7AC"/>
                                 <text x="28" y="36" font-family="Arial" font-size="24" fill="white" text-anchor="middle">2.</text>
                             </svg>                            
@@ -94,7 +92,7 @@ export default {
                         </div>
 
                         <div class="stap1">
-                            <svg class="stap1-svg" xmlns="http://www.w3.org/2000/svg" width="10%" height="70%" viewBox="0 0 56 56" fill="none">
+                            <svg class="stap1-svg" xmlns="http://www.w3.org/2000/svg" width="10%" height="90%" viewBox="0 0 56 56" fill="none">
                                 <circle cx="27.9047" cy="27.9047" r="27.9047" fill="#49B7AC"/>
                                 <text x="28" y="36" font-family="Arial" font-size="24" fill="white" text-anchor="middle">3.</text>
                             </svg>                            
@@ -168,6 +166,8 @@ export default {
                   <text x="29" y="35" font-family="DM Sans" font-size="12" font-weight="700" fill="white" text-anchor="middle">€599,-</text>
                 </svg>
       
+
+
 
                 <img class="afbeelding-prijzen-mobiel" src="/public/afbeeldingen-samen-mobiel.png" alt="">
               </div>
@@ -257,6 +257,9 @@ export default {
 
 
 
+  button, input, textarea {
+    outline: none!important;
+}
 
 
 
@@ -294,6 +297,15 @@ export default {
 
 
 
+  .container-sectie-1,
+  .inhoud-sectie-2,
+  .inhoud-sectie-3,
+  .footer-container {
+    background-color: white;
+  }
+  
+  
+
 
 
   
@@ -305,6 +317,7 @@ export default {
     position: relative;
     padding-left: 10%!important;
     top: 0!important;
+    background-color: white
 }
   
   .afbeelding-1-navbar,
@@ -653,6 +666,7 @@ export default {
     position: relative;
     top: 15vw;
     padding-bottom: 2vw!important;
+    background-color: white;
 }
 
 .footer-text {
@@ -810,7 +824,7 @@ export default {
 
     .stap1 {
         width: 100%!important;
-        padding: 0 12%!important;
+        padding: 0 9%!important;
         margin-bottom: 2%!important;
         display: flex;
         align-items: center;
@@ -818,14 +832,15 @@ export default {
     }
     
     .stap1-svg {
-        width: 45px!important;
-        height: 45px!important;
+        width: 40px!important;
+        height: 40px!important;
         flex-shrink: 0;
     }
     
     .stap-text {
         font-size: 4vw;
         white-space: nowrap;
+        padding-left: 4vw!important;
     }
     
     .mobiel {
@@ -871,7 +886,7 @@ export default {
         height: 100%;
         object-fit: contain;
         position: relative;
-        bottom: 30%;
+        bottom: 30%!important;
         display: flex;
         justify-content: center;
     }
@@ -880,7 +895,8 @@ export default {
     
 
     .afbeelding-prijzen-mobiel {
-        scale: 0.95;
+        width: 100vw;
+        scale: 0.9;
     }
 
 
@@ -927,8 +943,9 @@ export default {
     .meer-over-meer-voordeel {
         display: flex;
         width: 100%;
-        justify-content: center;
+        justify-content: start;
         font-size: 6vw;
+        padding-left: 7vw!important;
     }
 
     #lijn-sectie-2 {
@@ -1143,7 +1160,7 @@ export default {
 
 
 .safari .cta-home {
-    margin-right: 50%!important;
+    margin-right: 0%!important;
 }
 
 @media (max-width: 499px) {
