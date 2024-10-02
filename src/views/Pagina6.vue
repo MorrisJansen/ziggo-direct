@@ -225,9 +225,17 @@ export default {
 
             <div class="container-inhoud-witte-container">
 
-                <div class="gefeliciteerd">
-                    Gefeliciteerd!
+                <div class="container-gefeliciteerd-terug">
+                    <div class="gefeliciteerd">
+                        Gefeliciteerd!
+                    </div>
+                    <div class="pijl-vorige-6">
+                        <a class="vorige-1" href="/Pagina3">
+                            &#8592; vorige
+                        </a>
+                    </div>
                 </div>
+
 
                 <div class="jij-maakt-nu-kans">
                     Je gekozen prijs is een: <span class="gekozen-prijs">{{ gekozenPrijs }}</span>
@@ -388,8 +396,23 @@ export default {
 
         <div class="container-dynamische-prijs-afbeelding">
             <img v-if="gekozenPrijs === 'Playstation 5'" class="ps-prijs" src="/public/ps-prijs.png" alt="PlayStation Prijs">
+            <svg v-if="gekozenPrijs === 'Playstation 5'" class="ps-bal-prijs" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
+                <circle cx="27.9047" cy="27.9047" r="27.9047" fill="#49B7AC"/>
+                <text x="29" y="20" font-family="DM Sans" font-size="8" fill="white" text-anchor="middle">t.w.v.</text>
+                <text x="29" y="35" font-family="DM Sans" font-size="12" font-weight="700" fill="white" text-anchor="middle">€599,-</text>
+              </svg>
             <img v-if="gekozenPrijs === 'Bol.com cadeaubon'" class="bol-prijs" src="/public/bol-prijs.png" alt="Bol Prijs">
+            <svg v-if="gekozenPrijs === 'Bol.com cadeaubon'" class="bol-bal-prijs" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
+                <circle cx="27.9047" cy="27.9047" r="27.9047" fill="#49B7AC"/>
+                <text x="29" y="20" font-family="DM Sans" font-size="8" fill="white" text-anchor="middle">t.w.v.</text>
+                <text x="29" y="35" font-family="DM Sans" font-size="12" font-weight="700" fill="white" text-anchor="middle">€400,-</text>
+              </svg>
             <img v-if="gekozenPrijs === 'SAMSUNG TV'" class="tv-prijs" src="/public/tv-prijs.png" alt="TV Prijs">
+            <svg v-if="gekozenPrijs === 'SAMSUNG TV'" class="tv-bal-prijs" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
+                <circle cx="27.9047" cy="27.9047" r="27.9047" fill="#49B7AC"/>
+                <text x="29" y="23" font-family="DM Sans" font-size="8" fill="white" text-anchor="middle">t.w.v.</text>
+                <text x="29" y="35" font-family="DM Sans" font-size="12" font-weight="700" fill="white" text-anchor="middle">€699,-</text>
+              </svg>
         
 
             <div class="container-text-dynamische-prijs">
@@ -459,6 +482,37 @@ export default {
 
 
 
+.container-gefeliciteerd-terug {
+    display: inline-flex;
+}
+
+.pijl-vorige-6 {
+    position: relative;
+    left: 10vw;
+    border: 1px solid #F48C02;
+    padding: 10px!important;
+    border-radius: 35px;
+    color: #F48C02;
+    font-weight: 700;
+    height: 10%;
+    top: 1vw ;
+}
+
+.pijl-vorige-6:hover {
+    cursor: pointer;
+    color: #F48C02;
+    transition: 0.3s ease-in-out;
+    background-color: #f1f1f1;
+}
+
+.vorige-1 {
+    text-decoration: none;
+    color: #F48C02;
+}
+
+.vorige-1:hover {
+    color: #F48C02;
+}
 
 
 .gefeliciteerd {
@@ -469,6 +523,8 @@ export default {
     font-weight: 700;
     line-height: 150%;
     text-align: left;
+    position: relative;
+    right: 12vw;
 }
 
 .jij-maakt-nu-kans {
@@ -729,7 +785,7 @@ input[type="tel"] {
     height: 4vw;
     padding: 1vw;
     padding-left: 3.5vw!important;
-    border: 1px solid #ccc;
+    border: none!important;
     border-radius: 5px;
     font-size: 1.1vw;
     background: #f1f1f1;
@@ -765,12 +821,25 @@ input[type="tel"] {
     left: 2vw;
 }
 
+.ps-bal-prijs {
+    position: absolute;
+    width: 10vw;
+    left: 14vw;
+    top: 5vw
+}
+
 .tv-prijs {
     scale: 0.8;
     position: absolute;
     top: 1vw;
     width: 47vw;
     right: 2vw;
+}
+
+.tv-bal-prijs {
+    position: absolute;
+    width: 10vw;
+    left: 21vw;
 }
 
 .bol-prijs {
@@ -780,6 +849,12 @@ input[type="tel"] {
     right: 5vw;
 }
 
+.bol-bal-prijs {
+    position: absolute;
+    width: 10vw;
+    right: 10vw;
+    top: 5vw;
+}
 
 
 .container-text-dynamische-prijs {

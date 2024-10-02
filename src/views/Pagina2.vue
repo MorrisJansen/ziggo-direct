@@ -79,7 +79,23 @@ export default {
             <div class="achtergrond-pagina-1">
                 <div class="witte-container-pagina-2">
                     <div class="container-inhoud-witte-container" id="container-inhoud-witte-container">
-                        <div class="stap-pagina-1">Stap 2 van 3</div>
+
+
+
+                        <div class="container-stap-zoveel-en-pijl">
+                            <div class="stap-pagina-1">
+                                Stap 2 van 3
+                            </div>
+                            <div class="pijl-vorige-1">
+                                <a class="vorige-1" href="/Pagina1">
+                                    &#8592; vorige
+    
+                                </a>
+    
+                            </div>
+                        </div>
+
+
                         <div class="vraag-pagina-1">Wat is jouw huidige provider?</div>
                         <div class="container-antwoorden-pagina-1">
                             <div class="container-antwoorden1-2">
@@ -399,7 +415,7 @@ export default {
     flex-shrink: 0;
     border-radius: 2.5rem;
     background-color: #F48C02;
-    margin-top: 1%!important;
+    margin-top: 0%!important;
     margin-left: 41%!important;
 }
 

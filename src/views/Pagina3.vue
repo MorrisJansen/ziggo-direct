@@ -90,9 +90,22 @@ export default {
         <div :class="{ 'error-active': postcodeError }" class="witte-container-pagina-3">
         
             <div class="container-inhoud-witte-container">
-                <div class="stap-pagina-1">
-                    Stap 3 van 3
-                </div>
+
+
+
+
+                <div class="container-stap-zoveel-en-pijl">
+                            <div class="stap-pagina-1">
+                                Stap 3 van 3
+                            </div>
+                            <div class="pijl-vorige-1">
+                                <a class="vorige-1" href="/Pagina2">
+                                    &#8592; vorige
+    
+                                </a>
+    
+                            </div>
+                        </div>
 
                 <div class="vraag-pagina-3">
                     Vul je postcode in en check of je kans maakt op een <span class="gekozen-prijs">{{ gekozenPrijsOptie }}:</span>
@@ -459,7 +472,7 @@ export default {
     align-items: center;
     justify-content: flex-start;
     height: 4vw;
-    width: 43vw;
+    width: 37vw;
     margin-top: 3vw!important;
 }
 

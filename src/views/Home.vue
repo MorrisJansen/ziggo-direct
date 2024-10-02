@@ -233,7 +233,7 @@ export default {
 
       <div class="footer-container">
         <div class="container-lijn-footer">
-            <hr class="lin-2-footer-mobiel" id="lijn-2-footer-mobiel">
+            <hr class="lijn-2-footer-mobiel" id="lijn-2-footer-mobiel">
 
         </div>
         <div class="footer-text">
@@ -261,6 +261,9 @@ export default {
     outline: none!important;
 }
 
+body {
+    overflow-x: hidden;
+}
 
 
   * {
