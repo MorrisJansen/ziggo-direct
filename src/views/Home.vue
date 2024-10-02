@@ -1112,7 +1112,6 @@ export default {
 
 .safari .cta-home {
     margin-right: 50%!important;
-    background-color: red;
 }
 
   </style>
