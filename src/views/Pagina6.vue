@@ -419,8 +419,9 @@ export default {
                 <text x="29" y="20" font-family="DM Sans" font-size="8" fill="white" text-anchor="middle">t.w.v.</text>
                 <text x="29" y="35" font-family="DM Sans" font-size="12" font-weight="700" fill="white" text-anchor="middle">€400,-</text>
               </svg>
-            <img v-if="gekozenPrijs === 'SAMSUNG TV'" class="tv-prijs" src="/public/tv-prijs.png" alt="TV Prijs">
-            <svg v-if="gekozenPrijs === 'SAMSUNG TV'" class="tv-bal-prijs" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
+              <img v-if='gekozenPrijs === `SAMSUNG TV 60"`' class="tv-prijs" src="/public/tv-prijs.png" alt="TV Prijs">
+              <svg v-if='gekozenPrijs === `SAMSUNG TV 60"`' class="tv-bal-prijs" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
+
                 <circle cx="27.9047" cy="27.9047" r="27.9047" fill="#49B7AC"/>
                 <text x="29" y="23" font-family="DM Sans" font-size="8" fill="white" text-anchor="middle">t.w.v.</text>
                 <text x="29" y="35" font-family="DM Sans" font-size="12" font-weight="700" fill="white" text-anchor="middle">€699,-</text>
@@ -431,7 +432,7 @@ export default {
                 <div class="text-prijs-pagina-6">Jouw gekozen prijs:</div>
                 <div class="dynamische-prijs-pagina-6">{{gekozenPrijs}}</div>
                 <img v-if="gekozenPrijs === 'Bol.com cadeaubon'" class="dynamische-pijl-bol" src="/public/pijl-naar-afbeelding.svg" alt="">
-                <img v-if="gekozenPrijs === 'SAMSUNG TV'" class="dynamische-pijl-bol" src="/public/pijl-naar-afbeelding.svg" alt="">
+                <img v-if='gekozenPrijs === `SAMSUNG TV 60"`' class="dynamische-pijl-bol" src="/public/pijl-naar-afbeelding.svg" alt="">
                 <img v-if="gekozenPrijs === 'Playstation 5'" class="dynamische-pijl-ps" src="/public/pijl-naar-afbeelding.svg" alt="">
 
 
