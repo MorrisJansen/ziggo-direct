@@ -313,6 +313,7 @@ a:hover {
 .container-inhoud-witte-container {
     padding-left: 4vw!important;
     padding-top: 4vw!important;
+    padding-right: 4vw!important;
 }
 
 .stap-pagina-1 {
@@ -781,7 +782,6 @@ a:hover {
         font-size: 4vw;
         top: 0vw;
         left: 1vw;
-        padding-bottom: 1vw!important;
     }
 
 }
