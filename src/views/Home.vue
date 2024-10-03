@@ -803,7 +803,7 @@ body {
 
 
     .achtergrond-sectie-1 {
-        height: 285vw;
+        height: 256vw;
     }
 
 
@@ -894,7 +894,7 @@ body {
     
 
     .container-prijzen-met-prijzen {
-        margin-top: 40vw !important;
+        margin-top: 47vw !important;
         position: relative; 
         display: flex;
         flex-direction: column;
@@ -927,8 +927,10 @@ body {
     
 
     .afbeelding-prijzen-mobiel {
-        width: 100vw;
+        width: 90vw;
         scale: 0.9;
+        position: relative;
+        bottom: 7vw;
     }
 
 
@@ -936,8 +938,8 @@ body {
 
     .prijzen-prijs-bol {
         position: absolute;
-        top: 38vw !important;
-        right: 37vw;
+        top: 69vw !important;
+        right: 50vw;
         z-index: 100 !important;
         scale: 2;
     }
@@ -945,17 +947,18 @@ body {
     .prijzen-prijs-ps {
         position: absolute;
         top: 87vw !important;
-        right: 38vw;
+        right: 13vw;
         z-index: 100 !important;
-        scale: 2.2;
+        scale: 1.7;
         transform: rotate(-8deg);
     }
 
     .prijzen-prijs-tv {
-        left: 66vw;
-        top: 4vw !important;
+        left: 76vw;
+        top: 15vw !important;
         z-index: 100 !important;
-        scale: 2.5;
+        scale: 1.7;
+
     }
 
     .pijl-naar-afbeelding {
@@ -1089,7 +1092,9 @@ body {
         padding-bottom: 5vw!important;
     }
     
-    
+    .safari .logo-mv {
+        margin-left: 0!important;
+    }
 
 
 }

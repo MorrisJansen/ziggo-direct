@@ -170,16 +170,16 @@ export default {
 
 
               <!-- dit is voor mobiel -->
-            <div class="container-prijzen-met-prijzen">
+            <div class="container-prijzen-met-prijzen-1">
 
-              <div class="container-afbeeldingen-en-prijs-mobiel mobiel">
-                <svg class="prijzen-prijs-tv" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
+              <div class="container-afbeeldingen-en-prijs-mobiel-1 mobiel">
+                <svg class="prijzen-prijs-tv-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
                   <circle cx="27.9047" cy="27.9047" r="27.9047" fill="#49B7AC"/>
                   <text x="29" y="20" font-family="DM Sans" font-size="8" fill="white" text-anchor="middle">t.w.v.</text>
                   <text x="29" y="35" font-family="DM Sans" font-size="12" font-weight="700" fill="white" text-anchor="middle">€699,-</text>
                 </svg>
 
-                <svg class="prijzen-prijs-bol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
+                <svg class="prijzen-prijs-bol-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
                     <circle cx="27.9047" cy="27.9047" r="27.9047" fill="#49B7AC"/>
                     <text x="29" y="20" font-family="DM Sans" font-size="8" fill="white" text-anchor="middle">t.w.v.</text>
                     <text x="29" y="35" font-family="DM Sans" font-size="12" font-weight="700" fill="white" text-anchor="middle">€400,-</text>
@@ -187,14 +187,14 @@ export default {
 
 
 
-                <svg class="prijzen-prijs-ps" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
+                <svg class="prijzen-prijs-ps-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
                   <circle cx="27.9047" cy="27.9047" r="27.9047" fill="#49B7AC"/>
                   <text x="29" y="20" font-family="DM Sans" font-size="8" fill="white" text-anchor="middle">t.w.v.</text>
                   <text x="29" y="35" font-family="DM Sans" font-size="12" font-weight="700" fill="white" text-anchor="middle">€599,-</text>
                 </svg>
       
 
-                <img class="afbeelding-prijzen-mobiel" src="/public/afbeeldingen-samen-mobiel.png" alt="">
+                <img class="afbeelding-prijzen-mobiel-1" src="/public/afbeeldingen-samen-mobiel.png" alt="">
               </div>
 
             </div>
@@ -580,9 +580,57 @@ a:hover {
 
 @media (max-width: 499px) {
 
+
+
+    .container-prijzen-met-prijzen-1 {
+        margin-top: 47vw !important;
+        position: relative; 
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        height: auto;
+    }
+
+    .container-afbeeldingen-en-prijs-mobiel-1 {
+        height: 100%;
+        object-fit: contain;
+        position: relative;
+        bottom: 30%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .afbeelding-prijzen-mobiel-1 {
+        width: 90vw;
+        scale: 0.9;
+        position: relative;
+        bottom: 42vw;
+    }
+
+
+    .prijzen-prijs-tv-1 {
+        bottom: 126vw;
+        right: 1vw;
+        transform: rotate(7deg);
+        scale: 1.3;
+    }
+
+    .prijzen-prijs-bol-1 {
+        left: 19.9vw;
+        top: 29.2vw;
+        width: 19.1%;
+    }
+
+    .prijzen-prijs-ps-1 {
+        right: 2vw;
+        top: 55vw;
+        scale: 1.3;
+    }
+
     
     .achtergrond-pagina-1 {
-        height: 285vw!important;
+        height: 259vw!important;
         width: 100%!important;
     }
 
@@ -609,6 +657,7 @@ a:hover {
 
     .vraag-pagina-1 {
         font-size: 7vw!important;
+        margin-bottom: 6vw!important;
     }
 
     .container-antwoorden-pagina-1 {
@@ -722,15 +771,17 @@ a:hover {
     }
 
 
+
     .prijzen-prijs-tv {
             width: 13%!important;
-            left: 70vw;
+            left: 76vw;
     }
 
     .foutmelding-1 {
         font-size: 4vw;
-        top: 5vw;
+        top: 0vw;
         left: 1vw;
+        padding-bottom: 1vw!important;
     }
 
 }

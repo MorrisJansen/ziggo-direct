@@ -103,7 +103,7 @@ export default {
 
         <div :class="{ 'error-active': postcodeError }" class="witte-container-pagina-3">
         
-            <div class="container-inhoud-witte-container">
+            <div class="container-inhoud-witte-container-3">
 
 
 
@@ -275,7 +275,7 @@ export default {
     z-index: 2;
 }
 
-.container-inhoud-witte-container {
+.container-inhoud-witte-container-3 {
     padding-left: 4vw!important;
     padding-top: 3.5vw!important;
 }
@@ -568,11 +568,15 @@ export default {
     }
 
 
+    .container-inhoud-witte-container-3 {
+        padding: 7vw!important
+    }
+
 
 
 
     .witte-container-pagina-3 {
-        height: 95vw;
+        height: 89vw;
         width: 90%;
         margin: 0 auto !important;
         justify-content: center;
@@ -603,7 +607,7 @@ export default {
     }
 
     .postcode-input {
-        height: 20vw !important;
+        height: 15vw !important;
         background-color: #F1F1F1;
         border-radius: 35px!important;
         width: 100%!important;
@@ -614,7 +618,7 @@ export default {
 
     .cta-pagina-3 {
         width: 100%;
-        height: 20vw;
+        height: 15vw;
         margin-top: 3vw!important;
     }
 
@@ -629,12 +633,12 @@ export default {
 
     .foutmelding-pagina-3 {
         position: relative;
-        top: 40vw!important;
+        top: 28vw!important;
         z-index: 9999;
     }
 
     .witte-container-pagina-3.error-active {
-        height: 103vw;
+        height: 94vw;
     }
 
 

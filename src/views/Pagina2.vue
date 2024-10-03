@@ -76,9 +76,9 @@ export default {
         </a>
     
         <div class="container-pagina-1">
-            <div class="achtergrond-pagina-1">
+            <div class="achtergrond-pagina-2">
                 <div class="witte-container-pagina-2">
-                    <div class="container-inhoud-witte-container-2" id="container-inhoud-witte-container">
+                <div class="container-inhoud-witte-container-2" id="container-inhoud-witte-container-2">
 
 
 
@@ -233,7 +233,7 @@ export default {
 
 <style>
 
-.achtergrond-pagina-1 {
+.achtergrond-pagina-2 {
     background: linear-gradient(90deg, #072148 0%, #40A59F 100%);
     width: 100vw;
     height: 45vw;
@@ -515,6 +515,19 @@ export default {
 
 
 @media (max-width: 499px) {
+
+
+    .achtergrond-pagina-2 {
+        background: linear-gradient(90deg, #072148 0%, #40A59F 100%);
+        width: 100vw;
+        height: 290vw;
+    }
+
+    .pijl-pagina-1 {
+        display: none;
+    }
+
+
     .container-antwoorden1-2 {
         display: flex;
         flex-direction: column;
@@ -532,13 +545,14 @@ export default {
     }
     
 
-    .container-inhoud-witte-container {
-        padding-right: 6vw!important;
-    }
 
-    #container-inhoud-witte-container {
+
+    #container-inhoud-witte-container-2 {
         padding-left: 7vw!important;
-        padding-top: 4vw!important;
+        padding-top: 6vw!important;
+        padding-right: 7vw!important;
+        padding-right: 6vw!important;
+
     }
 
     .container-antwoorden-pagina-1 {
@@ -605,6 +619,10 @@ export default {
 
     .foutmelding-pagina-2 {
         position: static;
+        text-align: left;
+        font-size: 4vw;
+        margin-bottom: 1vw!important;
+
     }
 
     

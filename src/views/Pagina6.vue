@@ -225,7 +225,7 @@ export default {
         :class="{ 'langer-maken-error': errors.achternaam || errors.voornaam || errors.email || errors.telefoonnummer}" 
         >
 
-            <div class="container-inhoud-witte-container">
+            <div class="container-inhoud-witte-container-6 container-inhoud-witte-container">
 
                 <!-- <div class="container-gefeliciteerd-terug"> -->
                     <div class="gefeliciteerd">
@@ -247,7 +247,7 @@ export default {
 
 
                 <div class="jij-maakt-nu-kans">
-                    Jij maakt nu kans op de: <span class="gekozen-prijs">{{ gekozenPrijs }}</span>
+                    Jij maakt nu kans op de: <br><span class="gekozen-prijs">{{ gekozenPrijs }}</span>
                 </div>
 
                 <hr class="lijn-10">
@@ -481,7 +481,7 @@ export default {
 
 
 .witte-container-pagina-6 {
-    height: 44vw;
+    height: 47vw;
     width: 50vw;
     background-color: white;
     position: relative;
@@ -667,12 +667,13 @@ export default {
 .cta-pagina-6 {
     display: inline-flex;
     height: 4vw;
-    width: 19vw;
+    width: 20vw;
     align-items: center;
     justify-content: space-evenly;
     border-radius: 35px;
     background-color: #F48C02;
     z-index: 2; 
+    margin-right: 1vw!important;
 
 }
 
@@ -768,8 +769,8 @@ export default {
 
 .input-icon-voornaam {
     position: absolute;
-    left: 5.5vw;
-    top: 46.5%;
+    left: 5vw;
+    top: 49.5%;
     transform: translateY(-50%);
     width: 1.5vw;
     height: auto;
@@ -780,7 +781,7 @@ export default {
 .input-icon-achternaam {
     position: absolute;
     left: 26.5vw;
-    top: 46.5%;
+    top: 49.5%;
     transform: translateY(-50%);
     width: 1.5vw;
     height: auto;
@@ -967,6 +968,14 @@ input[type="tel"] {
 
 @media (max-width: 499px) {
 
+    .container-inhoud-witte-container-6 {
+        padding-top: 5vw!important;
+        padding-bottom: 5vw!important;
+        padding-left: 3vw!important;
+        padding-right: 3vw!important;
+        
+    }
+
     .error-message-voornaam {
         font-size: 4vw!important;
         z-index: 999;
@@ -1060,7 +1069,7 @@ input[type="tel"] {
     }
 
     .bereiken {
-        font-size: 5vw;    
+        font-size: 5.8vw;    
     }
 
     .namen-inputs {
@@ -1101,7 +1110,7 @@ input[type="tel"] {
     .input-icon:first-child {
         position: relative;
         top: 13vw;
-        left: -32vw;
+        left: -34vw;
         }
     
     .input-icon-telefoon {
@@ -1159,6 +1168,10 @@ input[type="tel"] {
 
     .container-afbeeldingen-en-prijs-mobiel-6 {
         margin-top: -20vw!important;
+    }
+
+    .gekozen-prijs {
+        height: 50px!important;
     }
 
 }
