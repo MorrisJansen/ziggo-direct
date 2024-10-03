@@ -311,9 +311,9 @@ a:hover {
 }
 
 .container-inhoud-witte-container {
-    padding-left: 4vw!important;
-    padding-top: 4vw!important;
-    padding-right: 4vw!important;
+    padding-left: 6vw!important;
+    padding-top: 7vw!important;
+    padding-right: 6vw!important;
 }
 
 .stap-pagina-1 {
