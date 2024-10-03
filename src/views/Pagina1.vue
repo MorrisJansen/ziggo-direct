@@ -122,7 +122,7 @@ export default {
 
                         <div id="container-antwoord-optie-id" class="container-antwoord-optie" @click="selecteerOptie('optie-3', 'Bol.com cadeaubon')">
                             <input class="input-radio" type="radio" id="optie-3" name="antwoord" value="Bol.com cadeaubon">
-                            <label class="" for="optie-3"><span class="input-padding-1">Bol.com cadeaubon <span class="input-padding-1"><br>  t.w.v. €400,-</span></span></label>
+                            <label class="" for="optie-3"><span class="input-padding-1">Bol.com cadeaubon<br> <span class="input-padding-1">  t.w.v. €400,-</span></span></label>
                         </div>
                     </div>
                 <span class="flex">
