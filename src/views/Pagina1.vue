@@ -84,7 +84,7 @@ export default {
     <div class="container-pagina-1">
         <div class="achtergrond-pagina-1">
             <div class="witte-container-pagina-1">
-                <div class="container-inhoud-witte-container" id="container-inhoud-witte-container container-inhoud-witte-pagina-2">
+                <div class="container-inhoud-witte-container-1" id="container-inhoud-witte-container-1">
 
                     <!-- <div class="container-stap-zoveel-en-pijl"> -->
                         <div class="stap-pagina-1">
@@ -310,7 +310,7 @@ a:hover {
     z-index: 995!important;
 }
 
-.container-inhoud-witte-container {
+.container-inhoud-witte-container-1 {
     padding-left: 6vw!important;
     padding-top: 7vw!important;
     padding-right: 6vw!important;
@@ -647,9 +647,10 @@ a:hover {
 
     }
 
-    .container-inhoud-witte-container {
-        padding-left: 6vw!important;
+    .container-inhoud-witte-container-1 {
+        padding-left: 5vw!important;
         padding-top: 5vw!important;
+        padding-right: 5vw!important;
     }
 
 
