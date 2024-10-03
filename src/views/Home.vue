@@ -77,7 +77,7 @@ export default {
                         <div class="stap1">
                             <svg class="stap1-svg" xmlns="http://www.w3.org/2000/svg" width="10%" height="90%" viewBox="0 0 56 56" fill="none">
                                 <circle cx="27.9047" cy="27.9047" r="27.9047" fill="#49B7AC"/>
-                                <text x="28" y="36" font-family="Arial" font-weight="700" font-size="24" fill="white" text-anchor="middle">1.</text>
+                                <text x="28" y="36" font-family="DM sans" font-weight="700" font-size="24" fill="white" text-anchor="middle">1.</text>
                             </svg>
                               <span class="stap-text">Kies jouw prijs</span>                
                         </div>
@@ -86,7 +86,7 @@ export default {
                         <div class="stap1">
                             <svg class="stap1-svg" xmlns="http://www.w3.org/2000/svg" width="10%" height="90%" viewBox="0 0 56 56" fill="none">
                                 <circle cx="27.9047" cy="27.9047" r="27.9047" fill="#49B7AC"/>
-                                <text x="28" y="36" font-family="Arial" font-weight="700" font-size="24" fill="white" text-anchor="middle">2.</text>
+                                <text x="28" y="36" font-family="DM sans" font-weight="700" font-size="24" fill="white" text-anchor="middle">2.</text>
                             </svg>                            
                               <span class="stap-text">Beantwoord de vraag</span>                
                         </div>
@@ -94,9 +94,9 @@ export default {
                         <div class="stap1">
                             <svg class="stap1-svg" xmlns="http://www.w3.org/2000/svg" width="10%" height="90%" viewBox="0 0 56 56" fill="none">
                                 <circle cx="27.9047" cy="27.9047" r="27.9047" fill="#49B7AC"/>
-                                <text x="28" y="36" font-family="Arial" font-weight="700" font-size="24" fill="white" text-anchor="middle">3.</text>
+                                <text x="28" y="36" font-family="DM sans" font-weight="700" font-size="24" fill="white" text-anchor="middle">3.</text>
                             </svg>                            
-                              <span class="stap-text">Controleer of jouw postcode <br class="mobiel"> in aanmerking komt</span>                
+                              <span class="stap-text" id="stap-text">Controleer of jouw postcode <br class="mobiel"> in aanmerking komt</span>                
                         </div>
 
 
@@ -389,7 +389,7 @@ body {
     width: 40%;
     height: 30vw;
     flex-shrink: 0;
-    border-radius: 0.75rem;
+    border-radius:  0.75vw;
     background: #FFF;
     box-shadow: 0px 31px 81px 0px rgba(0, 17, 77, 0.20);
     display: flex;
@@ -434,7 +434,7 @@ body {
 .stap-text {
     color: #072249;
     font-family: "DM Sans";
-    font-size: 1.1vw;
+    font-size: 1.3vw;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
@@ -442,10 +442,17 @@ body {
     align-content: center !important;
     justify-content: center;
     padding-top: 2% !important;
-    padding-left: 2% !important;
+    padding-left: 5% !important;
+    margin-right: -3vw!important;
     text-align: start;
 }
 
+
+
+
+#stap-text {
+    padding-top: 0.5%!important
+}
 
 
 .cta-home {
@@ -455,7 +462,7 @@ body {
     align-items: center;
     justify-content: space-evenly;
     flex-shrink: 0;
-    border-radius: 2.5rem;
+    border-radius: 35vw;
     background-color: #F48C02;
     margin-top: 11%!important;
     margin-left: 57%!important;
@@ -567,9 +574,9 @@ body {
 .prijzen-prijs-bol {
     z-index: 99 !important;
     position: absolute;
-    right: 52%;
-    top: 31.8vw !important;
-    width: 12%;
+    right: 50%;
+    top: 30.8vw !important;
+    width: 15%;
     transform: rotate(-8deg);
 }
 
@@ -725,13 +732,17 @@ body {
     * {
         display: none;
     }
-  } */
-
-  @media (max-width: 800px) and (min-width: 499px) {
+  } 
+    
+    @media (max-width: 800px) and (min-width: 499px) {
     #cta-home {
         margin-left: 20%!important;
     }
 }
+  \
+  */
+
+
 
 
 

@@ -96,7 +96,7 @@ export default {
                         </div> -->
 
 
-                        <span class="pijl-pagina-1">
+                        <span class="pijl-pagina-2">
                             <router-link to="/Pagina1">
                               &#8592;
                             </router-link>
@@ -247,7 +247,7 @@ export default {
     position: relative;
     top: 7vw;
     left: 7vw;
-    border-radius: 0.75rem;
+    border-radius: 0.75vw;
     box-shadow: 0px 31px 81px 0px rgba(0, 17, 77, 0.20);
     z-index: 992;
 }
@@ -289,7 +289,7 @@ export default {
     width: 40vw;
     background-color: #f1f1f1;
     margin-bottom: 0.7vw!important;
-    border-radius: 35px;
+    border-radius: 35vw;
     display: inline-flex;
     align-items: center;
     padding-left: 1vw!important;
@@ -304,7 +304,7 @@ export default {
     width: 20vw;
     background-color: #f1f1f1;
     margin-bottom: 0.7vw!important;
-    border-radius: 35px;
+    border-radius: 35vw;
     display: inline-flex;
     align-items: center;
     padding-left: 1vw!important;
@@ -411,7 +411,17 @@ export default {
 
 
 
+.pijl-pagina-2 {
+    position: absolute;
+    font-size: 2.8vw;
+    color: black;
+    top: 76.5%;
+    right: 84%;
+}
 
+.pijl-pagina-2:hover {
+    color: #F48C02;
+}
 
 
 
@@ -422,7 +432,7 @@ export default {
     align-items: center;
     justify-content: space-evenly;
     flex-shrink: 0;
-    border-radius: 2.5rem;
+    border-radius: 35vw;
     background-color: #F48C02;
     margin-left: 41%!important;
 }
@@ -458,7 +468,7 @@ export default {
     align-items: center;
     justify-content: space-evenly;
     flex-shrink: 0;
-    border-radius: 2.5rem;
+    border-radius: 35vw;
     background-color: #F48C02;
     margin-top: 1%!important;
     margin-left: 40%!important;
@@ -506,7 +516,7 @@ export default {
 
 .foutmelding-pagina-2 {
     position: relative;
-    bottom: 5vw;
+    bottom: 4.5vw;
     right: 14.5vw;
     color: red;
     font-weight: 700;

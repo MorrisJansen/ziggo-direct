@@ -16,7 +16,7 @@ export default {
             gekozenPrijsId: null,
             foutmelding: false,
             opties: {
-                'optie-1': { id: 5284, name: 'SAMSUNG TV 60"' },
+                'optie-1': { id: 5284, name: 'SAMSUNG 60" TV' },
                 'optie-2': { id: 5287, name: 'Playstation 5' },
                 'optie-3': { id: 5290, name: 'Bol.com cadeaubon' }
             }
@@ -244,8 +244,8 @@ a:hover {
     position: absolute;
     font-size: 2.8vw;
     color: black;
-    top: 8.5%;
-    right: 10%;
+    top: 79.5%;
+    right: 84%;
 }
 
 .pijl-pagina-1:hover {
@@ -263,12 +263,13 @@ a:hover {
     right: 12.5vw!important;
 }
 
+
 .pijl-vorige-1 {
     position: relative;
     left: 10vw;
     border: 1px solid #F48C02;
     padding: 10px!important;
-    border-radius: 35px;
+    border-radius: 35vw;
     color: #F48C02;
     font-weight: 700;
 }
@@ -305,7 +306,7 @@ a:hover {
     position: relative;
     top: 7vw;
     left: 7vw;
-    border-radius: 0.75rem;
+    border-radius: 0.75vw;
     box-shadow: 0px 31px 81px 0px rgba(0, 17, 77, 0.20);
     z-index: 995!important;
 }
@@ -348,7 +349,7 @@ a:hover {
     width: 40vw;
     background-color: #f1f1f1;
     margin-bottom: 0.7vw!important;
-    border-radius: 35px;
+    border-radius: 35vw;
     display: inline-flex;
     align-items: center;
     padding-left: 1vw!important;
@@ -419,7 +420,8 @@ a:hover {
 .prijzen-prijs-bol-1 {
     left: 19.9vw;
     top: 1.2vw;
-    width: 14.1%;
+    width: 15%;
+    transform: rotate(-7deg);
 }
 
 .prijzen-prijs-ps-1 {
@@ -484,12 +486,14 @@ a:hover {
     align-items: center;
     justify-content: space-evenly;
     flex-shrink: 0;
-    border-radius: 2.5rem;
+    border-radius: 35vw;
     background-color: #F48C02;
     margin-top: 4%!important;
-    margin-left: 41%!important;
     position: relative;
     z-index: 9999;
+}
+#cta-pagina-1 {
+    margin-left: 63.5%!important;
 }
 
 .cta-pagina-1:hover {
@@ -568,7 +572,7 @@ a:hover {
     font-size: 1.2vw;
     font-weight: 700;
     position: relative;
-    top: -6.5vw;
+    top: -5.5vw;
 }
 
 

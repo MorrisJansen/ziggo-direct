@@ -192,7 +192,7 @@ export default {
     position: relative;
     top: 7vw;
     left: 7vw;
-    border-radius: 0.75rem;
+    border-radius: 0.75vw;
     box-shadow: 0px 31px 81px 0px rgba(0, 17, 77, 0.20);
     z-index: 2;
 }
@@ -238,7 +238,7 @@ export default {
     width: 40vw;
     background-color: #f1f1f1;
     margin-bottom: 0.7vw!important;
-    border-radius: 35px;
+    border-radius: 35vw;
     display: inline-flex;
     align-items: center;
     padding-left: 1vw!important;
@@ -253,7 +253,7 @@ export default {
     width: 20vw;
     background-color: #f1f1f1;
     margin-bottom: 0.7vw!important;
-    border-radius: 35px;
+    border-radius: 35vw;
     display: inline-flex;
     align-items: center;
     padding-left: 1vw!important;
@@ -318,7 +318,7 @@ export default {
     align-items: center;
     justify-content: space-evenly;
     flex-shrink: 0;
-    border-radius: 2.5rem;
+    border-radius: 35vw;
     background-color: #F48C02;
     margin-left: 41%!important;
 }

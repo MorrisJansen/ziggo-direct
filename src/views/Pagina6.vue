@@ -24,8 +24,6 @@ export default {
         if (isSafari()) {
             document.body.classList.add('safari');
         }
-
-        // Haal de gekozen prijs op uit de Vuex store
         const gekozenPrijsOptie = this.$store.getters.getGekozenPrijsOptie;
         if (gekozenPrijsOptie) {
             this.gekozenPrijs = gekozenPrijsOptie;
@@ -241,7 +239,7 @@ export default {
                     </div>
                 </div> -->
 
-                <span class="pijl-pagina-1">
+                <span class="pijl-pagina-6">
                     <router-link to="/Pagina3">
                       &#8592;
                     </router-link>
@@ -419,8 +417,8 @@ export default {
                 <text x="29" y="20" font-family="DM Sans" font-size="8" fill="white" text-anchor="middle">t.w.v.</text>
                 <text x="29" y="35" font-family="DM Sans" font-size="12" font-weight="700" fill="white" text-anchor="middle">€400,-</text>
               </svg>
-              <img v-if='gekozenPrijs === `SAMSUNG TV 60"`' class="tv-prijs" src="/public/tv-prijs.png" alt="TV Prijs">
-              <svg v-if='gekozenPrijs === `SAMSUNG TV 60"`' class="tv-bal-prijs" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
+              <img v-if='gekozenPrijs === `SAMSUNG 60" TV`' class="tv-prijs" src="/public/tv-prijs.png" alt="TV Prijs">
+              <svg v-if='gekozenPrijs === `SAMSUNG 60" TV`' class="tv-bal-prijs" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
 
                 <circle cx="27.9047" cy="27.9047" r="27.9047" fill="#49B7AC"/>
                 <text x="29" y="23" font-family="DM Sans" font-size="8" fill="white" text-anchor="middle">t.w.v.</text>
@@ -428,11 +426,12 @@ export default {
               </svg>
         
 
-            <div class="container-text-dynamische-prijs">
+            <div class="container-text-dynamische-prijs"
+            v-if='gekozenPrijs === `SAMSUNG 60" TV`' id="container-tv-dynamisch-gezel">
                 <div class="text-prijs-pagina-6">Jouw gekozen prijs:</div>
                 <div class="dynamische-prijs-pagina-6">{{gekozenPrijs}}</div>
                 <img v-if="gekozenPrijs === 'Bol.com cadeaubon'" class="dynamische-pijl-bol" src="/public/pijl-naar-afbeelding.svg" alt="">
-                <img v-if='gekozenPrijs === `SAMSUNG TV 60"`' class="dynamische-pijl-bol" src="/public/pijl-naar-afbeelding.svg" alt="">
+                <img v-if='gekozenPrijs === `SAMSUNG 60" TV`' class="dynamische-pijl-tv" src="/public/pijl-naar-afbeelding.svg" alt="">
                 <img v-if="gekozenPrijs === 'Playstation 5'" class="dynamische-pijl-ps" src="/public/pijl-naar-afbeelding.svg" alt="">
 
 
@@ -491,7 +490,7 @@ export default {
     position: relative;
     top: 7vw;
     left: 7vw;
-    border-radius: 0.75rem;
+    border-radius: 0.75vw;
     box-shadow: 0px 31px 81px 0px rgba(0, 17, 77, 0.20);
     z-index: 2;
 }
@@ -513,7 +512,7 @@ export default {
     left: 10vw;
     border: 1px solid #F48C02;
     padding: 10px!important;
-    border-radius: 35px;
+    border-radius: 35vw;
     color: #F48C02;
     font-weight: 700;
     height: 10%;
@@ -592,19 +591,19 @@ export default {
 
 .voornaam-input {
     height: 4vw;
-    border-radius: 35px!important;
+    border-radius: 35vw!important;
     margin-bottom: 1vw!important;
 }
 
 .achternaam-input {
-    border-radius: 35px!important;
+    border-radius: 35vw!important;
     margin-bottom: 1vw!important;
 
 }
 
 .email-input-field {
     padding-left: 2vw!important;
-    border-radius: 35px!important;
+    border-radius: 35vw!important;
     font-size:  1.2vw;
     height: 4vw;
     margin-bottom: 1vw!important;
@@ -613,7 +612,7 @@ export default {
 
 .telefoonnummer-input-field {
     padding-left: 2vw!important;
-    border-radius: 35px!important;
+    border-radius: 35vw!important;
     font-size:  1.2vw;
     height: 4vw;
     margin-bottom: 1vw!important;
@@ -634,7 +633,7 @@ export default {
 .namen-inputs input {
     width: 19vw;
     padding: 1vw;
-    border-radius: 5px;
+    border-radius: 5vw;
     border: 1px solid #ccc;
 }
 
@@ -647,7 +646,7 @@ export default {
 .telefoonnummer-input-field {
     width: 39vw;
     padding: 1vw;
-    border-radius: 5px;
+    border-radius: 5vw;
     border: 1px solid #ccc;
     margin-right: 7vw !important;
 }
@@ -678,7 +677,7 @@ export default {
     width: 20vw;
     align-items: center;
     justify-content: space-evenly;
-    border-radius: 35px;
+    border-radius: 35vw;
     background-color: #F48C02;
     z-index: 2; 
     margin-right: 1vw!important;
@@ -698,6 +697,18 @@ export default {
 .cta-pijl-pagina-6 {
     color: white;
     font-size: 1.2vw;
+}
+
+.pijl-pagina-6 {
+    position: absolute;
+    font-size: 2.8vw;
+    color: black;
+    top: 77.5%;
+    right: 86%;
+}
+
+.pijl-pagina-6:hover {
+    color: #F48C02;
 }
 
 .witte-container-footer {
@@ -809,7 +820,7 @@ input[type="tel"] {
     padding: 1vw;
     padding-left: 3.5vw!important;
     border: none!important;
-    border-radius: 5px;
+    border-radius: 5vw;
     font-size: 1.1vw;
     background: #f1f1f1;
     color: black;
@@ -882,9 +893,14 @@ input[type="tel"] {
 
 .container-text-dynamische-prijs {
     position: absolute;
-    top: 25%;
+    top: 5%;
     left: 5%;
     text-align: start;
+}
+
+#container-tv-dynamisch-gezel {
+    position: absolute!important;
+    top: -4vw!important;
 }
 
 .text-prijs-pagina-6 {
@@ -908,8 +924,16 @@ input[type="tel"] {
 
 .dynamische-pijl-bol {
     position: relative;
-    bottom: 7vw;
-    left: 14vw;
+    bottom: -2vw;
+    left: 0vw;
+    width: 6vw;
+    z-index: 9999;
+}
+
+.dynamische-pijl-tv {
+    position: relative;
+    bottom: -1.5vw;
+    left: 0vw;
     width: 6vw;
 }
 

@@ -38,7 +38,8 @@ export default {
     methods: {
         handleEnterKey(event) {
             if (event.key === 'Enter') {
-                this.goToPage4();
+                event.preventDefault(); // Voorkom standaard gedrag
+                this.goToPage4(); // Roep de functie aan
             }
         },
         goToPage4() {
@@ -119,7 +120,7 @@ export default {
     
                             </div> -->
 
-                            <span class="pijl-pagina-1">
+                            <span class="pijl-pagina-3">
                                 <router-link to="/Pagina2">
                                   &#8592;
                                 </router-link>
@@ -139,7 +140,8 @@ export default {
 
                 <div class="input-button-wrapper">
                     <div class="input-button-container">
-                        <input type="postcode" placeholder="Voer je postcode in" class="postcode-input" v-model="postcode">
+                        <input type="postcode" placeholder="Voer je postcode in" class="postcode-input" v-model="postcode" @keydown="handleEnterKey"
+                        >
                         <button @click="goToPage4" class="cta-pagina-3">
                             <span class="cta-text-pagina-3">Check postcode</span>
                             <span class="cta-pijl-pagina-3">&#8594;</span>
@@ -148,7 +150,7 @@ export default {
                 </div>
 
 
-                <div v-if="postcodeError" class="foutmelding foutmelding-pagina-3">{{ postcodeError }}</div>
+                <div v-if="postcodeError" class="foutmelding-pagina-3">{{ postcodeError }}</div>
 
 
 
@@ -270,7 +272,7 @@ export default {
     position: relative;
     top: 7vw;
     left: 7vw;
-    border-radius: 0.75rem;
+    border-radius: 0.75vw;
     box-shadow: 0px 31px 81px 0px rgba(0, 17, 77, 0.20);
     z-index: 2;
 }
@@ -315,7 +317,7 @@ export default {
     width: 40vw;
     background-color: #f1f1f1;
     margin-bottom: 0.7vw!important;
-    border-radius: 35px;
+    border-radius: 35vw;
     display: inline-flex;
     align-items: center;
     padding-left: 1vw!important;
@@ -443,7 +445,7 @@ export default {
     margin-right: -5vw;
     padding: 0.5vw;
     border: none;
-    border-radius: 35px 0 0 35px;
+    border-radius: 35vw 0 0 35vw;
     height: 4vw;
     font-size: 1.1vw;
     padding-left: 2vw!important;
@@ -462,7 +464,7 @@ export default {
     width: 19vw;
     align-items: center;
     justify-content: space-evenly;
-    border-radius: 35px;
+    border-radius: 35vw;
     background-color: #F48C02;
     z-index: 2; /* Zorg dat de knop boven de input komt */
 
@@ -483,11 +485,23 @@ export default {
     font-size: 1.2vw;
 }
 
+.pijl-pagina-3 {
+    position: absolute;
+    font-size: 2.8vw;
+    color: black;
+    top: 80.5%;
+    right: 86%;
+}
+
+.pijl-pagina-3:hover {
+    color: #F48C02;
+}
+
 
 
 .input-button-wrapper {
     background-color: #f1f1f1;
-    border-radius: 35px;
+    border-radius: 35vw;
     padding-right: 0; 
     display: flex;
     align-items: center;
@@ -507,7 +521,7 @@ export default {
     height: 4vw !important;
     padding: 0.5vw;
     border: none;
-    border-radius: 35px 0 0 35px;
+    border-radius: 35vw 0 0 35vw;
     height: 100%;
     font-size: 1.1vw;
     padding-left: 2vw !important;
@@ -527,7 +541,7 @@ export default {
     width: 19vw;
     align-items: center;
     justify-content: space-evenly;
-    border-radius: 35px;
+    border-radius: 35vw;
     background-color: #F48C02;
     z-index: 2;
     height: 4vw;
@@ -556,6 +570,16 @@ export default {
     line-height: 150%;
 }
 
+
+.foutmelding-pagina-3 {
+    text-align: left;
+    color: red;
+    font-size: 1.2vw;
+    font-weight: 700;
+    position: relative;
+    top: 1vw!important;
+    left: 5vw;
+}
 
 
 
@@ -609,7 +633,7 @@ export default {
     .postcode-input {
         height: 15vw !important;
         background-color: #F1F1F1;
-        border-radius: 35px!important;
+        border-radius: 35vw!important;
         width: 100%!important;
         font-size: 5.5vw;
         padding-left: 10vw!important;
