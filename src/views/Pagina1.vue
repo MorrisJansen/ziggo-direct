@@ -16,7 +16,7 @@ export default {
             gekozenPrijsId: null,
             foutmelding: false,
             opties: {
-                'optie-1': { id: 5284, name: 'SAMSUNG TV' },
+                'optie-1': { id: 5284, name: 'SAMSUNG TV 60"' },
                 'optie-2': { id: 5287, name: 'Playstation 5' },
                 'optie-3': { id: 5290, name: 'Bol.com cadeaubon' }
             }
@@ -122,7 +122,7 @@ export default {
 
                         <div id="container-antwoord-optie-id" class="container-antwoord-optie" @click="selecteerOptie('optie-3', 'Bol.com cadeaubon')">
                             <input class="input-radio" type="radio" id="optie-3" name="antwoord" value="Bol.com cadeaubon">
-                            <label class="" for="optie-3"><span class="input-padding-1">Bol.com cadeaubon<br> <span class="input-padding-1">  t.w.v. €400,-</span></span></label>
+                            <label class="" for="optie-3"><span class="input-padding-1">Bol.com cadeaubon<br class="mobiel"> <span class="input-padding-1">  t.w.v. €400,-</span></span></label>
                         </div>
                     </div>
                 <span class="flex">
@@ -311,9 +311,9 @@ a:hover {
 }
 
 .container-inhoud-witte-container-1 {
-    padding-left: 6vw!important;
-    padding-top: 7vw!important;
-    padding-right: 6vw!important;
+    padding-left: 5vw !important;
+    padding-top: 4vw !important;
+    padding-right: 6vw !important;
 }
 
 .stap-pagina-1 {
