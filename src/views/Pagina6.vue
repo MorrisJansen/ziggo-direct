@@ -493,6 +493,10 @@ export default {
 }
 
 
+.container-inhoud-witte-container {
+    padding-right: 0!important;
+}
+
 
 
 
@@ -1175,7 +1179,7 @@ input[type="tel"] {
     }
 
     #container-prijzen-met-prijzen {
-        margin-top: 54vw!important;
+        margin-top: 54vw;
     }
 
 }
