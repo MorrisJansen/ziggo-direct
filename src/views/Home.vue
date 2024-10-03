@@ -94,7 +94,7 @@ export default {
                         <div class="stap1">
                             <svg class="stap1-svg" xmlns="http://www.w3.org/2000/svg" width="10%" height="90%" viewBox="0 0 56 56" fill="none">
                                 <circle cx="27.9047" cy="27.9047" r="27.9047" fill="#49B7AC"/>
-                                <text x="28" y="36" font-family="Arial" font-size="24" fill="white" text-anchor="middle">3.</text>
+                                <text x="28" y="36" font-family="Arial" font-weight="700" font-size="24" fill="white" text-anchor="middle">3.</text>
                             </svg>                            
                               <span class="stap-text">Controleer of jouw postcode <br class="mobiel"> in aanmerking komt</span>                
                         </div>
@@ -199,8 +199,11 @@ export default {
                 <img class="logo-ziggo" src="/public/ziggo-logo.png" alt="ziggo">
             </div>
 
-            <img class="logo-mv desktop" src="/public/meervoordeel-nav.svg" alt="meervoordeel">
-            <img class="logo-ziggo desktop" src="/public/ziggo-logo.png" alt="ziggo">
+            <div class="container-logos">
+                <img class="logo-mv desktop" src="/public/meervoordeel-nav.svg" alt="meervoordeel">
+                <img class="logo-ziggo desktop" src="/public/ziggo-logo.png" alt="ziggo">
+            </div>
+
 
 
             </div>
@@ -252,6 +255,14 @@ export default {
   
   
   <style>
+
+
+  .container-logos {
+    width: 25vw;
+    display: flex;
+    position: relative;
+    top: 30vw;
+  }
 
   html {
     background-color: white!important;
@@ -384,7 +395,8 @@ body {
     display: flex;
     margin-top: 5%!important;
     margin-left: 7%;
-    padding-left: 5%!important;
+    padding-left:   6.5%!important;
+    padding-right: 6.5%!important;
     padding-top:   4%!important;
 }
 
@@ -403,9 +415,9 @@ body {
     line-height: 150%;
     height: 50px;
     text-align: start;
-    margin-bottom: 5%!important;
+    margin-bottom: 6%!important;
     position: relative;
-    right: 12vw;
+    right: 8.5vw;
 }
 
 
@@ -415,22 +427,22 @@ body {
     align-content: start;
     margin-top: 0%!important;
     width: 121%;
-    height: 3.2vw!important;
+    height: 3.7vw!important;
     
 }
 
 .stap-text {
     color: #072249;
     font-family: "DM Sans";
-    font-size: 1.3vw;
+    font-size: 1.1vw;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
     display: flex;
-    align-content: center!important;
+    align-content: center !important;
     justify-content: center;
-    padding-top: 1%!important;
-    padding-left:  2%!important;
+    padding-top: 2% !important;
+    padding-left: 2% !important;
     text-align: start;
 }
 
@@ -439,17 +451,24 @@ body {
 .cta-home {
     display: inline-flex;
     height: 15%;
-    width: 60%;
+    width: 55%;
     align-items: center;
     justify-content: space-evenly;
     flex-shrink: 0;
     border-radius: 2.5rem;
     background-color: #F48C02;
     margin-top: 11%!important;
-    margin-left: 20%!important;
+    margin-left: 57%!important;
     margin-bottom: 10%!important;
 }
 
+.cta-home:hover {
+    cursor: pointer!important;
+}
+
+#cta-home:hover {
+    cursor: pointer;
+}
 
 .cta-text {
     color: #FFF;
@@ -548,9 +567,9 @@ body {
 .prijzen-prijs-bol {
     z-index: 99 !important;
     position: absolute;
-    right: 98%;
-    top: 33vw !important;
-    width: 15%;
+    right: 52%;
+    top: 31.8vw !important;
+    width: 12%;
     transform: rotate(-8deg);
 }
 
@@ -610,12 +629,19 @@ body {
     text-align: left;
 }
 
+.safari .logo-mv {
+    margin-right: 2vw!important;
+    margin-left: 45vw!important;
+}
+
 .logo-mv {
     margin-left: 47vw!important;
+    margin-right: 3vw!important;
 }
 
 .logo-ziggo {
-    margin-left: 2vw!important;
+    margin-left: -1vw!important;
+    width: 20%;
 }
 
 .lijn-sectie-2 {

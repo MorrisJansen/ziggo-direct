@@ -320,7 +320,6 @@ export default {
     flex-shrink: 0;
     border-radius: 2.5rem;
     background-color: #F48C02;
-    margin-top: 0%!important;
     margin-left: 41%!important;
 }
 

@@ -182,7 +182,7 @@ export default {
 
 .container-inhoud-witte-container {
     padding-left: 4vw!important;
-    padding-top: 2vw!important;
+    padding-top: 3.5vw!important;
 }
 
 .stap-pagina-1 {
@@ -300,7 +300,6 @@ export default {
     flex-shrink: 0;
     border-radius: 2.5rem;
     background-color: #F48C02;
-    margin-top: 0%!important;
     margin-left: 41%!important;
 }
 

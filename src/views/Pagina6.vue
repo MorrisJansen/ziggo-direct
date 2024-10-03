@@ -38,6 +38,12 @@ export default {
         goToNextPage() {
             this.$router.push({ name: 'nextPage' });
         },
+            selectPrice(prijsId, prijsOptie) {
+        if (this.$store.getters.getGekozenPrijsId !== prijsId) {
+        this.$store.dispatch('updateGekozenPrijsId', prijsId);
+        this.$store.dispatch('updateGekozenPrijsOptie', prijsOptie);
+        }
+    },
 
         validateVoornaam() {
             const regex = /^[a-zA-Z\s.,'-]{1,}$/;
@@ -71,16 +77,12 @@ export default {
         },
 
         validateAndFormatPhoneNumber(phoneNumber) {
-        // Verwijder alle niet-numerieke tekens behalve het plusteken
         phoneNumber = phoneNumber.replace(/[^0-9+]/g, '');
 
-        // Controleer of het nummer met 06 begint
         if (phoneNumber.startsWith('06')) {
-            // Vervang 06 door +316 en zorg ervoor dat alleen de laatste 8 cijfers blijven
             phoneNumber = phoneNumber.replace(/^06/, '+316');
         } else if (phoneNumber.startsWith('+316')) {
-            // Als het nummer al in het juiste formaat is, gebruik het zoals het is
-            phoneNumber = phoneNumber.slice(0, 12);  // Zorg ervoor dat we alleen 12 tekens (+316 + 8 cijfers) behouden
+            phoneNumber = phoneNumber.slice(0, 12);
         } else {
             // Ongeldig telefoonnummer
             return null;
@@ -236,9 +238,16 @@ export default {
                     </div>
                 </div> -->
 
+                <span class="pijl-pagina-1">
+                    <router-link to="/Pagina3">
+                      &#8592;
+                    </router-link>
+                  </span>
+                  
+
 
                 <div class="jij-maakt-nu-kans">
-                    Je gekozen prijs is een: <span class="gekozen-prijs">{{ gekozenPrijs }}</span>
+                    Jij maakt nu kans op de: <span class="gekozen-prijs">{{ gekozenPrijs }}</span>
                 </div>
 
                 <hr class="lijn-10">
@@ -277,7 +286,7 @@ export default {
                       <img src="/public/email-icoon.svg" alt="email" class="input-icon input-icon-email"
                       :style="{ top: (errors.voornaam || errors.achternaam) ? '48%!important' : '40%' }" 
                       >
-                      <input type="email" placeholder="Email" class="email-input-field" v-model="email"
+                      <input type="email" placeholder="E-mailadres" class="email-input-field" v-model="email"
                       :class="{ 'error-marge-mobiel-2': errors.achternaam}" 
                       :style="{ marginTop: (errors.voornaam || errors.achternaam) ? '1vw!important' : '0' }" 
 
@@ -294,7 +303,7 @@ export default {
                       :style="{ top: (errors.voornaam || errors.achternaam || errors.email) ? '58%!important' : '40%' }" 
                       >
                       <input type="tel" placeholder="Telefoonnummer" class="telefoonnummer-input-field" v-model="telefoonnummer"
-                      :style="{ marginTop: (errors.voornaam || errors.achternaam || errors.email) ? '2vw!important' : '0' }" 
+                      :style="{ marginTop: (errors.voornaam || errors.achternaam || errors.email) ? '1vw!important' : '0' }" 
                       :class="{ 'error-marge-mobiel-1': errors.email}" 
 
                       >
@@ -311,7 +320,7 @@ export default {
                     <div class="namen-inputs mobiel-pagina-6">
                       <div class="email-input input-wrapper">
                         <img src="/public/email-icoon.svg" alt="email" class="input-icon">
-                        <input type="email" placeholder="Email" class="email-input-field" v-model="email"
+                        <input type="email" placeholder="E-mailadres" class="email-input-field" v-model="email"
                         :class="{ 'error-marge-mobiel-3': errors.email}" 
                         >
                       </div>
@@ -418,6 +427,11 @@ export default {
             <div class="container-text-dynamische-prijs">
                 <div class="text-prijs-pagina-6">Jouw gekozen prijs:</div>
                 <div class="dynamische-prijs-pagina-6">{{gekozenPrijs}}</div>
+                <img v-if="gekozenPrijs === 'Bol.com cadeaubon'" class="dynamische-pijl-bol" src="/public/pijl-naar-afbeelding.svg" alt="">
+                <img v-if="gekozenPrijs === 'SAMSUNG TV'" class="dynamische-pijl-bol" src="/public/pijl-naar-afbeelding.svg" alt="">
+                <img v-if="gekozenPrijs === 'Playstation 5'" class="dynamische-pijl-ps" src="/public/pijl-naar-afbeelding.svg" alt="">
+
+
             </div>
 
         </div>
@@ -755,7 +769,7 @@ export default {
 .input-icon-voornaam {
     position: absolute;
     left: 5.5vw;
-    top: 43.5%;
+    top: 46.5%;
     transform: translateY(-50%);
     width: 1.5vw;
     height: auto;
@@ -766,7 +780,7 @@ export default {
 .input-icon-achternaam {
     position: absolute;
     left: 26.5vw;
-    top: 43.5%;
+    top: 46.5%;
     transform: translateY(-50%);
     width: 1.5vw;
     height: auto;
@@ -883,14 +897,29 @@ input[type="tel"] {
 }
 
 
+.dynamische-pijl-bol {
+    position: relative;
+    bottom: 7vw;
+    left: 14vw;
+    width: 6vw;
+}
+
+.dynamische-pijl-ps {
+    position: relative;
+    top: 2vw;
+    left: 1vw;
+    width: 7vw;
+    transform: rotate(-15deg);
+}
+
 .error-message {
     display: none;
 }
 
 .error-message-voornaam {
     position: absolute;
-    top: 48.5%;
-    left: 15%;
+    top: 51%;
+ /*   left: 15%; */
     color: red;
     font-weight: 700;
     font-size: 1vw
@@ -898,8 +927,8 @@ input[type="tel"] {
 
 .error-message-achternaam {
     position: absolute;
-    top: 48.5%;
-    left: 57%;
+    top: 51%;
+    left: 50.5%;
     color: red;
     font-weight: 700;
     font-size: 1vw
@@ -907,8 +936,8 @@ input[type="tel"] {
 
 .error-message-mail {
     position: absolute;
-    top: 59%;
-    left: 15%;
+    top: 60%;
+     /* left: 15%; */
     color: red;
     font-weight: 700;
     font-size: 1vw;
@@ -917,9 +946,9 @@ input[type="tel"] {
 
 .error-message-tel {
     position: absolute;
-    top: 76%;
-    left: 15%;
-    color: red;
+    top: 74%;
+     /* left: 15%; */
+     color: red;
     font-weight: 700;
     font-size: 1vw;
 }

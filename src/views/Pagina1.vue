@@ -99,12 +99,17 @@ export default {
                         </div>
                     </div> -->
 
+                    <span class="pijl-pagina-1">
+                        <router-link to="/" class="pijl-breedte">
+                          &#8592;
+                        </router-link>
+                      </span>
 
                     <div class="vraag-pagina-1">
                         Vertel ons welke prijs je wilt winnen: 
                     </div>
 
-                    <div class="container-antwoorden-pagina-1">
+                    <div class="container-antwoorden-pagina-1" id="container-antwoorden-pagina-1">
                         <div id="container-antwoord-optie-id" class="container-antwoord-optie" @click="selecteerOptie('optie-1', 'SAMSUNG TV')">
                             <input class="input-radio" type="radio" id="optie-1" name="antwoord" value="SAMSUNG TV">
                             <label class="" for="optie-1"><span class="input-padding-1">SAMSUNG 60" TV t.w.v. <span class="input-padding-1">€699,-</span></span></label>
@@ -223,7 +228,29 @@ export default {
 <style>
 
 
+.pijl-breedte {
+    width: 3vw!important;
+}
 
+a {
+    color: black;
+}
+
+a:hover {
+    color: #F48C02;
+}
+
+.pijl-pagina-1 {
+    position: absolute;
+    font-size: 2.8vw;
+    color: black;
+    top: 8.5%;
+    right: 10%;
+}
+
+.pijl-pagina-1:hover {
+    color: #F48C02;
+}
 
 
 .container-stap-zoveel-en-pijl {
@@ -285,7 +312,7 @@ export default {
 
 .container-inhoud-witte-container {
     padding-left: 4vw!important;
-    padding-top: 2vw!important;
+    padding-top: 4vw!important;
 }
 
 .stap-pagina-1 {
@@ -389,9 +416,9 @@ export default {
 
 
 .prijzen-prijs-bol-1 {
-    left: 5vw;
-    top: 5.5vw;
-
+    left: 19.9vw;
+    top: 1.2vw;
+    width: 14.1%;
 }
 
 .prijzen-prijs-ps-1 {
@@ -458,17 +485,23 @@ export default {
     flex-shrink: 0;
     border-radius: 2.5rem;
     background-color: #F48C02;
-    margin-top: 0%!important;
+    margin-top: 4%!important;
     margin-left: 41%!important;
     position: relative;
-    bottom: -4vw!important;
+    z-index: 9999;
 }
 
+.cta-pagina-1:hover {
+    cursor: pointer;
+
+}
+/*
 @media (max-width: 700px) and (min-width: 600px) {
     .cta-pagina-1 {
         bottom: -2vw!important;
     }
 }
+*/
 
 
 @media (max-width: 600px) and (min-width: 499px) {
@@ -534,9 +567,15 @@ export default {
     font-size: 1.2vw;
     font-weight: 700;
     position: relative;
-    top: 1vw;
+    top: -6.5vw;
 }
 
+
+@media (min-width: 500px) and (max-width: 800px) {
+    #container-antwoorden-pagina-1 {
+        margin-top: 0vw!important;
+    }
+}
 
 
 @media (max-width: 499px) {

@@ -3,7 +3,8 @@ export default {
     data() {
         return {
             postcode: '',
-            postcodeError: ''
+            postcodeError: '',
+            gekozenPrijs: '' // Voeg dit toe om de prijs op te slaan
         };
     },
     mounted() {
@@ -19,13 +20,27 @@ export default {
 
         // Haal de postcode op uit Vuex als deze al is ingevuld
         this.postcode = this.$store.getters.getPostcode;
+
+        const gekozenPrijsOptie = this.$store.getters.getGekozenPrijsOptie;
+        if (gekozenPrijsOptie) {
+            this.gekozenPrijs = gekozenPrijsOptie;
+            console.log(this.gekozenPrijs)
+        } else {
+            console.log('Geen prijs gevonden in Vuex store');
+        }
     },
     computed: {
+        // Dit blijft ongewijzigd als je een reactive getter voor de prijs wilt
         gekozenPrijsOptie() {
             return this.$store.getters.getGekozenPrijsOptie;
         }
     },
     methods: {
+        handleEnterKey(event) {
+            if (event.key === 'Enter') {
+                this.goToPage4();
+            }
+        },
         goToPage4() {
             this.postcodeError = '';
 
@@ -57,7 +72,6 @@ export default {
     }
 }
 </script>
-
 
 
 
@@ -104,6 +118,12 @@ export default {
                                 </a>
     
                             </div> -->
+
+                            <span class="pijl-pagina-1">
+                                <router-link to="/Pagina2">
+                                  &#8592;
+                                </router-link>
+                              </span>
 
                 <div class="vraag-pagina-3">
                     Vul je postcode in en check of je kans maakt op een <span class="gekozen-prijs">{{ gekozenPrijsOptie }}:</span>
@@ -257,7 +277,7 @@ export default {
 
 .container-inhoud-witte-container {
     padding-left: 4vw!important;
-    padding-top: 2vw!important;
+    padding-top: 3.5vw!important;
 }
 
 .stap-pagina-1 {
@@ -281,7 +301,8 @@ export default {
     font-weight: 700;
     line-height: 150%;
     text-align: left;
-    width: 80%
+    width: 80%;
+    margin-bottom: -2%;
 }
 
 .container-antwoorden-pagina-1 {

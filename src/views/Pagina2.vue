@@ -78,7 +78,7 @@ export default {
         <div class="container-pagina-1">
             <div class="achtergrond-pagina-1">
                 <div class="witte-container-pagina-2">
-                    <div class="container-inhoud-witte-container" id="container-inhoud-witte-container">
+                    <div class="container-inhoud-witte-container-2" id="container-inhoud-witte-container">
 
 
 
@@ -94,6 +94,13 @@ export default {
     
                             </div>
                         </div> -->
+
+
+                        <span class="pijl-pagina-1">
+                            <router-link to="/Pagina1">
+                              &#8592;
+                            </router-link>
+                          </span>
 
 
                         <div class="vraag-pagina-1">Wat is jouw huidige provider?</div>
@@ -124,7 +131,7 @@ export default {
                             <span class="cta-pijl-pagina-2">&#8594;</span>
                         </button>
 
-                        <div v-if="foutmelding" class="foutmelding foutmelding-pagina-2">
+                        <div v-if="foutmelding" class="foutmelding-pagina-2">
                             Selecteer alstublieft een antwoord.
                         </div>
 
@@ -234,7 +241,7 @@ export default {
 
 
 .witte-container-pagina-2 {
-    height: 33vw;
+    height: 27vw;
     width: 50vw;
     background-color: white;
     position: relative;
@@ -245,9 +252,9 @@ export default {
     z-index: 992;
 }
 
-.container-inhoud-witte-container {
+.container-inhoud-witte-container-2 {
     padding-left: 4vw!important;
-    padding-top: 2vw!important;
+    padding-top: 3vw!important;
 }
 
 .stap-pagina-1 {
@@ -312,7 +319,7 @@ export default {
     object-fit: contain;
     margin-left: 50%!important;
     position: relative;
-    bottom: 30%;
+    bottom: 17%;
     left: 2%;
     display: flex;
     justify-content: center;
@@ -417,7 +424,6 @@ export default {
     flex-shrink: 0;
     border-radius: 2.5rem;
     background-color: #F48C02;
-    margin-top: 0%!important;
     margin-left: 41%!important;
 }
 
@@ -457,7 +463,7 @@ export default {
     margin-top: 1%!important;
     margin-left: 40%!important;
     position: relative;
-    top: 7vw;
+    top: 1vw;
 }
 
 
@@ -500,7 +506,11 @@ export default {
 
 .foutmelding-pagina-2 {
     position: relative;
-    bottom: 3vw;
+    bottom: 5vw;
+    right: 14.5vw;
+    color: red;
+    font-weight: 700;
+    font-size: 1vw;
 }
 
 

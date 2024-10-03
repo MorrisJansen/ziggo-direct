@@ -5,7 +5,7 @@ export default createStore({
       gekozenPrijsOptie: null,
       selectedProviderId: null,
       selectedProviderName: null,
-      postcode: null,  // Voeg deze regel toe
+      postcode: null,
     },
     mutations: {
       setGekozenPrijsId(state, prijsId) {
@@ -20,25 +20,35 @@ export default createStore({
       setSelectedProviderName(state, providerName) {
         state.selectedProviderName = providerName;
       },
-      setPostcode(state, postcode) {  // Voeg deze mutation toe
+      setPostcode(state, postcode) {
         state.postcode = postcode;
       },
     },
     actions: {
-      updateGekozenPrijsId({ commit }, prijsId) {
-        commit('setGekozenPrijsId', prijsId);
+      updateGekozenPrijsId({ state, commit }, prijsId) {
+        if (state.gekozenPrijsId !== prijsId) {  // Controleer of de nieuwe waarde anders is
+          commit('setGekozenPrijsId', prijsId);
+        }
       },
-      updateGekozenPrijsOptie({ commit }, prijsOptie) {
-        commit('setGekozenPrijsOptie', prijsOptie);
+      updateGekozenPrijsOptie({ state, commit }, prijsOptie) {
+        if (state.gekozenPrijsOptie !== prijsOptie) {  // Controleer of de nieuwe waarde anders is
+          commit('setGekozenPrijsOptie', prijsOptie);
+        }
       },
-      updateSelectedProviderId({ commit }, providerId) {
-        commit('setSelectedProviderId', providerId);
+      updateSelectedProviderId({ state, commit }, providerId) {
+        if (state.selectedProviderId !== providerId) {  // Controleer of de nieuwe waarde anders is
+          commit('setSelectedProviderId', providerId);
+        }
       },
-      updateSelectedProviderName({ commit }, providerName) {
-        commit('setSelectedProviderName', providerName);
+      updateSelectedProviderName({ state, commit }, providerName) {
+        if (state.selectedProviderName !== providerName) {  // Controleer of de nieuwe waarde anders is
+          commit('setSelectedProviderName', providerName);
+        }
       },
-      updatePostcode({ commit }, postcode) {  // Voeg deze action toe
-        commit('setPostcode', postcode);
+      updatePostcode({ state, commit }, postcode) {
+        if (state.postcode !== postcode) {  // Controleer of de nieuwe waarde anders is
+          commit('setPostcode', postcode);
+        }
       },
     },
     getters: {
@@ -46,7 +56,6 @@ export default createStore({
       getGekozenPrijsOptie: (state) => state.gekozenPrijsOptie,
       getSelectedProviderId: (state) => state.selectedProviderId,
       getSelectedProviderName: (state) => state.selectedProviderName,
-      getPostcode: (state) => state.postcode,  // Voeg deze getter toe
+      getPostcode: (state) => state.postcode,
     }
   });
-  
