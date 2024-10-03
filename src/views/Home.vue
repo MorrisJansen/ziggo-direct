@@ -86,7 +86,7 @@ export default {
                         <div class="stap1">
                             <svg class="stap1-svg" xmlns="http://www.w3.org/2000/svg" width="10%" height="90%" viewBox="0 0 56 56" fill="none">
                                 <circle cx="27.9047" cy="27.9047" r="27.9047" fill="#49B7AC"/>
-                                <text x="28" y="36" font-family="Arial" font-size="24" fill="white" text-anchor="middle">2.</text>
+                                <text x="28" y="36" font-family="Arial" font-weight="700" font-size="24" fill="white" text-anchor="middle">2.</text>
                             </svg>                            
                               <span class="stap-text">Beantwoord de vraag</span>                
                         </div>

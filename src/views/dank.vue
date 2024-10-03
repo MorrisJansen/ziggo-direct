@@ -59,15 +59,17 @@ export default {
         <div class="witte-container-bedankt">
 
               
-
+            <div class="container-bedankt">
                 <div class="bedankt">Bedankt!</div>
                 <div class="contact">Wij nemen spoedig contact met u op.</div>
+            </div>
+
 
         </div>
 
 
 
-        <div class="container-afbeeldingen-en-prijs-2 desktop" id="container-afbeeldingen-en-prijs-bedankt">
+        <div class="container-afbeeldingen-en-prijs-dank desktop" id="container-afbeeldingen-en-prijs-bedankt">
             <svg class="prijzen-prijs-tv-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
               <circle cx="27.9047" cy="27.9047" r="27.9047" fill="#49B7AC"/>
               <text x="29" y="23" font-family="DM Sans" font-size="8" fill="white" text-anchor="middle">t.w.v.</text>
@@ -187,9 +189,26 @@ export default {
     margin-top: 2vw!important;
 }
 
-.container-afbeeldingen-en-prijs-2 {
+
+.container-afbeeldingen-en-prijs-dank {
     bottom: 6%!important;
+    max-width: 50%;
+    height: auto;
+    object-fit: contain;
+    margin-left: 50%!important;
+    position: relative;
+    left: 2%;
+    display: flex;
+    justify-content: center;
+    z-index: 109;
+    margin-bottom: 8vw!important;
 }
+
+
+
+
+
+
 .witte-container-bedankt {
     height: 22vw;
     width: 50vw;
@@ -230,6 +249,11 @@ export default {
 
     .container-prijzen-met-prijzen {
         z-index:    999;
+    }
+
+    .container-bedankt {
+        display: flex;
+        flex-direction: column;
     }
 }
 
