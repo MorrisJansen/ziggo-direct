@@ -219,7 +219,10 @@ export default {
 
 <div class="container-pagina-1">
 
-    <div class="achtergrond-pagina-6">
+    <div class="achtergrond-pagina-6"
+    :class="{ 'error-langer-maken-achtergrond': errors.achternaam || errors.voornaam || errors.email || errors.telefoonnummer}" 
+
+    >
 
         <div class="witte-container-pagina-6"
         :class="{ 'langer-maken-error': errors.achternaam || errors.voornaam || errors.email || errors.telefoonnummer}" 
@@ -1165,7 +1168,11 @@ input[type="tel"] {
     }
 
     .langer-maken-error {
-        height: 215vw!important;
+        height: 235vw!important;
+    }
+
+    .error-langer-maken-achtergrond {
+        height: 363vw!important;
     }
 
 
