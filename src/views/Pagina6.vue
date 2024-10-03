@@ -1178,7 +1178,7 @@ input[type="tel"] {
 
 
     .container-afbeeldingen-en-prijs-mobiel-6 {
-        margin-top: -32vw!important;
+        margin-top: -27vw!important;
     }
 
     .gekozen-prijs {
