@@ -366,7 +366,7 @@ export default {
             </div>
 
 
-            <div class="container-prijzen-met-prijzen mobiel">
+            <div class="container-prijzen-met-prijzen mobiel" id="container-prijzen-met-prijzen">
 
                 <div class="container-afbeeldingen-en-prijs-mobiel-6 mobiel">
                   <svg class="prijzen-prijs-tv" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
@@ -1057,7 +1057,7 @@ input[type="tel"] {
 
     .witte-container-pagina-6 {
     width: 90%;
-    height: 202vw;
+    height: 215vw;
     left: 0;
     margin: 0 auto!important
     }
@@ -1172,6 +1172,10 @@ input[type="tel"] {
 
     .gekozen-prijs {
         height: 50px!important;
+    }
+
+    #container-prijzen-met-prijzen {
+        margin-top: 54vw!important;
     }
 
 }
