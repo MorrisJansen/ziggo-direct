@@ -225,16 +225,16 @@ export default {
 
             <div class="container-inhoud-witte-container">
 
-                <div class="container-gefeliciteerd-terug">
+                <!-- <div class="container-gefeliciteerd-terug"> -->
                     <div class="gefeliciteerd">
                         Gefeliciteerd!
                     </div>
-                    <div class="pijl-vorige-6">
+                    <!-- <div class="pijl-vorige-6">
                         <a class="vorige-1" href="/Pagina3">
                             &#8592; vorige
                         </a>
                     </div>
-                </div>
+                </div> -->
 
 
                 <div class="jij-maakt-nu-kans">
@@ -523,7 +523,7 @@ export default {
     font-weight: 700;
     line-height: 150%;
     text-align: left;
-    position: relative;
+    position: static;
     right: 12vw;
 }
 

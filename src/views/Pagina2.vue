@@ -82,18 +82,18 @@ export default {
 
 
 
-                        <div class="container-stap-zoveel-en-pijl">
+                        <!-- <div class="container-stap-zoveel-en-pijl"> -->
                             <div class="stap-pagina-1">
                                 Stap 2 van 3
                             </div>
-                            <div class="pijl-vorige-1">
+                            <!-- <div class="pijl-vorige-1">
                                 <a class="vorige-1" href="/Pagina1">
                                     &#8592; vorige
     
                                 </a>
     
                             </div>
-                        </div>
+                        </div> -->
 
 
                         <div class="vraag-pagina-1">Wat is jouw huidige provider?</div>
@@ -352,6 +352,7 @@ export default {
 .optie-3-2,
 .optie-4-2 {
     font-size: 1.2vw!important;
+    color: black;
 }
 
 
@@ -562,6 +563,7 @@ export default {
         margin-left: 0!important;
         width: 100%;
         height: 20vw;
+        top: 0!important;
     }
 
     .cta-text-pagina-2,

@@ -86,18 +86,18 @@ export default {
             <div class="witte-container-pagina-1">
                 <div class="container-inhoud-witte-container" id="container-inhoud-witte-container">
 
-                    <div class="container-stap-zoveel-en-pijl">
+                    <!-- <div class="container-stap-zoveel-en-pijl"> -->
                         <div class="stap-pagina-1">
                             Stap 1 van 3
                         </div>
-                        <div class="pijl-vorige-1">
+                        <!-- <div class="pijl-vorige-1">
                             <a class="vorige-1" href="/">
                                 &#8592; vorige
 
                             </a>
 
                         </div>
-                    </div>
+                    </div> -->
 
 
                     <div class="vraag-pagina-1">

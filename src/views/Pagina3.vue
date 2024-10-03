@@ -94,18 +94,16 @@ export default {
 
 
 
-                <div class="container-stap-zoveel-en-pijl">
                             <div class="stap-pagina-1">
                                 Stap 3 van 3
                             </div>
-                            <div class="pijl-vorige-1">
+                            <!-- <div class="pijl-vorige-1">
                                 <a class="vorige-1" href="/Pagina2">
                                     &#8592; vorige
     
                                 </a>
     
-                            </div>
-                        </div>
+                            </div> -->
 
                 <div class="vraag-pagina-3">
                     Vul je postcode in en check of je kans maakt op een <span class="gekozen-prijs">{{ gekozenPrijsOptie }}:</span>
@@ -270,6 +268,7 @@ export default {
     font-style: normal;
     font-weight: 400;
     line-height: 150%;
+    position: static!important;
 }
 
 
@@ -419,15 +418,16 @@ export default {
 }
 
 .postcode-input {
-    width: 24vw; /* Groter dan de knop zodat het deels overlapt */
-    margin-right: -5vw; /* Zorg ervoor dat het over de knop heen valt */
+    width: 24vw;
+    margin-right: -5vw;
     padding: 0.5vw;
     border: none;
-    border-radius: 35px 0 0 35px; /* Maak de linkerzijde afgerond */
+    border-radius: 35px 0 0 35px;
     height: 4vw;
     font-size: 1.1vw;
     padding-left: 2vw!important;
     background-color: #f1f1f1;
+    color: black;
     z-index: 1;
     font-family: 'DM Sans', sans-serif;
 }
