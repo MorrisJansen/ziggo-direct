@@ -387,7 +387,7 @@ body {
 
 .container-stappenplan {
     width: 40%;
-    height: 30vw;
+    height: 31vw;
     flex-shrink: 0;
     border-radius:  0.75vw;
     background: #FFF;
@@ -397,7 +397,7 @@ body {
     margin-left: 7%;
     padding-left:   6.5%!important;
     padding-right: 6.5%!important;
-    padding-top:   4%!important;
+    padding-top:   4.7%!important;
 }
 
 .container-inhoud-stappenplan {
@@ -1209,6 +1209,23 @@ body {
 
 .safari .cta-home {
     margin-right: 0%!important;
+}
+
+
+
+.safari .container-logos {
+    display: inline-flex;
+    width: 25%;
+    position: absolute;
+    left: 34%;
+}
+
+.safari .logo-ziggo {
+    width: 20%;
+}
+
+.safari .logo-mv {
+    width: 30%
 }
 
 @media (max-width: 499px) {

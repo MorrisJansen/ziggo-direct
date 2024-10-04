@@ -371,13 +371,13 @@ export default {
     height: 1.2vw;
     border-radius: 50%;
     border: 1px solid grey;
-    background-color: white!important;
+    background-color: transparent!important;
     cursor: pointer;
     position: relative;
 }
 
 .input-radio-2:checked {
-    border: 1px solid grey;
+    border: 1px solid #F48C02;
 }
 
 .input-radio-2:checked::before {
@@ -385,11 +385,25 @@ export default {
     position: absolute;
     left: 50%;
     top: 50%;
-    width: 1.2vw;
-    height: 1.2vw;
+    width: 0.6vw;
+    height: 0.6vw;
     border-radius: 50%;
     background-color: #F48C02;
     transform: translate(-50%, -50%);
+    z-index: 1;
+}
+
+.input-radio-2:checked::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 1.2vw;
+    height: 1.2vw;
+    border-radius: 50%;
+    background-color: transparent;
+    transform: translate(-50%, -50%);
+    z-index: 0;
 }
 
 .input-radio-2::before {
@@ -635,6 +649,10 @@ export default {
 
     }
 
+
+    .pijl-pagina-2 {
+        display: none;
+    }
     
 
 

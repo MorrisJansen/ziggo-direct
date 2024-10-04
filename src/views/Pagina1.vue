@@ -31,27 +31,25 @@ export default {
 
             const selectedOption = this.opties[this.gekozenPrijsId];
             if (selectedOption) {
-                // Sla de gekozen prijs op in Vuex store
                 this.$store.dispatch('updateGekozenPrijsId', selectedOption.id);
                 this.$store.dispatch('updateGekozenPrijsOptie', selectedOption.name);
                 console.log('Geselecteerde prijs ID:', selectedOption.id);
                 console.log('Geselecteerde prijs naam:', selectedOption.name);
             }
 
-            // Navigeer naar pagina2
             this.$router.push({ name: 'pagina2' });
         },
         selecteerOptie(optionId) {
             const input = document.getElementById(optionId);
             if (input) {
                 input.checked = true;
+                this.$store.dispatch('updateGekozenPrijsId', optionId);
                 this.gekozenPrijsId = optionId;
                 this.foutmelding = false;
             }
         }
     },
     computed: {
-        // Haal de gekozen prijs uit de Vuex store
         gekozenPrijsId() {
             return this.$store.getters.getGekozenPrijsId;
         },
@@ -162,8 +160,6 @@ export default {
                   <text x="29" y="35" font-family="DM Sans" font-size="12" font-weight="700" fill="white" text-anchor="middle">€599,-</text>
                 </svg>
       
-
-                <!-- <img class="afbeelding-prijzen" src="/public/afbeelding-home-desk.png" alt=""> -->
                  <img class="afbeelding-prijzen-1" src="/public/samen.png" alt="">
               </div>
 
@@ -306,7 +302,7 @@ a:hover {
     position: relative;
     top: 7vw;
     left: 7vw;
-    border-radius: 0.75vw;
+    border-radius: 3.75vw;
     box-shadow: 0px 31px 81px 0px rgba(0, 17, 77, 0.20);
     z-index: 995!important;
 }
@@ -442,10 +438,13 @@ a:hover {
     display: none; 
 }
 
-.input-radio:checked + label::before {
-    background-color: #F48C02; 
-}
 
+
+.input-radio:checked + label::before {
+    background-color: white; /* Houd het midden wit */
+    box-shadow: inset 0 0 0 5px white, /* Witte ruimte tussen punt en border */
+                inset 0 0 0 8px #F48C02; /* Kleinere oranje punt in het midden */
+}
 
 .container-antwoord-optie label {
     position: relative;
@@ -584,6 +583,13 @@ a:hover {
 
 
 @media (max-width: 499px) {
+
+
+
+    .input-radio:checked + label::before {
+        background-color: white!important; 
+        box-shadow: inset 0 0 0 1.25px white, inset 0 0 0 5px #F48C02 !important;
+    }
 
 
 

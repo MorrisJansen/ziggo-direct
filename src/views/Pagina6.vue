@@ -1,186 +1,210 @@
 <script>
 export default {
-    data() {
-        return {
-            gekozenPrijs: '',
-            voornaam: '',
-            achternaam: '',
-            email: '',
-            telefoonnummer: '',
-            errors: {},
-            containerHeight: 704,
-            successMessage: '', 
-            errorMessage: ''
-        };
+  data() {
+    return {
+      gekozenPrijs: '',
+      voornaam: '',
+      achternaam: '',
+      email: '',
+      telefoonnummer: '',
+      errors: {},
+      containerHeight: 704,
+      successMessage: '', 
+      errorMessage: ''
+    };
+  },
+
+  mounted() {
+    const isSafari = () => {
+      const ua = navigator.userAgent;
+      return ua.includes('Safari') && !ua.includes('Chrome');
+    };
+
+    if (isSafari()) {
+      document.body.classList.add('safari');
+    }
+
+    const gekozenPrijsOptie = this.$store.getters.getGekozenPrijsOptie;
+    if (gekozenPrijsOptie) {
+      this.gekozenPrijs = gekozenPrijsOptie;
+    } else {
+      console.log('Geen prijs gevonden in Vuex store');
+    }
+  },
+
+  methods: {
+    goToNextPage() {
+      this.$router.push({ name: 'nextPage' });
     },
-
-    mounted() {
-        const isSafari = () => {
-            const ua = navigator.userAgent;
-            const safari = ua.includes('Safari') && !ua.includes('Chrome');
-            return safari;
-        };
-
-        if (isSafari()) {
-            document.body.classList.add('safari');
-        }
-        const gekozenPrijsOptie = this.$store.getters.getGekozenPrijsOptie;
-        if (gekozenPrijsOptie) {
-            this.gekozenPrijs = gekozenPrijsOptie;
-        } else {
-            console.log('Geen prijs gevonden in Vuex store');
-        }
-    },
-
-    methods: {
-        goToNextPage() {
-            this.$router.push({ name: 'nextPage' });
-        },
-            selectPrice(prijsId, prijsOptie) {
-        if (this.$store.getters.getGekozenPrijsId !== prijsId) {
+    
+    selectPrice(prijsId, prijsOptie) {
+      if (this.$store.getters.getGekozenPrijsId !== prijsId) {
         this.$store.dispatch('updateGekozenPrijsId', prijsId);
         this.$store.dispatch('updateGekozenPrijsOptie', prijsOptie);
-        }
+      }
     },
 
-        validateVoornaam() {
-            const regex = /^[a-zA-Z\s.,'-]{1,}$/;
-            if (!this.voornaam.match(regex)) {
-                this.errors.voornaam = 'Ongeldige voornaam.';
-                return false;
-            }
-            this.errors.voornaam = '';
-            return true;
-        },
+    validateVoornaam() {
+      const regex = /^[A-Za-z]+([ '-][A-Za-z]+)*$/;
+      if (!this.voornaam.match(regex)) {
+        this.errors.voornaam = 'Ongeldige voornaam.';
+        return false;
+      }
+      this.errors.voornaam = '';
+      return true;
+    },
 
-        validateAchternaam() {
-            const regex = /^[a-zA-Z\s.,'-]{1,}$/;
-            if (!this.achternaam.match(regex)) {
-                this.errors.achternaam = 'Ongeldige achternaam.';
-                return false;
-            }
-            this.errors.achternaam = '';
-            return true;
-        },
+    validateAchternaam() {
+      const regex = /^[A-Za-z]+([ '-][A-Za-z]+)*$/;
+      if (!this.achternaam.match(regex)) {
+        this.errors.achternaam = 'Ongeldige achternaam.';
+        return false;
+      }
+      this.errors.achternaam = '';
+      return true;
+    },
+    validateEmail() {
+    const regex = /^[^\s@]+@[^\s@]+\.[a-z]{2,}(\.(com|org|net|edu|gov|nl|info|biz|co|io|me|tv))?$/i;
+    const containsApostrophe = /'/;
 
-        validateEmail() {
-            const regex = /^[^\s@]+@[^\s@]+\.(com|org|net|edu|gov|nl|info|biz|co|io|me|tv)$/i;
-            const containsApostrophe = /'/;
-            if (!this.email.match(regex) || this.email.match(containsApostrophe)) {
-                this.errors.email = 'Ongeldig e-mailadres.';
-                return false;
-            }
-            this.errors.email = '';
-            return true;
-        },
+    if (!this.email.match(regex) || this.email.match(containsApostrophe)) {
+        this.errors.email = 'Ongeldig e-mailadres.';
+        return false;
+    }
 
-        validateAndFormatPhoneNumber(phoneNumber) {
-        phoneNumber = phoneNumber.replace(/[^0-9+]/g, '');
+    const parts = this.email.split('@');
+    
+    if (parts.length !== 2 || parts[1].split('.').length !== 2) {
+        this.errors.email = 'Ongeldig e-mailadres. Er mag slechts één extensie zijn.';
+        return false;
+    }
 
-        if (phoneNumber.startsWith('06')) {
-            phoneNumber = phoneNumber.replace(/^06/, '+316');
-        } else if (phoneNumber.startsWith('+316')) {
-            phoneNumber = phoneNumber.slice(0, 12);
-        } else {
-            // Ongeldig telefoonnummer
-            return null;
-        }
+    this.errors.email = '';
+    return true;
+},
 
-        // Controleer of het nummer nu precies +316 en 8 cijfers bevat
-        const dutchRegex = /^\+316\d{8}$/;
-        if (!phoneNumber.match(dutchRegex)) {
-            return null;
-        }
 
-        return phoneNumber;
+
+
+
+
+
+    validateAndFormatPhoneNumber(phoneNumber) {
+      phoneNumber = phoneNumber.replace(/[^0-9+]/g, '');
+
+      if (phoneNumber.startsWith('06')) {
+        phoneNumber = phoneNumber.replace(/^06/, '+316');
+      } else if (phoneNumber.startsWith('+316')) {
+        phoneNumber = phoneNumber.slice(0, 12);
+      } else if (phoneNumber.startsWith('316')) {
+        phoneNumber = phoneNumber.replace(/^316/, '+316');
+      } else if (phoneNumber.startsWith('00316')) {
+        phoneNumber = phoneNumber.replace(/^00316/, '+316');
+      } else {
+        return null;
+      }
+
+      const dutchRegex = /^\+316\d{8}$/;
+      if (!phoneNumber.match(dutchRegex)) {
+        return null;
+      }
+
+      const actualNumber = phoneNumber.slice(-8);
+    if (actualNumber.startsWith('6')) {
+        return null;
+    }
+      return phoneNumber;
     },
 
     validateTelefoonnummer() {
-        const formattedPhoneNumber = this.validateAndFormatPhoneNumber(this.telefoonnummer);
-        if (!formattedPhoneNumber) {
-            this.errors.telefoonnummer = 'Ongeldig telefoonnummer.';
-            return false;
-        }
-        this.telefoonnummer = formattedPhoneNumber;  // Sla het geformatteerde nummer op
-        this.errors.telefoonnummer = '';
-        return true;
+      const formattedPhoneNumber = this.validateAndFormatPhoneNumber(this.telefoonnummer);
+      if (!formattedPhoneNumber) {
+        this.errors.telefoonnummer = 'Ongeldig telefoonnummer.';
+        return false;
+      }
+      this.telefoonnummer = formattedPhoneNumber; 
+      
+      this.errors.telefoonnummer = '';
+      return true;
     },
 
-        async submitForm() {
-            this.errors = {};
-            this.successMessage = ''; 
-            this.errorMessage = '';
+    async submitForm() {
+      this.errors = {};
+      this.successMessage = ''; 
+      this.errorMessage = '';
 
-            const isValidVoornaam = this.validateVoornaam();
-            const isValidAchternaam = this.validateAchternaam();
-            const isValidEmail = this.validateEmail();
-            const isValidTelefoonnummer = this.validateTelefoonnummer();
+      const isValidVoornaam = this.validateVoornaam();
+      const isValidAchternaam = this.validateAchternaam();
+      const isValidEmail = this.validateEmail();
+      const isValidTelefoonnummer = this.validateTelefoonnummer();
 
-            if (!isValidVoornaam || !isValidAchternaam || !isValidEmail || !isValidTelefoonnummer) {
-                console.error('Validation failed:', this.errors);
-                return;
-            }
+      if (!isValidVoornaam || !isValidAchternaam || !isValidEmail || !isValidTelefoonnummer) {
+        console.error('Validation failed:', this.errors);
+        return;
+      }
 
-            const firstAnswerId = 5269; 
-            const secondAnswerId = this.$store.getters.getGekozenPrijsId;
-            const thirdAnswerId = this.$store.getters.getSelectedProviderId;
-            const zip = this.$store.getters.getPostcode;
-            if (!secondAnswerId || !thirdAnswerId || !zip) {
-                console.error('Onvoldoende gegevens om te verwerken. tweede antwoord:', secondAnswerId, 'derde antwoord:', thirdAnswerId, 'postcode:', zip);
-                return;
-            }
+      const firstAnswerId = 5269; 
+      const secondAnswerId = this.$store.getters.getGekozenPrijsId;
+      const thirdAnswerId = this.$store.getters.getSelectedProviderId;
+      const zip = this.$store.getters.getPostcode;
 
-            const formattedPhoneNumber = this.validateAndFormatPhoneNumber(this.telefoonnummer);
-            if (!formattedPhoneNumber) {
-                this.errors.telefoonnummer = 'Ongeldig telefoonnummer.';
-                console.error('Ongeldig telefoonnummer:', this.telefoonnummer);
-                return;
-            }
+      if (!secondAnswerId || !thirdAnswerId || !zip) {
+        console.error('Onvoldoende gegevens om te verwerken. tweede antwoord:', secondAnswerId, 'derde antwoord:', thirdAnswerId, 'postcode:', zip);
+        return;
+      }
 
-            const data = {
-                language: 'nl_NL',
-                publisher_id: 'morris de publisher :)',
-                site_custom_url: 'https://ziggoprijswinnnen.nl',
-                site_custom_name: 'ziggo prijs winnen',
-                ip: '123.45.67.89',
-                optin_timestamp: new Date().toISOString().slice(0, 19).replace('T', ' '),
-                firstname: this.voornaam,
-                lastname: this.achternaam,
-                email: this.email,
-                phone_number: formattedPhoneNumber,
-                zip: zip,
-                answers: [firstAnswerId, secondAnswerId, thirdAnswerId]
-            };
+      const formattedPhoneNumber = this.validateAndFormatPhoneNumber(this.telefoonnummer);
+      if (!formattedPhoneNumber) {
+        this.errors.telefoonnummer = 'Ongeldig telefoonnummer.';
+        console.error('Ongeldig telefoonnummer:', this.telefoonnummer);
+        return;
+      }
 
-            console.log('Geformatteerd telefoonnummer:', formattedPhoneNumber);
-            console.log('Data verstuurd naar API:', JSON.stringify(data, null, 2));
+      const data = {
+        language: 'nl_NL',
+        publisher_id: 'morris de publisher :)',
+        site_custom_url: 'https://ziggoprijswinnnen.nl',
+        site_custom_name: 'ziggo prijs winnen',
+        ip: '123.45.67.89',
+        optin_timestamp: new Date().toISOString().slice(0, 19).replace('T', ' '),
+        firstname: this.voornaam,
+        lastname: this.achternaam,
+        email: this.email,
+        phone_number: formattedPhoneNumber,
+        zip: zip,
+        answers: [firstAnswerId, secondAnswerId, thirdAnswerId]
+      };
 
-            try {
-                const response = await fetch('https://leadgen.republish.nl/api/sponsors/2410/leads', {
-                    method: 'POST',
-                    headers: {
-                        'Authorization': 'Basic ' + btoa('199:b41c7c41c8d595fbd66dea6a4f70836fbc5e3afe'),
-                        'Content-Type': 'application/json; charset=utf-8',
-                    },
-                    body: JSON.stringify(data),
-                });
+      console.log('Geformatteerd telefoonnummer:', formattedPhoneNumber);
+      console.log('Data verstuurd naar API:', JSON.stringify(data, null, 2));
 
-                console.log('API respons status:', response.status);
+      try {
+        const response = await fetch('https://leadgen.republish.nl/api/sponsors/2410/leads', {
+          method: 'POST',
+          headers: {
+            'Authorization': 'Basic ' + btoa('199:b41c7c41c8d595fbd66dea6a4f70836fbc5e3afe'),
+            'Content-Type': 'application/json; charset=utf-8',
+          },
+          body: JSON.stringify(data),
+        });
 
-                if (response.status === 201) {
-                    console.log('Succesvol ingediend!');
-                    this.$router.push('/Bedankt');
-                } else {
-                    const responseBody = await response.json();
-                    console.error('Fout bij indienen:', responseBody);
-                    this.$router.push('/bedankt');
-                }
-            } catch (error) {
-                console.error('Er is een fout opgetreden bij het versturen van het formulier:', error);
-                this.errorMessage = 'Netwerk- of serverfout: ' + error.message;
-            }
+        console.log('API respons status:', response.status);
+
+        if (response.status === 201) {
+          console.log('Succesvol ingediend!');
+          this.successMessage = 'Bedankt voor uw inzending!';
+          this.$router.push('/Bedankt');
+        } else {
+          const responseBody = await response.json();
+          console.error('Fout bij indienen:', responseBody);
+          this.errorMessage = 'Er is een fout opgetreden bij het indienen.';
         }
+      } catch (error) {
+        console.error('Er is een fout opgetreden bij het versturen van het formulier:', error);
+        this.errorMessage = 'Netwerk- of serverfout: ' + error.message;
+      }
     }
+  }
 };
 </script>
 
@@ -239,7 +263,9 @@ export default {
                     </div>
                 </div> -->
 
-                <span class="pijl-pagina-6">
+                <span class="pijl-pagina-6"
+                :class="{ 'naar-beneden-pijl': errors.achternaam || errors.voornaam || errors.email || errors.telefoonnummer}" 
+                >
                     <router-link to="/Pagina3">
                       &#8592;
                     </router-link>
@@ -295,23 +321,28 @@ export default {
                     </div>
                     <div v-if="errors.email" class="error-message-mail"
                     :style="{ marginTop: (errors.voornaam || errors.achternaam) ? '2vw!important' : '0' }" 
-                    >
+                    :class="{ 'geen-fout-naam-mail': !errors.achternaam && !errors.voornaam }">
+                   <!-- Je foutmelding voor e-mail hier -->
+               
+
+                    
                         {{ errors.email }}
                     </div>
                   
                     <div class="telefoonnummer-input input-wrapper desktop">
                       <img src="/public/telefoon-icoon.svg" alt="telefoon" class="input-icon input-icon-telefoon"
                       :style="{ top: (errors.voornaam || errors.achternaam || errors.email) ? '58%!important' : '40%' }" 
-                      >
+                    :class="{ 'error-marge-mobiel-1': errors.email}"                      >
                       <input type="tel" placeholder="Telefoonnummer" class="telefoonnummer-input-field" v-model="telefoonnummer"
                       :style="{ marginTop: (errors.voornaam || errors.achternaam || errors.email) ? '1vw!important' : '0' }" 
-                      :class="{ 'error-marge-mobiel-1': errors.email}" 
-
                       >
                     </div>
                     <div v-if="errors.telefoonnummer" class="error-message-tel"
                     :style="{ marginTop: (errors.voornaam || errors.achternaam) ? '2vw!important' : '0' }" 
-                    >
+                    :class="{ 
+                        'geen-fout-naam-tel': !errors.achternaam && !errors.voornaam, 
+                        'alleen-tel-fout': !errors.voornaam && !errors.achternaam && errors.telefoonnummer 
+                    }">                    
                         {{ errors.telefoonnummer }}
                     </div>
                     
@@ -339,8 +370,6 @@ export default {
                       <div v-if="errors.telefoonnummer" class="error-message-tel-mobiel">
                         {{ errors.telefoonnummer }}
                     </div>
-
-
 
                     </div>
                   </form>
@@ -426,16 +455,29 @@ export default {
               </svg>
         
 
-            <div class="container-text-dynamische-prijs"
-            v-if='gekozenPrijs === `SAMSUNG 60" TV`' id="container-tv-dynamisch-gezel">
+              <div class="container-text-dynamische-prijs" id="container-tv-dynamisch-gezel">
                 <div class="text-prijs-pagina-6">Jouw gekozen prijs:</div>
                 <div class="dynamische-prijs-pagina-6">{{gekozenPrijs}}</div>
-                <img v-if="gekozenPrijs === 'Bol.com cadeaubon'" class="dynamische-pijl-bol" src="/public/pijl-naar-afbeelding.svg" alt="">
-                <img v-if='gekozenPrijs === `SAMSUNG 60" TV`' class="dynamische-pijl-tv" src="/public/pijl-naar-afbeelding.svg" alt="">
-                <img v-if="gekozenPrijs === 'Playstation 5'" class="dynamische-pijl-ps" src="/public/pijl-naar-afbeelding.svg" alt="">
-
-
+            
+                <img 
+                    v-if="gekozenPrijs === 'Bol.com cadeaubon'" 
+                    class="dynamische-pijl-bol" 
+                    src="/public/pijl-naar-afbeelding.svg" 
+                    alt="Pijl naar Bol.com cadeaubon">
+                
+                <img 
+                    v-if='gekozenPrijs === `SAMSUNG 60" TV`'
+                    class="dynamische-pijl-tv" 
+                    src="/public/pijl-naar-afbeelding.svg" 
+                    alt="Pijl naar Samsung TV">
+                
+                <img 
+                    v-if="gekozenPrijs === 'Playstation 5'" 
+                    class="dynamische-pijl-ps" 
+                    src="/public/pijl-naar-afbeelding.svg" 
+                    alt="Pijl naar Playstation 5">
             </div>
+            
 
         </div>
 
@@ -490,7 +532,7 @@ export default {
     position: relative;
     top: 7vw;
     left: 7vw;
-    border-radius: 0.75vw;
+    border-radius: 3.75vw;
     box-shadow: 0px 31px 81px 0px rgba(0, 17, 77, 0.20);
     z-index: 2;
 }
@@ -742,7 +784,9 @@ export default {
 
 
 
-
+.naar-beneden-pijl {
+    top: 81%!important;
+}
 
 
 
@@ -881,6 +925,7 @@ input[type="tel"] {
     top: 9vw;
     width: 35vw;
     right: 5vw;
+    margin-top: -4vw!important;
 }
 
 .bol-bal-prijs {
@@ -951,7 +996,7 @@ input[type="tel"] {
 
 .error-message-voornaam {
     position: absolute;
-    top: 51%;
+    top: 54.5%;
  /*   left: 15%; */
     color: red;
     font-weight: 700;
@@ -960,7 +1005,7 @@ input[type="tel"] {
 
 .error-message-achternaam {
     position: absolute;
-    top: 51%;
+    top: 54.5%;
     left: 50.5%;
     color: red;
     font-weight: 700;
@@ -969,7 +1014,7 @@ input[type="tel"] {
 
 .error-message-mail {
     position: absolute;
-    top: 60%;
+    top: 63%;
      /* left: 15%; */
     color: red;
     font-weight: 700;
@@ -979,11 +1024,26 @@ input[type="tel"] {
 
 .error-message-tel {
     position: absolute;
-    top: 74%;
+    top: 76%;
      /* left: 15%; */
      color: red;
     font-weight: 700;
     font-size: 1vw;
+}
+/*
+dit is voor als er geen fouten zijn met de namen
+*/
+
+.geen-fout-naam-mail {
+    top: 65%;
+}
+
+.geen-fout-naam-tel {
+    top: 78%;
+}
+
+.alleen-tel-fout {
+    top: 76%;
 }
 
 
