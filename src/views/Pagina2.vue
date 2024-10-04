@@ -541,6 +541,30 @@ export default {
 @media (max-width: 499px) {
 
 
+
+
+    .input-radio-2:checked::after {
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 2vw;
+        height: 2vw;
+        border-radius: 50%;
+        background-color: #F48C02;
+        transform: translate(-50%, -50%);
+    }
+
+    .input-radio-2::before {
+        background-color: transparent!important;
+    }
+
+    .input-radio-2:checked::after {
+        border: 1px solid #F48C02;
+    }
+    
+
+
     .achtergrond-pagina-2 {
         background: linear-gradient(90deg, #072148 0%, #40A59F 100%);
         width: 100vw;
@@ -620,12 +644,14 @@ export default {
         font-size: 4.5vw;
     }
 
-
+/*
     .input-radio-2:checked {
         background-color: #F48C02!important;
         fill: #F48C02;
         border: 1px solid #F48C02;
     }
+
+*/
 
 
     .footer-container-2 {
