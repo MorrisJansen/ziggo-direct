@@ -89,44 +89,52 @@ export default {
 
 
 
-    validateAndFormatPhoneNumber(phoneNumber) {
-      phoneNumber = phoneNumber.replace(/[^0-9+]/g, '');
+  validateAndFormatPhoneNumber(phoneNumber) {
+  // Verwijder alles behalve cijfers, het '+'-teken, spaties, en hyphens
+  phoneNumber = phoneNumber.replace(/[^0-9+\s-]/g, '');
 
-      if (phoneNumber.startsWith('06')) {
-        phoneNumber = phoneNumber.replace(/^06/, '+316');
-      } else if (phoneNumber.startsWith('+316')) {
-        phoneNumber = phoneNumber.slice(0, 12);
-      } else if (phoneNumber.startsWith('316')) {
-        phoneNumber = phoneNumber.replace(/^316/, '+316');
-      } else if (phoneNumber.startsWith('00316')) {
-        phoneNumber = phoneNumber.replace(/^00316/, '+316');
-      } else {
-        return null;
-      }
+  // Verwijder spaties en hyphens
+  phoneNumber = phoneNumber.replace(/[\s-]/g, '');
 
-      const dutchRegex = /^\+316\d{8}$/;
-      if (!phoneNumber.match(dutchRegex)) {
-        return null;
-      }
+  if (phoneNumber.startsWith('06')) {
+    phoneNumber = phoneNumber.replace(/^06/, '+316');
+  } else if (phoneNumber.startsWith('+316')) {
+    phoneNumber = phoneNumber.slice(0, 12);
+  } else if (phoneNumber.startsWith('316')) {
+    phoneNumber = phoneNumber.replace(/^316/, '+316');
+  } else if (phoneNumber.startsWith('00316')) {
+    phoneNumber = phoneNumber.replace(/^00316/, '+316');
+  } else {
+    return null;
+  }
 
-      const actualNumber = phoneNumber.slice(-8);
-    if (actualNumber.startsWith('6')) {
-        return null;
-    }
-      return phoneNumber;
-    },
+  const dutchRegex = /^\+316\d{8}$/;
+  if (!phoneNumber.match(dutchRegex)) {
+    return null;
+  }
 
-    validateTelefoonnummer() {
-      const formattedPhoneNumber = this.validateAndFormatPhoneNumber(this.telefoonnummer);
-      if (!formattedPhoneNumber) {
-        this.errors.telefoonnummer = 'Ongeldig telefoonnummer.';
-        return false;
-      }
-      this.telefoonnummer = formattedPhoneNumber; 
-      
-      this.errors.telefoonnummer = '';
-      return true;
-    },
+  return phoneNumber;
+},
+
+validateTelefoonnummer() {
+  const formattedPhoneNumber = this.validateAndFormatPhoneNumber(this.telefoonnummer);
+  if (!formattedPhoneNumber) {
+    this.errors.telefoonnummer = 'Ongeldig telefoonnummer.';
+    return false;
+  }
+  this.telefoonnummer = formattedPhoneNumber;
+
+  this.errors.telefoonnummer = '';
+  return true;
+},
+
+
+
+
+
+
+
+
 
     async submitForm() {
       this.errors = {};
@@ -194,10 +202,21 @@ export default {
           console.log('Succesvol ingediend!');
           this.successMessage = 'Bedankt voor uw inzending!';
           this.$router.push('/Bedankt');
-        } else {
+        } else if (response.status === 400) {
           const responseBody = await response.json();
+          console.log('Volledige responseBody:', responseBody);
+
+          // Controleer of het error veld bestaat
+          if (responseBody.error && responseBody.error.includes('phone_number')) {
+          this.errors.telefoonnummer = 'Ongeldig telefoonnummer.';
+          } else if (responseBody.errors && responseBody.includes('firstname')) {
+            this.errors.firstname = 'Ongeldige voornaam';
+          } else if (responseBody.errors && responseBody.includes('lastname')) {
+            this.errors.lastname = 'Ongeldige achternaam';
+          } else if (responseBody.errors && responseBody.includes('email')) {
+            this.errors.email = 'Ongeldig e-mailadres';
+          }
           console.error('Fout bij indienen:', responseBody);
-          this.errorMessage = 'Er is een fout opgetreden bij het indienen.';
         }
       } catch (error) {
         console.error('Er is een fout opgetreden bij het versturen van het formulier:', error);
@@ -207,6 +226,7 @@ export default {
   }
 };
 </script>
+
 
 
 
