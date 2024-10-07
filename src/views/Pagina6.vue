@@ -177,7 +177,7 @@ validateTelefoonnummer() {
         lastname: this.achternaam,
         email: this.email,
         phone_number: formattedPhoneNumber,
-        zip: '3993kl',
+        zip: zip,
         answers: [firstAnswerId, secondAnswerId, thirdAnswerId]
       };
 
