@@ -1022,7 +1022,7 @@ input[type="tel"] {
 
 .error-message-mail {
     position: absolute;
-    top:593%;
+    top:    58.5%;
      /* left: 15%; */
     color: red;
     font-weight: 700;
