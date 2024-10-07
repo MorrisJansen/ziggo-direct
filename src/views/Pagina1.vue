@@ -14,7 +14,7 @@ export default {
         if (this.gekozenPrijsId) {
             this.lokaleGekozenPrijsId = this.gekozenPrijsId;
             this.$nextTick(() => {
-                const input = document.getElementById(this.lokaleGekozenPrijsId);
+                const input = document.getElementById(this.gekozenPrijsId);
                 if (input) {
                     input.checked = true;
                 }
@@ -23,7 +23,7 @@ export default {
     },
     data() {
         return {
-            lokaleGekozenPrijsId: null, 
+            lokaleGekozenPrijsId: null,
             foutmelding: false,
             opties: {
                 'optie-1': { id: 5284, name: 'SAMSUNG 60" TV' },
@@ -34,7 +34,7 @@ export default {
     },
     methods: {
         gaNaarPagina2() {
-            if (!this.lokaleGekozenPrijsId) { 
+            if (!this.lokaleGekozenPrijsId) {
                 this.foutmelding = true;
                 return;
             }
@@ -68,6 +68,7 @@ export default {
     }
 }
 </script>
+
 
 
 

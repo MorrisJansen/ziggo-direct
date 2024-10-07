@@ -90,10 +90,8 @@ export default {
 
 
   validateAndFormatPhoneNumber(phoneNumber) {
-  // Verwijder alles behalve cijfers, het '+'-teken, spaties, en hyphens
   phoneNumber = phoneNumber.replace(/[^0-9+\s-]/g, '');
 
-  // Verwijder spaties en hyphens
   phoneNumber = phoneNumber.replace(/[\s-]/g, '');
 
   if (phoneNumber.startsWith('06')) {
@@ -206,7 +204,6 @@ validateTelefoonnummer() {
           const responseBody = await response.json();
           console.log('Volledige responseBody:', responseBody);
 
-          // Controleer of het error veld bestaat
           if (responseBody.error && responseBody.error.includes('phone_number')) {
           this.errors.telefoonnummer = 'Ongeldig telefoonnummer.';
           } else if (responseBody.errors && responseBody.includes('firstname')) {
@@ -272,16 +269,9 @@ validateTelefoonnummer() {
 
             <div class="container-inhoud-witte-container-6 container-inhoud-witte-container">
 
-                <!-- <div class="container-gefeliciteerd-terug"> -->
                     <div class="gefeliciteerd">
                         Gefeliciteerd!
                     </div>
-                    <!-- <div class="pijl-vorige-6">
-                        <a class="vorige-1" href="/Pagina3">
-                            &#8592; vorige
-                        </a>
-                    </div>
-                </div> -->
 
                 <span class="pijl-pagina-6"
                 :class="{ 'naar-beneden-pijl': errors.achternaam || errors.voornaam || errors.email || errors.telefoonnummer}" 
@@ -342,7 +332,6 @@ validateTelefoonnummer() {
                     <div v-if="errors.email" class="error-message-mail"
                     :style="{ marginTop: (errors.voornaam || errors.achternaam) ? '2vw!important' : '0' }" 
                     :class="{ 'geen-fout-naam-mail': !errors.achternaam && !errors.voornaam }">
-                   <!-- Je foutmelding voor e-mail hier -->
                
 
                     
@@ -850,8 +839,8 @@ validateTelefoonnummer() {
 
 .input-icon-voornaam {
     position: absolute;
-    left: 5vw;
-    top: 49.5%;
+    left: 5.2vw;
+    top: 45.5%;
     transform: translateY(-50%);
     width: 1.5vw;
     height: auto;
@@ -862,7 +851,7 @@ validateTelefoonnummer() {
 .input-icon-achternaam {
     position: absolute;
     left: 26.5vw;
-    top: 49.5%;
+    top: 45.5%;
     transform: translateY(-50%);
     width: 1.5vw;
     height: auto;

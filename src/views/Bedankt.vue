@@ -1,10 +1,13 @@
 <script>
+import { v4 as uuidv4 } from 'uuid';
+
 export default {
     data() {
         return {
             gekozenPrijs: '',
             postcode: '',
-            postcodeError: ''
+            postcodeError: '',
+            uniqueConversionId: uuidv4() // Hier wordt een unieke ID gegenereerd
         };
     },
     mounted() {
@@ -23,8 +26,13 @@ export default {
             this.gekozenPrijs = opgeslagenAntwoord;
         }
     },
-  
-    
+    computed: {
+        pixelUrl() {
+            return `https://republish.prijzenpakket.nl/m/6337/9d85475ce4f0/?event=7417&unique_conversion_id=${this.uniqueConversionId}`;
+
+            console.log(this.uniqueConversionId)
+        }
+    }
 }
 </script>
 

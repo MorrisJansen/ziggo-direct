@@ -4,7 +4,7 @@ export default createStore({
   state: {
     gekozenPrijsId: null,
     gekozenPrijsOptie: null,
-    selectedOptie: null, // Nieuwe property
+    selectedOptie: null,
     selectedProviderId: null,
     selectedProviderName: null,
     postcode: null,
@@ -17,7 +17,7 @@ export default createStore({
       state.gekozenPrijsOptie = prijsOptie;
     },
     setSelectedOptie(state, optie) {
-      state.selectedOptie = optie; // Optie opslaan
+      state.selectedOptie = optie;
     },
     setSelectedProviderId(state, providerId) {
       state.selectedProviderId = providerId;
@@ -37,7 +37,7 @@ export default createStore({
       commit('setGekozenPrijsOptie', prijsOptie);
     },
     updateSelectedOptie({ commit }, optie) {
-      commit('setSelectedOptie', optie); // Optie dispatchen
+      commit('setSelectedOptie', optie);
     },
     updateSelectedProviderId({ commit }, providerId) {
       commit('setSelectedProviderId', providerId);
@@ -52,7 +52,7 @@ export default createStore({
   getters: {
     getGekozenPrijsId: (state) => state.gekozenPrijsId,
     getGekozenPrijsOptie: (state) => state.gekozenPrijsOptie,
-    getSelectedOptie: (state) => state.selectedOptie, // Nieuwe getter
+    getSelectedOptie: (state) => state.selectedOptie,
     getSelectedProviderId: (state) => state.selectedProviderId,
     getSelectedProviderName: (state) => state.selectedProviderName,
     getPostcode: (state) => state.postcode,
