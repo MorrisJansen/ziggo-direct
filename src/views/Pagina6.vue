@@ -45,24 +45,25 @@ export default {
     },
 
     validateVoornaam() {
-      const regex = /^[A-Za-z]+([ '-][A-Za-z]+)*$/;
-      if (!this.voornaam.match(regex)) {
-        this.errors.voornaam = 'Ongeldige voornaam.';
-        return false;
-      }
-      this.errors.voornaam = '';
-      return true;
-    },
+  const regex = /^[A-Za-z]+([ ',.'-][A-Za-z]+)*$/;
+  if (!this.voornaam.match(regex)) {
+    this.errors.voornaam = 'Ongeldige voornaam.';
+    return false;
+  }
+  this.errors.voornaam = '';
+  return true;
+},
 
-    validateAchternaam() {
-      const regex = /^[A-Za-z]+([ '-][A-Za-z]+)*$/;
-      if (!this.achternaam.match(regex)) {
-        this.errors.achternaam = 'Ongeldige achternaam.';
-        return false;
-      }
-      this.errors.achternaam = '';
-      return true;
-    },
+validateAchternaam() {
+  const regex = /^[A-Za-z]+([ ',.'-][A-Za-z]+)*$/;
+  if (!this.achternaam.match(regex)) {
+    this.errors.achternaam = 'Ongeldige achternaam.';
+    return false;
+  }
+  this.errors.achternaam = '';
+  return true;
+},
+
     validateEmail() {
     const regex = /^[^\s@]+@[^\s@]+\.[a-z]{2,}(\.(com|org|net|edu|gov|nl|info|biz|co|io|me|tv))?$/i;
     const containsApostrophe = /'/;
@@ -1003,7 +1004,7 @@ input[type="tel"] {
 
 .error-message-voornaam {
     position: absolute;
-    top: 54.5%;
+    top: 50.5%;
  /*   left: 15%; */
     color: red;
     font-weight: 700;
@@ -1012,7 +1013,7 @@ input[type="tel"] {
 
 .error-message-achternaam {
     position: absolute;
-    top: 54.5%;
+    top: 50.5%;
     left: 50.5%;
     color: red;
     font-weight: 700;
@@ -1021,7 +1022,7 @@ input[type="tel"] {
 
 .error-message-mail {
     position: absolute;
-    top: 63%;
+    top:593%;
      /* left: 15%; */
     color: red;
     font-weight: 700;
@@ -1031,7 +1032,7 @@ input[type="tel"] {
 
 .error-message-tel {
     position: absolute;
-    top: 76%;
+    top: 72%;
      /* left: 15%; */
      color: red;
     font-weight: 700;
