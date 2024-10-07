@@ -1043,15 +1043,15 @@ dit is voor als er geen fouten zijn met de namen
 */
 
 .geen-fout-naam-mail {
-    top: 65%;
+    top: 61%;
 }
 
 .geen-fout-naam-tel {
-    top: 78%;
+    top: 74%;
 }
 
 .alleen-tel-fout {
-    top: 76%;
+    top: 74%;
 }
 
 
