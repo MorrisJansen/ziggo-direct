@@ -215,6 +215,8 @@ validateTelefoonnummer() {
             this.errors.email = 'Ongeldig e-mailadres';
           }
           console.error('Fout bij indienen:', responseBody);
+        } else if (response.status === 409) {
+            this.$router.push('/bedankt');
         }
       } catch (error) {
         console.error('Er is een fout opgetreden bij het versturen van het formulier:', error);
