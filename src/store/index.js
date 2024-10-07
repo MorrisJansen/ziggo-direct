@@ -5,10 +5,12 @@ export default createStore({
   state: {
     gekozenPrijsId: null,
     gekozenPrijsOptie: null,
-    selectedOptie: null,  // Dit is waar we de geselecteerde optie zullen opslaan
+    selectedOptie: null,
     selectedProviderId: null,
     selectedProviderName: null,
     postcode: null,
+    subid: null, // Nieuwe state voor subid
+    pubid: null, // Nieuwe state voor pubid
   },
   mutations: {
     setGekozenPrijsId(state, prijsId) {
@@ -18,7 +20,7 @@ export default createStore({
       state.gekozenPrijsOptie = prijsOptie;
     },
     setSelectedOptie(state, optie) {
-      state.selectedOptie = optie;  // Mutatie om de geselecteerde optie te zetten
+      state.selectedOptie = optie;
     },
     setSelectedProviderId(state, providerId) {
       state.selectedProviderId = providerId;
@@ -28,6 +30,13 @@ export default createStore({
     },
     setPostcode(state, postcode) {
       state.postcode = postcode;
+    },
+    // Nieuwe mutaties voor subid en pubid
+    setSubId(state, subid) {
+      state.subid = subid;
+    },
+    setPubId(state, pubid) {
+      state.pubid = pubid;
     },
   },
   actions: {
@@ -49,17 +58,23 @@ export default createStore({
     updatePostcode({ commit }, postcode) {
       commit('setPostcode', postcode);
     },
-    // Nieuwe actie voor idVraag2id
-    idVraag2id({ commit }, geselecteerdeId) {
-      commit('setSelectedOptie', geselecteerdeId);
+    // Acties voor subid en pubid
+    updateSubId({ commit }, subid) {
+      commit('setSubId', subid);
+    },
+    updatePubId({ commit }, pubid) {
+      commit('setPubId', pubid);
     },
   },
   getters: {
     getGekozenPrijsId: (state) => state.gekozenPrijsId,
     getGekozenPrijsOptie: (state) => state.gekozenPrijsOptie,
-    getSelectedOptie: (state) => state.selectedOptie,  // Getter voor selectedOptie
+    getSelectedOptie: (state) => state.selectedOptie,
     getSelectedProviderId: (state) => state.selectedProviderId,
     getSelectedProviderName: (state) => state.selectedProviderName,
     getPostcode: (state) => state.postcode,
+    // Nieuwe getters voor subid en pubid
+    getSubId: (state) => state.subid,
+    getPubId: (state) => state.pubid,
   },
 });

@@ -254,6 +254,11 @@ export default {
 
 <style>
 
+label:hover {
+    cursor: pointer;
+
+}
+
 .achtergrond-pagina-2 {
     background: linear-gradient(90deg, #072148 0%, #40A59F 100%);
     width: 100vw;
@@ -610,7 +615,7 @@ export default {
         margin: 0 auto!important;
         left: 0!important;
         width: 90%!important;
-        height: 155vw!important;
+        height: 160vw!important;
     }
     
 
@@ -693,7 +698,7 @@ export default {
         text-align: left;
         font-size: 4vw;
         margin-bottom: 1vw!important;
-
+        margin-top: 1.5vw !important;
     }
 
 

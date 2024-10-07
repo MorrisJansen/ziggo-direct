@@ -18,7 +18,6 @@ export default {
             document.body.classList.add('safari');
         }
 
-        // Haal de postcode op uit Vuex als deze al is ingevuld
         this.postcode = this.$store.getters.getPostcode;
 
         const gekozenPrijsOptie = this.$store.getters.getGekozenPrijsOptie;
@@ -597,6 +596,9 @@ export default {
     }
 
 
+    .pijl-pagina-3 {
+        display: none;
+    }
 
 
     .witte-container-pagina-3 {
@@ -657,8 +659,10 @@ export default {
 
     .foutmelding-pagina-3 {
         position: relative;
-        top: 28vw!important;
+        top: 31vw !important;
         z-index: 9999;
+        font-size: 4vw;
+        left: 0vw;
     }
 
     .witte-container-pagina-3.error-active {

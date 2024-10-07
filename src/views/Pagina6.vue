@@ -156,27 +156,26 @@ async submitForm() {
   const secondAnswerId = this.$store.getters.getSelectedOptie;
   const thirdAnswerId = this.$store.getters.getSelectedProviderId;
   const zip = this.$store.getters.getPostcode;
+  const pubid = this.$store.getters.getPubId;
+  const subid = this.$store.getters.getSubId;
 
   if (!secondAnswerId || !thirdAnswerId || !zip) {
     console.error('Onvoldoende gegevens om te verwerken. tweede antwoord:', secondAnswerId, 'derde antwoord:', thirdAnswerId, 'postcode:', zip);
     return;
   }
 
-  // Maak een kopie van het ingevoerde telefoonnummer en formatteer die voor de API-aanroep
-  const formattedPhoneNumber = this.validateAndFormatPhoneNumber(this.telefoonnummer);
 
-  // Als het geformatteerde nummer ongeldig is, toon een foutmelding, maar wijzig de input niet
+  const formattedPhoneNumber = this.validateAndFormatPhoneNumber(this.telefoonnummer);
   if (!formattedPhoneNumber) {
     this.errors.telefoonnummer = 'Ongeldig telefoonnummer.';
     console.error('Ongeldig telefoonnummer:', this.telefoonnummer);
     return;
   }
 
-  // Verstuur alleen de geformatteerde kopie naar de API, zonder de input in het formulier te wijzigen
   const data = {
     language: 'nl_NL',
-    publisher_id: 'pubid', // haal hier waarde uit url
-    site_subid: 'subid', // haal ook uit url
+    publisher_id: pubid,
+    site_subid: subid, 
     site_custom_url: 'https://ziggoprijswinnnen.nl',
     site_custom_name: 'MeerVoordeel_Ziggo',
     ip: '123.45.67.89',
@@ -184,7 +183,7 @@ async submitForm() {
     firstname: this.voornaam,
     lastname: this.achternaam,
     email: this.email,
-    phone_number: formattedPhoneNumber,  // Gebruik alleen hier het geformatteerde nummer voor de API
+    phone_number: formattedPhoneNumber,
     zip: zip,
     answers: [firstAnswerId, secondAnswerId, thirdAnswerId]
   };
