@@ -7,7 +7,7 @@ export default {
             gekozenPrijs: '',
             postcode: '',
             postcodeError: '',
-            uniqueConversionId: uuidv4() // Hier wordt een unieke ID gegenereerd
+            uniqueConversionId: uuidv4()
         };
     },
     mounted() {
