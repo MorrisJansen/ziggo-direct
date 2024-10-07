@@ -3,6 +3,7 @@ export default {
     data() {
         return {
             foutmelding: false,
+            lokaleGeselecteerdeProvider: null,
             options: {
                 'optie-1': { id: 5272, name: 'Odido' },
                 'optie-2': { id: 5278, name: 'Ziggo' },
@@ -21,37 +22,57 @@ export default {
         if (isSafari()) {
             document.body.classList.add('safari');
         }
+
+        // Check if there's a stored selection and apply it
+        if (this.geselecteerdeProviderId) {
+            this.lokaleGeselecteerdeProvider = Object.keys(this.options).find(
+                key => this.options[key].id === this.geselecteerdeProviderId
+            );
+            this.$nextTick(() => {
+                const input = document.getElementById(this.lokaleGeselecteerdeProvider);
+                if (input) {
+                    input.checked = true;
+                }
+            });
+        }
     },
     methods: {
         goToPage3() {
-            const selectedOption = document.querySelector('input[name="antwoord"]:checked');
-            if (selectedOption) {
-                const optionDetails = this.options[selectedOption.id];
-                if (optionDetails) {
-                    // Gebruik Vuex om de geselecteerde provider op te slaan
-                    this.$store.dispatch('updateSelectedProviderId', optionDetails.id);
-                    this.$store.dispatch('updateSelectedProviderName', optionDetails.name);
-
-                    console.log('Geselecteerde ID:', optionDetails.id);
-                    console.log('Geselecteerde naam:', optionDetails.name);
-
-                    this.$router.push({ name: 'pagina3' });
-                    this.foutmelding = false;
-                }
-            } else {
+            if (!this.lokaleGeselecteerdeProvider) {
                 this.foutmelding = true;
+                return;
+            }
+
+            const optionDetails = this.options[this.lokaleGeselecteerdeProvider];
+            if (optionDetails) {
+                this.$store.dispatch('updateSelectedProviderId', optionDetails.id);
+                this.$store.dispatch('updateSelectedProviderName', optionDetails.name);
+
+                console.log('Geselecteerde ID:', optionDetails.id);
+                console.log('Geselecteerde naam:', optionDetails.name);
+
+                this.$router.push({ name: 'pagina3' });
             }
         },
         selectOption(optionId) {
             const input = document.getElementById(optionId);
             if (input) {
                 input.checked = true;
+                this.lokaleGeselecteerdeProvider = optionId;
+                this.foutmelding = false;
             }
+        }
+    },
+    computed: {
+        geselecteerdeProviderId() {
+            return this.$store.getters.getSelectedProviderId;
+        },
+        geselecteerdeProviderNaam() {
+            return this.$store.getters.getSelectedProviderName;
         }
     }
 };
 </script>
-
 
 
 

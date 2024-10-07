@@ -19,18 +19,14 @@ export default {
         }
 
         // Haal de postcode op uit Vuex als deze al is ingevuld
-
-
-
-        // hierbij heb ik nog mijn vraagtekens
-        // this.postcode = this.$store.getters.getPostcode;
+        this.postcode = this.$store.getters.getPostcode;
 
         const gekozenPrijsOptie = this.$store.getters.getGekozenPrijsOptie;
         if (gekozenPrijsOptie) {
             this.gekozenPrijs = gekozenPrijsOptie;
-            console.log(this.gekozenPrijs + 'hlllooooo')
+            console.log(this.gekozenPrijs)
         } else {
-            console.log('Geen prijs gevonden in Vuex zommar???');
+            console.log('Geen prijs gevonden in Vuex store');
         }
     },
     computed: {

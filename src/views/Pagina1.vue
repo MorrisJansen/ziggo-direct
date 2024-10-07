@@ -1,23 +1,29 @@
 <script>
 export default {
     mounted() {
-    const gekozenId = this.gekozenPrijsId; 
-    if (gekozenId) {
-        this.selecteerOptie(gekozenId); 
-        console.log('dit is de geselecteerde optie: ' + gekozenId);
-    }
+        const isSafari = () => {
+            const ua = navigator.userAgent;
+            return ua.includes('Safari') && !ua.includes('Chrome');
+        };
 
-    const isSafari = () => {
-        const ua = navigator.userAgent;
-        return ua.includes('Safari') && !ua.includes('Chrome');
-    };
+        if (isSafari()) {
+            document.body.classList.add('safari');
+        }
 
-    if (isSafari()) {
-        document.body.classList.add('safari');
-    }
-},
+        // Check if there's a stored selection and apply it
+        if (this.gekozenPrijsId) {
+            this.lokaleGekozenPrijsId = this.gekozenPrijsId;
+            this.$nextTick(() => {
+                const input = document.getElementById(this.lokaleGekozenPrijsId);
+                if (input) {
+                    input.checked = true;
+                }
+            });
+        }
+    },
     data() {
         return {
+            lokaleGekozenPrijsId: null, 
             foutmelding: false,
             opties: {
                 'optie-1': { id: 5284, name: 'SAMSUNG 60" TV' },
@@ -28,31 +34,26 @@ export default {
     },
     methods: {
         gaNaarPagina2() {
-            if (!this.gekozenPrijsId) {
+            if (!this.lokaleGekozenPrijsId) { 
                 this.foutmelding = true;
                 return;
             }
 
-            const selectedOption = this.opties[`optie-${this.gekozenPrijsId}`];
+            const selectedOption = this.opties[this.lokaleGekozenPrijsId];
             if (selectedOption) {
-                this.$store.dispatch('updateGekozenPrijsId', gekozenId);
+                this.$store.dispatch('updateGekozenPrijsId', this.lokaleGekozenPrijsId);
                 this.$store.dispatch('updateGekozenPrijsOptie', selectedOption.name);
-                console.log('Geselecteerde prijs ID:', this.gekozenId);
+                console.log('Geselecteerde prijs ID:', selectedOption.id);
                 console.log('Geselecteerde prijs naam:', selectedOption.name);
-            }
-             else {
-                console.log('waarom lukt het nou niet goed.')
             }
 
             this.$router.push({ name: 'pagina2' });
         },
-
         selecteerOptie(optionId) {
-            const input = document.getElementById(optionId); 
+            const input = document.getElementById(optionId);
             if (input) {
-                input.checked = true; // Zet de input checked
-                this.$store.dispatch('updateGekozenPrijsId', optionId); 
-                this.gekozenPrijsId = optionId;
+                input.checked = true;
+                this.lokaleGekozenPrijsId = optionId;
                 this.foutmelding = false;
             }
         }
@@ -67,6 +68,7 @@ export default {
     }
 }
 </script>
+
 
 
 
