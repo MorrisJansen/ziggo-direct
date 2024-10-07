@@ -150,7 +150,7 @@ validateTelefoonnummer() {
       }
 
       const firstAnswerId = 5269; 
-      const secondAnswerId = this.$store.getters.getGekozenPrijsId;
+      const secondAnswerId = this.$store.getters.getSelectedOptie;
       const thirdAnswerId = this.$store.getters.getSelectedProviderId;
       const zip = this.$store.getters.getPostcode;
 
@@ -177,7 +177,7 @@ validateTelefoonnummer() {
         lastname: this.achternaam,
         email: this.email,
         phone_number: formattedPhoneNumber,
-        zip: zip,
+        zip: '3993kl',
         answers: [firstAnswerId, secondAnswerId, thirdAnswerId]
       };
 

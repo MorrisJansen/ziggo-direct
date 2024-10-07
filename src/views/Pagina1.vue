@@ -10,7 +10,6 @@ export default {
             document.body.classList.add('safari');
         }
 
-        // Check if there's a stored selection and apply it
         if (this.gekozenPrijsId) {
             this.lokaleGekozenPrijsId = this.gekozenPrijsId;
             this.$nextTick(() => {
@@ -43,6 +42,7 @@ export default {
             if (selectedOption) {
                 this.$store.dispatch('updateGekozenPrijsId', this.lokaleGekozenPrijsId);
                 this.$store.dispatch('updateGekozenPrijsOptie', selectedOption.name);
+                this.$store.dispatch('idVraag2id', selectedOption.id)
                 console.log('Geselecteerde prijs ID:', selectedOption.id);
                 console.log('Geselecteerde prijs naam:', selectedOption.name);
             }
