@@ -1,19 +1,23 @@
 <script>
 export default {
     mounted() {
-        const isSafari = () => {
-            const ua = navigator.userAgent;
-            const safari = ua.includes('Safari') && !ua.includes('Chrome');
-            return safari;
-        };
+    const gekozenId = this.gekozenPrijsId; 
+    if (gekozenId) {
+        this.selecteerOptie(gekozenId); 
+        console.log('dit is de geselecteerde optie: ' + gekozenId);
+    }
 
-        if (isSafari()) {
-            document.body.classList.add('safari');
-        } 
-    },
+    const isSafari = () => {
+        const ua = navigator.userAgent;
+        return ua.includes('Safari') && !ua.includes('Chrome');
+    };
+
+    if (isSafari()) {
+        document.body.classList.add('safari');
+    }
+},
     data() {
         return {
-            gekozenPrijsId: null,
             foutmelding: false,
             opties: {
                 'optie-1': { id: 5284, name: 'SAMSUNG 60" TV' },
@@ -29,21 +33,25 @@ export default {
                 return;
             }
 
-            const selectedOption = this.opties[this.gekozenPrijsId];
+            const selectedOption = this.opties[`optie-${this.gekozenPrijsId}`];
             if (selectedOption) {
-                this.$store.dispatch('updateGekozenPrijsId', selectedOption.id);
+                this.$store.dispatch('updateGekozenPrijsId', gekozenId);
                 this.$store.dispatch('updateGekozenPrijsOptie', selectedOption.name);
-                console.log('Geselecteerde prijs ID:', selectedOption.id);
+                console.log('Geselecteerde prijs ID:', this.gekozenId);
                 console.log('Geselecteerde prijs naam:', selectedOption.name);
+            }
+             else {
+                console.log('waarom lukt het nou niet goed.')
             }
 
             this.$router.push({ name: 'pagina2' });
         },
+
         selecteerOptie(optionId) {
-            const input = document.getElementById(optionId);
+            const input = document.getElementById(optionId); 
             if (input) {
-                input.checked = true;
-                this.$store.dispatch('updateGekozenPrijsId', optionId);
+                input.checked = true; // Zet de input checked
+                this.$store.dispatch('updateGekozenPrijsId', optionId); 
                 this.gekozenPrijsId = optionId;
                 this.foutmelding = false;
             }
@@ -59,6 +67,7 @@ export default {
     }
 }
 </script>
+
 
 
 

@@ -1,10 +1,10 @@
 import { createStore } from 'vuex';
 import createPersistedState from 'vuex-persistedstate';
-
 export default createStore({
   state: {
     gekozenPrijsId: null,
     gekozenPrijsOptie: null,
+    selectedOptie: null, // Nieuwe property
     selectedProviderId: null,
     selectedProviderName: null,
     postcode: null,
@@ -15,6 +15,9 @@ export default createStore({
     },
     setGekozenPrijsOptie(state, prijsOptie) {
       state.gekozenPrijsOptie = prijsOptie;
+    },
+    setSelectedOptie(state, optie) {
+      state.selectedOptie = optie; // Optie opslaan
     },
     setSelectedProviderId(state, providerId) {
       state.selectedProviderId = providerId;
@@ -33,6 +36,9 @@ export default createStore({
     updateGekozenPrijsOptie({ commit }, prijsOptie) {
       commit('setGekozenPrijsOptie', prijsOptie);
     },
+    updateSelectedOptie({ commit }, optie) {
+      commit('setSelectedOptie', optie); // Optie dispatchen
+    },
     updateSelectedProviderId({ commit }, providerId) {
       commit('setSelectedProviderId', providerId);
     },
@@ -46,11 +52,9 @@ export default createStore({
   getters: {
     getGekozenPrijsId: (state) => state.gekozenPrijsId,
     getGekozenPrijsOptie: (state) => state.gekozenPrijsOptie,
+    getSelectedOptie: (state) => state.selectedOptie, // Nieuwe getter
     getSelectedProviderId: (state) => state.selectedProviderId,
     getSelectedProviderName: (state) => state.selectedProviderName,
     getPostcode: (state) => state.postcode,
   },
-  plugins: [createPersistedState({
-    storage: window.sessionStorage, // Zorg ervoor dat je sessionStorage gebruikt
-  })],
 });

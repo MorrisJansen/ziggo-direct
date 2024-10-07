@@ -623,7 +623,6 @@ validateTelefoonnummer() {
 
 .lijn-10 {
     width: 90%;
-    margin-top: 2vw !important;
 }
 
 .bereiken {
@@ -636,7 +635,6 @@ validateTelefoonnummer() {
     text-align: left;
     margin-top: 2vw!important;
 }
-
 
 
 .formulier {
@@ -1080,11 +1078,15 @@ dit is voor als er geen fouten zijn met de namen
 
 @media (max-width: 499px) {
 
+    .lijn-10 {
+        margin-top: 2.4vw !important;
+    }
+
     .container-inhoud-witte-container-6 {
         padding-top: 5vw!important;
         padding-bottom: 5vw!important;
-        padding-left: 3vw!important;
-        padding-right: 3vw!important;
+        padding-left: 5vw!important;
+        padding-right: 5vw!important;
         
     }
 
@@ -1150,6 +1152,14 @@ dit is voor als er geen fouten zijn met de namen
         font-size: 4vw;
     }
 
+    .prijzen-prijs-bol {
+        width: 12.5%!important;
+    }
+
+
+    .prijzen-prijs-ps {
+        width: 14%!important;
+    }
 
 
 
@@ -1169,7 +1179,7 @@ dit is voor als er geen fouten zijn met de namen
 
     .witte-container-pagina-6 {
     width: 90%;
-    height: 215vw;
+    height: 209vw;
     left: 0;
     margin: 0 auto!important
     }
@@ -1182,6 +1192,7 @@ dit is voor als er geen fouten zijn met de namen
 
     .bereiken {
         font-size: 5.8vw;    
+        margin-top: 2.4vw!important;
     }
 
     .namen-inputs {
@@ -1195,7 +1206,7 @@ dit is voor als er geen fouten zijn met de namen
         position: relative;
     }
     input[type="text"], input[type="email"], input[type="tel"] {
-        width: 98%!important;
+        width: 98.1%!important;
         height: 20vw!important;
         font-size: 5.5vw;
         padding-left: 13vw!important;
@@ -1222,7 +1233,7 @@ dit is voor als er geen fouten zijn met de namen
     .input-icon:first-child {
         position: relative;
         top: 13vw;
-        left: -34vw;
+        left: -32vw;
         }
     
     .input-icon-telefoon {
@@ -1292,6 +1303,10 @@ dit is voor als er geen fouten zijn met de namen
 
     #container-prijzen-met-prijzen {
         margin-top: 54vw;
+    }
+
+    .pijl-pagina-6 {
+        display: none;
     }
 
 }
