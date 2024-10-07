@@ -174,8 +174,8 @@ async submitForm() {
 
   const data = {
     language: 'nl_NL',
-    publisher_id: pubid,
-    site_subid: subid, 
+    publisher_id: pubid, // haal hier waarde uit url
+    site_subid: subid, // haal ook uit url
     site_custom_url: 'https://ziggoprijswinnnen.nl',
     site_custom_name: 'MeerVoordeel_Ziggo',
     ip: '123.45.67.89',
@@ -183,7 +183,7 @@ async submitForm() {
     firstname: this.voornaam,
     lastname: this.achternaam,
     email: this.email,
-    phone_number: formattedPhoneNumber,
+    phone_number: formattedPhoneNumber,  // Gebruik alleen hier het geformatteerde nummer voor de API
     zip: zip,
     answers: [firstAnswerId, secondAnswerId, thirdAnswerId]
   };
@@ -235,6 +235,8 @@ async submitForm() {
   }
 };
 </script>
+
+
 
 
 
