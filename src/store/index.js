@@ -11,6 +11,8 @@ export default createStore({
     postcode: null,
     subid: null, // Nieuwe state voor subid
     pubid: null, // Nieuwe state voor pubid
+    shouldLoadPixel: false,
+
   },
   mutations: {
     setGekozenPrijsId(state, prijsId) {
@@ -36,6 +38,9 @@ export default createStore({
     },
     setPubId(state, pubid) {  // Nieuwe mutatie voor pubid
         state.pubid = pubid;  // Voeg deze toe aan je state
+    },
+    setShouldLoadPixel(state, value) {
+      state.shouldLoadPixel = value;
     },
   },
   actions: {
@@ -67,6 +72,10 @@ export default createStore({
     updatePubId({ commit }, pubid) {
       commit('setPubId', pubid); // Dit moet naar de juiste mutatie wijzen
     },
+    updateShouldLoadPixel({ commit }, value) {
+      commit('setShouldLoadPixel', value);
+  }
+  
     
   },
   getters: {
@@ -78,5 +87,7 @@ export default createStore({
     getPostcode: (state) => state.postcode,
     getSubId: (state) => state.subid, // Getter voor subid
     getPubId: (state) => state.pubid, // Getter voor pubid
+    getShouldLoadPixel: (state) => state.shouldLoadPixel, // Getter voor shouldLoadPixel
+
   },
 });

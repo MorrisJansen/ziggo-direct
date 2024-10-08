@@ -27,10 +27,13 @@ export default {
         }
     },
     computed: {
+        ...mapState({
+            shouldLoadPixel: state => state.shouldLoadPixel // Directe toegang tot de state
+        }),
+
         pixelUrl() {
             return `https://republish.prijzenpakket.nl/m/6337/9d85475ce4f0/?event=7417&unique_conversion_id=${this.uniqueConversionId}`;
 
-            console.log(this.uniqueConversionId);
         }
     }
 }
@@ -61,6 +64,8 @@ export default {
   :src="pixelUrl" 
   style="width: 1px; height: 1px; border: 0px;" 
   alt="tracking-pixel"
+  v-if="shouldLoadPixel"
+
 />
 
 
