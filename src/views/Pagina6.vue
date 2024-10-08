@@ -10,7 +10,13 @@ export default {
       errors: {},
       containerHeight: 704,
       successMessage: '', 
-      errorMessage: ''
+      errorMessage: '',
+      timers: { 
+        voornaam: null,
+        achternaam: null,
+        email: null,
+        telefoonnummer: null,
+      },
     };
   },
 
@@ -33,6 +39,13 @@ export default {
   },
 
   methods: {
+    startTimer(field, validateFunction) {
+      clearTimeout(this.timers[field]);
+      this.timers[field] = setTimeout(() => {
+        validateFunction(); 
+      }, 2000);
+    },
+
     goToNextPage() {
       this.$router.push({ name: 'nextPage' });
     },
@@ -292,7 +305,9 @@ async submitForm() {
                 :class="{ 'naar-beneden-pijl': errors.achternaam || errors.voornaam || errors.email || errors.telefoonnummer}" 
                 >
                     <router-link to="/Pagina3">
-                      &#8592;
+                      <!-- &#8592; -->
+                      <img src="/public/pijl-terug.svg" alt="">
+
                     </router-link>
                   </span>
                   
@@ -314,7 +329,7 @@ async submitForm() {
                     <div class="namen-inputs">
                       <div class="input-wrapper-naam">
                         <img src="/public/naam-icoon.svg" alt="naam icoon" class="input-icon-voornaam">
-                        <input type="text" placeholder="Voornaam" class="voornaam-input" v-model="voornaam">
+                        <input type="text" placeholder="Voornaam" class="voornaam-input" v-model="voornaam" @input="startTimer('voornaam', validateVoornaam)">
                       </div>
 
                       <div v-if="errors.voornaam" class="error-message-voornaam">
@@ -323,7 +338,7 @@ async submitForm() {
 
                       <div class="input-wrapper-naam">
                         <img src="/public/naam-icoon.svg" alt="naam icoon" class="input-icon-achternaam">
-                        <input type="text" placeholder="Achternaam" class="achternaam-input" v-model="achternaam"
+                        <input type="text" placeholder="Achternaam" class="achternaam-input" v-model="achternaam" @input="startTimer('achternaam', validateAchternaam)"
                         :class="{ 'error-marge-mobiel-1': errors.voornaam}" 
                         >
                       </div>
@@ -338,7 +353,7 @@ async submitForm() {
                       <img src="/public/email-icoon.svg" alt="email" class="input-icon input-icon-email"
                       :style="{ top: (errors.voornaam || errors.achternaam) ? '48%!important' : '40%' }" 
                       >
-                      <input type="email" placeholder="E-mailadres" class="email-input-field" v-model="email"
+                      <input type="email" placeholder="E-mailadres" class="email-input-field" v-model="email" @input="startTimer('email', validateEmail)"
                       :class="{ 'error-marge-mobiel-2': errors.achternaam}" 
                       :style="{ marginTop: (errors.voornaam || errors.achternaam) ? '1vw!important' : '0' }" 
 
@@ -357,7 +372,7 @@ async submitForm() {
                       <img src="/public/telefoon-icoon.svg" alt="telefoon" class="input-icon input-icon-telefoon"
                       :style="{ top: (errors.voornaam || errors.achternaam || errors.email) ? '58%!important' : '40%' }" 
                     :class="{ 'error-marge-mobiel-1': errors.email}"                      >
-                      <input type="tel" placeholder="Telefoonnummer" class="telefoonnummer-input-field" v-model="telefoonnummer"
+                      <input type="tel" placeholder="Telefoonnummer" class="telefoonnummer-input-field" v-model="telefoonnummer" @input="startTimer('telefoonnummer', validateTelefoonnummer)"
                       :style="{ marginTop: (errors.voornaam || errors.achternaam || errors.email) ? '1vw!important' : '0' }" 
                       >
                     </div>
@@ -767,7 +782,7 @@ async submitForm() {
     position: absolute;
     font-size: 2.8vw;
     color: black;
-    top: 77.5%;
+    top: 71.5%;
     right: 86%;
 }
 

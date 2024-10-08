@@ -119,7 +119,9 @@ export default {
 
                         <span class="pijl-pagina-2">
                             <router-link to="/Pagina1">
-                              &#8592;
+                              <!-- &#8592; -->
+                              <img src="/public/pijl-terug.svg" alt="">
+
                             </router-link>
                           </span>
 

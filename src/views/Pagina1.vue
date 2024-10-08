@@ -111,7 +111,8 @@ export default {
 
                     <span class="pijl-pagina-1">
                         <router-link to="/" class="pijl-breedte">
-                          &#8592;
+                          <!-- &#8592; -->
+                          <img src="/public/pijl-terug.svg" alt="">
                         </router-link>
                       </span>
 
