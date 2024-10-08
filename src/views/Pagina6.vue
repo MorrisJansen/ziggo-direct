@@ -315,7 +315,8 @@ validateAndFormatPhoneNumber(phoneNumber) {
                     <div class="namen-inputs">
                       <div class="input-wrapper-naam">
                         <img src="/public/naam-icoon.svg" alt="naam icoon" class="input-icon-voornaam">
-                        <input type="text" placeholder="Voornaam" class="voornaam-input" v-model="voornaam" @input="validateVoornaam">
+                        <input type="text" placeholder="Voornaam" class="voornaam-input" v-model="voornaam" @input="validateVoornaam"
+                        :class="{ 'error-border': errors.voornaam }" >
                       </div>
 
                       <div v-if="errors.voornaam" class="error-message-voornaam">
@@ -325,7 +326,10 @@ validateAndFormatPhoneNumber(phoneNumber) {
                       <div class="input-wrapper-naam">
                         <img src="/public/naam-icoon.svg" alt="naam icoon" class="input-icon-achternaam">
                         <input type="text" placeholder="Achternaam" class="achternaam-input" v-model="achternaam" @input="validateAchternaam"
-                        :class="{ 'error-marge-mobiel-1': errors.voornaam}" 
+                        :class="{ 
+                            'error-marge-mobiel-1': errors.voornaam, 
+                            'error-border': errors.achternaam 
+                          }"                        
                         >
                       </div>
 
@@ -340,7 +344,11 @@ validateAndFormatPhoneNumber(phoneNumber) {
                       :style="{ top: (errors.voornaam || errors.achternaam) ? '48%!important' : '40%' }" 
                       >
                       <input type="email" placeholder="E-mailadres" class="email-input-field" v-model="email" @input="validateEmail"
-                      :class="{ 'error-marge-mobiel-2': errors.achternaam}" 
+                      :class="{ 
+                        'error-marge-mobiel-2': errors.achternaam,
+                        'error-border': errors.email
+                    
+                    }" 
                       :style="{ marginTop: (errors.voornaam || errors.achternaam) ? '1vw!important' : '0' }" 
 
                       >
@@ -360,13 +368,14 @@ validateAndFormatPhoneNumber(phoneNumber) {
                     :class="{ 'error-marge-mobiel-1': errors.email}"                      >
                       <input type="tel" placeholder="Telefoonnummer" class="telefoonnummer-input-field" v-model="telefoonnummer" @input="validateTelefoonnummer"
                       :style="{ marginTop: (errors.voornaam || errors.achternaam || errors.email) ? '1vw!important' : '0' }" 
+                      :class="{'error-border': errors.telefoonnummer}"
                       >
                     </div>
                     <div v-if="errors.telefoonnummer" class="error-message-tel"
                     :style="{ marginTop: (errors.voornaam || errors.achternaam) ? '2vw!important' : '0' }" 
                     :class="{ 
                         'geen-fout-naam-tel': !errors.achternaam && !errors.voornaam, 
-                        'alleen-tel-fout': !errors.voornaam && !errors.achternaam && errors.telefoonnummer 
+                        'alleen-tel-fout': !errors.voornaam && !errors.achternaam && errors.telefoonnummer,
                     }">                    
                         {{ errors.telefoonnummer }}
                     </div>
@@ -536,6 +545,11 @@ validateAndFormatPhoneNumber(phoneNumber) {
 
 
 <style>
+
+#error-border {
+    border: 1px solid red;
+}
+
 
 .mobiel-pagina-6 {
     display: none!important;
@@ -886,7 +900,7 @@ input[type="tel"] {
     height: 4vw;
     padding: 1vw;
     padding-left: 3.5vw!important;
-    border: none!important;
+    border: none;
     border-radius: 5vw;
     font-size: 1.1vw;
     background: #f1f1f1;

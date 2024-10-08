@@ -154,7 +154,8 @@ export default {
 
 
                 <div class="input-button-wrapper">
-                    <div class="input-button-container">
+                    <div class="input-button-container"
+                    :class="{ 'error-border': postcodeError }">
                         <input type="postcode" placeholder="Voer je postcode in" class="postcode-input" v-model="postcode" @input="handlePostcodeInput" @keydown="handleEnterKey"
                         >
                         <button @click="goToPage4" class="cta-pagina-3">
@@ -453,7 +454,13 @@ export default {
 .input-button-container {
     display: flex;
     align-items: center; 
+    border-radius: 35vw;
 }
+
+.error-border {
+    border: 1px solid red!important;
+  }
+  
 
 .postcode-input {
     width: 24vw;
