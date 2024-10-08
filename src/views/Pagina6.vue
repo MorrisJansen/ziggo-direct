@@ -217,11 +217,9 @@ validateAndFormatPhoneNumber(phoneNumber) {
 
         console.log('API respons status:', response.status);
 
-        if (response.status === 201) {
-          console.log('Succesvol ingediend!');
-          this.successMessage = 'Bedankt voor uw inzending!';
-          this.$router.push('/Bedankt');
-          console.log('ga naar bedankt pixel')
+        if (response.status === 409) {
+          this.$router.push('/bedankt');
+          console.log('naar bedankt zonder pixel')   
         } else if (response.status === 400) {
           const responseBody = await response.json();
           console.log('Volledige responseBody:', responseBody);
@@ -236,10 +234,11 @@ validateAndFormatPhoneNumber(phoneNumber) {
             this.errors.email = 'Ongeldig e-mailadres';
           }
           console.error('Fout bij indienen:', responseBody);
-        } else if (response.status === 409) {
-          this.$router.push('/bedankt');
-          console.log('naar bedankt zonder pixel')          
-
+        } else if (response.status === 201) {
+          console.log('Succesvol ingediend!');
+          this.successMessage = 'Bedankt voor uw inzending!';
+          this.$router.push('/Bedankt');
+          console.log('ga naar bedankt pixel')         
         }
       } catch (error) {
         console.error('Er is een fout opgetreden bij het versturen van het formulier:', error);
