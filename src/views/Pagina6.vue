@@ -116,7 +116,8 @@ validateAchternaam() {
 },
 
 validateTelefoonnummer() {
-//   const formattedPhoneNumber = this.validateAndFormatPhoneNumber(this.telefoonnummer);
+  
+// const formattedPhoneNumber = this.validateAndFormatPhoneNumber(this.telefoonnummer);
 const formattedPhoneNumber = this.telefoonnummer
 console.log(formattedPhoneNumber)
   if (!formattedPhoneNumber) {
