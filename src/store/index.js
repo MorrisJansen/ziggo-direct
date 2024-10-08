@@ -9,6 +9,8 @@ export default createStore({
     selectedProviderId: null,
     selectedProviderName: null,
     postcode: null,
+    subid: null, // Nieuwe state voor subid
+    pubid: null, // Nieuwe state voor pubid
   },
   mutations: {
     setGekozenPrijsId(state, prijsId) {
@@ -28,6 +30,12 @@ export default createStore({
     },
     setPostcode(state, postcode) {
       state.postcode = postcode;
+    },
+    setSubId(state, subid) {  // Nieuwe mutatie voor subid
+      state.subid = subid;  // Voeg deze toe aan je state
+    },
+    setPubId(state, pubid) {  // Nieuwe mutatie voor pubid
+        state.pubid = pubid;  // Voeg deze toe aan je state
     },
   },
   actions: {
@@ -53,13 +61,21 @@ export default createStore({
     idVraag2id({ commit }, geselecteerdeId) {
       commit('setSelectedOptie', geselecteerdeId);
     },
+    updateSubId({ commit }, subid) {
+      commit('setSelectedOptie', subid); // of een andere mutatie, afhankelijk van waar je de subid wilt opslaan
+    },
+    updatePubId({ commit }, pubid) {
+        commit('setSelectedProviderId', pubid); // idem hier
+    },
   },
   getters: {
     getGekozenPrijsId: (state) => state.gekozenPrijsId,
     getGekozenPrijsOptie: (state) => state.gekozenPrijsOptie,
-    getSelectedOptie: (state) => state.selectedOptie,  // Getter voor selectedOptie
+    getSelectedOptie: (state) => state.selectedOptie,  
     getSelectedProviderId: (state) => state.selectedProviderId,
     getSelectedProviderName: (state) => state.selectedProviderName,
     getPostcode: (state) => state.postcode,
+    getSubId: (state) => state.subid, // Getter voor subid
+    getPubId: (state) => state.pubid, // Getter voor pubid
   },
 });
