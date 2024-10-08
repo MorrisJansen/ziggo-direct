@@ -62,8 +62,6 @@ export default {
   :src="pixelUrl" 
   style="width: 1px; height: 1px; border: 0px;" 
   alt="tracking-pixel"
-  v-if="shouldLoadPixel"
-
 />
 
 

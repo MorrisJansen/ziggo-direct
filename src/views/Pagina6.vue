@@ -220,8 +220,8 @@ validateAndFormatPhoneNumber(phoneNumber) {
         if (response.status === 201) {
           console.log('Succesvol ingediend!');
           this.successMessage = 'Bedankt voor uw inzending!';
-          this.$store.dispatch('setShouldLoadPixel', true);
           this.$router.push('/Bedankt');
+          console.log('ga naar bedankt pixel')
         } else if (response.status === 400) {
           const responseBody = await response.json();
           console.log('Volledige responseBody:', responseBody);
@@ -238,7 +238,7 @@ validateAndFormatPhoneNumber(phoneNumber) {
           console.error('Fout bij indienen:', responseBody);
         } else if (response.status === 409) {
           this.$router.push('/bedankt');
-          this.$store.dispatch('setShouldLoadPixel', false);
+          console.log('naar bedankt zonder pixel')          
 
         }
       } catch (error) {

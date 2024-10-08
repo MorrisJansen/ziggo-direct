@@ -39,9 +39,7 @@ export default createStore({
     setPubId(state, pubid) {  // Nieuwe mutatie voor pubid
         state.pubid = pubid;  // Voeg deze toe aan je state
     },
-    setShouldLoadPixel(state, value) {
-      state.shouldLoadPixel = value;
-    },
+
   },
   actions: {
     updateGekozenPrijsId({ commit }, prijsId) {
