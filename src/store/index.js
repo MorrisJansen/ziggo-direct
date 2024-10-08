@@ -72,10 +72,6 @@ export default createStore({
     updatePubId({ commit }, pubid) {
       commit('setPubId', pubid); // Dit moet naar de juiste mutatie wijzen
     },
-    updateShouldLoadPixel({ commit }, value) {
-      commit('setShouldLoadPixel', value);
-  }
-  
     
   },
   getters: {
@@ -87,7 +83,6 @@ export default createStore({
     getPostcode: (state) => state.postcode,
     getSubId: (state) => state.subid, // Getter voor subid
     getPubId: (state) => state.pubid, // Getter voor pubid
-    getShouldLoadPixel: (state) => state.shouldLoadPixel, // Getter voor shouldLoadPixel
-
+    
   },
 });
