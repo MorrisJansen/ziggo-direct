@@ -84,9 +84,11 @@ export default {
     },
     validateTelefoonnummer() {
   let cleanedPhoneNumber = this.telefoonnummer.trim();
-
+  
+  // Verwijder spaties en streepjes
   cleanedPhoneNumber = cleanedPhoneNumber.replace(/[\s-]/g, '');
 
+  // Controleer de prefix en vervang deze
   if (cleanedPhoneNumber.startsWith('+31')) {
     cleanedPhoneNumber = cleanedPhoneNumber.replace('+31', '0');
   } else if (cleanedPhoneNumber.startsWith('0031')) {
@@ -94,15 +96,17 @@ export default {
   } else if (cleanedPhoneNumber.startsWith('31')) {
     cleanedPhoneNumber = cleanedPhoneNumber.replace('31', '0');
   } else if (cleanedPhoneNumber.startsWith('06')) {
-    cleanedPhoneNumber = cleanedPhoneNumber.replace('06', '')
+    cleanedPhoneNumber = cleanedPhoneNumber.replace('06', '');
   } else {
     this.errors.telefoonnummer = 'Ongeldig telefoonnummer.';
     return false;
   }
 
+  // Tel het aantal cijfers na de conversie
   const digitsOnlyPhoneNumber = cleanedPhoneNumber.replace(/[^0-9]/g, '');
-
-  if (digitsOnlyPhoneNumber.length !== 8) {
+  
+  // Een Nederlands mobiel nummer moet 10 cijfers lang zijn (inclusief de 0)
+  if (digitsOnlyPhoneNumber.length !== 10) {
     this.errors.telefoonnummer = 'Ongeldig telefoonnummer.';
     return false;
   }
@@ -110,6 +114,7 @@ export default {
   this.errors.telefoonnummer = '';
   return true;
 },
+
 
 
 validateAndFormatPhoneNumber(phoneNumber) {
