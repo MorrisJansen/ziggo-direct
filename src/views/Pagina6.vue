@@ -45,24 +45,26 @@ export default {
     },
 
     validateVoornaam() {
-      const regex = /^[A-Za-z]+([ ',.'-][A-Za-z]+)*$/;
-      if (!this.voornaam.match(regex)) {
-        this.errors.voornaam = 'Ongeldige voornaam.';
-        return false;
-      }
-      this.errors.voornaam = '';
-      return true;
-    },
+  const regex = /^[A-Za-z'., -]+$/; // Koppelteken aan het einde geplaatst
+  if (!this.voornaam.match(regex)) {
+    this.errors.voornaam = 'Ongeldige voornaam.';
+    return false;
+  }
+  this.errors.voornaam = '';
+  return true;
+},
 
-    validateAchternaam() {
-      const regex = /^[A-Za-z]+([ ',.'-][A-Za-z]+)*$/;
-      if (!this.achternaam.match(regex)) {
-        this.errors.achternaam = 'Ongeldige achternaam.';
-        return false;
-      }
-      this.errors.achternaam = '';
-      return true;
-    },
+validateAchternaam() {
+  const regex = /^[A-Za-z'., -]+$/; // Koppelteken aan het einde geplaatst
+  if (!this.achternaam.match(regex)) {
+    this.errors.achternaam = 'Ongeldige achternaam.';
+    return false;
+  }
+  this.errors.achternaam = '';
+  return true;
+},
+
+
 
     validateEmail() {
       const regex = /^[^\s@]+@[^\s@]+\.[a-z]{2,}(\.(com|org|net|edu|gov|nl|info|biz|co|io|me|tv))?$/i;
@@ -95,16 +97,14 @@ export default {
     cleanedPhoneNumber = cleanedPhoneNumber.replace('0031', '0');
   } else if (cleanedPhoneNumber.startsWith('31')) {
     cleanedPhoneNumber = cleanedPhoneNumber.replace('31', '0');
-  } else if (cleanedPhoneNumber.startsWith('06')) {
-    cleanedPhoneNumber = cleanedPhoneNumber.replace('06', '');
-  } else {
+  } else if (!cleanedPhoneNumber.startsWith('06')) {
     this.errors.telefoonnummer = 'Ongeldig telefoonnummer.';
     return false;
   }
 
   // Tel het aantal cijfers na de conversie
   const digitsOnlyPhoneNumber = cleanedPhoneNumber.replace(/[^0-9]/g, '');
-  
+
   // Een Nederlands mobiel nummer moet 10 cijfers lang zijn (inclusief de 0)
   if (digitsOnlyPhoneNumber.length !== 10) {
     this.errors.telefoonnummer = 'Ongeldig telefoonnummer.';
@@ -114,6 +114,7 @@ export default {
   this.errors.telefoonnummer = '';
   return true;
 },
+
 
 
 
