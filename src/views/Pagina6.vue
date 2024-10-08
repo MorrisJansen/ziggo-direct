@@ -1,4 +1,7 @@
 <script>
+import { v4 as uuidv4 } from 'uuid';
+
+
 export default {
   data() {
     return {
@@ -11,6 +14,8 @@ export default {
       containerHeight: 704,
       successMessage: '', 
       errorMessage: '',
+      uniqueConversionId: uuidv4()
+
     };
   },
 
