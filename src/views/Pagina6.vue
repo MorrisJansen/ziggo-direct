@@ -92,7 +92,7 @@ validateAchternaam() {
 
       const parts = this.email.split('@');
       if (parts.length !== 2 || parts[1].split('.').length !== 2) {
-        this.errors.email = 'Ongeldig e-mailadres. Er mag slechts één extensie zijn.';
+        this.errors.email = 'Ongeldig e-mailadres.';
         return false;
       }
 
@@ -101,11 +101,15 @@ validateAchternaam() {
     },
     validateTelefoonnummer() {
   let cleanedPhoneNumber = this.telefoonnummer.trim();
+
+  if (/[^0-9]/.test(cleanedPhoneNumber)) {
+  this.errors.telefoonnummer = 'Ongeldig telefoonnummer.';
+  return false;
+}
+
   
-  // Verwijder spaties en streepjes
   cleanedPhoneNumber = cleanedPhoneNumber.replace(/[\s-]/g, '');
 
-  // Controleer de prefix en vervang deze
   if (cleanedPhoneNumber.startsWith('+31')) {
     cleanedPhoneNumber = cleanedPhoneNumber.replace('+31', '0');
   } else if (cleanedPhoneNumber.startsWith('0031')) {
