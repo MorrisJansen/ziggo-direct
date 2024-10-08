@@ -822,7 +822,7 @@ validateAndFormatPhoneNumber(phoneNumber) {
 
 
 .naar-beneden-pijl {
-    top: 81%!important;
+    top: 87%!important;
 }
 
 

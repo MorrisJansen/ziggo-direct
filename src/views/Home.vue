@@ -12,17 +12,17 @@ export default {
             document.body.classList.add('safari');
         }
 
-        // Haal subid en pubid uit de URL
         const queryParams = new URLSearchParams(window.location.search);
         const subid = queryParams.get('subid');
         const pubid = queryParams.get('pubid');
 
-        // Check of subid en pubid bestaan in de URL, zo ja, sla ze op in Vuex
         if (subid) {
             this.$store.dispatch('updateSubId', subid);
+            console.log(subid)
         }
         if (pubid) {
             this.$store.dispatch('updatePubId', pubid);
+            console.log(pubid)
         }
     },
     methods: {
