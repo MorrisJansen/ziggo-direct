@@ -62,11 +62,12 @@ export default createStore({
       commit('setSelectedOptie', geselecteerdeId);
     },
     updateSubId({ commit }, subid) {
-      commit('setSelectedOptie', subid); // of een andere mutatie, afhankelijk van waar je de subid wilt opslaan
+      commit('setSubId', subid); // Dit moet naar de juiste mutatie wijzen
     },
     updatePubId({ commit }, pubid) {
-        commit('setSelectedProviderId', pubid); // idem hier
+      commit('setPubId', pubid); // Dit moet naar de juiste mutatie wijzen
     },
+    
   },
   getters: {
     getGekozenPrijsId: (state) => state.gekozenPrijsId,

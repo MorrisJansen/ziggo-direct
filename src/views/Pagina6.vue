@@ -160,6 +160,11 @@ validateAndFormatPhoneNumber(phoneNumber) {
       const secondAnswerId = this.$store.getters.getSelectedOptie;
       const thirdAnswerId = this.$store.getters.getSelectedProviderId;
       const zip = this.$store.getters.getPostcode;
+
+
+      console.log('PubId:', this.$store.getters.getPubId);
+      console.log('SubId:', this.$store.getters.getSubId);
+      
       const pubid = this.$store.getters.getPubId;
       const subid = this.$store.getters.getSubId;
 
