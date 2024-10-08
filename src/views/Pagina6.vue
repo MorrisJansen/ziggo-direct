@@ -33,6 +33,16 @@ export default {
   },
 
   methods: {
+    triggerTrackingPixel() {
+        const pixelUrl = `https://republish.prijzenpakket.nl/m/6337/9d85475ce4f0/?event=7417&unique_conversion_id=${this.uniqueConversionId}`;
+        const img = new Image();
+        img.src = pixelUrl;
+        img.style.width = '1px';
+        img.style.height = '1px';
+        img.style.border = '0';
+        document.body.appendChild(img);
+    },
+
     goToNextPage() {
       this.$router.push({ name: 'nextPage' });
     },
@@ -238,7 +248,8 @@ validateAndFormatPhoneNumber(phoneNumber) {
           console.log('Succesvol ingediend!');
           this.successMessage = 'Bedankt voor uw inzending!';
           this.$router.push('/Bedankt');
-          console.log('ga naar bedankt pixel')         
+          console.log('ga naar bedankt pixel')    
+          this.triggerTrackingPixel();     
         }
       } catch (error) {
         console.error('Er is een fout opgetreden bij het versturen van het formulier:', error);

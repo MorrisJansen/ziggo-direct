@@ -29,10 +29,10 @@ export default {
     computed: {
 
 
-        pixelUrl() {
-            return `https://republish.prijzenpakket.nl/m/6337/9d85475ce4f0/?event=7417&unique_conversion_id=${this.uniqueConversionId}`;
+        // pixelUrl() {
+        //     return `https://republish.prijzenpakket.nl/m/6337/9d85475ce4f0/?event=7417&unique_conversion_id=${this.uniqueConversionId}`;
 
-        }
+        // }
     }
 }
 </script>
@@ -57,12 +57,12 @@ export default {
         </div>
     </div>
   </a>
-  <img 
+  <!-- <img 
   referrerpolicy="no-referrer-when-downgrade" 
   :src="pixelUrl" 
   style="width: 1px; height: 1px; border: 0px;" 
   alt="tracking-pixel"
-/>
+/> -->
 
 
 
