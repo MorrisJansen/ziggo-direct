@@ -56,7 +56,12 @@ export default {
         </div>
     </div>
   </a>
-
+  <img 
+  referrerpolicy="no-referrer-when-downgrade" 
+  :src="pixelUrl" 
+  style="width: 1px; height: 1px; border: 0px;" 
+  alt="tracking-pixel"
+/>
 
 
 
