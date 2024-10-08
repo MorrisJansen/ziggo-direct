@@ -4,7 +4,7 @@ export default {
         return {
             postcode: '',
             postcodeError: '',
-            gekozenPrijs: '' // Voeg dit toe om de prijs op te slaan
+            gekozenPrijs: '', // Voeg dit toe om de prijs op te slaan
         };
     },
     mounted() {
@@ -23,36 +23,49 @@ export default {
         const gekozenPrijsOptie = this.$store.getters.getGekozenPrijsOptie;
         if (gekozenPrijsOptie) {
             this.gekozenPrijs = gekozenPrijsOptie;
-            console.log(this.gekozenPrijs)
+            console.log(this.gekozenPrijs);
         } else {
             console.log('Geen prijs gevonden in Vuex store');
         }
     },
     computed: {
-        // Dit blijft ongewijzigd als je een reactive getter voor de prijs wilt
         gekozenPrijsOptie() {
             return this.$store.getters.getGekozenPrijsOptie;
         }
     },
     methods: {
-        handleEnterKey(event) {
-            if (event.key === 'Enter') {
-                event.preventDefault(); // Voorkom standaard gedrag
-                this.goToPage4(); // Roep de functie aan
-            }
-        },
-        goToPage4() {
-            this.postcodeError = '';
+        validatePostcode() {
+            this.postcodeError = ''; // Reset foutmelding
 
             if (!this.postcode) {
                 this.postcodeError = 'Postcode mag niet leeg zijn.';
-                return;
+                return false;
             }
 
             const regex = /^(?! )[0-9]{4}[ ]?[A-Za-z]{2}(?<! )$/;
 
             if (!regex.test(this.postcode)) {
                 this.postcodeError = 'Voer een geldige postcode in (bijvoorbeeld 1234 AB).';
+                return false;
+            }
+
+            this.postcodeError = '';  // Geen foutmelding
+            return true;
+        },
+
+        handlePostcodeInput() {
+            this.validatePostcode();  // Directe validatie bij elke invoer
+        },
+
+        handleEnterKey(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault(); // Voorkom standaard gedrag
+                this.goToPage4(); // Roep de functie aan
+            }
+        },
+
+        goToPage4() {
+            if (!this.validatePostcode()) {
                 return;
             }
 
@@ -62,7 +75,7 @@ export default {
             this.$router.push({ name: 'pagina4' });
             console.log(this.postcode);
         },
-        
+
         selectOption(optionId) {
             const input = document.getElementById(optionId);
             if (input) {
@@ -70,7 +83,9 @@ export default {
             }
         }
     }
-}
+};
+
+
 </script>
 
 
@@ -140,7 +155,7 @@ export default {
 
                 <div class="input-button-wrapper">
                     <div class="input-button-container">
-                        <input type="postcode" placeholder="Voer je postcode in" class="postcode-input" v-model="postcode" @keydown="handleEnterKey"
+                        <input type="postcode" placeholder="Voer je postcode in" class="postcode-input" v-model="postcode" @input="handlePostcodeInput" @keydown="handleEnterKey"
                         >
                         <button @click="goToPage4" class="cta-pagina-3">
                             <span class="cta-text-pagina-3">Check postcode</span>

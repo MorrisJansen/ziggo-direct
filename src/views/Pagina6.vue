@@ -11,12 +11,6 @@ export default {
       containerHeight: 704,
       successMessage: '', 
       errorMessage: '',
-      timers: { 
-        voornaam: null,
-        achternaam: null,
-        email: null,
-        telefoonnummer: null,
-      },
     };
   },
 
@@ -39,13 +33,6 @@ export default {
   },
 
   methods: {
-    startTimer(field, validateFunction) {
-      clearTimeout(this.timers[field]);
-      this.timers[field] = setTimeout(() => {
-        validateFunction(); 
-      }, 2000);
-    },
-
     goToNextPage() {
       this.$router.push({ name: 'nextPage' });
     },
@@ -58,52 +45,74 @@ export default {
     },
 
     validateVoornaam() {
-  const regex = /^[A-Za-z]+([ ',.'-][A-Za-z]+)*$/;
-  if (!this.voornaam.match(regex)) {
-    this.errors.voornaam = 'Ongeldige voornaam.';
-    return false;
-  }
-  this.errors.voornaam = '';
-  return true;
-},
+      const regex = /^[A-Za-z]+([ ',.'-][A-Za-z]+)*$/;
+      if (!this.voornaam.match(regex)) {
+        this.errors.voornaam = 'Ongeldige voornaam.';
+        return false;
+      }
+      this.errors.voornaam = '';
+      return true;
+    },
 
-validateAchternaam() {
-  const regex = /^[A-Za-z]+([ ',.'-][A-Za-z]+)*$/;
-  if (!this.achternaam.match(regex)) {
-    this.errors.achternaam = 'Ongeldige achternaam.';
-    return false;
-  }
-  this.errors.achternaam = '';
-  return true;
-},
+    validateAchternaam() {
+      const regex = /^[A-Za-z]+([ ',.'-][A-Za-z]+)*$/;
+      if (!this.achternaam.match(regex)) {
+        this.errors.achternaam = 'Ongeldige achternaam.';
+        return false;
+      }
+      this.errors.achternaam = '';
+      return true;
+    },
 
     validateEmail() {
-    const regex = /^[^\s@]+@[^\s@]+\.[a-z]{2,}(\.(com|org|net|edu|gov|nl|info|biz|co|io|me|tv))?$/i;
-    const containsApostrophe = /'/;
+      const regex = /^[^\s@]+@[^\s@]+\.[a-z]{2,}(\.(com|org|net|edu|gov|nl|info|biz|co|io|me|tv))?$/i;
+      const containsApostrophe = /'/;
 
-    if (!this.email.match(regex) || this.email.match(containsApostrophe)) {
+      if (!this.email.match(regex) || this.email.match(containsApostrophe)) {
         this.errors.email = 'Ongeldig e-mailadres.';
         return false;
-    }
+      }
 
-    const parts = this.email.split('@');
-    
-    if (parts.length !== 2 || parts[1].split('.').length !== 2) {
+      const parts = this.email.split('@');
+      if (parts.length !== 2 || parts[1].split('.').length !== 2) {
         this.errors.email = 'Ongeldig e-mailadres. Er mag slechts één extensie zijn.';
         return false;
-    }
+      }
 
-    this.errors.email = '';
-    return true;
+      this.errors.email = '';
+      return true;
+    },
+    validateTelefoonnummer() {
+  let cleanedPhoneNumber = this.telefoonnummer.trim();
+
+  cleanedPhoneNumber = cleanedPhoneNumber.replace(/[\s-]/g, '');
+
+  if (cleanedPhoneNumber.startsWith('+31')) {
+    cleanedPhoneNumber = cleanedPhoneNumber.replace('+31', '0');
+  } else if (cleanedPhoneNumber.startsWith('0031')) {
+    cleanedPhoneNumber = cleanedPhoneNumber.replace('0031', '0');
+  } else if (cleanedPhoneNumber.startsWith('31')) {
+    cleanedPhoneNumber = cleanedPhoneNumber.replace('31', '0');
+  } else if (cleanedPhoneNumber.startsWith('06')) {
+    cleanedPhoneNumber = cleanedPhoneNumber.replace('06', '')
+  } else {
+    this.errors.telefoonnummer = 'Ongeldig telefoonnummer.';
+    return false;
+  }
+
+  const digitsOnlyPhoneNumber = cleanedPhoneNumber.replace(/[^0-9]/g, '');
+
+  if (digitsOnlyPhoneNumber.length !== 8) {
+    this.errors.telefoonnummer = 'Ongeldig telefoonnummer.';
+    return false;
+  }
+
+  this.errors.telefoonnummer = '';
+  return true;
 },
 
 
-
-
-
-
-
-  validateAndFormatPhoneNumber(phoneNumber) {
+validateAndFormatPhoneNumber(phoneNumber) {
   phoneNumber = phoneNumber.replace(/[^0-9+\s-]/g, '');
 
   phoneNumber = phoneNumber.replace(/[\s-]/g, '');
@@ -128,124 +137,101 @@ validateAchternaam() {
   return phoneNumber;
 },
 
-validateTelefoonnummer() {
-  
-// const formattedPhoneNumber = this.validateAndFormatPhoneNumber(this.telefoonnummer);
-const formattedPhoneNumber = this.telefoonnummer
-console.log(formattedPhoneNumber)
-  if (!formattedPhoneNumber) {
-    this.errors.telefoonnummer = 'Ongeldig telefoonnummer.';
-    return false;
-  }
-  this.telefoonnummer = formattedPhoneNumber;
-
-  this.errors.telefoonnummer = '';
-  return true;
-},
 
 
 
+    
+    async submitForm() {
+      this.errors = {};
+      this.successMessage = ''; 
+      this.errorMessage = '';
 
+      const isValidVoornaam = this.validateVoornaam();
+      const isValidAchternaam = this.validateAchternaam();
+      const isValidEmail = this.validateEmail();
+      const isValidTelefoonnummer = this.validateTelefoonnummer();
 
-
-
-
-
-async submitForm() {
-  this.errors = {};
-  this.successMessage = ''; 
-  this.errorMessage = '';
-
-  const isValidVoornaam = this.validateVoornaam();
-  const isValidAchternaam = this.validateAchternaam();
-  const isValidEmail = this.validateEmail();
-  const isValidTelefoonnummer = this.validateTelefoonnummer();
-
-  if (!isValidVoornaam || !isValidAchternaam || !isValidEmail || !isValidTelefoonnummer) {
-    console.error('Validation failed:', this.errors);
-    return;
-  }
-
-  const firstAnswerId = 5269; 
-  const secondAnswerId = this.$store.getters.getSelectedOptie;
-  const thirdAnswerId = this.$store.getters.getSelectedProviderId;
-  const zip = this.$store.getters.getPostcode;
-  const pubid = this.$store.getters.getPubId;
-  const subid = this.$store.getters.getSubId;
-
-  if (!secondAnswerId || !thirdAnswerId || !zip) {
-    console.error('Onvoldoende gegevens om te verwerken. tweede antwoord:', secondAnswerId, 'derde antwoord:', thirdAnswerId, 'postcode:', zip);
-    return;
-  }
-
-
-  const formattedPhoneNumber = this.validateAndFormatPhoneNumber(this.telefoonnummer);
-  if (!formattedPhoneNumber) {
-    this.errors.telefoonnummer = 'Ongeldig telefoonnummer.';
-    console.error('Ongeldig telefoonnummer:', this.telefoonnummer);
-    return;
-  }
-
-  const data = {
-    language: 'nl_NL',
-    publisher_id: pubid, // haal hier waarde uit url
-    site_subid: subid, // haal ook uit url
-    site_custom_url: 'https://ziggoprijswinnnen.nl',
-    site_custom_name: 'MeerVoordeel_Ziggo',
-    ip: '123.45.67.89',
-    optin_timestamp: new Date().toISOString().slice(0, 19).replace('T', ' '),
-    firstname: this.voornaam,
-    lastname: this.achternaam,
-    email: this.email,
-    phone_number: formattedPhoneNumber,  // Gebruik alleen hier het geformatteerde nummer voor de API
-    zip: zip,
-    answers: [firstAnswerId, secondAnswerId, thirdAnswerId]
-  };
-
-  console.log('Geformatteerd telefoonnummer:', formattedPhoneNumber);
-  console.log('Data verstuurd naar API:', JSON.stringify(data, null, 2));
-
-  try {
-    const response = await fetch('https://leadgen.republish.nl/api/sponsors/2410/leads', {
-      method: 'POST',
-      headers: {
-        'Authorization': 'Basic ' + btoa('199:b41c7c41c8d595fbd66dea6a4f70836fbc5e3afe'),
-        'Content-Type': 'application/json; charset=utf-8',
-      },
-      body: JSON.stringify(data),
-    });
-
-    console.log('API respons status:', response.status);
-
-    if (response.status === 201) {
-      console.log('Succesvol ingediend!');
-      this.successMessage = 'Bedankt voor uw inzending!';
-      this.$router.push('/Bedankt');
-    } else if (response.status === 400) {
-      const responseBody = await response.json();
-      console.log('Volledige responseBody:', responseBody);
-
-      if (responseBody.error && responseBody.error.includes('phone_number')) {
-        this.errors.telefoonnummer = 'Ongeldig telefoonnummer.';
-      } else if (responseBody.errors && responseBody.includes('firstname')) {
-        this.errors.firstname = 'Ongeldige voornaam';
-      } else if (responseBody.errors && responseBody.includes('lastname')) {
-        this.errors.lastname = 'Ongeldige achternaam';
-      } else if (responseBody.errors && responseBody.includes('email')) {
-        this.errors.email = 'Ongeldig e-mailadres';
+      if (!isValidVoornaam || !isValidAchternaam || !isValidEmail || !isValidTelefoonnummer) {
+        console.error('Validation failed:', this.errors);
+        return;
       }
-      console.error('Fout bij indienen:', responseBody);
-    } else if (response.status === 409) {
-      this.$router.push('/bedankt');
+
+      const firstAnswerId = 5269; 
+      const secondAnswerId = this.$store.getters.getSelectedOptie;
+      const thirdAnswerId = this.$store.getters.getSelectedProviderId;
+      const zip = this.$store.getters.getPostcode;
+      const pubid = this.$store.getters.getPubId;
+      const subid = this.$store.getters.getSubId;
+
+      if (!secondAnswerId || !thirdAnswerId || !zip) {
+        console.error('Onvoldoende gegevens om te verwerken. tweede antwoord:', secondAnswerId, 'derde antwoord:', thirdAnswerId, 'postcode:', zip);
+        return;
+      }
+
+      const formattedPhoneNumber = this.validateAndFormatPhoneNumber(this.telefoonnummer);
+      if (!formattedPhoneNumber) {
+        this.errors.telefoonnummer = 'Ongeldig telefoonnummer.';
+        console.error('Ongeldig telefoonnummer:', this.telefoonnummer);
+        return;
+      }
+
+      const data = {
+        language: 'nl_NL',
+        publisher_id: pubid,
+        site_subid: subid,
+        site_custom_url: 'https://ziggoprijswinnnen.nl',
+        site_custom_name: 'MeerVoordeel_Ziggo',
+        ip: '123.45.67.89',
+        optin_timestamp: new Date().toISOString().slice(0, 19).replace('T', ' '),
+        firstname: this.voornaam,
+        lastname: this.achternaam,
+        email: this.email,
+        phone_number: formattedPhoneNumber,
+        zip: zip,
+        answers: [firstAnswerId, secondAnswerId, thirdAnswerId]
+      };
+
+      console.log('Geformatteerd telefoonnummer:', formattedPhoneNumber);
+      console.log('Data verstuurd naar API:', JSON.stringify(data, null, 2));
+
+      try {
+        const response = await fetch('https://leadgen.republish.nl/api/sponsors/2410/leads', {
+          method: 'POST',
+          headers: {
+            'Authorization': 'Basic ' + btoa('199:b41c7c41c8d595fbd66dea6a4f70836fbc5e3afe'),
+            'Content-Type': 'application/json; charset=utf-8',
+          },
+          body: JSON.stringify(data),
+        });
+
+        console.log('API respons status:', response.status);
+
+        if (response.status === 201) {
+          console.log('Succesvol ingediend!');
+          this.successMessage = 'Bedankt voor uw inzending!';
+          this.$router.push('/Bedankt');
+        } else if (response.status === 400) {
+          const responseBody = await response.json();
+          console.log('Volledige responseBody:', responseBody);
+
+          if (responseBody.error && responseBody.error.includes('phone_number')) {
+            this.errors.telefoonnummer = 'Ongeldig telefoonnummer.';
+          } else if (responseBody.errors && responseBody.includes('firstname')) {
+            this.errors.firstname = 'Ongeldige voornaam';
+          } else if (responseBody.errors && responseBody.includes('lastname')) {
+            this.errors.lastname = 'Ongeldige achternaam';
+          } else if (responseBody.errors && responseBody.includes('email')) {
+            this.errors.email = 'Ongeldig e-mailadres';
+          }
+          console.error('Fout bij indienen:', responseBody);
+        } else if (response.status === 409) {
+          this.$router.push('/bedankt');
+        }
+      } catch (error) {
+        console.error('Er is een fout opgetreden bij het versturen van het formulier:', error);
+        this.errorMessage = 'Netwerk- of serverfout: ' + error.message;
+      }
     }
-  } catch (error) {
-    console.error('Er is een fout opgetreden bij het versturen van het formulier:', error);
-    this.errorMessage = 'Netwerk- of serverfout: ' + error.message;
-  }
-}
-
-
-
   }
 };
 </script>
@@ -329,7 +315,7 @@ async submitForm() {
                     <div class="namen-inputs">
                       <div class="input-wrapper-naam">
                         <img src="/public/naam-icoon.svg" alt="naam icoon" class="input-icon-voornaam">
-                        <input type="text" placeholder="Voornaam" class="voornaam-input" v-model="voornaam" @input="startTimer('voornaam', validateVoornaam)">
+                        <input type="text" placeholder="Voornaam" class="voornaam-input" v-model="voornaam" @input="validateVoornaam">
                       </div>
 
                       <div v-if="errors.voornaam" class="error-message-voornaam">
@@ -338,7 +324,7 @@ async submitForm() {
 
                       <div class="input-wrapper-naam">
                         <img src="/public/naam-icoon.svg" alt="naam icoon" class="input-icon-achternaam">
-                        <input type="text" placeholder="Achternaam" class="achternaam-input" v-model="achternaam" @input="startTimer('achternaam', validateAchternaam)"
+                        <input type="text" placeholder="Achternaam" class="achternaam-input" v-model="achternaam" @input="validateAchternaam"
                         :class="{ 'error-marge-mobiel-1': errors.voornaam}" 
                         >
                       </div>
@@ -353,7 +339,7 @@ async submitForm() {
                       <img src="/public/email-icoon.svg" alt="email" class="input-icon input-icon-email"
                       :style="{ top: (errors.voornaam || errors.achternaam) ? '48%!important' : '40%' }" 
                       >
-                      <input type="email" placeholder="E-mailadres" class="email-input-field" v-model="email" @input="startTimer('email', validateEmail)"
+                      <input type="email" placeholder="E-mailadres" class="email-input-field" v-model="email" @input="validateEmail"
                       :class="{ 'error-marge-mobiel-2': errors.achternaam}" 
                       :style="{ marginTop: (errors.voornaam || errors.achternaam) ? '1vw!important' : '0' }" 
 
@@ -372,7 +358,7 @@ async submitForm() {
                       <img src="/public/telefoon-icoon.svg" alt="telefoon" class="input-icon input-icon-telefoon"
                       :style="{ top: (errors.voornaam || errors.achternaam || errors.email) ? '58%!important' : '40%' }" 
                     :class="{ 'error-marge-mobiel-1': errors.email}"                      >
-                      <input type="tel" placeholder="Telefoonnummer" class="telefoonnummer-input-field" v-model="telefoonnummer" @input="startTimer('telefoonnummer', validateTelefoonnummer)"
+                      <input type="tel" placeholder="Telefoonnummer" class="telefoonnummer-input-field" v-model="telefoonnummer" @input="validateTelefoonnummer"
                       :style="{ marginTop: (errors.voornaam || errors.achternaam || errors.email) ? '1vw!important' : '0' }" 
                       >
                     </div>
