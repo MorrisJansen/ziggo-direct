@@ -3,8 +3,17 @@ export default {
     data() {
         return {
             postcode: '',
+            huisnummer: '',
             postcodeError: '',
+            huisnummerError: '',
             gekozenPrijs: '',
+            validHouseNumbers: [],
+            streetName: '',
+            city: '', 
+            errorMessage: '',
+
+            postcodeError: null, 
+            huisnummerError: null,
         };
     },
     mounted() {
@@ -18,8 +27,6 @@ export default {
             document.body.classList.add('safari');
         }
 
-        this.postcode = this.$store.getters.getPostcode;
-
         const gekozenPrijsOptie = this.$store.getters.getGekozenPrijsOptie;
         if (gekozenPrijsOptie) {
             this.gekozenPrijs = gekozenPrijsOptie;
@@ -28,14 +35,59 @@ export default {
             console.log('Geen prijs gevonden in Vuex store');
         }
     },
-    computed: {
-        gekozenPrijsOptie() {
-            return this.$store.getters.getGekozenPrijsOptie;
-        }
-    },
+
     methods: {
+        async fetchStreetByPostcode(postcode) {
+            const authKey = 'P6JTU52clKYjZca8';
+            const baseUrl = 'https://api.pro6pp.nl';
+            const url = `${baseUrl}/v2/suggest/nl/street?postalCode=${postcode}&authKey=${authKey}`;
+
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error('Authentication failed or no results found');
+                }
+                const data = await response.json();
+                if (data.length > 0) {
+                    const streetNames = data.map(item => item.street);
+                    this.streetName = streetNames[0] || ''; // De eerste straatnaam
+                    this.city = data[0].settlement || ''; // Stad
+                    return streetNames;
+                } else {
+                    this.errorMessage = 'No results found';
+                    return [];
+                }
+            } catch (error) {
+                this.errorMessage = error.message;
+                return [];
+            }
+        },
+
+        async fetchValidHouseNumbers() {
+            const authKey = 'P6JTU52clKYjZca8'; // API-sleutel
+            const baseUrl = 'https://api.pro6pp.nl/v2/suggest/nl/streetNumber';
+            const maxResults = 900;
+            const url = `${baseUrl}?postalCode=${encodeURIComponent(this.postcode)}&authKey=${authKey}&maxResults=${maxResults}`;
+
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error('Fout bij het ophalen van huisnummers.');
+                }
+                const data = await response.json();
+                this.validHouseNumbers = data.map(item => item.streetNumber.toString().trim());
+
+                console.log("Geldige huisnummers:", this.validHouseNumbers);
+                console.log("Straatnaam:", this.streetName);
+                console.log("Stad:", this.city);
+            } catch (error) {
+                console.error('Er is een fout opgetreden bij het ophalen van huisnummers:', error);
+                this.postcodeError = 'Er is een fout opgetreden bij het ophalen van huisnummers.';
+            }
+        },
+
         validatePostcode() {
-            this.postcodeError = ''; // Reset foutmelding
+            this.postcodeError = '';
 
             if (!this.postcode) {
                 this.postcodeError = 'Postcode mag niet leeg zijn.';
@@ -49,31 +101,52 @@ export default {
                 return false;
             }
 
-            this.postcodeError = '';  // Geen foutmelding
+            // Haal straatnamen op voordat je huisnummers ophaalt
+            this.fetchStreetByPostcode(this.postcode).then(() => {
+                this.fetchValidHouseNumbers(); // Haal geldige huisnummers op
+            });
+            return true;
+        },
+
+        validateHouseNumber() {
+            this.huisnummerError = '';
+            if (!this.huisnummer) {
+                this.huisnummerError = 'Huisnummer mag niet leeg zijn.';
+                return false;
+            }
+
+            if (!this.validHouseNumbers.includes(this.huisnummer)) {
+                this.huisnummerError = 'Ongeldig adres';
+                return false;
+            }
+
             return true;
         },
 
         handlePostcodeInput() {
-            this.validatePostcode();  // Directe validatie bij elke invoer
+            this.validatePostcode();
+        },
+
+        handleHuisnummerInput() {
+            this.validateHouseNumber();
         },
 
         handleEnterKey(event) {
             if (event.key === 'Enter') {
-                event.preventDefault(); // Voorkom standaard gedrag
-                this.goToPage4(); // Roep de functie aan
+                event.preventDefault();
+                this.goToPage4();
             }
         },
 
         goToPage4() {
-            if (!this.validatePostcode()) {
+            if (!this.validatePostcode() || !this.validateHouseNumber()) {
                 return;
             }
 
-            // Sla de postcode op in Vuex
             this.$store.dispatch('updatePostcode', this.postcode);
-
             this.$router.push({ name: 'pagina4' });
-            console.log(this.postcode);
+            console.log('Postcode:', this.postcode, 'Huisnummer:', this.huisnummer);
+            console.log('Straatnaam:', this.streetName, 'Stad:', this.city); // Log de straatnaam en stad
         },
 
         selectOption(optionId) {
@@ -82,11 +155,14 @@ export default {
                 input.checked = true;
             }
         }
-    }
+    },
 };
-
-
 </script>
+
+
+
+
+
 
 
 
@@ -116,7 +192,10 @@ export default {
 
     <div class="achtergrond-pagina-3">
 
-        <div :class="{ 'error-active': postcodeError }" class="witte-container-pagina-3">
+        <div  :class="{ 'error-active': postcodeError,
+        'height-24vw': postcodeError || huisnummerError}" 
+        :style="(postcodeError && huisnummerError) ? { height: '27vw' } : ''" 
+        class="witte-container-pagina-3">
         
             <div class="container-inhoud-witte-container-3">
 
@@ -133,16 +212,18 @@ export default {
                                 </a>
     
                             </div> -->
-
+                        <div class="container-pijl-pagina-3">
                             <span class="pijl-pagina-3">
                                 <router-link to="/Pagina2">
                                   <!-- &#8592; -->
-                                  <img src="/public/pijl-terug.svg" alt="">
+                                  <img style="max-width: 2vw!important;" src="/public/pijl-terug.svg" alt="">
                                 </router-link>
                               </span>
+                        </div>
+
 
                 <div class="vraag-pagina-3">
-                    Vul je postcode & huisnummer in, en check of je kans maakt op <span class="gekozen-prijs">{{ gekozenPrijsOptie }}:</span>
+                    Vul je postcode & huisnummer in, en check of je kans maakt op <span class="gekozen-prijs">{{ gekozenPrijs }}:</span>
                 </div>
                 
 
@@ -154,13 +235,33 @@ export default {
 
 
                 <div class="input-button-wrapper">
-                    <div class="input-button-container" :class="{ 'error-border': postcodeError || huisnummerError }">
+                    <div class="input-button-container">
                         <!-- Postcode input -->
-                        <input style="width: 45%!important;     padding-left: 2vw!important;" type="text" placeholder="Postcode" class="postcode-input inputs-pagina-3" v-model="postcode" @input="handlePostcodeInput" @keydown="handleEnterKey">
-                
+                        <input 
+                            style="width: 45%!important; padding-left: 2vw!important;" 
+                            type="text" 
+                            placeholder="Postcode" 
+                            class="postcode-input inputs-pagina-3" 
+                            v-model="postcode" 
+                            @input="handlePostcodeInput" 
+                            @keydown="handleEnterKey"
+                            :class="{ 'error-border': postcodeError}"
+                            >
+                            
+                        
                         <!-- Huisnummer input -->
-                        <input style="width: 30%!important; padding-left: 2vw!important" type="text" placeholder="Huisnr." class="huisnummer-input inputs-pagina-3" v-model="huisnummer" @input="handleHuisnummerInput" @keydown="handleEnterKey">
-                
+                        <input 
+                            style="width: 30%!important; padding-left: 2vw!important" 
+                            type="text" 
+                            placeholder="Huisnr." 
+                            class="huisnummer-input inputs-pagina-3" 
+                            v-model="huisnummer" 
+                            @input="handleHuisnummerInput" 
+                            @keydown="handleEnterKey"
+                            :class="{ 'error-border': huisnummerError}"
+
+                            >
+                        
                         <!-- Button -->
                         <button @click="goToPage4" class="cta-pagina-3">
                             <span class="cta-text-pagina-3">Check of ik kans maak</span>
@@ -168,17 +269,30 @@ export default {
                         </button>
                     </div>
                 </div>
-                
-
+      
                 <div v-if="postcodeError" class="foutmelding-pagina-3">{{ postcodeError }}</div>
+                <div v-if="huisnummerError" class="foutmelding-pagina-3">{{ huisnummerError }}</div>
 
-
-
+                <div class="container-dynamisch-adres">
+                    <div v-if="!postcodeError && !huisnummerError && postcode && huisnummer && streetName && city" class="gegevens-weergave">
+                        <p class="dynamisch-adres-los">{{ streetName }}</p>
+                        <p class="dynamisch-adres-los">{{ huisnummer }},</p>
+                        <p class="dynamisch-adres-los">{{ postcode }}</p>
+                        <p class="dynamisch-adres-los">{{ city }}</p>
+                    </div>
+                </div>
                 
+                
+
+
+
+
+
+              </div>
+
                 
 
             </div>
-        </div>
 
 
 
@@ -278,6 +392,37 @@ export default {
 
 <style>
 
+.height-27vw {
+    height: 27vw!important;
+}
+
+@media (min-width: 500px) {
+    .height-24vw {
+        height: 25vw!important;
+    }
+    
+}
+
+
+.container-dynamisch-adres {
+    display: flex!important;
+    position: absolute;
+}
+
+.dynamisch-adres-los {
+    color: #072249;
+    font-size: 1vw;
+    font-family: "DM Sans";
+    padding-right: 0.2vw!important;
+}
+
+.gegevens-weergave {
+    display: flex;
+}
+
+
+
+
 .achtergrond-pagina-3 {
     background: linear-gradient(90deg, #072148 0%, #40A59F 100%);
     width: 100vw;
@@ -292,7 +437,7 @@ export default {
     position: relative;
     top: 7vw;
     left: 7vw;
-    border-radius: 0.75vw;
+    border-radius: 3.75vw;
     box-shadow: 0px 31px 81px 0px rgba(0, 17, 77, 0.20);
     z-index: 2;
 }
@@ -300,6 +445,7 @@ export default {
 .container-inhoud-witte-container-3 {
     padding-left: 4vw!important;
     padding-top: 3.5vw!important;
+    height: 100%;
 }
 
 .stap-pagina-1 {
@@ -323,7 +469,7 @@ export default {
     font-weight: 700;
     line-height: 150%;
     text-align: left;
-    width: 80%;
+    width: 92%;
     margin-bottom: -2%;
 }
 
@@ -502,7 +648,7 @@ export default {
     justify-content: space-evenly;
     border-radius: 35vw;
     background-color: #F48C02;
-    z-index: 2; /* Zorg dat de knop boven de input komt */
+    z-index: 2;
 
 }
 
@@ -525,8 +671,12 @@ export default {
     position: absolute;
     font-size: 2.8vw;
     color: black;
-    top: 76.5%;
-    right: 86%;
+    top: 80%;
+}
+
+.container-pijl-pagina-3 {
+    width: auto;
+    max-width: 1vw!important;
 }
 
 .pijl-pagina-3:hover {
@@ -544,7 +694,7 @@ export default {
     justify-content: flex-start;
     height: 4vw;
     width: 42vw;
-    margin-top: 2vw!important;
+    margin-top: 2.2vw!important;
 }
 
 .input-button-container {
@@ -624,7 +774,7 @@ export default {
     font-weight: 700;
     position: relative;
     top: 1vw!important;
-    left: 5vw;
+    left: 0vw;
 }
 
 
@@ -649,7 +799,7 @@ export default {
 
 
     .witte-container-pagina-3 {
-        height: 89vw;
+        height: 125vw;
         width: 90%;
         margin: 0 auto !important;
         justify-content: center;
@@ -688,6 +838,7 @@ export default {
         padding-left: 10vw!important;
         color: black;
     }
+
 
     .cta-pagina-3 {
         width: 100%;
