@@ -323,7 +323,7 @@ export default {
     font-weight: 700;
     line-height: 150%;
     text-align: left;
-    width: 92%;
+    width: 80%;
     margin-bottom: -2%;
 }
 
@@ -525,7 +525,7 @@ export default {
     position: absolute;
     font-size: 2.8vw;
     color: black;
-    top: 78.5%;
+    top: 76.5%;
     right: 86%;
 }
 
@@ -558,7 +558,6 @@ export default {
 
 .cta-pagina-3 {
     padding-left: 0.5vw!important;
-    width: 29vw!important;
 }
 
 
@@ -585,7 +584,7 @@ export default {
 .cta-pagina-3 {
     display: inline-flex;
     height: 100%;
-    width: 19vw;
+    width: 30vw;
     align-items: center;
     justify-content: space-evenly;
     border-radius: 35vw;
