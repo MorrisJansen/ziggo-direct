@@ -4,7 +4,7 @@ export default {
         return {
             postcode: '',
             postcodeError: '',
-            gekozenPrijs: '', // Voeg dit toe om de prijs op te slaan
+            gekozenPrijs: '',
         };
     },
     mounted() {
@@ -142,7 +142,7 @@ export default {
                               </span>
 
                 <div class="vraag-pagina-3">
-                    Vul je postcode in en check of je kans maakt op een <span class="gekozen-prijs">{{ gekozenPrijsOptie }}:</span>
+                    Vul je postcode & huisnummer in, en check of je kans maakt op <span class="gekozen-prijs">{{ gekozenPrijsOptie }}:</span>
                 </div>
                 
 
@@ -154,17 +154,21 @@ export default {
 
 
                 <div class="input-button-wrapper">
-                    <div class="input-button-container"
-                    :class="{ 'error-border': postcodeError }">
-                        <input type="postcode" placeholder="Voer je postcode in" class="postcode-input" v-model="postcode" @input="handlePostcodeInput" @keydown="handleEnterKey"
-                        >
+                    <div class="input-button-container" :class="{ 'error-border': postcodeError || huisnummerError }">
+                        <!-- Postcode input -->
+                        <input style="width: 45%!important;     padding-left: 2vw!important;" type="text" placeholder="Postcode" class="postcode-input inputs-pagina-3" v-model="postcode" @input="handlePostcodeInput" @keydown="handleEnterKey">
+                
+                        <!-- Huisnummer input -->
+                        <input style="width: 30%!important; padding-left: 2vw!important" type="text" placeholder="Huisnr." class="huisnummer-input inputs-pagina-3" v-model="huisnummer" @input="handleHuisnummerInput" @keydown="handleEnterKey">
+                
+                        <!-- Button -->
                         <button @click="goToPage4" class="cta-pagina-3">
-                            <span class="cta-text-pagina-3">Check postcode</span>
+                            <span class="cta-text-pagina-3">Check of ik kans maak</span>
                             <span class="cta-pijl-pagina-3">&#8594;</span>
                         </button>
                     </div>
                 </div>
-
+                
 
                 <div v-if="postcodeError" class="foutmelding-pagina-3">{{ postcodeError }}</div>
 
@@ -319,7 +323,7 @@ export default {
     font-weight: 700;
     line-height: 150%;
     text-align: left;
-    width: 80%;
+    width: 92%;
     margin-bottom: -2%;
 }
 
@@ -451,10 +455,18 @@ export default {
 
 
 
-.input-button-container {
-    display: flex;
-    align-items: center; 
+
+
+.postcode-input {
+    width: 40%!important;
+}
+
+
+
+
+.inputs-pagina-3 {
     border-radius: 35vw;
+    width: 30%!important;
 }
 
 .error-border {
@@ -476,6 +488,8 @@ export default {
     z-index: 1;
     font-family: 'DM Sans', sans-serif;
 }
+
+
 
 
 
@@ -511,7 +525,7 @@ export default {
     position: absolute;
     font-size: 2.8vw;
     color: black;
-    top: 80.5%;
+    top: 78.5%;
     right: 86%;
 }
 
@@ -522,22 +536,33 @@ export default {
 
 
 .input-button-wrapper {
-    background-color: #f1f1f1;
+    background-color: transparent;
     border-radius: 35vw;
     padding-right: 0; 
     display: flex;
     align-items: center;
     justify-content: flex-start;
     height: 4vw;
-    width: 37vw;
-    margin-top: 3vw!important;
+    width: 42vw;
+    margin-top: 2vw!important;
 }
 
 .input-button-container {
     display: flex;
-    align-items: center;
+    align-items: center; 
+    border-radius: 35vw;
+    gap: 1vw;
     width: 100%;
+
 }
+
+.cta-pagina-3 {
+    padding-left: 0.5vw!important;
+    width: 29vw!important;
+}
+
+
+
 
 .postcode-input {
     height: 4vw !important;

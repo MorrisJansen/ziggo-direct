@@ -120,7 +120,6 @@ validateAchternaam() {
   // Tel het aantal cijfers na de conversie
   const digitsOnlyPhoneNumber = cleanedPhoneNumber.replace(/[^0-9]/g, '');
 
-  // Een Nederlands mobiel nummer moet 10 cijfers lang zijn (inclusief de 0)
   if (digitsOnlyPhoneNumber.length !== 10) {
     this.errors.telefoonnummer = 'Ongeldig telefoonnummer.';
     return false;
