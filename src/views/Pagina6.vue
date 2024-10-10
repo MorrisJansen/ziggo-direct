@@ -238,7 +238,7 @@ validateAndFormatPhoneNumber(phoneNumber) {
         zip: zip,
         street: street,
         city: city,
-        huisnummer: huisnummer,
+        houseNumber: huisnummer,
         answers: [firstAnswerId, secondAnswerId, thirdAnswerId]
       };
 
