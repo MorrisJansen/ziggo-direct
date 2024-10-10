@@ -22,7 +22,7 @@ const routes = [
     { path: '/Pagina5', component: Pagina5, name: 'pagina5' },
     { path: '/Pagina6', component: Pagina6, name: 'pagina6' },
     { path: '/Bedankt', component: Bedankt, name: 'Bedankt' },
-    { path: '/bedankt', component: dank, name: 'dank' }
+    { path: '/dankuwel', component: dank, name: 'dank' }
 ]
 
 const router = createRouter({

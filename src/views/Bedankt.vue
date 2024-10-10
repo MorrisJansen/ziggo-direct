@@ -92,15 +92,19 @@ export default {
 
 <div class="container-pagina-1">
 
-    <div class="achtergrond-bedankt">
+
+    <div class="achtergrond-bedankt ">
 
         <div class="witte-container-bedankt">
 
               
             <div class="container-bedankt">
-                <div class="bedankt">Bedankt!</div>
-                <div class="contact">Wij nemen spoedig contact met u op.</div>
+                <div class="bedankt" style="padding-top: 4vw!important;">Bedankt voor je deelname!</div>
+                <div class="contact" style="padding-left: 7vw!important; padding-right: 7vw!important;">Je maakt nu kans op een van de drie prijzen. MeerVoordeel neemt zo snel mogelijk contact met je op over een exclusief aanbod. Win jij één van de prijzen? Dan bellen we je om het goede nieuws persoonlijk door te geven.
+                </div>
             </div>
+
+             
 
 
         </div>
@@ -168,6 +172,18 @@ export default {
 
 
     </div>
+
+
+
+
+
+
+
+
+
+
+
+
 
         <div class="footer-container-1">
             <hr class="lijn-sectie-2">
@@ -294,7 +310,7 @@ export default {
     }
 
     .witte-container-bedankt {
-        height: 40vw;
+        height: 78vw;
         width: 90%;
         margin: 0 auto !important;
         justify-content: center;
@@ -305,7 +321,7 @@ export default {
     }
 
     .achtergrond-bedankt {
-        height: 161vw!important;
+        height: 210vw!important;
     }
 
     .container-prijzen-met-prijzen {

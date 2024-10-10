@@ -265,7 +265,7 @@ validateAndFormatPhoneNumber(phoneNumber) {
         console.log('API respons status:', response.status);
 
         if (response.status === 409) {
-          this.$router.push('/bedankt');
+          this.$router.push('/dankuwel');
           console.log('naar bedankt zonder pixel')   
         } else if (response.status === 400) {
           const responseBody = await response.json();
@@ -288,7 +288,7 @@ validateAndFormatPhoneNumber(phoneNumber) {
     this.$router.push('/Bedankt'); 
     console.log('ga naar Bedankt pixel');
   } else {
-    this.$router.push('/bedankt');
+    this.$router.push('/dankuwel');
     console.log('ga naar bedankt zonder pixel');
   }
 
@@ -356,12 +356,12 @@ validateAndFormatPhoneNumber(phoneNumber) {
                         Gefeliciteerd!
                     </div>
 
-                <span class="pijl-pagina-6"
+                <span class="pijl-pagina-6" 
                 :class="{ 'naar-beneden-pijl': errors.achternaam || errors.voornaam || errors.telefoonnummer}" 
                 >
                     <router-link to="/Pagina3">
                       <!-- &#8592; -->
-                      <img src="/public/pijl-terug.svg" alt="">
+                      <img style="width: 3vw" src="/public/pijl-terug.svg" alt="">
 
                     </router-link>
                   </span>
@@ -502,13 +502,14 @@ validateAndFormatPhoneNumber(phoneNumber) {
 
             <label>
 
-            <div class="witte-container-footer">
-
-
-              <input type="checkbox" class="checkbox" v-model="isChecked">
-<p class="text-check"> Ik ga er mee akkoord dat MeerVoordeel eenmalig telefonisch contact met mij opneemt met een exclusieve aanbieding voor een alles-in-1 pakket van Ziggo.              <span style="font-weight: 700"> Let op: winnaars worden telefonisch op de hoogte gesteld.</span></p>
-
-            </div>
+              <div class="witte-container-footer">
+                <input type="checkbox" class="checkbox" id="checkbox" v-model="isChecked">
+                <p class="text-check">
+                  Ik ga er mee akkoord dat MeerVoordeel eenmalig telefonisch contact met mij opneemt met een exclusieve aanbieding voor een alles-in-1 pakket van Ziggo. 
+                  <span style="font-weight: 700">Let op: winnaars worden telefonisch op de hoogte gesteld.</span>
+                </p>
+              </div>
+              
           </label>
 
 
@@ -898,33 +899,37 @@ validateAndFormatPhoneNumber(phoneNumber) {
 }
 
 .witte-container-footer {
-    text-align: left;
-    padding-right: 5vw!important;
-    color: #072249;
-    font-family: "DM Sans";
-    font-size: 0.85vw;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 150%;
-    margin-top: -3vw!important;
-    padding-left: 3vw;
-    display: flex;
-
+  text-align: left;
+  padding-right: 5vw!important;
+  color: #072249;
+  font-family: "DM Sans";
+  font-size: 0.85vw;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%;
+  margin-top: -3vw!important;
+  padding-left: 3vw;
+  display: flex;
+  align-items: flex-start; /* Aligns items at the top */
 }
 
 input[type="checkbox"] { 
-  filter: invert(70%) hue-rotate(30deg) brightness(1.4); /* Filters aangepast om #f1f1f1 te benaderen */
+  filter: invert(70%) hue-rotate(30deg) brightness(1.4); 
+  width: 1.5vw;
 
 }
 
-/* Basis checkbox styling */
 .checkbox {
-  margin-right: 2vw!important;
-  position: relative;
-  bottom: 1vw;
-  scale: 2;
+margin-right: 2vw!important;
+scale: 1.5;
+max-width: 1.5vw;
+margin-top: 1%!important; /* Remove margin to align at the top */
 }
- 
+
+.text-check {
+margin-top: 0; /* Ensure the text is aligned with the checkbox */
+}
+
 
 input[type="checkbox"] {
   accent-color: white!important; 
@@ -951,7 +956,7 @@ input[type="checkbox"] {
 
 
 .naar-beneden-pijl {
-    top: 87%!important;
+    top: 79.5%!important;
 }
 
 
@@ -1334,9 +1339,17 @@ dit is voor als er geen fouten zijn met de namen
 
 
     .checkbox {
-      bottom: 34vw;
+      position: relative;
+      bottom: 15vw;
       left: 3vw;
-      scale: 1.5;
+      scale: 3;
+      border-radius: 0!important;
+  }
+
+    .safari .checkbox {
+      position: relative!important;
+      top: 0!important;
+      display: none!important;
     }
 
     .gefeliciteerd,
@@ -1464,7 +1477,7 @@ dit is voor als er geen fouten zijn met de namen
     }
 
     #container-prijzen-met-prijzen {
-        margin-top: 54vw;
+        margin-top: 56vw!important;
     }
 
     .pijl-pagina-6 {

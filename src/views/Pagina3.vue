@@ -329,7 +329,7 @@ export default {
                         <input 
                             type="text" 
                             placeholder="Postcode" 
-                            class="postcode-input inputs-pagina-3" 
+                            class="postcode-input inputs-pagina-3 desktop" 
                             id="postcode-input"
                             v-model="postcode" 
                             @input="handlePostcodeInput" 
@@ -345,7 +345,7 @@ export default {
                         <input 
                             type="text" 
                             placeholder="Huisnr." 
-                            class="huisnummer-input inputs-pagina-3" 
+                            class="huisnummer-input inputs-pagina-3 desktop" 
                             id="huisnummer-input"
                             v-model="huisnummer" 
                             @input="handleHuisnummerInput" 
@@ -1094,6 +1094,10 @@ export default {
 
     #foutmelding-2-errors-mobiel {
         margin-top: 6vw!important;
+    }
+    
+    .desktop {
+        display: none!important;
     }
 
 }

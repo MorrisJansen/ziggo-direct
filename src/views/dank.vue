@@ -83,10 +83,9 @@ export default {
 
         <div class="witte-container-bedankt">
 
-              
             <div class="container-bedankt">
-                <div class="bedankt">Bedankt!</div>
-                <div class="contact">Wij nemen spoedig contact met u op.</div>
+                <div class="bedankt">Bedankt voor je deelname!</div>
+                <div class="contact">Je maakt nu kans op een van de drie prijzen van MeerVoordeel.</div>
             </div>
 
 
@@ -279,7 +278,7 @@ export default {
     }
 
     .witte-container-bedankt {
-        height: 40vw;
+        height: 78vw;
         width: 90%;
         margin: 0 auto !important;
         justify-content: center;
@@ -290,7 +289,7 @@ export default {
     }
 
     .achtergrond-bedankt {
-        height: 161vw!important;
+        height: 210vw!important;
     }
 
     .container-prijzen-met-prijzen {
