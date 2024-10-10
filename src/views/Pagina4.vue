@@ -1,5 +1,16 @@
 <script>
+import PrivacyModal from './privacyModal.vue';
+
 export default {
+    components: {
+        PrivacyModal,
+    },
+    data() {
+        return {
+            isModalVisible: false,
+            modalUrl: '', 
+        };
+    },
     mounted() {
         const isSafari = () => {
             const ua = navigator.userAgent;
@@ -16,6 +27,19 @@ export default {
         }, 1500); 
     },
     methods: {
+        openPrivacyPolicy() {
+            this.modalUrl = 'https://leadgen.republish.nl/api/content/privacy-meervoordeel'; // URL voor privacyverklaring
+            this.isModalVisible = true; // Maak de modal zichtbaar
+            console.log('Opening privacy policy modal');
+        },
+        openActievoorwaarden() {
+            this.modalUrl = 'https://leadgen.republish.nl/api/content/actievoorwaarden-meervoordeel'; // URL voor actievoorwaarden
+            this.isModalVisible = true; // Maak de modal zichtbaar
+            console.log('Opening actievoorwaarden modal');
+        },
+        closeModal() {
+            this.isModalVisible = false; // Sluit de modal
+        },
 
         goToPage5() {
             this.$router.push({ name: 'pagina5' });
@@ -138,9 +162,31 @@ export default {
     <div class="footer-container-2">
         <hr class="lijn-sectie-2-pagina-5">
           <div class="footer-text" id="pagina-5">
-              *Meervoordeel.nl is een officiële partner van Ziggo. Deelname mogelijk tot en met 31 juli 2024.<br> Actievoorwaarden van toepassing.
-          </div>
-    </div>
+
+
+
+                             *Meervoordeel.nl is een officiële partner van Ziggo. Deelname mogelijk tot en met 31 december 2024.<br> 
+                <span id="footer-link-underline">
+                    <a href="" class="footer-link" @click.prevent="openActievoorwaarden">Actievoorwaarden</a>
+    
+                </span>
+                van toepassing.
+               <br> Lees onze
+    
+               <span>
+                <a class="footer-link" id="footer-link-underline" @click.prevent="openPrivacyPolicy">Privacyverklaring</a>
+              </span>
+                          voor meer informatie over hoe wij met uw gegevens omgaan.                
+            </div>
+        </div>
+
+
+        <PrivacyModal
+        :isVisible="isModalVisible"
+        :url="modalUrl"
+        @close="closeModal"
+      />
+
 
 </div>
 

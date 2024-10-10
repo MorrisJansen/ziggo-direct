@@ -1,5 +1,16 @@
 <script>
+import PrivacyModal from './privacyModal.vue'; // Zorg ervoor dat de naam correct is
+
 export default {
+    components: {
+        PrivacyModal, // Zorg ervoor dat de naam hier overeenkomt
+    },
+    data() {
+        return {
+            isModalVisible: false, // Geeft aan of de modal zichtbaar is
+            modalUrl: '', // De dynamische URL voor de modal inhoud
+        };
+    },
     mounted() {
         // Controleer of de gebruiker Safari gebruikt
         const isSafari = () => {
@@ -12,27 +23,40 @@ export default {
             document.body.classList.add('safari');
         }
 
+        // Haal query parameters op voor subid en pubid
         const queryParams = new URLSearchParams(window.location.search);
         const subid = queryParams.get('subid');
         const pubid = queryParams.get('pubid');
 
+        // Update Vuex store met subid en pubid indien aanwezig
         if (subid) {
             this.$store.dispatch('updateSubId', subid);
-            console.log(subid)
+            console.log('subid:', subid);
         }
         if (pubid) {
             this.$store.dispatch('updatePubId', pubid);
-            console.log(pubid)
+            console.log('pubid:', pubid);
         }
     },
     methods: {
+        openPrivacyPolicy() {
+            this.modalUrl = 'https://leadgen.republish.nl/api/content/privacy-meervoordeel'; // URL voor privacyverklaring
+            this.isModalVisible = true; // Maak de modal zichtbaar
+        },
+        openActievoorwaarden() {
+            this.modalUrl = 'https://leadgen.republish.nl/api/content/actievoorwaarden-meervoordeel'; // URL voor actievoorwaarden
+            this.isModalVisible = true; // Maak de modal zichtbaar
+        },
+        closeModal() {
+            this.isModalVisible = false; // Sluit de modal
+        },
+        // Functie om naar de volgende pagina te navigeren
         goToPage1() {
-            this.$router.push({ name: 'pagina1' });
-        }
-    }
-}
+            this.$router.push('pagina1'); // Zorg ervoor dat de route naar de volgende pagina hier klopt
+        },
+    },
+};
 </script>
-
 
 
 
@@ -212,7 +236,7 @@ export default {
             </div>
 
             <div class="container-logos">
-                <img class="logo-mv desktop" src="/public/meervoordeel-nav.svg" alt="meervoordeel">
+                <img class="logo-mv desktop" src="/public/MV.svg" alt="meervoordeel">
                 <img class="logo-ziggo desktop" src="/public/ziggo-logo.png" alt="ziggo">
             </div>
 
@@ -252,11 +276,30 @@ export default {
 
         </div>
         <div class="footer-text">
-            *Meervoordeel.nl is een officiële partner van Ziggo. Deelname mogelijk tot en met 31 juli 2024.<br> Actievoorwaarden van toepassing.
+            *Meervoordeel.nl is een officiële partner van Ziggo. Deelname mogelijk tot en met 31 december 2024.<br> 
+            <span id="footer-link-underline">
+                <a href="" class="footer-link" @click.prevent="openActievoorwaarden">Actievoorwaarden</a>
+
+            </span>
+            van toepassing.
+           <br> Lees onze
+
+           <span>
+            <a class="footer-link" id="footer-link-underline" @click.prevent="openPrivacyPolicy">Privacyverklaring</a>
+          </span>
+                      voor meer informatie over hoe wij met uw gegevens omgaan.
         </div>
       </div>
 
+    
 
+    <PrivacyModal
+    :isVisible="isModalVisible"
+    :url="modalUrl"
+    @close="closeModal"
+  />
+  
+  
 
 
 
@@ -267,6 +310,24 @@ export default {
   
   
   <style>
+
+
+  .footer-link {
+    color: #c1c1c1;
+    text-decoration: none;
+  }
+
+  #footer-link-underline  {
+    text-decoration: underline;
+  }
+
+  #footer-link-underline:hover {
+    cursor: pointer;
+  }
+
+  .footer-link:hover {
+    color: #C1C1C1;
+  }
 
 
   .container-logos {

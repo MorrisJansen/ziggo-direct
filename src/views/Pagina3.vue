@@ -1,7 +1,14 @@
 <script>
+import PrivacyModal from './privacyModal.vue';
+
 export default {
+    components: {
+        PrivacyModal,
+    },
     data() {
         return {
+            isModalVisible: false,
+            modalUrl: '', 
             postcode: '',
             huisnummer: '',
             postcodeError: '',
@@ -37,6 +44,20 @@ export default {
     },
 
     methods: {
+        openPrivacyPolicy() {
+            this.modalUrl = 'https://leadgen.republish.nl/api/content/privacy-meervoordeel'; // URL voor privacyverklaring
+            this.isModalVisible = true; // Maak de modal zichtbaar
+            console.log('Opening privacy policy modal');
+        },
+        openActievoorwaarden() {
+            this.modalUrl = 'https://leadgen.republish.nl/api/content/actievoorwaarden-meervoordeel'; // URL voor actievoorwaarden
+            this.isModalVisible = true; // Maak de modal zichtbaar
+            console.log('Opening actievoorwaarden modal');
+        },
+        closeModal() {
+            this.isModalVisible = false; // Sluit de modal
+        },
+
         async fetchStreetByPostcode(postcode) {
             const authKey = 'P6JTU52clKYjZca8';
             const baseUrl = 'https://api.pro6pp.nl';
@@ -97,7 +118,7 @@ export default {
             const regex = /^(?! )[0-9]{4}[ ]?[A-Za-z]{2}(?<! )$/;
 
             if (!regex.test(this.postcode)) {
-                this.postcodeError = 'Voer een geldige postcode in (bijvoorbeeld 1234 AB).';
+                this.postcodeError = 'Ongeldige postcode.';
                 return false;
             }
 
@@ -193,8 +214,12 @@ export default {
     <div class="achtergrond-pagina-3">
 
         <div  :class="{ 'error-active': postcodeError,
-        'height-24vw': postcodeError || huisnummerError}" 
+        'height-24vw': postcodeError || huisnummerError,
+        'height-27vw': postcodeError && huisnummerError
+        }" 
+
         :style="(postcodeError && huisnummerError) ? { height: '27vw' } : ''" 
+
         class="witte-container-pagina-3">
         
             <div class="container-inhoud-witte-container-3">
@@ -238,40 +263,55 @@ export default {
                     <div class="input-button-container">
                         <!-- Postcode input -->
                         <input 
-                            style="width: 45%!important; padding-left: 2vw!important;" 
                             type="text" 
                             placeholder="Postcode" 
                             class="postcode-input inputs-pagina-3" 
+                            id="postcode-input"
                             v-model="postcode" 
                             @input="handlePostcodeInput" 
                             @keydown="handleEnterKey"
-                            :class="{ 'error-border': postcodeError}"
+                            :class="{ 'error-border': postcodeError,
+                            'foutmelding-postcode-trigger': postcodeError
+
+                        }"
                             >
                             
                         
                         <!-- Huisnummer input -->
                         <input 
-                            style="width: 30%!important; padding-left: 2vw!important" 
                             type="text" 
                             placeholder="Huisnr." 
                             class="huisnummer-input inputs-pagina-3" 
+                            id="huisnummer-input"
                             v-model="huisnummer" 
                             @input="handleHuisnummerInput" 
                             @keydown="handleEnterKey"
-                            :class="{ 'error-border': huisnummerError}"
-
+                            :class="{ 'error-border': huisnummerError,
+                            'foutmelding-huisnummer-trigger': huisnummerError
+                        }"
                             >
                         
-                        <!-- Button -->
                         <button @click="goToPage4" class="cta-pagina-3">
-                            <span class="cta-text-pagina-3">Check of ik kans maak</span>
+                            <span class="cta-text-pagina-3">
+                                <span class="desktop">
+                                    Check of ik kans maak
+                                </span>
+                                <span class="mobiel">
+                                    Check postcode
+                                </span>
+
+
+                            </span>
                             <span class="cta-pijl-pagina-3">&#8594;</span>
                         </button>
                     </div>
                 </div>
       
-                <div v-if="postcodeError" class="foutmelding-pagina-3">{{ postcodeError }}</div>
-                <div v-if="huisnummerError" class="foutmelding-pagina-3">{{ huisnummerError }}</div>
+                <div v-if="postcodeError" id="foutmelding-pagina-3-postcode" class=" foutmelding-pagina-3">{{ postcodeError }}</div>
+                <div v-if="huisnummerError" 
+                :id="huisnummerError && !postcodeError ? 'alleen-huisnummer-foutmelding' : 'foutmelding-pagina-3-huisnummer'" 
+                class="foutmelding-pagina-3-huisnummer foutmelding-pagina-3">
+                {{ huisnummerError }}</div>
 
                 <div class="container-dynamisch-adres">
                     <div v-if="!postcodeError && !huisnummerError && postcode && huisnummer && streetName && city" class="gegevens-weergave">
@@ -366,9 +406,30 @@ export default {
         <div class="footer-container-1">
             <hr class="lijn-sectie-2">
               <div class="footer-text-1">
-                  *Meervoordeel.nl is een officiële partner van Ziggo. Deelname mogelijk tot en met 31 juli 2024.<br> Actievoorwaarden van toepassing.
-              </div>
+
+
+
+                *Meervoordeel.nl is een officiële partner van Ziggo. Deelname mogelijk tot en met 31 december 2024.<br> 
+                <span id="footer-link-underline">
+                    <a href="" class="footer-link" @click.prevent="openActievoorwaarden">Actievoorwaarden</a>
+    
+                </span>
+                van toepassing.
+               <br> Lees onze
+    
+               <span>
+                <a class="footer-link" id="footer-link-underline" @click.prevent="openPrivacyPolicy">Privacyverklaring</a>
+              </span>
+                          voor meer informatie over hoe wij met uw gegevens omgaan.                
+            </div>
         </div>
+
+
+        <PrivacyModal
+        :isVisible="isModalVisible"
+        :url="modalUrl"
+        @close="closeModal"
+      />
 
 
 </div>
@@ -391,6 +452,32 @@ export default {
 
 
 <style>
+
+@media (min-width: 500px) {
+    #huisnummer-input {
+        width: 30%!important;
+        padding-left: 2vw!important;
+    }
+
+    #postcode-input {
+        width: 45%!important;
+        padding-left: 2vw!important;
+    }
+}
+
+@media (max-width: 499px) {
+    #huisnummer-input {
+        width: 100%!important;
+        padding-left: 4vw!important;
+        border-radius: 35vw!important;
+    }
+
+    #postcode-input {
+        width: 100%!important;
+        padding-left: 4vw!important;
+    }
+}
+
 
 .height-27vw {
     height: 27vw!important;
@@ -418,6 +505,7 @@ export default {
 
 .gegevens-weergave {
     display: flex;
+    margin-top: 0.5vw!important;
 }
 
 
@@ -781,7 +869,56 @@ export default {
 
 
 
+
 @media (max-width: 499px) {
+
+
+    .dynamisch-adres-los {
+        position: relative;
+        top: 59.5vw;
+        font-size: 4vw;
+        padding-right: 2vw !important;
+    }
+
+    .height-27vw {
+        height: 130vw!important;
+    }
+
+    .foutmelding-postcode-trigger {
+        margin-bottom: 8vw!important;
+    }
+
+    .foutmelding-huisnummer-trigger {
+        margin-bottom: 5vw!important;
+    }
+
+    #foutmelding-pagina-3-postcode {
+        text-align: left;
+        color: red;
+        font-size: 4vw;
+        font-weight: 700;
+        position: relative;
+        top: 17vw!important;
+        left: 0vw;
+    }
+    
+    #foutmelding-pagina-3-huisnummer {
+        text-align: left;
+        color: red;
+        font-size: 4vw;
+        font-weight: 700;
+        position: relative;
+        top: 40.5vw!important;
+        left: 0vw;
+    }
+
+    #alleen-huisnummer-foutmelding {
+        top: 38.5vw!important;
+    }
+
+
+
+
     .achtergrond-pagina-3 {
         height: 245vw!important;
         width: 100%!important;
@@ -864,7 +1001,7 @@ export default {
     }
 
     .witte-container-pagina-3.error-active {
-        height: 94vw;
+        height: 125vw;
     }
 
 

@@ -1,5 +1,23 @@
 <script>
+import PrivacyModal from './privacyModal.vue';
+
 export default {
+    components: {
+        PrivacyModal,
+    },
+    data() {
+        return {
+            isModalVisible: false,
+            modalUrl: '', 
+            lokaleGekozenPrijsId: null, // Lokale variabele voor gekozen prijs ID
+            foutmelding: false, // Om fouten weer te geven
+            opties: {
+                'optie-1': { id: 5284, name: 'SAMSUNG 60" TV' },
+                'optie-2': { id: 5287, name: 'Playstation 5' },
+                'optie-3': { id: 5290, name: 'Bol.com cadeaubon' }
+            }
+        };
+    },
     mounted() {
         const isSafari = () => {
             const ua = navigator.userAgent;
@@ -10,6 +28,7 @@ export default {
             document.body.classList.add('safari');
         }
 
+        // Zet het lokaal gekozen prijs ID als het bestaat
         if (this.gekozenPrijsId) {
             this.lokaleGekozenPrijsId = this.gekozenPrijsId;
             this.$nextTick(() => {
@@ -20,18 +39,21 @@ export default {
             });
         }
     },
-    data() {
-        return {
-            lokaleGekozenPrijsId: null,
-            foutmelding: false,
-            opties: {
-                'optie-1': { id: 5284, name: 'SAMSUNG 60" TV' },
-                'optie-2': { id: 5287, name: 'Playstation 5' },
-                'optie-3': { id: 5290, name: 'Bol.com cadeaubon' }
-            }
-        };
-    },
     methods: {
+        openPrivacyPolicy() {
+            this.modalUrl = 'https://leadgen.republish.nl/api/content/privacy-meervoordeel'; // URL voor privacyverklaring
+            this.isModalVisible = true; // Maak de modal zichtbaar
+            console.log('Opening privacy policy modal');
+        },
+        openActievoorwaarden() {
+            this.modalUrl = 'https://leadgen.republish.nl/api/content/actievoorwaarden-meervoordeel'; // URL voor actievoorwaarden
+            this.isModalVisible = true; // Maak de modal zichtbaar
+            console.log('Opening actievoorwaarden modal');
+        },
+        closeModal() {
+            this.isModalVisible = false; // Sluit de modal
+        },
+
         gaNaarPagina2() {
             if (!this.lokaleGekozenPrijsId) {
                 this.foutmelding = true;
@@ -40,13 +62,15 @@ export default {
 
             const selectedOption = this.opties[this.lokaleGekozenPrijsId];
             if (selectedOption) {
+                // Update Vuex store met gekozen prijs details
                 this.$store.dispatch('updateGekozenPrijsId', this.lokaleGekozenPrijsId);
                 this.$store.dispatch('updateGekozenPrijsOptie', selectedOption.name);
-                this.$store.dispatch('idVraag2id', selectedOption.id)
+                this.$store.dispatch('idVraag2id', selectedOption.id);
                 console.log('Geselecteerde prijs ID:', selectedOption.id);
                 console.log('Geselecteerde prijs naam:', selectedOption.name);
             }
 
+            // Navigeer naar pagina 2
             this.$router.push({ name: 'pagina2' });
         },
         selecteerOptie(optionId) {
@@ -54,7 +78,7 @@ export default {
             if (input) {
                 input.checked = true;
                 this.lokaleGekozenPrijsId = optionId;
-                this.foutmelding = false;
+                this.foutmelding = false; // Reset foutmelding als een optie is geselecteerd
             }
         }
     },
@@ -214,20 +238,43 @@ export default {
 
 
 
-
-
-
-
-
-
         </div>
+
+
+
+
 
         <div class="footer-container-1">
             <hr class="lijn-sectie-2">
             <div class="footer-text-1">
-                *Meervoordeel.nl is een officiële partner van Ziggo. Deelname mogelijk tot en met 31 juli 2024.<br> Actievoorwaarden van toepassing.
+
+                *Meervoordeel.nl is een officiële partner van Ziggo. Deelname mogelijk tot en met 31 december 2024.<br> 
+                <span id="footer-link-underline">
+                    <a href="" class="footer-link" @click.prevent="openActievoorwaarden">Actievoorwaarden</a>
+    
+                </span>
+                van toepassing.
+               <br> Lees onze
+    
+               <span>
+                <a class="footer-link" id="footer-link-underline" @click.prevent="openPrivacyPolicy">Privacyverklaring</a>
+              </span>
+                          voor meer informatie over hoe wij met uw gegevens omgaan.                
             </div>
         </div>
+
+
+        <PrivacyModal
+        :isVisible="isModalVisible"
+        :url="modalUrl"
+        @close="closeModal"
+      />
+
+
+
+
+
+
     </div>
 </div>
 </template>
