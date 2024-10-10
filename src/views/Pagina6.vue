@@ -200,6 +200,9 @@ validateAndFormatPhoneNumber(phoneNumber) {
       const secondAnswerId = this.$store.getters.getSelectedOptie;
       const thirdAnswerId = this.$store.getters.getSelectedProviderId;
       const zip = this.$store.getters.getPostcode;
+      const street = this.$store.getters.getStreetName;
+      const city = this.$store.getters.getCity;
+      const huisnummer = this.$store.getters.getHuisnummer;
 
 
       console.log('PubId:', this.$store.getters.getPubId);
@@ -233,6 +236,9 @@ validateAndFormatPhoneNumber(phoneNumber) {
         email: this.email,
         phone_number: formattedPhoneNumber,
         zip: zip,
+        street: street,
+        city: city,
+        huisnummer: huisnummer,
         answers: [firstAnswerId, secondAnswerId, thirdAnswerId]
       };
 

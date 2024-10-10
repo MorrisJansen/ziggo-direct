@@ -165,9 +165,12 @@ export default {
             }
 
             this.$store.dispatch('updatePostcode', this.postcode);
+            this.$store.dispatch('updateStreetName', this.streetName);
+            this.$store.dispatch('updateCity', this.city);
+            this.$store.dispatch('updateHouseNumber', this.huisnummer);
             this.$router.push({ name: 'pagina4' });
             console.log('Postcode:', this.postcode, 'Huisnummer:', this.huisnummer);
-            console.log('Straatnaam:', this.streetName, 'Stad:', this.city); // Log de straatnaam en stad
+            console.log('Straatnaam:', this.streetName, 'Stad:', this.city);
         },
 
         selectOption(optionId) {
