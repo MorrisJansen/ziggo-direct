@@ -955,6 +955,7 @@ input[type="checkbox"] {
 
 
 
+
 .naar-beneden-pijl {
     top: 79.5%!important;
 }
@@ -1338,13 +1339,57 @@ dit is voor als er geen fouten zijn met de namen
     }
 
 
-    .checkbox {
+   input[type=checkbox] {
+        accent-color: white !important; /* Accent kleur voor compatibiliteit */
+        filter: invert(40%) hue-rotate(30deg) brightness(1.4); /* Huidige filter */
+        width: 1.5vw; /* Zorg dat het de juiste breedte heeft */
+        height: 1.5vw; /* Maak het vierkant door dezelfde hoogte te gebruiken */
+        border-radius: 0 !important; /* Zorg dat de hoeken vierkant zijn */
+        -webkit-appearance: none; /* Verwijder standaard Webkit-styling */
+        appearance: none; /* Verwijder standaard checkbox-styling */
+        background-color: white; /* Maak de checkbox wit als standaard */
+        transition: background-color 0.3s ease; /* Voeg een overgang toe */
+    }
+
+    /* Styling wanneer de checkbox is aangevinkt */
+    input[type=checkbox]:checked {
+      filter: invert(70%) hue-rotate(30deg) brightness(1.4);
+       content: \2713;
+
+    }
+
+    input[type=checkbox]::after {
+      content: \2713;
+      font-size: 1.8vw;
+      filter: invert(70%) hue-rotate(30deg) brightness(1.4);
       position: relative;
-      bottom: 15vw;
-      left: 3vw;
-      scale: 3;
-      border-radius: 0!important;
-  }
+      bottom: 1.3px;
+
+    }
+
+
+input[type="checkbox"]:checked::after {
+  content: '\2713'; /* Unicode voor het vinkje */
+  display: block; /* Vinkje tonen als de checkbox is aangevinkt */
+}
+
+    /* Algemene styling voor de checkbox container */
+    .checkbox {
+        position: relative;
+        bottom: 15vw;
+        left: 3vw;
+        scale: 3;
+        margin-right: 2vw !important;
+        margin-top: 1% !important;
+        border-radius: 0 !important; /* Zorg dat het vierkant blijft */
+    }
+
+    .witte-container-footer {
+        font-size: 4.1vw;
+        margin-top: 3vw !important;
+        text-align: start;
+    }
+
 
     .safari .checkbox {
       position: relative!important;
@@ -1449,7 +1494,7 @@ dit is voor als er geen fouten zijn met de namen
 
 
     .achtergrond-pagina-6 {
-        height: 350vw!important;
+        height: 365vw!important;
         width: 100%!important;
     }
 
