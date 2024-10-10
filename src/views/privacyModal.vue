@@ -32,6 +32,10 @@ export default {
 </script>
 
 <style scoped>
+* {
+    font-family: "DM Sans";
+}
+
 .modal {
     display: flex;
     justify-content: center;

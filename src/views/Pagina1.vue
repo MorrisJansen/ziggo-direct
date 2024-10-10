@@ -104,7 +104,7 @@ export default {
     <a href="/">
         <div class="container-navbar">
             <div class="afbeelding-1-navbar">
-                <img src="/public/meervoordeel-nav.svg" alt="meervoordeel">
+                <img src="/public/MV.svg" alt="meervoordeel">
             </div>
             <div class="afbeelding-2-navbar">
                 <img src="/public/turstpilot-nav.svg" alt="trustpilot">
@@ -827,7 +827,8 @@ a:hover {
 
     .footer-text-1 {
         font-size: 3vw!important ;
-        line-height: 120%!important;
+        line-height: 170%!important;
+
     }
 
     .footer-container-1 {

@@ -8,7 +8,7 @@ export default createStore({
     selectedProviderId: null,
     selectedProviderName: null,
     postcode: null,
-    huisnummer: null,
+    huisnummer: null, // Voeg deze toe
     streetName: '',
     city: '',
     subid: null,
@@ -34,7 +34,7 @@ export default createStore({
     setPostcode(state, postcode) {
       state.postcode = postcode;
     },
-    setHuisnummer(state, huisnummer) {
+    setHuisnummer(state, huisnummer) { // Voeg deze mutatie toe
       state.huisnummer = huisnummer;
     },
     setStreetName(state, streetName) {
@@ -69,7 +69,7 @@ export default createStore({
     updatePostcode({ commit }, postcode) {
       commit('setPostcode', postcode);
     },
-    updateHuisnummer({ commit }, huisnummer) {
+    updateHouseNumber({ commit }, huisnummer) { 
       commit('setHuisnummer', huisnummer);
     },
     updateStreetName({ commit }, streetName) {

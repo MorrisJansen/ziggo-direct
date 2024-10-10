@@ -21,7 +21,8 @@ export default {
       containerHeight: 704,
       successMessage: '', 
       errorMessage: '',
-      uniqueConversionId: uuidv4()
+      uniqueConversionId: uuidv4(),
+      isChecked: false,
 
     };
   },
@@ -101,24 +102,27 @@ validateAchternaam() {
 
 
 
-    validateEmail() {
-      const regex = /^[^\s@]+@[^\s@]+\.[a-z]{2,}(\.(com|org|net|edu|gov|nl|info|biz|co|io|me|tv))?$/i;
-      const containsApostrophe = /'/;
+    // validateEmail() {
+    //   const regex = /^[^\s@]+@[^\s@]+\.[a-z]{2,}(\.(com|org|net|edu|gov|nl|info|biz|co|io|me|tv))?$/i;
+    //   const containsApostrophe = /'/;
 
-      if (!this.email.match(regex) || this.email.match(containsApostrophe)) {
-        this.errors.email = 'Ongeldig e-mailadres.';
-        return false;
-      }
+    //   if (!this.email.match(regex) || this.email.match(containsApostrophe)) {
+    //     this.errors.email = 'Ongeldig e-mailadres.';
+    //     return false;
+    //   }
 
-      const parts = this.email.split('@');
-      if (parts.length !== 2 || parts[1].split('.').length !== 2) {
-        this.errors.email = 'Ongeldig e-mailadres. Er mag slechts één extensie zijn.';
-        return false;
-      }
+    //   const parts = this.email.split('@');
+    //   if (parts.length !== 2 || parts[1].split('.').length !== 2) {
+    //     this.errors.email = 'Ongeldig e-mailadres. Er mag slechts één extensie zijn.';
+    //     return false;
+    //   }
 
-      this.errors.email = '';
-      return true;
-    },
+    //   this.errors.email = '';
+    //   return true;
+    // },
+
+
+
     validateTelefoonnummer() {
   let cleanedPhoneNumber = this.telefoonnummer.trim();
   
@@ -186,12 +190,16 @@ validateAndFormatPhoneNumber(phoneNumber) {
       this.successMessage = ''; 
       this.errorMessage = '';
 
+      const fourthanswerid = this.isChecked ? 3325 : 5359;
+
+
+
       const isValidVoornaam = this.validateVoornaam();
       const isValidAchternaam = this.validateAchternaam();
-      const isValidEmail = this.validateEmail();
+      // const isValidEmail = this.validateEmail();
       const isValidTelefoonnummer = this.validateTelefoonnummer();
 
-      if (!isValidVoornaam || !isValidAchternaam || !isValidEmail || !isValidTelefoonnummer) {
+      if (!isValidVoornaam || !isValidAchternaam || !isValidTelefoonnummer) {
         console.error('Validation failed:', this.errors);
         return;
       }
@@ -202,8 +210,7 @@ validateAndFormatPhoneNumber(phoneNumber) {
       const zip = this.$store.getters.getPostcode;
       const street = this.$store.getters.getStreetName;
       const city = this.$store.getters.getCity;
-      const huisnummer = this.$store.getters.getHuisnummer;
-
+      const huisnummer =  this.$store.getters.getHuisnummer; 
 
       console.log('PubId:', this.$store.getters.getPubId);
       console.log('SubId:', this.$store.getters.getSubId);
@@ -233,13 +240,13 @@ validateAndFormatPhoneNumber(phoneNumber) {
         optin_timestamp: new Date().toISOString().slice(0, 19).replace('T', ' '),
         firstname: this.voornaam,
         lastname: this.achternaam,
-        email: this.email,
+        // email: this.email,
         phone_number: formattedPhoneNumber,
         zip: zip,
         street: street,
         city: city,
-        housenumber: huisnummer,
-        answers: [firstAnswerId, secondAnswerId, thirdAnswerId]
+        housenumber: huisnummer, 
+        answers: [firstAnswerId, secondAnswerId, thirdAnswerId, fourthanswerid]
       };
 
       console.log('Geformatteerd telefoonnummer:', formattedPhoneNumber);
@@ -270,17 +277,25 @@ validateAndFormatPhoneNumber(phoneNumber) {
             this.errors.firstname = 'Ongeldige voornaam';
           } else if (responseBody.errors && responseBody.includes('lastname')) {
             this.errors.lastname = 'Ongeldige achternaam';
-          } else if (responseBody.errors && responseBody.includes('email')) {
-            this.errors.email = 'Ongeldig e-mailadres';
           }
+          //  else if (responseBody.errors && responseBody.includes('email')) {
+          //   this.errors.email = 'Ongeldig e-mailadres';
+          // }
           console.error('Fout bij indienen:', responseBody);
         } else if (response.status === 201) {
-          console.log('Succesvol ingediend!');
-          this.successMessage = 'Bedankt voor uw inzending!';
-          this.$router.push('/Bedankt');
-          console.log('ga naar bedankt pixel')    
-          this.triggerTrackingPixel();     
-        }
+  if (this.isChecked) {
+    this.triggerTrackingPixel();
+    this.$router.push('/Bedankt'); 
+    console.log('ga naar Bedankt pixel');
+  } else {
+    this.$router.push('/bedankt');
+    console.log('ga naar bedankt zonder pixel');
+  }
+
+  console.log('Succesvol ingediend!');
+  this.successMessage = 'Bedankt voor uw inzending!';
+}
+
       } catch (error) {
         console.error('Er is een fout opgetreden bij het versturen van het formulier:', error);
         this.errorMessage = 'Netwerk- of serverfout: ' + error.message;
@@ -309,7 +324,7 @@ validateAndFormatPhoneNumber(phoneNumber) {
     <a href="/">
         <div class="container-navbar">
             <div class="afbeelding-1-navbar">
-              <img src="/public/meervoordeel-nav.svg" alt="meervoordeel">
+              <img src="/public/MV.svg" alt="meervoordeel">
             </div>
       
             <div class="afbeelding-2-navbar">
@@ -327,12 +342,12 @@ validateAndFormatPhoneNumber(phoneNumber) {
 <div class="container-pagina-1">
 
     <div class="achtergrond-pagina-6"
-    :class="{ 'error-langer-maken-achtergrond': errors.achternaam || errors.voornaam || errors.email || errors.telefoonnummer}" 
+    :class="{ 'error-langer-maken-achtergrond': errors.achternaam || errors.voornaam  || errors.telefoonnummer}" 
 
     >
 
         <div class="witte-container-pagina-6"
-        :class="{ 'langer-maken-error': errors.achternaam || errors.voornaam || errors.email || errors.telefoonnummer}" 
+        :class="{ 'langer-maken-error': errors.achternaam || errors.voornaam || errors.telefoonnummer}" 
         >
 
             <div class="container-inhoud-witte-container-6 container-inhoud-witte-container">
@@ -342,7 +357,7 @@ validateAndFormatPhoneNumber(phoneNumber) {
                     </div>
 
                 <span class="pijl-pagina-6"
-                :class="{ 'naar-beneden-pijl': errors.achternaam || errors.voornaam || errors.email || errors.telefoonnummer}" 
+                :class="{ 'naar-beneden-pijl': errors.achternaam || errors.voornaam || errors.telefoonnummer}" 
                 >
                     <router-link to="/Pagina3">
                       <!-- &#8592; -->
@@ -393,7 +408,7 @@ validateAndFormatPhoneNumber(phoneNumber) {
 
                     </div>
                   
-                    <div class="email-input input-wrapper desktop">
+                    <!-- <div class="email-input input-wrapper desktop">
                       <img src="/public/email-icoon.svg" alt="email" class="input-icon input-icon-email"
                       :style="{ top: (errors.voornaam || errors.achternaam) ? '48%!important' : '40%' }" 
                       >
@@ -406,15 +421,19 @@ validateAndFormatPhoneNumber(phoneNumber) {
                       :style="{ marginTop: (errors.voornaam || errors.achternaam) ? '1vw!important' : '0' }" 
 
                       >
-                    </div>
-                    <div v-if="errors.email" class="error-message-mail"
+                    </div> -->
+
+
+                    <!-- <div v-if="errors.email" class="error-message-mail"
                     :style="{ marginTop: (errors.voornaam || errors.achternaam) ? '2vw!important' : '0' }" 
                     :class="{ 'geen-fout-naam-mail': !errors.achternaam && !errors.voornaam }">
                
 
                     
                         {{ errors.email }}
-                    </div>
+                    </div> -->
+
+
                   
                     <div class="telefoonnummer-input input-wrapper desktop">
                       <img src="/public/telefoon-icoon.svg" alt="telefoon" class="input-icon input-icon-telefoon"
@@ -438,7 +457,10 @@ validateAndFormatPhoneNumber(phoneNumber) {
 
                     <!-- hieronder is voor mobiel -->
                     <div class="namen-inputs mobiel-pagina-6">
-                      <div class="email-input input-wrapper">
+
+
+                      
+                      <!-- <div class="email-input input-wrapper">
                         <img src="/public/email-icoon.svg" alt="email" class="input-icon">
                         <input type="email" placeholder="E-mailadres" class="email-input-field" v-model="email"
                         :class="{ 'error-marge-mobiel-3': errors.email}" 
@@ -446,7 +468,7 @@ validateAndFormatPhoneNumber(phoneNumber) {
                       </div>
                       <div v-if="errors.email" class="error-message-mail-mobiel">
                         {{ errors.email }}
-                    </div>
+                    </div> -->
 
                   
                       <div class="telefoonnummer-input input-wrapper">
@@ -478,10 +500,17 @@ validateAndFormatPhoneNumber(phoneNumber) {
 
 
 
+            <label>
 
             <div class="witte-container-footer">
-                Met het bevestigen van je deelname ga je er mee akkoord dat MeerVoordeel éénmalig telefonisch contact met je opneemt met een aanbieding voor een all-in abonnement van Ziggo.
+
+
+              <input type="checkbox" class="checkbox" v-model="isChecked">
+<p class="text-check"> Ik ga er mee akkoord dat MeerVoordeel eenmalig telefonisch contact met mij opneemt met een exclusieve aanbieding voor een alles-in-1 pakket van Ziggo.              <span style="font-weight: 700"> Let op: winnaars worden telefonisch op de hoogte gesteld.</span></p>
+
             </div>
+          </label>
+
 
 
             <div class="container-prijzen-met-prijzen mobiel" id="container-prijzen-met-prijzen">
@@ -836,6 +865,8 @@ validateAndFormatPhoneNumber(phoneNumber) {
     background-color: #F48C02;
     z-index: 2; 
     margin-right: 1vw!important;
+    position: relative;
+    top: 8vw;
 
 }
 
@@ -858,8 +889,8 @@ validateAndFormatPhoneNumber(phoneNumber) {
     position: absolute;
     font-size: 2.8vw;
     color: black;
-    top: 71.5%;
-    right: 86%;
+    top: 78.5%;
+    right: 87%;
 }
 
 .pijl-pagina-6:hover {
@@ -867,17 +898,39 @@ validateAndFormatPhoneNumber(phoneNumber) {
 }
 
 .witte-container-footer {
-    text-align: right;
+    text-align: left;
     padding-right: 5vw!important;
     color: #072249;
-    text-align: right;
     font-family: "DM Sans";
     font-size: 0.85vw;
     font-style: normal;
     font-weight: 400;
     line-height: 150%;
-    margin-top: 1vw!important;
+    margin-top: -3vw!important;
+    padding-left: 3vw;
+    display: flex;
+
 }
+
+input[type="checkbox"] { 
+  filter: invert(70%) hue-rotate(30deg) brightness(1.4); /* Filters aangepast om #f1f1f1 te benaderen */
+
+}
+
+/* Basis checkbox styling */
+.checkbox {
+  margin-right: 2vw!important;
+  position: relative;
+  bottom: 1vw;
+  scale: 2;
+}
+ 
+
+input[type="checkbox"] {
+  accent-color: white!important; 
+}
+
+
 
 .footer-container-6 {
     position: relative;
@@ -1137,7 +1190,7 @@ input[type="tel"] {
 
 .error-message-tel {
     position: absolute;
-    top: 72%;
+    top: 59%;
      /* left: 15%; */
      color: red;
     font-weight: 700;
@@ -1156,7 +1209,7 @@ dit is voor als er geen fouten zijn met de namen
 }
 
 .alleen-tel-fout {
-    top: 74%;
+    top: 61%;
 }
 
 
@@ -1274,11 +1327,17 @@ dit is voor als er geen fouten zijn met de namen
 
     .witte-container-pagina-6 {
     width: 90%;
-    height: 209vw;
+    height: 230vw;
     left: 0;
     margin: 0 auto!important
     }
 
+
+    .checkbox {
+      bottom: 34vw;
+      left: 3vw;
+      scale: 1.5;
+    }
 
     .gefeliciteerd,
     .jij-maakt-nu-kans {
@@ -1344,6 +1403,8 @@ dit is voor als er geen fouten zijn met de namen
     .cta-pagina-6 {
         width: 99%;
         height: 20vw;
+        top: 73vw;
+        
     }
 
     .cta-pijl-pagina-6,
@@ -1355,6 +1416,12 @@ dit is voor als er geen fouten zijn met de namen
         font-size: 4.1vw;
         margin-top: 3vw!important;
         text-align: start;
+    }
+
+    .text-check {
+      width: 50vw;
+      margin-left: 11vw !important;
+      margin-top: -16vw !important;
     }
 
     .footer-container-6 {
@@ -1369,7 +1436,7 @@ dit is voor als er geen fouten zijn met de namen
 
 
     .achtergrond-pagina-6 {
-        height: 335vw!important;
+        height: 350vw!important;
         width: 100%!important;
     }
 
@@ -1379,7 +1446,7 @@ dit is voor als er geen fouten zijn met de namen
     }
 
     .langer-maken-error {
-        height: 235vw!important;
+        height: 241vw!important;
     }
 
     .error-langer-maken-achtergrond {
@@ -1389,7 +1456,7 @@ dit is voor als er geen fouten zijn met de namen
 
 
     .container-afbeeldingen-en-prijs-mobiel-6 {
-        margin-top: -27vw!important;
+        margin-top: -10vw!important;
     }
 
     .gekozen-prijs {

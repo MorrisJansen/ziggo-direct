@@ -85,27 +85,52 @@ export default {
         },
 
         async fetchValidHouseNumbers() {
-            const authKey = 'P6JTU52clKYjZca8'; // API-sleutel
-            const baseUrl = 'https://api.pro6pp.nl/v2/suggest/nl/streetNumber';
-            const maxResults = 900;
-            const url = `${baseUrl}?postalCode=${encodeURIComponent(this.postcode)}&authKey=${authKey}&maxResults=${maxResults}`;
+    const authKey = 'P6JTU52clKYjZca8';
+    const baseUrl = 'https://api.pro6pp.nl/v2/suggest/nl/streetNumber';
+    const maxResults = 900;
+    const url = `${baseUrl}?postalCode=${encodeURIComponent(this.postcode)}&authKey=${authKey}&maxResults=${maxResults}`;
 
-            try {
-                const response = await fetch(url);
-                if (!response.ok) {
-                    throw new Error('Fout bij het ophalen van huisnummers.');
-                }
-                const data = await response.json();
-                this.validHouseNumbers = data.map(item => item.streetNumber.toString().trim());
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error('Fout bij het ophalen van huisnummers.');
+        }
+        const data = await response.json();
 
-                console.log("Geldige huisnummers:", this.validHouseNumbers);
-                console.log("Straatnaam:", this.streetName);
-                console.log("Stad:", this.city);
-            } catch (error) {
-                console.error('Er is een fout opgetreden bij het ophalen van huisnummers:', error);
-                this.postcodeError = 'Er is een fout opgetreden bij het ophalen van huisnummers.';
+        // Create a frequency map to count occurrences of each house number
+        const houseNumberCounts = {};
+        data.forEach(item => {
+            const houseNumber = item.streetNumber.toString().trim();
+            if (!houseNumberCounts[houseNumber]) {
+                houseNumberCounts[houseNumber] = 0;
             }
-        },
+            houseNumberCounts[houseNumber]++;
+        });
+
+        // Generate valid house numbers with and without letters (if needed)
+        this.validHouseNumbers = [];
+        Object.keys(houseNumberCounts).forEach(number => {
+            const count = houseNumberCounts[number];
+            // Voeg het basishuisnummer (zonder toevoeging) toe aan de lijst van geldige huisnummers
+            this.validHouseNumbers.push(number); 
+
+            if (count > 1) {
+                // Append 'a', 'b', 'c', etc., to duplicate house numbers
+                for (let i = 0; i < count; i++) {
+                    const suffix = String.fromCharCode(97 + i); // 'a', 'b', 'c', etc.
+                    this.validHouseNumbers.push(`${number}${suffix}`);
+                }
+            }
+        });
+
+        console.log("Geldige huisnummers:", this.validHouseNumbers);
+        console.log("Straatnaam:", this.streetName);
+        console.log("Stad:", this.city);
+    } catch (error) {
+        console.error('Er is een fout opgetreden bij het ophalen van huisnummers:', error);
+        this.postcodeError = 'Er is een fout opgetreden bij het ophalen van huisnummers.';
+    }
+},
 
         validatePostcode() {
             this.postcodeError = '';
@@ -196,7 +221,7 @@ export default {
   <a href="/">
     <div class="container-navbar">
         <div class="afbeelding-1-navbar">
-          <img src="/public/meervoordeel-nav.svg" alt="meervoordeel">
+          <img src="/public/MV.svg" alt="meervoordeel">
         </div>
   
         <div class="afbeelding-2-navbar">
@@ -265,6 +290,9 @@ export default {
                 <div class="input-button-wrapper">
                     <div class="input-button-container">
                         <!-- Postcode input -->
+
+                        <span class="input-container-mobiel mobiel">
+
                         <input 
                             type="text" 
                             placeholder="Postcode" 
@@ -293,8 +321,44 @@ export default {
                             'foutmelding-huisnummer-trigger': huisnummerError
                         }"
                             >
+
+                    </span>
+
+
+
+                        <input 
+                            type="text" 
+                            placeholder="Postcode" 
+                            class="postcode-input inputs-pagina-3" 
+                            id="postcode-input"
+                            v-model="postcode" 
+                            @input="handlePostcodeInput" 
+                            @keydown="handleEnterKey"
+                            :class="{ 'error-border': postcodeError,
+                            'foutmelding-postcode-trigger': postcodeError
+
+                        }"
+                            >
+                            
                         
-                        <button @click="goToPage4" class="cta-pagina-3">
+                        <!-- Huisnummer input -->
+                        <input 
+                            type="text" 
+                            placeholder="Huisnr." 
+                            class="huisnummer-input inputs-pagina-3" 
+                            id="huisnummer-input"
+                            v-model="huisnummer" 
+                            @input="handleHuisnummerInput" 
+                            @keydown="handleEnterKey"
+                            :class="{ 'error-border': huisnummerError,
+                            'foutmelding-huisnummer-trigger': huisnummerError
+                        }"
+                            >
+
+
+                        
+                        <button @click="goToPage4" class="cta-pagina-3"
+                        :id="huisnummerError && postcodeError ? 'foutmelding-2-errors-mobiel' : ''">
                             <span class="cta-text-pagina-3">
                                 <span class="desktop">
                                     Check of ik kans maak
@@ -884,7 +948,7 @@ export default {
     }
 
     .height-27vw {
-        height: 130vw!important;
+        height: 105vw!important;
     }
 
     .foutmelding-postcode-trigger {
@@ -911,12 +975,12 @@ export default {
         font-size: 4vw;
         font-weight: 700;
         position: relative;
-        top: 40.5vw!important;
+        top: 16.5vw!important;
         left: 0vw;
     }
 
     #alleen-huisnummer-foutmelding {
-        top: 38.5vw!important;
+        top: 17.5vw!important;
     }
 
 
@@ -939,7 +1003,7 @@ export default {
 
 
     .witte-container-pagina-3 {
-        height: 125vw;
+        height: 100vw;
         width: 90%;
         margin: 0 auto !important;
         justify-content: center;
@@ -950,7 +1014,8 @@ export default {
     }
 
     .vraag-pagina-3 {
-        width: 101%
+        width: 101%;
+        padding-bottom: 4vw;
     }
 
     .vraag-pagina-3,
@@ -967,6 +1032,20 @@ export default {
 
     .input-button-container {
         flex-direction: column;
+    }
+
+    .input-container-mobiel {
+        display: inline-flex!important;
+        gap: 1vw!important;
+    }
+
+
+    #postcode-input {
+        width: 170%!important;
+    }
+
+    .postcode-input {
+        width: 70%!important;
     }
 
     .postcode-input {
@@ -1004,10 +1083,18 @@ export default {
     }
 
     .witte-container-pagina-3.error-active {
-        height: 125vw;
+        height: 105vw;
+    }
+
+    .gegevens-weergave {
+        display: flex;
+        margin-top: -21.5vw!important;
     }
 
 
+    #foutmelding-2-errors-mobiel {
+        margin-top: 6vw!important;
+    }
 
 }
 

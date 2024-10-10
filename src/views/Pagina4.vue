@@ -62,7 +62,7 @@ export default {
     <a href="/">
         <div class="container-navbar">
             <div class="afbeelding-1-navbar">
-              <img src="/public/meervoordeel-nav.svg" alt="meervoordeel">
+              <img src="/public/MV.svg" alt="meervoordeel">
             </div>
       
             <div class="afbeelding-2-navbar">

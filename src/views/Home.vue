@@ -78,7 +78,7 @@ export default {
         <!-- navbar -->
             <div class="container-navbar">
                 <div class="afbeelding-1-navbar">
-                  <img src="/public/meervoordeel-nav.svg" alt="meervoordeel">
+                  <img src="/public/MV.svg" alt="meervoordeel">
                 </div>
           
                 <div class="afbeelding-2-navbar">
@@ -227,11 +227,11 @@ export default {
 
             <div class="container-meer-over-meer-voordeel">
                 <div class="meer-over-meer-voordeel">
-                    Meer over MeerVoordeel
+                    Over MeerVoordeel
                 </div>
 
             <div class="container-logos-sectie-3-mobiel">
-                <img class="logo-mv" src="/public/meervoordeel-nav.svg" alt="meervoordeel">
+                <img class="logo-mv" src="/public/MV.svg" alt="meervoordeel">
                 <img class="logo-ziggo" src="/public/ziggo-logo.png" alt="ziggo">
             </div>
 
@@ -252,13 +252,17 @@ export default {
       <div class="inhoud-sectie-3">
         <div class="container-text-sectie-3">
             <div class="text-sectie-3">
-                MeerVoordeel biedt diverse kortings- en voordeelprogramma's aan, aan consumenten in Nederland. In samenwerking met Ziggo, een van de grootste aanbieders van kabeltelevisie, internet en telefoniediensten in Nederland, biedt MeerVoordeel speciale voordelen en kortingen aan nieuwe Ziggo-klanten.
-            </div>
-    
+                MeerVoordeel is een onafhankelijke onderneming en is altijd op zoek naar de beste deals voor jou als consument! MeerVoordeel voldoet aan de keurmerk-code en is een gecertificeerd lid van Webshop Keurmerk. MeerVoordeel is een handelsnaam van Direct Business en staat geregistreerd onder KvK nummer 6311709.            </div>
+
             <div class="dikke-text-sectie-3">
-                Onder andere door deze samenwerking kunnen wij jou mooie acties zoals deze bieden.
+                Altijd een unieke deal 
             </div>
+            <div class="text-sectie-3-deel-2n text-sectie-3">
+                Wij zijn altijd op zoek naar de beste deals voor jou als consument. Dit kan bijvoorbeeld een extra korting zijn maar ook voordelen als cashbacks, cadeaubonnen of andere mooie cadeaus. Zo kan je er zeker van zijn, dat je via MeerVoordeel.nl de beste aanbiedingen van onze partners krijgt aangeboden.            
+            </div>
+
         </div>
+
 
 
 
@@ -334,7 +338,9 @@ export default {
     width: 25vw;
     display: flex;
     position: relative;
-    top: 30vw;
+    top: 31vw;
+    left: 5vw;
+    z-index: 99;
   }
 
   html {
@@ -764,7 +770,8 @@ body {
     font-family: "DM Sans";
     font-size: 1.1vw;
     font-style: normal;
-    line-height: 2.2vw; 
+    line-height: 2.2vw;
+    
 }
 
 
@@ -772,6 +779,7 @@ body {
     width: 33vw;
     position: relative;
     left: 14.6vw;
+    top: 2.4vw;
 }
 
 .footer-container {
@@ -796,7 +804,6 @@ body {
     width: 85vw;
     margin: 0 auto!important;
     opacity: 0.3;
-    margin-top: 2vw!important;
 }
 
 
@@ -1100,8 +1107,14 @@ body {
         font-size: 5vw;
         line-height: 150%;
         text-align: start;
-        font-weight: 400;
+        font-weight: 700;
         margin-top: 10%!important;
+        display: flex;
+        width: 100%;
+        justify-content: start;
+        font-size: 6vw;
+
+    
     }
 
     .afbeelding-sectie-3 {
@@ -1132,7 +1145,7 @@ body {
         display: inline-flex;
         width: 100vw !important;
         position: relative;
-        top: 240vw;
+        top: 316vw;
         z-index: 90000;
         justify-content: center;
         padding-bottom: 20vw!important;
@@ -1170,7 +1183,7 @@ body {
     
     .footer-text {
         font-size: 3vw;
-        line-height: 120%;
+        line-height: 170%;
         width: 70%;
         text-align: center;
         padding-bottom: 5vw!important;
