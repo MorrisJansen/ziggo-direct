@@ -64,7 +64,7 @@ export default {
       console.log('Opening actievoorwaarden modal');
     },
     closeModal() {
-      this.isModalVisible = false; // Sluit de modal
+      this.isModalVisible = false; // Sluit de modal 
     },
     triggerTrackingPixel() {
       const pixelUrl = `https://republish.prijzenpakket.nl/m/6337/9d85475ce4f0/?event=7417&unique_conversion_id=${this.uniqueConversionId}`;
@@ -626,6 +626,7 @@ export default {
   padding-left: 2.8vw!important;
   padding-right: 4.9vw!important;
   font-family: "DM Sans";
+  font-size: 0.85vw;
 }
 
 #error-border {
@@ -887,6 +888,11 @@ export default {
   padding-left: 3vw;
   display: flex;
   align-items: flex-start; /* Aligns items at the top */
+  margin-left: 4px!important;
+}
+
+.safari .witte-container-footer {
+  margin-left: 8px!important;
 }
 
 input[type="checkbox"] { 
@@ -1322,6 +1328,7 @@ dit is voor als er geen fouten zijn met de namen
       text-align: left;
       padding-left: 13.8vw !important;
       padding-right: 11.9vw !important;
+      font-size: 4.1vw;
     }
 
     .foutmelding-checkbox-cta {
@@ -1383,7 +1390,10 @@ input[type="checkbox"]:checked::after {
         font-size: 4.1vw;
         margin-top: 3vw !important;
         text-align: start;
+        padding-left: 5vw!important;
     }
+
+    
 
 
     .safari .checkbox {
@@ -1499,7 +1509,7 @@ input[type="checkbox"]:checked::after {
     }
 
     .langer-maken-error {
-        height: 241vw!important;
+        height: 250vw!important;
     }
 
     .error-langer-maken-achtergrond {

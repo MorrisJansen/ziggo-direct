@@ -445,7 +445,7 @@ label:hover {
     height: 1.2vw;
     border-radius: 50%;
     border: 1px solid grey;
-    background-color: transparent!important;
+    background-color: white!important;
     cursor: pointer;
     position: relative;
 }

@@ -939,6 +939,18 @@ export default {
 
 @media (max-width: 499px) {
 
+    .inputs-pagina-3 {
+        padding-left: 25vw!important;
+    }
+
+    #postcode-input {
+        padding-left: 7vw!important;
+    }
+
+    #huisnummer-input {
+        padding-left: 6vw!important;
+    }
+
 
     .dynamisch-adres-los {
         position: relative;
@@ -1062,7 +1074,7 @@ export default {
     .cta-pagina-3 {
         width: 100%;
         height: 15vw;
-        margin-top: 3vw!important;
+        margin-top: 9vw!important;
     }
 
 
@@ -1088,7 +1100,7 @@ export default {
 
     .gegevens-weergave {
         display: flex;
-        margin-top: -21.5vw!important;
+        margin-top: -41.5vw!important;
     }
 
 
