@@ -473,7 +473,7 @@ export default {
               <div class="witte-container-footer">
                 <input type="checkbox" class="checkbox" id="checkbox" v-model="isChecked">
                 <p class="text-check">
-                  Ik ga er mee akkoord dat MeerVoordeel eenmalig telefonisch contact met mij opneemt met een exclusieve aanbieding voor een alles-in-1 pakket van Ziggo. 
+                  Ik ga ermee akkoord dat MeerVoordeel eenmalig telefonisch contact met mij opneemt met een exclusieve aanbieding voor een alles-in-1 pakket van Ziggo. 
                   <span style="font-weight: 700">Let op: winnaars worden telefonisch op de hoogte gesteld.</span>
                 </p>
               </div>
