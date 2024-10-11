@@ -309,7 +309,6 @@ export default {
   :id="errors.checkbox ? 'achtergrond-pagina-6-checkbox-fout' : ''">
 
 
-    >
 
         <div class="witte-container-pagina-6"
         :class="{ 'langer-maken-error': errors.achternaam || errors.voornaam || errors.telefoonnummer,
@@ -1553,6 +1552,10 @@ input[type="checkbox"]:checked::after {
 
 
 
+@media (prefers-color-scheme: light) {
+  input[type="checkbox"] {
+    filter: invert(37%) hue-rotate(30deg) brightness(1.4);
 
-
+  }
+}
 </style>
