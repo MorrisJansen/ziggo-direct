@@ -358,8 +358,8 @@ export default {
 
                         
                         <button @click="goToPage4" class="cta-pagina-3"
-                        :id="huisnummerError && postcodeError ? 'foutmelding-2-errors-mobiel' : '',
-                        huisnummerError ? 'cta-pagina-3-foutmelding-huisnr' : ''"
+                        :id="huisnummerError && postcodeError ? 'foutmelding-2-errors-mobiel' : (huisnummerError ? 'cta-pagina-3-foutmelding-huisnr' : '')"
+
 
 
                         :class="{'cta-pagina-3-foutmelding-huisnr': huisnummerError}"
@@ -385,6 +385,7 @@ export default {
                 <div v-if="huisnummerError" 
                 :id="huisnummerError && !postcodeError ? 'alleen-huisnummer-foutmelding' : 'foutmelding-pagina-3-huisnummer'" 
                 class="foutmelding-pagina-3-huisnummer foutmelding-pagina-3">
+                
                 {{ huisnummerError }}</div>
 
                 <div class="container-dynamisch-adres">
