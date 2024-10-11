@@ -303,7 +303,10 @@ export default {
 <div class="container-pagina-1">
 
     <div class="achtergrond-pagina-6"
-    :class="{ 'error-langer-maken-achtergrond': errors.achternaam || errors.voornaam  || errors.telefoonnummer}" 
+    :class="{ 'error-langer-maken-achtergrond': errors.achternaam || errors.voornaam  || errors.telefoonnummer,
+    'achtergrond-pagina-6-checkbox-fout': errors.checkbox
+  }"
+
 
     >
 
@@ -1217,6 +1220,11 @@ dit is voor als er geen fouten zijn met de namen
 
 
 @media (max-width: 499px) {
+
+
+  .achtergrond-pagina-6-checkbox-fout {
+    height: 400vw!important;
+  }
 
     .lijn-10 {
         margin-top: 2.4vw !important;
