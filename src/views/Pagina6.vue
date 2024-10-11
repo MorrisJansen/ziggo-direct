@@ -629,6 +629,10 @@ export default {
   font-size: 0.85vw;
 }
 
+.safari .checkbox-fout {
+  margin-left: 1vw!important;
+}
+
 #error-border {
     border: 1px solid red;
 }
@@ -1366,7 +1370,7 @@ dit is voor als er geen fouten zijn met de namen
     }
 
     .safari input[type=checkbox] {
-      scale:  1!important;
+      scale:  4!important;
       top: -13vw!important;
     }
 

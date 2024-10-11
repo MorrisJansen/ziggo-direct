@@ -358,7 +358,11 @@ export default {
 
                         
                         <button @click="goToPage4" class="cta-pagina-3"
-                        :id="huisnummerError && postcodeError ? 'foutmelding-2-errors-mobiel' : ''">
+                        :id="huisnummerError && postcodeError ? 'foutmelding-2-errors-mobiel' : ''"
+                        :class="{'cta-pagina-3-foutmelding-huisnr': huisnummerError}"
+                        
+                        >
+
                             <span class="cta-text-pagina-3">
                                 <span class="desktop">
                                     Check of ik kans maak
@@ -938,6 +942,11 @@ export default {
 
 
 @media (max-width: 499px) {
+
+
+    .cta-pagina-3-foutmelding-huisnr {
+        margin-top: 4vw!important;
+    }
 
     .inputs-pagina-3 {
         padding-left: 25vw!important;
