@@ -85,7 +85,7 @@ export default {
 
             <div class="container-bedankt">
                 <div class="bedankt">Bedankt voor je deelname!</div>
-                <div class="contact">Je maakt nu kans op een van de drie prijzen van MeerVoordeel.</div>
+                <div class="contact-2">Je maakt nu kans op een van de drie prijzen van MeerVoordeel.</div>
             </div>
 
 
@@ -300,8 +300,21 @@ export default {
         display: flex;
         flex-direction: column;
     }
-}
 
+
+        .contact-2 {
+            font-size: 4.2vw;
+            padding: 3vw 7vw !important;
+            color: #072249;
+            text-align: center;
+            font-family: DM Sans;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 150%;
+            margin-top: 2vw !important;
+        }
+    }
+    
 
 
 
