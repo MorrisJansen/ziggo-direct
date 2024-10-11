@@ -1399,7 +1399,6 @@ input[type="checkbox"]:checked::after {
     .safari .checkbox {
       position: relative!important;
       top: 0!important;
-      display: none!important;
     }
 
     .gefeliciteerd,
