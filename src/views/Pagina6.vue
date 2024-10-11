@@ -2,12 +2,10 @@
 import { v4 as uuidv4 } from 'uuid';
 import PrivacyModal from './privacyModal.vue';
 
-
-
 export default {
   components: {
-        PrivacyModal,
-    },
+    PrivacyModal,
+  },
   data() {
     return {
       isModalVisible: false,
@@ -23,7 +21,6 @@ export default {
       errorMessage: '',
       uniqueConversionId: uuidv4(),
       isChecked: false,
-
     };
   },
 
@@ -44,33 +41,43 @@ export default {
       console.log('Geen prijs gevonden in Vuex store');
     }
   },
+  watch: {
+  isChecked(newValue) {
+    if (newValue) {
+      this.errors.checkbox = ''; 
+      this.errors.voornaam = ''; 
+      this.errors.achternaam = '';
+      this.errors.telefoonnummer = '';    
+    }
+  }
+},
 
   methods: {
     openPrivacyPolicy() {
-            this.modalUrl = 'https://leadgen.republish.nl/api/content/privacy-meervoordeel'; // URL voor privacyverklaring
-            this.isModalVisible = true; // Maak de modal zichtbaar
-            console.log('Opening privacy policy modal');
-        },
-        openActievoorwaarden() {
-            this.modalUrl = 'https://leadgen.republish.nl/api/content/actievoorwaarden-meervoordeel'; // URL voor actievoorwaarden
-            this.isModalVisible = true; // Maak de modal zichtbaar
-            console.log('Opening actievoorwaarden modal');
-        },
-        closeModal() {
-            this.isModalVisible = false; // Sluit de modal
-        },
+      this.modalUrl = 'https://leadgen.republish.nl/api/content/privacy-meervoordeel'; // URL voor privacyverklaring
+      this.isModalVisible = true; // Maak de modal zichtbaar
+      console.log('Opening privacy policy modal');
+    },
+    openActievoorwaarden() {
+      this.modalUrl = 'https://leadgen.republish.nl/api/content/actievoorwaarden-meervoordeel'; // URL voor actievoorwaarden
+      this.isModalVisible = true; // Maak de modal zichtbaar
+      console.log('Opening actievoorwaarden modal');
+    },
+    closeModal() {
+      this.isModalVisible = false; // Sluit de modal
+    },
     triggerTrackingPixel() {
-        const pixelUrl = `https://republish.prijzenpakket.nl/m/6337/9d85475ce4f0/?event=7417&unique_conversion_id=${this.uniqueConversionId}`;
-        const img = new Image();
-        img.src = pixelUrl;
-        img.style.width = '1px';
-        img.style.height = '1px';
-        img.style.border = '0';
-        document.body.appendChild(img);
+      const pixelUrl = `https://republish.prijzenpakket.nl/m/6337/9d85475ce4f0/?event=7417&unique_conversion_id=${this.uniqueConversionId}`;
+      const img = new Image();
+      img.src = pixelUrl;
+      img.style.width = '1px';
+      img.style.height = '1px';
+      img.style.border = '0';
+      document.body.appendChild(img);
     },
 
     goToNextPage() {
-      this.$router.push({ name: 'nextPage' });
+      this.$router.push({ name: 'Bedankt' });
     },
     
     selectPrice(prijsId, prijsOptie) {
@@ -81,122 +88,91 @@ export default {
     },
 
     validateVoornaam() {
-  const regex = /^[A-Za-z'., -]+$/; // Koppelteken aan het einde geplaatst
-  if (!this.voornaam.match(regex)) {
-    this.errors.voornaam = 'Ongeldige voornaam.';
-    return false;
-  }
-  this.errors.voornaam = '';
-  return true;
-},
+      const regex = /^[A-Za-z'., -]+$/; 
+      if (!this.voornaam.match(regex)) {
+        this.errors.voornaam = 'Ongeldige voornaam.';
+        return false;
+      }
+      this.errors.voornaam = '';
+      return true;
+    },
 
-validateAchternaam() {
-  const regex = /^[A-Za-z'., -]+$/; // Koppelteken aan het einde geplaatst
-  if (!this.achternaam.match(regex)) {
-    this.errors.achternaam = 'Ongeldige achternaam.';
-    return false;
-  }
-  this.errors.achternaam = '';
-  return true;
-},
-
-
-
-    // validateEmail() {
-    //   const regex = /^[^\s@]+@[^\s@]+\.[a-z]{2,}(\.(com|org|net|edu|gov|nl|info|biz|co|io|me|tv))?$/i;
-    //   const containsApostrophe = /'/;
-
-    //   if (!this.email.match(regex) || this.email.match(containsApostrophe)) {
-    //     this.errors.email = 'Ongeldig e-mailadres.';
-    //     return false;
-    //   }
-
-    //   const parts = this.email.split('@');
-    //   if (parts.length !== 2 || parts[1].split('.').length !== 2) {
-    //     this.errors.email = 'Ongeldig e-mailadres. Er mag slechts één extensie zijn.';
-    //     return false;
-    //   }
-
-    //   this.errors.email = '';
-    //   return true;
-    // },
-
-
+    validateAchternaam() {
+      const regex = /^[A-Za-z'., -]+$/;
+      if (!this.achternaam.match(regex)) {
+        this.errors.achternaam = 'Ongeldige achternaam.';
+        return false;
+      }
+      this.errors.achternaam = '';
+      return true;
+    },
 
     validateTelefoonnummer() {
-  let cleanedPhoneNumber = this.telefoonnummer.trim();
+      let cleanedPhoneNumber = this.telefoonnummer.trim();
   
-  // Verwijder spaties en streepjes
-  cleanedPhoneNumber = cleanedPhoneNumber.replace(/[\s-]/g, '');
+      cleanedPhoneNumber = cleanedPhoneNumber.replace(/[\s-]/g, '');
 
-  // Controleer de prefix en vervang deze
-  if (cleanedPhoneNumber.startsWith('+31')) {
-    cleanedPhoneNumber = cleanedPhoneNumber.replace('+31', '0');
-  } else if (cleanedPhoneNumber.startsWith('0031')) {
-    cleanedPhoneNumber = cleanedPhoneNumber.replace('0031', '0');
-  } else if (cleanedPhoneNumber.startsWith('31')) {
-    cleanedPhoneNumber = cleanedPhoneNumber.replace('31', '0');
-  } else if (!cleanedPhoneNumber.startsWith('06')) {
-    this.errors.telefoonnummer = 'Ongeldig telefoonnummer.';
-    return false;
-  }
+      if (cleanedPhoneNumber.startsWith('+31')) {
+        cleanedPhoneNumber = cleanedPhoneNumber.replace('+31', '0');
+      } else if (cleanedPhoneNumber.startsWith('0031')) {
+        cleanedPhoneNumber = cleanedPhoneNumber.replace('0031', '0');
+      } else if (cleanedPhoneNumber.startsWith('31')) {
+        cleanedPhoneNumber = cleanedPhoneNumber.replace('31', '0');
+      } else if (!cleanedPhoneNumber.startsWith('06')) {
+        this.errors.telefoonnummer = 'Ongeldig telefoonnummer.';
+        return false;
+      }
 
-  // Tel het aantal cijfers na de conversie
-  const digitsOnlyPhoneNumber = cleanedPhoneNumber.replace(/[^0-9]/g, '');
+      // Tel het aantal cijfers na de conversie
+      const digitsOnlyPhoneNumber = cleanedPhoneNumber.replace(/[^0-9]/g, '');
 
-  if (digitsOnlyPhoneNumber.length !== 10) {
-    this.errors.telefoonnummer = 'Ongeldig telefoonnummer.';
-    return false;
-  }
+      if (digitsOnlyPhoneNumber.length !== 10) {
+        this.errors.telefoonnummer = 'Ongeldig telefoonnummer.';
+        return false;
+      }
 
-  this.errors.telefoonnummer = '';
-  return true;
-},
+      this.errors.telefoonnummer = '';
+      return true;
+    },
 
+    validateAndFormatPhoneNumber(phoneNumber) {
+      phoneNumber = phoneNumber.replace(/[^0-9+\s-]/g, '');
+      phoneNumber = phoneNumber.replace(/[\s-]/g, '');
 
+      if (phoneNumber.startsWith('06')) {
+        phoneNumber = phoneNumber.replace(/^06/, '+316');
+      } else if (phoneNumber.startsWith('+316')) {
+        phoneNumber = phoneNumber.slice(0, 12);
+      } else if (phoneNumber.startsWith('316')) {
+        phoneNumber = phoneNumber.replace(/^316/, '+316');
+      } else if (phoneNumber.startsWith('00316')) {
+        phoneNumber = phoneNumber.replace(/^00316/, '+316');
+      } else {
+        return null;
+      }
 
+      const dutchRegex = /^\+316\d{8}$/;
+      if (!phoneNumber.match(dutchRegex)) {
+        return null;
+      }
 
-validateAndFormatPhoneNumber(phoneNumber) {
-  phoneNumber = phoneNumber.replace(/[^0-9+\s-]/g, '');
+      return phoneNumber;
+    },
 
-  phoneNumber = phoneNumber.replace(/[\s-]/g, '');
-
-  if (phoneNumber.startsWith('06')) {
-    phoneNumber = phoneNumber.replace(/^06/, '+316');
-  } else if (phoneNumber.startsWith('+316')) {
-    phoneNumber = phoneNumber.slice(0, 12);
-  } else if (phoneNumber.startsWith('316')) {
-    phoneNumber = phoneNumber.replace(/^316/, '+316');
-  } else if (phoneNumber.startsWith('00316')) {
-    phoneNumber = phoneNumber.replace(/^00316/, '+316');
-  } else {
-    return null;
-  }
-
-  const dutchRegex = /^\+316\d{8}$/;
-  if (!phoneNumber.match(dutchRegex)) {
-    return null;
-  }
-
-  return phoneNumber;
-},
-
-
-
-
-    
     async submitForm() {
       this.errors = {};
       this.successMessage = ''; 
       this.errorMessage = '';
 
-      const fourthanswerid = this.isChecked ? 3325 : 5359;
-
-
+      if (!this.isChecked) {
+        this.errors.checkbox = 'We hebben je toestemming voor eenmalig telefonisch contact nodig om je deelname aan de winactie compleet te maken!';
+        return;
+      } else {
+        this.errors.checkbox = ''; 
+      }
 
       const isValidVoornaam = this.validateVoornaam();
       const isValidAchternaam = this.validateAchternaam();
-      // const isValidEmail = this.validateEmail();
       const isValidTelefoonnummer = this.validateTelefoonnummer();
 
       if (!isValidVoornaam || !isValidAchternaam || !isValidTelefoonnummer) {
@@ -240,13 +216,12 @@ validateAndFormatPhoneNumber(phoneNumber) {
         optin_timestamp: new Date().toISOString().slice(0, 19).replace('T', ' '),
         firstname: this.voornaam,
         lastname: this.achternaam,
-        // email: this.email,
         phone_number: formattedPhoneNumber,
         zip: zip,
         street: street,
         city: city,
         housenumber: huisnummer, 
-        answers: [firstAnswerId, secondAnswerId, thirdAnswerId, fourthanswerid]
+        answers: [firstAnswerId, secondAnswerId, thirdAnswerId,]
       };
 
       console.log('Geformatteerd telefoonnummer:', formattedPhoneNumber);
@@ -266,44 +241,30 @@ validateAndFormatPhoneNumber(phoneNumber) {
 
         if (response.status === 409) {
           this.$router.push('/dankuwel');
-          console.log('naar bedankt zonder pixel')   
+          console.log('naar bedankt zonder pixel');   
         } else if (response.status === 400) {
           const responseBody = await response.json();
           console.log('Volledige responseBody:', responseBody);
 
           if (responseBody.error && responseBody.error.includes('phone_number')) {
-            this.errors.telefoonnummer = 'Ongeldig telefoonnummer.';
-          } else if (responseBody.errors && responseBody.includes('firstname')) {
-            this.errors.firstname = 'Ongeldige voornaam';
-          } else if (responseBody.errors && responseBody.includes('lastname')) {
-            this.errors.lastname = 'Ongeldige achternaam';
+            this.errors.telefoonnummer = 'Dit telefoonnummer is al geregistreerd!';
+          } else {
+            this.errorMessage = 'Er is een fout opgetreden, probeer het later opnieuw.';
           }
-          //  else if (responseBody.errors && responseBody.includes('email')) {
-          //   this.errors.email = 'Ongeldig e-mailadres';
-          // }
-          console.error('Fout bij indienen:', responseBody);
-        } else if (response.status === 201) {
-  if (this.isChecked) {
-    this.triggerTrackingPixel();
-    this.$router.push('/Bedankt'); 
-    console.log('ga naar Bedankt pixel');
-  } else {
-    this.$router.push('/dankuwel');
-    console.log('ga naar bedankt zonder pixel');
-  }
-
-  console.log('Succesvol ingediend!');
-  this.successMessage = 'Bedankt voor uw inzending!';
-}
-
+          return;
+        } else if (response.ok) {
+          this.triggerTrackingPixel();
+          this.goToNextPage();
+        }
       } catch (error) {
-        console.error('Er is een fout opgetreden bij het versturen van het formulier:', error);
-        this.errorMessage = 'Netwerk- of serverfout: ' + error.message;
+        console.error('API-verzoek fout:', error);
+        this.errorMessage = 'Er is een fout opgetreden, probeer het later opnieuw.';
       }
     }
-  }
+  },
 };
 </script>
+
 
 
 
@@ -347,7 +308,10 @@ validateAndFormatPhoneNumber(phoneNumber) {
     >
 
         <div class="witte-container-pagina-6"
-        :class="{ 'langer-maken-error': errors.achternaam || errors.voornaam || errors.telefoonnummer}" 
+        :class="{ 'langer-maken-error': errors.achternaam || errors.voornaam || errors.telefoonnummer,
+        'checkbox-foutmelding-wit': errors.checkbox
+      
+      }" 
         >
 
             <div class="container-inhoud-witte-container-6 container-inhoud-witte-container">
@@ -492,7 +456,9 @@ validateAndFormatPhoneNumber(phoneNumber) {
 
 
             <div class="container-button-pagina-6">
-                <button @click="submitForm" class="cta-pagina-6">
+                <button @click="submitForm" class="cta-pagina-6"
+                :class="{'foutmelding-checkbox-cta': errors.checkbox}"
+                >
                     <span class="cta-text-pagina-6">Bevestig mijn deelname</span>
                     <span class="cta-pijl-pagina-6">&#8594;</span>
                 </button>  
@@ -501,7 +467,6 @@ validateAndFormatPhoneNumber(phoneNumber) {
 
 
             <label>
-
               <div class="witte-container-footer">
                 <input type="checkbox" class="checkbox" id="checkbox" v-model="isChecked">
                 <p class="text-check">
@@ -509,8 +474,10 @@ validateAndFormatPhoneNumber(phoneNumber) {
                   <span style="font-weight: 700">Let op: winnaars worden telefonisch op de hoogte gesteld.</span>
                 </p>
               </div>
-              
-          </label>
+            </label>
+            <div v-if="errors.checkbox" class="checkbox-fout">{{ errors.checkbox }}</div>
+            
+            
 
 
 
@@ -651,6 +618,15 @@ validateAndFormatPhoneNumber(phoneNumber) {
 
 
 <style>
+
+
+.checkbox-fout {
+  color: red;
+  text-align: left;
+  padding-left: 2.8vw!important;
+  padding-right: 4.9vw!important;
+  font-family: "DM Sans";
+}
 
 #error-border {
     border: 1px solid red;
@@ -1332,10 +1308,24 @@ dit is voor als er geen fouten zijn met de namen
 
 
     .witte-container-pagina-6 {
-    width: 90%;
-    height: 230vw;
-    left: 0;
-    margin: 0 auto!important
+      width: 90%;
+      height: 230vw;
+      left: 0;
+      margin: 0 auto!important
+    }
+
+    .checkbox-foutmelding-wit {
+      height: 271vw;
+    }
+
+    .checkbox-fout {
+      text-align: left;
+      padding-left: 13.8vw !important;
+      padding-right: 11.9vw !important;
+    }
+
+    .foutmelding-checkbox-cta {
+      top: 113vw!important;
     }
 
 
@@ -1366,6 +1356,11 @@ dit is voor als er geen fouten zijn met de namen
       bottom: 1.3px;
 
     }
+
+    .safari input[type=checkbox] {
+      scale:  1!important;
+    }
+
 
 
 input[type="checkbox"]:checked::after {
