@@ -1326,8 +1326,8 @@ dit is voor als er geen fouten zijn met de namen
 
     .checkbox-fout {
       text-align: left;
-      padding-left: 13.8vw !important;
-      padding-right: 11.9vw !important;
+      padding-left: 19.8vw !important;
+      padding-right: 8.9vw !important;
       font-size: 4.1vw;
     }
 
