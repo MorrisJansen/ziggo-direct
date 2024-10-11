@@ -303,9 +303,10 @@ export default {
 <div class="container-pagina-1">
 
     <div class="achtergrond-pagina-6"
-    :class="{ 'error-langer-maken-achtergrond': errors.achternaam || errors.voornaam  || errors.telefoonnummer,
+    :class="{ 
+      'error-langer-maken-achtergrond': errors.achternaam || errors.voornaam || errors.telefoonnummer 
   }"
-  :id="{    'achtergrond-pagina-6-checkbox-fout': errors.checkbox}"
+  :id="errors.checkbox ? 'achtergrond-pagina-6-checkbox-fout' : ''">
 
 
     >
