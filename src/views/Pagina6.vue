@@ -1346,6 +1346,7 @@ dit is voor als er geen fouten zijn met de namen
         appearance: none; /* Verwijder standaard checkbox-styling */
         background-color: white; /* Maak de checkbox wit als standaard */
         transition: background-color 0.3s ease; /* Voeg een overgang toe */
+        top: -13vw!important;
     }
 
     /* Styling wanneer de checkbox is aangevinkt */
@@ -1366,6 +1367,7 @@ dit is voor als er geen fouten zijn met de namen
 
     .safari input[type=checkbox] {
       scale:  1!important;
+      top: -13vw!important;
     }
 
 
