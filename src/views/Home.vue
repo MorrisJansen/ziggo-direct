@@ -1132,7 +1132,7 @@ body {
 
     .logo-mv,
     .logo-ziggo {
-        width: 25%;
+        width: 35%;
         display: flex;
         margin: 0!important;
         padding: 0!important;
