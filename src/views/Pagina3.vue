@@ -59,32 +59,51 @@ export default {
         },
 
         async fetchStreetByPostcode(postcode) {
-            const authKey = 'P6JTU52clKYjZca8';
-            const baseUrl = 'https://api.pro6pp.nl';
-            const url = `${baseUrl}/v2/suggest/nl/street?postalCode=${postcode}&authKey=${authKey}`;
+    const authKey = 'P6JTU52clKYjZca8';
+    const baseUrl = 'https://api.pro6pp.nl/v2';
+    const maxResults = 1; // Stel het aantal resultaten in op 1 (of meer als dat nodig is)
+    const url = `${baseUrl}/suggest/nl/postalCode?postalCode=${postcode}&authKey=${authKey}&maxResults=${maxResults}`;
 
-            try {
-                const response = await fetch(url);
-                if (!response.ok) {
-                    throw new Error('Authentication failed or no results found');
-                }
-                const data = await response.json();
-                if (data.length > 0) {
-                    const streetNames = data.map(item => item.street);
-                    this.streetName = streetNames[0] || ''; // De eerste straatnaam
-                    this.city = data[0].settlement || ''; // Stad
-                    return streetNames;
-                } else {
-                    this.errorMessage = 'No results found';
-                    return [];
-                }
-            } catch (error) {
-                this.errorMessage = error.message;
-                return [];
-            }
-        },
+    try {
+        const response = await fetch(url);
+        
+        if (!response.ok) {
+            throw new Error('Authentication failed or no results found');
+        }
 
-        async fetchValidHouseNumbers() {
+        const data = await response.json();
+        
+        // Log de hele data object om te controleren wat we ontvangen
+        console.log('API response data:', data);
+
+        // Controleer of de data resultaten bevat
+        if (data.length > 0) {
+            this.streetName = data[0].streetName || ''; // Gebruik de straatnaam uit de response
+            this.city = data[0].settlement || ''; // Gebruik de settlement uit de response
+
+            // Log de straatnaam en stad
+            console.log("Straatnaam:", this.streetName);
+            console.log("Stad:", this.city);
+
+        } else {
+            // Geen resultaten gevonden, stel hardcoded waarden in
+            this.streetName = 'Postbus'; // Hard-coded straatnaam
+            this.city = 'Amsterdam'; // Hard-coded stad
+            console.log('Geen resultaten gevonden, hard-coded waarden ingesteld: straatnaam = Postbus, stad = Amsterdam.');
+        }
+    } catch (error) {
+        this.errorMessage = error.message;
+        console.error("Error:", this.errorMessage);
+    }
+},
+
+
+
+
+
+
+
+async fetchValidHouseNumbers() {
     const authKey = 'P6JTU52clKYjZca8';
     const baseUrl = 'https://api.pro6pp.nl/v2/suggest/nl/streetNumber';
     const maxResults = 900;
@@ -95,9 +114,21 @@ export default {
         if (!response.ok) {
             throw new Error('Fout bij het ophalen van huisnummers.');
         }
+
         const data = await response.json();
 
-        // Create a frequency map to count occurrences of each house number
+        // Controleer of er gegevens zijn ontvangen
+        if (data.length === 0) {
+            this.validHouseNumbers = []; // Geen huisnummers gevonden
+            console.log("Geen huisnummers gevonden voor deze postcode.");
+            return;
+        }
+
+        // Sla de straatnaam en stad op van de eerste item in de response
+        this.streetName = data[0].streetName || 'Postbus'; // Zorg ervoor dat je de juiste sleutel gebruikt
+        this.city = data[0].settlement || 'Amsterdam'; // Default naar Amsterdam
+
+        // Maak een frequentiekaart om het aantal voorkomen van elk huisnummer te tellen
         const houseNumberCounts = {};
         data.forEach(item => {
             const houseNumber = item.streetNumber.toString().trim();
@@ -107,7 +138,7 @@ export default {
             houseNumberCounts[houseNumber]++;
         });
 
-        // Generate valid house numbers with and without letters (if needed)
+        // Genereer geldige huisnummers met en zonder letters (indien nodig)
         this.validHouseNumbers = [];
         Object.keys(houseNumberCounts).forEach(number => {
             const count = houseNumberCounts[number];
@@ -115,7 +146,7 @@ export default {
             this.validHouseNumbers.push(number); 
 
             if (count > 1) {
-                // Append 'a', 'b', 'c', etc., to duplicate house numbers
+                // Voeg 'a', 'b', 'c', etc. toe aan duplicaten van huisnummers
                 for (let i = 0; i < count; i++) {
                     const suffix = String.fromCharCode(97 + i); // 'a', 'b', 'c', etc.
                     this.validHouseNumbers.push(`${number}${suffix}`);
@@ -131,6 +162,7 @@ export default {
         this.postcodeError = 'Er is een fout opgetreden bij het ophalen van huisnummers.';
     }
 },
+
 
         validatePostcode() {
             this.postcodeError = '';
