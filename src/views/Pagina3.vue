@@ -60,43 +60,40 @@ export default {
 
         async fetchStreetByPostcode(postcode) {
     const authKey = 'P6JTU52clKYjZca8';
-    const baseUrl = 'https://api.pro6pp.nl/v2';
-    const maxResults = 1; // Stel het aantal resultaten in op 1 (of meer als dat nodig is)
-    const url = `${baseUrl}/suggest/nl/postalCode?postalCode=${postcode}&authKey=${authKey}&maxResults=${maxResults}`;
+    const baseUrl = 'https://api.pro6pp.nl';
+    const url = `${baseUrl}/v2/suggest/nl/street?postalCode=${postcode}&authKey=${authKey}`;
 
     try {
         const response = await fetch(url);
-        
         if (!response.ok) {
             throw new Error('Authentication failed or no results found');
         }
-
         const data = await response.json();
         
         // Log de hele data object om te controleren wat we ontvangen
         console.log('API response data:', data);
 
-        // Controleer of de data resultaten bevat
+        // Hier kun je controleren of de data de verwachte structuur heeft
         if (data.length > 0) {
-            this.streetName = data[0].streetName || ''; // Gebruik de straatnaam uit de response
-            this.city = data[0].settlement || ''; // Gebruik de settlement uit de response
-
-            // Log de straatnaam en stad
+            const streetNames = data.map(item => item.street);
+            this.streetName = streetNames[0] || ''; // De eerste straatnaam
+            this.city = data[0].settlement || ''; // Stad
+            
+            // Je kunt hier verder gaan met je logica
+            console.log("Geldige huisnummers:", this.validHouseNumbers);
             console.log("Straatnaam:", this.streetName);
             console.log("Stad:", this.city);
 
+            return streetNames;
         } else {
-            // Geen resultaten gevonden, stel hardcoded waarden in
-            this.streetName = 'Postbus'; // Hard-coded straatnaam
-            this.city = 'Amsterdam'; // Hard-coded stad
-            console.log('Geen resultaten gevonden, hard-coded waarden ingesteld: straatnaam = Postbus, stad = Amsterdam.');
+            this.errorMessage = 'No results found';
+            return [];
         }
     } catch (error) {
         this.errorMessage = error.message;
-        console.error("Error:", this.errorMessage);
+        return [];
     }
 },
-
 
 
 
@@ -116,6 +113,7 @@ async fetchValidHouseNumbers() {
         }
 
         const data = await response.json();
+        console.log("API respons:", data); // Log de API-respons
 
         // Controleer of er gegevens zijn ontvangen
         if (data.length === 0) {
@@ -124,8 +122,11 @@ async fetchValidHouseNumbers() {
             return;
         }
 
+        // Log de structuur van het eerste item in de respons
+        console.log("Eerste item in de respons:", data[0]);
+
         // Sla de straatnaam en stad op van de eerste item in de response
-        this.streetName = data[0].streetName || 'Postbus'; // Zorg ervoor dat je de juiste sleutel gebruikt
+        this.streetName = data[0].street || 'Onbekend'; // Gebruik de juiste sleutel voor straatnaam
         this.city = data[0].settlement || 'Amsterdam'; // Default naar Amsterdam
 
         // Maak een frequentiekaart om het aantal voorkomen van elk huisnummer te tellen
@@ -161,7 +162,10 @@ async fetchValidHouseNumbers() {
         console.error('Er is een fout opgetreden bij het ophalen van huisnummers:', error);
         this.postcodeError = 'Er is een fout opgetreden bij het ophalen van huisnummers.';
     }
-},
+}
+,
+
+
 
 
         validatePostcode() {
